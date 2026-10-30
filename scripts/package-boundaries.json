@@ -758,6 +758,8 @@
     ],
     "modules": [
       "src/app/stateChannel.js",
+      "src/app/layers/overlayHost.js",
+      "src/app/layers/vision-bbox.js",
       "src/bloom.js",
       "src/cctvFocusPolicy.js",
       "src/cctvFocusRequest.js",
@@ -4450,8 +4452,11 @@
     ]
   },
   "vision-bbox": {
-    "exports": [],
+    "exports": [
+      "./layers/vision-bbox"
+    ],
     "modules": [
+      "src/app/layers/vision-bbox.js",
       "src/layers/vision-bbox/index.js",
       "src/layers/vision-bbox/model.js",
       "src/layers/vision-bbox/source.js"
