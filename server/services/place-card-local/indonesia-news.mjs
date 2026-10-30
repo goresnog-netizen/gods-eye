@@ -33,23 +33,27 @@ function decodeEntities(value) {
 }
 
 function tagValue(block, tag) {
-  const match = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i').exec(block);
+  const match = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i').exec(
+    block,
+  );
   if (!match) return '';
   return decodeEntities(match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1'));
 }
 
 function parseRss(xml) {
   const blocks = String(xml || '').match(/<item[\s\S]*?<\/item>/gi) || [];
-  return blocks.map((block) => {
-    const pubDate = tagValue(block, 'pubDate').trim();
-    const published = pubDate ? Date.parse(pubDate) : Number.NaN;
-    return {
-      title: tagValue(block, 'title').trim(),
-      link: tagValue(block, 'link').trim(),
-      source: tagValue(block, 'source').trim() || 'unknown',
-      publishedAt: Number.isFinite(published) ? published : null,
-    };
-  }).filter((item) => item.title);
+  return blocks
+    .map((block) => {
+      const pubDate = tagValue(block, 'pubDate').trim();
+      const published = pubDate ? Date.parse(pubDate) : Number.NaN;
+      return {
+        title: tagValue(block, 'title').trim(),
+        link: tagValue(block, 'link').trim(),
+        source: tagValue(block, 'source').trim() || 'unknown',
+        publishedAt: Number.isFinite(published) ? published : null,
+      };
+    })
+    .filter((item) => item.title);
 }
 
 /**

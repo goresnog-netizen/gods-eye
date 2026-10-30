@@ -53,25 +53,27 @@ async function runAll() {
   console.log('\n--- build-place-card ---');
   await test('buildPlaceCard Jakarta', async () => {
     const card = await buildPlaceCard('Jakarta');
-    if (card.place.name !== 'Jakarta, Indonesia') throw new Error(`name=${card.place.name}`);
+    if (card.place.name !== 'Jakarta, Indonesia')
+      throw new Error(`name=${card.place.name}`);
     if (!card.photo.available) throw new Error('photo not available');
     if (card.source !== 'local-only') throw new Error(`source=${card.source}`);
     if (!card.intent.tool) throw new Error('no intent tool');
   });
   await test('buildPlaceCard Papua', async () => {
     const card = await buildPlaceCard('Papua');
-    if (card.place.name !== 'Papua, Indonesia') throw new Error(`name=${card.place.name}`);
+    if (card.place.name !== 'Papua, Indonesia')
+      throw new Error(`name=${card.place.name}`);
   });
 
   // --- fetch-cctv ---
   console.log('\n--- fetch-cctv-local ---');
   await test('fetchCctvNearby Jakarta', async () => {
-    const cctv = await fetchLocalCctv({lat: -6.2, lon: 106.8167}, 50);
+    const cctv = await fetchLocalCctv({ lat: -6.2, lon: 106.8167 }, 50);
     if (!cctv.inside) throw new Error('no inside');
     if (cctv.inside.length === 0) throw new Error('empty');
   });
   await test('fetchCctvNearby Papua', async () => {
-    const cctv = await fetchLocalCctv({lat: -4.5326, lon: 140.5066}, 100);
+    const cctv = await fetchLocalCctv({ lat: -4.5326, lon: 140.5066 }, 100);
     if (!cctv.inside) throw new Error('no inside');
   });
 
@@ -110,31 +112,56 @@ async function runAll() {
     if (!a.name.includes('Tolikara')) throw new Error(`name=${a.name}`);
   });
   await test('PAPUA_AREAS count', () => {
-    if (PAPUA_AREAS.length !== 10) throw new Error(`count=${PAPUA_AREAS.length}`);
+    if (PAPUA_AREAS.length !== 10)
+      throw new Error(`count=${PAPUA_AREAS.length}`);
   });
 
   // --- dashboard JSON ---
   console.log('\n--- dashboard JSON ---');
   await test('dashboard-indonesia.json exists', () => {
-    const d = JSON.parse(readFileSync(resolve('src/data/place-card-results/dashboard-indonesia.json'), 'utf-8'));
+    const d = JSON.parse(
+      readFileSync(
+        resolve('src/data/place-card-results/dashboard-indonesia.json'),
+        'utf-8',
+      ),
+    );
     if (!d.summary) throw new Error('no summary');
     if (d.summary.cities !== 10) throw new Error(`cities=${d.summary.cities}`);
-    if (d.summary.newsItems !== 127) throw new Error(`news=${d.summary.newsItems}`);
-    if (d.summary.targets !== 8) throw new Error(`targets=${d.summary.targets}`);
-    if (d.summary.visionAreas !== 10) throw new Error(`vision=${d.summary.visionAreas}`);
-    if (d.summary.cctvCameras !== 21) throw new Error(`cctv=${d.summary.cctvCameras}`);
+    if (d.summary.newsItems !== 127)
+      throw new Error(`news=${d.summary.newsItems}`);
+    if (d.summary.targets !== 8)
+      throw new Error(`targets=${d.summary.targets}`);
+    if (d.summary.visionAreas !== 10)
+      throw new Error(`vision=${d.summary.visionAreas}`);
+    if (d.summary.cctvCameras !== 21)
+      throw new Error(`cctv=${d.summary.cctvCameras}`);
   });
   await test('indonesia-news.json exists', () => {
-    const d = JSON.parse(readFileSync(resolve('src/data/place-card-results/indonesia-news.json'), 'utf-8'));
+    const d = JSON.parse(
+      readFileSync(
+        resolve('src/data/place-card-results/indonesia-news.json'),
+        'utf-8',
+      ),
+    );
     if (!d.count) throw new Error('no count');
     if (!Array.isArray(d.items)) throw new Error('no items');
   });
   await test('papua-targets.json exists', () => {
-    const d = JSON.parse(readFileSync(resolve('src/data/place-card-results/papua-targets.json'), 'utf-8'));
+    const d = JSON.parse(
+      readFileSync(
+        resolve('src/data/place-card-results/papua-targets.json'),
+        'utf-8',
+      ),
+    );
     if (!d.count) throw new Error('no count');
   });
   await test('vision-papua.json exists', () => {
-    const d = JSON.parse(readFileSync(resolve('src/data/place-card-results/vision-papua.json'), 'utf-8'));
+    const d = JSON.parse(
+      readFileSync(
+        resolve('src/data/place-card-results/vision-papua.json'),
+        'utf-8',
+      ),
+    );
     if (!Array.isArray(d)) throw new Error('not array');
     if (d.length !== 10) throw new Error(`length=${d.length}`);
   });
