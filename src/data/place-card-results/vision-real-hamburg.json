@@ -1,0 +1,17 @@
+{
+  "image": "C:/MRP/kumpulan MCP/Skills/Gods Eye/logs/street-hamburg.jpg",
+  "model": "qwen2.5vl:3b",
+  "scene": {
+    "description": "building",
+    "notes": "building with multiple windows and signs"
+  },
+  "people": [],
+  "vehicles": [],
+  "summary": {
+    "people_count": 0,
+    "vehicle_count": 0,
+    "dominant_activity": "none"
+  },
+  "generatedAt": 1792685333212,
+  "source": "ollama-vision-real"
+}

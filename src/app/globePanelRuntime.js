@@ -646,7 +646,7 @@ export function panelRuntime(config) {
     appInfo: {
       name: 'gods-eye-view',
       // i18n-ignore: product name sent to the MCP host
-      title: "God's Eye View",
+      title: "God's Eye",
       version: '1.0.0',
     },
     protocolVersion: config.protocolVersion,

@@ -13,6 +13,7 @@ import {
   OPENAI_REALTIME_TRANSCRIBE_MODEL_DEFAULT,
 } from './constants.js';
 import { realtimeInstructions } from './instructions.js';
+import { openAiVersionedBaseUrl } from './base-url.js';
 import { GEV_REALTIME_TOOLS } from './tools.js';
 import {
   preferCodexOAuth,
@@ -129,7 +130,7 @@ function createRealtimeOAuthLoginHandler({
 
 function createRealtimeTokenHandler({
   annotationGuidance,
-  endpoint = 'https://api.openai.com/v1/realtime/client_secrets',
+  endpoint = `${openAiVersionedBaseUrl()}/realtime/client_secrets`,
   fetchImpl = (...args) => fetch(...args),
   resolveApiKey = () => process.env.OPENAI_API_KEY,
   resolveOAuthAccessToken = () => readCodexOAuthAccessToken(),

@@ -96,7 +96,7 @@ function panelHtml(runtime, panelKey) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>God's Eye View</title>
+<title>God's Eye</title>
 <style>
   html, body { margin: 0; height: 100%; min-height: ${PANEL_HEIGHT_PX}px; background: #05070a;
     color: #b8c4cc; font: 13px/1.4 system-ui, sans-serif; overflow: hidden; }

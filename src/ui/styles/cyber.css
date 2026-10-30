@@ -202,6 +202,8 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner,
     .scene-panel-inner,
     .global-context-panel-inner,
     .radio-panel-inner,
@@ -223,6 +225,8 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner,
     .scene-panel-inner,
     .global-context-panel-inner,
     .radio-panel-inner
@@ -245,7 +249,9 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
-    .global-context-panel-inner
+    .global-context-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner
   ) {
   padding-right: 8px;
 }
@@ -260,14 +266,18 @@
     #weather-panel,
     #recent-imagery-panel,
     #street-level-panel,
-    #global-context-panel
+    #global-context-panel,
+    #godseye-panel,
+    #godseye-target-panel
   ).collapsed
   > :is(
     .cctv-panel-inner,
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
-    .global-context-panel-inner
+    .global-context-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner
   ) {
   padding: 0;
 }
@@ -279,7 +289,9 @@
     #weather-panel,
     #recent-imagery-panel,
     #street-level-panel,
-    #global-context-panel
+    #global-context-panel,
+    #godseye-panel,
+    #godseye-target-panel
   ).collapsed
   > :is(
     .cctv-panel-inner,
@@ -305,6 +317,8 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner,
     .scene-panel-inner,
     .global-context-panel-inner,
     .radio-panel-inner
@@ -321,6 +335,8 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner,
     .scene-panel-inner,
     .global-context-panel-inner,
     .radio-panel-inner
@@ -345,6 +361,8 @@
     .weather-panel-inner,
     .recent-imagery-panel-inner,
     .street-level-panel-inner,
+    .godseye-panel-inner,
+    .godseye-target-panel-inner,
     .scene-panel-inner,
     .global-context-panel-inner,
     .radio-panel-inner

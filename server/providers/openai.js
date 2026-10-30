@@ -1,5 +1,6 @@
 import { defaultSourceRoot } from './common/source-root.js';
 import { handleHudSummary } from './openai/hud-summary.js';
+import { handleVisionAnalyze } from './openai/vision.js';
 import { createDebugLogHandler } from './openai/debug-log.js';
 import {
   createRealtimeOAuthLoginHandler,
@@ -25,6 +26,11 @@ function openAiRealtimeProxy({
     // Cost-bearing and log endpoints refuse cross-site browser requests
     // (see server/providers/common/same-site.js and SECURITY.md).
     middlewares.use('/api/openai/hud-summary', sameSiteGated(handleHudSummary));
+
+    // Vision analysis through an OpenAI-compatible gateway (Ollama, LiteLLM,
+    // OpenRouter, Groq, Workers AI). With no gateway configured it answers
+    // 503 no_gateway and never calls out.
+    middlewares.use('/api/openai/vision', sameSiteGated(handleVisionAnalyze));
 
     middlewares.use(
       '/api/realtime/debug-log',

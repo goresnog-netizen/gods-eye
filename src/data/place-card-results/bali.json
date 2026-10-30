@@ -1,0 +1,53 @@
+{
+  "query": "Bali",
+  "place": {
+    "lat": -8.3405,
+    "lon": 115.092,
+    "name": "Bali, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -8.611811519887135,
+    "west": 114.81962588333441,
+    "north": -8.069188480112865,
+    "east": 115.36437411666559
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-8.3405&lon=115.092&id=-8.3405_115.092",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -8.3405,
+        "lon": 115.092
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 0,
+    "total": 9,
+    "inside": [],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -8.3405,
+      "lon": 115.092,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679446060,
+  "source": "local-only"
+}

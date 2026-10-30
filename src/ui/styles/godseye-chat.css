@@ -1,0 +1,172 @@
+/* The God's Eye chat panel: toggle, task input, history and active skills. */
+
+/* The chat lives outside the right rail on purpose: the rail owns an
+   exclusive layout, and a task chat that fights it would flicker. The toggle
+   is a fixed instrument button and the panel opens above it, on the left
+   side, where the right rail cannot cover it. */
+#godseye-chat-toggle {
+  bottom: 18px;
+  left: 18px;
+  position: fixed;
+  z-index: 42;
+}
+#godseye-chat-panel {
+  background: var(--glass-bg, rgba(10, 10, 15, 0.9));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--panel-radius);
+  bottom: 62px;
+  box-shadow: var(--glass-shadow, 0 18px 40px rgba(0, 0, 0, 0.45));
+  display: none;
+  left: 18px;
+  max-height: min(60vh, 520px);
+  overflow: hidden auto;
+  position: fixed;
+  width: min(360px, calc(100vw - 36px));
+  z-index: 42;
+}
+#godseye-chat-panel:not(.collapsed) {
+  display: block;
+}
+#godseye-chat-panel .godseye-chat-inner {
+  padding: 10px;
+}
+
+.godseye-chat-toggle {
+  align-items: center;
+  background: var(--glass-bg, rgba(10, 10, 15, 0.82));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--panel-radius);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-mono);
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+.godseye-chat-toggle:hover {
+  border-color: var(--accent);
+}
+.godseye-chat-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-sans);
+}
+.godseye-chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.godseye-chat-lane {
+  align-items: center;
+  color: var(--text-dim);
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  gap: 6px;
+  letter-spacing: 0.08em;
+}
+.godseye-chat-lane .gev-field {
+  flex: 1;
+  min-width: 0;
+}
+.godseye-chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0;
+}
+.godseye-chat-message {
+  border: 1px solid var(--glass-border);
+  border-radius: var(--panel-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 8px;
+}
+.godseye-chat-message.is-user {
+  border-color: var(--accent);
+}
+.godseye-chat-who {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.godseye-chat-text {
+  color: var(--text-primary);
+  font-size: 0.74rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.godseye-chat-form {
+  display: flex;
+  gap: 6px;
+}
+.godseye-chat-form .gev-field {
+  flex: 1;
+  min-width: 0;
+}
+.godseye-chat-status {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  margin: 0;
+  min-height: 1em;
+}
+.godseye-chat-skills-head {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.godseye-chat-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.godseye-chat-skill {
+  align-items: baseline;
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+}
+.godseye-chat-skill-title {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.godseye-chat-skill-badge {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* The module the last task actually used. */
+.godseye-chat-skill.is-active .godseye-chat-skill-title {
+  color: var(--text-primary);
+}
+.godseye-chat-skill-badge.is-active {
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  padding: 0 3px;
+}
+.godseye-chat-empty {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}

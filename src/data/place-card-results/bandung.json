@@ -1,0 +1,61 @@
+{
+  "query": "Bandung",
+  "place": {
+    "lat": -6.9175,
+    "lon": 107.6191,
+    "name": "Bandung, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -7.1888115198871345,
+    "west": 107.3476305130389,
+    "north": -6.646188480112866,
+    "east": 107.89056948696111
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-6.9175&lon=107.6191&id=-6.9175_107.6191",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -6.9175,
+        "lon": 107.6191
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-5",
+        "name": "Bandung Plaza",
+        "lat": -6.9175,
+        "lon": 107.6191,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -6.9175,
+      "lon": 107.6191,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679446901,
+  "source": "local-only"
+}

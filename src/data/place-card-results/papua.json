@@ -1,0 +1,61 @@
+{
+  "query": "Papua",
+  "place": {
+    "lat": -4.5326,
+    "lon": 140.5066,
+    "name": "Papua, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -4.8039115198871345,
+    "west": 140.2362611711743,
+    "north": -4.261288480112866,
+    "east": 140.77693882882568
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-4.5326&lon=140.5066&id=-4.5326_140.5066",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -4.5326,
+        "lon": 140.5066
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-2",
+        "name": "Papua Highlands",
+        "lat": -4.5326,
+        "lon": 140.5066,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -4.5326,
+      "lon": 140.5066,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679444526,
+  "source": "local-only"
+}

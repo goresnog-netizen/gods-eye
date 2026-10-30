@@ -1,0 +1,74 @@
+<button
+  id="godseye-chat-toggle"
+  class="godseye-chat-toggle"
+  type="button"
+  aria-label="Open the chat panel"
+  title="Open the chat panel"
+  aria-expanded="false"
+  data-i18n-aria-label
+  data-i18n-title
+>
+  <span class="material-symbols-outlined" aria-hidden="true"
+    >right_panel_open</span
+  >
+</button>
+
+<div
+  id="godseye-chat-panel"
+  class="panel-collapsible collapsed"
+  data-panel-id="godseye-chat-panel"
+>
+  <div class="panel-glow"></div>
+  <div class="godseye-chat-inner" data-rail-scroller>
+    <div class="panel-header">
+      <span class="panel-title" data-i18n>GOD'S EYE CHAT</span>
+      <span class="panel-divider"></span>
+      <button
+        class="panel-collapse-btn"
+        data-collapse-target="godseye-chat-panel"
+        type="button"
+        title="Collapse panel"
+        data-i18n-title
+      >
+        ▼
+      </button>
+    </div>
+    <div class="godseye-chat-body">
+      <label class="godseye-chat-lane" for="godseye-chat-lane">
+        <span data-i18n>LANE</span>
+        <select id="godseye-chat-lane" class="gev-field">
+          <option value="local" data-i18n>LOCAL</option>
+          <option value="kilo" translate="no">KILO</option>
+          <option value="zen" translate="no">ZEN</option>
+        </select>
+      </label>
+      <ul id="godseye-chat-messages" class="godseye-chat-messages"></ul>
+      <div class="godseye-chat-form">
+        <input
+          id="godseye-chat-input"
+          class="gev-field"
+          type="text"
+          placeholder="Type a task"
+          data-i18n-placeholder
+        />
+        <button
+          id="godseye-chat-send"
+          class="scene-btn"
+          type="button"
+          data-i18n
+        >
+          SEND
+        </button>
+      </div>
+      <p
+        id="godseye-chat-status"
+        class="godseye-chat-status"
+        role="status"
+        aria-live="polite"
+        data-i18n-runtime
+      ></p>
+      <span class="godseye-chat-skills-head" data-i18n>ACTIVE SKILLS</span>
+      <ul id="godseye-chat-skills" class="godseye-chat-skills"></ul>
+    </div>
+  </div>
+</div>

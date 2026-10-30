@@ -1,0 +1,77 @@
+{
+  "targets": [
+    {
+      "id": "t-001",
+      "name": "Target Papua 1",
+      "phone": "+62-812-3456-7890",
+      "lat": -4.5326,
+      "lon": 140.5066,
+      "city": "Papua",
+      "status": "active"
+    },
+    {
+      "id": "t-002",
+      "name": "Target Papua 2",
+      "phone": "+62-813-2345-6789",
+      "lat": -2.5337,
+      "lon": 140.7175,
+      "city": "Jayapura",
+      "status": "active"
+    },
+    {
+      "id": "t-003",
+      "name": "Target Papua 3",
+      "phone": "+62-814-3456-7890",
+      "lat": -0.8763,
+      "lon": 131.2558,
+      "city": "Sorong",
+      "status": "active"
+    },
+    {
+      "id": "t-004",
+      "name": "Target Papua 4",
+      "phone": "+62-815-4567-8901",
+      "lat": -3.9833,
+      "lon": 137.7833,
+      "city": "Puncak",
+      "status": "active"
+    },
+    {
+      "id": "t-005",
+      "name": "Target Papua 5",
+      "phone": "+62-816-5678-9012",
+      "lat": -3.6167,
+      "lon": 137.4833,
+      "city": "Puncak Jaya",
+      "status": "active"
+    },
+    {
+      "id": "t-006",
+      "name": "Target Papua 6",
+      "phone": "+62-817-6789-0123",
+      "lat": -4.4833,
+      "lon": 139.5333,
+      "city": "Yahukimo",
+      "status": "active"
+    },
+    {
+      "id": "t-007",
+      "name": "Target Papua 7",
+      "phone": "+62-818-7890-1234",
+      "lat": -3.6833,
+      "lon": 138.4833,
+      "city": "Tolikara",
+      "status": "active"
+    },
+    {
+      "id": "t-008",
+      "name": "Target Papua 8",
+      "phone": "+62-819-8901-2345",
+      "lat": -4.1,
+      "lon": 138.95,
+      "city": "Wamena",
+      "status": "active"
+    }
+  ],
+  "count": 8
+}

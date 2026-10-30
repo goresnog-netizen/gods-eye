@@ -16,6 +16,9 @@ import { CockpitCoordinator } from './cockpitCoordinator.js';
 import { ContextControls } from './context.js';
 import { CctvControls } from './cctv.js';
 import { StreetLevelControls } from './streetLevelControls.js';
+import { GodsEyePanel } from './godseyePanel.js';
+import { GodsEyeChat } from './godseyeChat.js';
+import { GodsEyeTarget } from './godseyeTarget.js';
 import { RadioControls } from './radio.js';
 import { LocalSdrControls } from './localSdrControls.js';
 import { LocationNavigation } from './locationNavigation.js';
@@ -96,6 +99,7 @@ export class StyleManager extends ShellFacade {
       localAdsbLayer,
     } = services;
     this.services = services;
+    this._requestServices = requestServices;
     this._lifetime = new UiLifetime();
     this._recording = new RecordingControls({
       syncShareState: () => this._syncShareState(),
@@ -585,6 +589,9 @@ export class StyleManager extends ShellFacade {
     this._initRadioPanel();
     this._initCctvPanel();
     this._initStreetLevelPanel();
+    this._initGodsEyePanel();
+    this._initGodsEyeChat();
+    this._initGodsEyeTarget();
     this._initGlobalContextPanel();
     this._initLocationBar();
     this._initShareButton();
@@ -1117,6 +1124,150 @@ export class StyleManager extends ShellFacade {
       },
     });
     this._streetLevelControls.connect();
+  }
+
+  /** Compose the God's Eye analysis panel from the server feeds. */
+  _initGodsEyePanel() {
+    this._godseyeControls?.destroy();
+    this._godseyeControls = null;
+    if (!this._godseyePanel) return;
+    this._godseyeControls = new GodsEyePanel({
+      elements: {
+        _godseyeTabLatest: this._godseyeTabLatest,
+        _godseyeTabPlace: this._godseyeTabPlace,
+        _godseyePaneLatest: this._godseyePaneLatest,
+        _godseyePanePlace: this._godseyePanePlace,
+        _godseyeGoldPrice: this._godseyeGoldPrice,
+        _godseyeGoldChange: this._godseyeGoldChange,
+        _godseyeComposite: this._godseyeComposite,
+        _godseyeDrivers: this._godseyeDrivers,
+        _godseyeRefreshBtn: this._godseyeRefreshBtn,
+        _godseyeLatestStatus: this._godseyeLatestStatus,
+        _godseyeTabNews: this._godseyeTabNews,
+        _godseyePaneNews: this._godseyePaneNews,
+        _godseyeNewsRegion: this._godseyeNewsRegion,
+        _godseyeNewsBtn: this._godseyeNewsBtn,
+        _godseyeNewsList: this._godseyeNewsList,
+        _godseyeNewsStatus: this._godseyeNewsStatus,
+        _godseyePlaceInput: this._godseyePlaceInput,
+        _godseyePlaceBtn: this._godseyePlaceBtn,
+        _godseyePlaceCard: this._godseyePlaceCard,
+        _godseyePlaceName: this._godseyePlaceName,
+        _godseyePlaceCoords: this._godseyePlaceCoords,
+        _godseyePlacePhoto: this._godseyePlacePhoto,
+        _godseyePlacePhotoNote: this._godseyePlacePhotoNote,
+        _godseyePlaceStatus: this._godseyePlaceStatus,
+        _godseyeFlyBtn: this._godseyeFlyBtn,
+        _godseyeTabVision: this._godseyeTabVision,
+        _godseyePaneVision: this._godseyePaneVision,
+        _godseyeVisionInput: this._godseyeVisionInput,
+        _godseyeVisionBtn: this._godseyeVisionBtn,
+        _godseyeVisionFile: this._godseyeVisionFile,
+        _godseyeVisionStage: this._godseyeVisionStage,
+        _godseyeVisionImage: this._godseyeVisionImage,
+        _godseyeVisionOverlay: this._godseyeVisionOverlay,
+        _godseyeVisionList: this._godseyeVisionList,
+        _godseyeVisionStatus: this._godseyeVisionStatus,
+        _godseyeTabCctv: this._godseyeTabCctv,
+        _godseyePaneCctv: this._godseyePaneCctv,
+        _godseyeCctvInput: this._godseyeCctvInput,
+        _godseyeCctvBtn: this._godseyeCctvBtn,
+        _godseyeCctvType: this._godseyeCctvType,
+        _godseyeCctvRadius: this._godseyeCctvRadius,
+        _godseyeCctvList: this._godseyeCctvList,
+        _godseyeCctvStatus: this._godseyeCctvStatus,
+        _godseyeTabBts: this._godseyeTabBts,
+        _godseyePaneBts: this._godseyePaneBts,
+        _godseyeBtsRefresh: this._godseyeBtsRefresh,
+        _godseyeBtsViewshedInput: this._godseyeBtsViewshedInput,
+        _godseyeBtsViewshedBtn: this._godseyeBtsViewshedBtn,
+        _godseyeBtsViewshed: this._godseyeBtsViewshed,
+        _godseyeBtsList: this._godseyeBtsList,
+        _godseyeBtsStatus: this._godseyeBtsStatus,
+        _godseyeTabLocate: this._godseyeTabLocate,
+        _godseyePaneLocate: this._godseyePaneLocate,
+        _godseyeLocateInput: this._godseyeLocateInput,
+        _godseyeLocateBtn: this._godseyeLocateBtn,
+        _godseyeLocateBasis: this._godseyeLocateBasis,
+        _godseyeLocateCard: this._godseyeLocateCard,
+        _godseyeLocateName: this._godseyeLocateName,
+        _godseyeLocateCoords: this._godseyeLocateCoords,
+        _godseyeLocateNote: this._godseyeLocateNote,
+        _godseyeLocatePhoto: this._godseyeLocatePhoto,
+        _godseyeLocateGround: this._godseyeLocateGround,
+        _godseyeLocateFly: this._godseyeLocateFly,
+        _godseyeLocateList: this._godseyeLocateList,
+        _godseyeLocateStatus: this._godseyeLocateStatus,
+        _godseyeLive: this._godseyeLive,
+      },
+      services: {
+        godseye: this._requestServices?.godseye,
+      },
+      flyTo: (query) =>
+        this.services?.searchAndFlyTo?.(this.viewer, query, {
+          placeSearch: this.placeSearch,
+        }),
+      // A located target or camera is a known position, so it flies straight
+      // to it: routing it through the geocoder would send the coordinates out
+      // and could land on a nearby landmark instead of the point itself.
+      flyToPoint: (lat, lon, altitude = 2000) => {
+        if (!this.viewer) return;
+        const height = Number.isFinite(altitude) ? altitude : 2000;
+        this.viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(lon, lat, height),
+          duration: 2.5,
+        });
+      },
+    });
+    this._godseyeControls.connect();
+  }
+
+  /** Wire the task chat panel: toggle, lane choice, history and skills. */
+  _initGodsEyeChat() {
+    this._godseyeChat?.destroy();
+    this._godseyeChat = null;
+    if (!this._godseyeChatToggle) return;
+    this._godseyeChat = new GodsEyeChat({
+      elements: {
+        _godseyeChatToggle: this._godseyeChatToggle,
+        _godseyeChatPanel: this._godseyeChatPanel,
+        _godseyeChatInput: this._godseyeChatInput,
+        _godseyeChatSend: this._godseyeChatSend,
+        _godseyeChatLane: this._godseyeChatLane,
+        _godseyeChatStatus: this._godseyeChatStatus,
+        _godseyeChatMessages: this._godseyeChatMessages,
+        _godseyeChatSkills: this._godseyeChatSkills,
+      },
+      services: {
+        godseye: this._requestServices?.godseye,
+      },
+    });
+    this._godseyeChat.connect();
+  }
+
+  /** Wire the target research panel: position, involvement and nearby actors. */
+  _initGodsEyeTarget() {
+    this._godseyeTarget?.destroy();
+    this._godseyeTarget = null;
+    if (!this._godseyeTargetInput) return;
+    this._godseyeTarget = new GodsEyeTarget({
+      elements: {
+        _godseyeTargetInput: this._godseyeTargetInput,
+        _godseyeTargetHint: this._godseyeTargetHint,
+        _godseyePresetIndonesia: this._godseyePresetIndonesia,
+        _godseyePresetPapua: this._godseyePresetPapua,
+        _godseyeTargetBtn: this._godseyeTargetBtn,
+        _godseyeTargetRadius: this._godseyeTargetRadius,
+        _godseyeTargetPosition: this._godseyeTargetPosition,
+        _godseyeTargetInvolvement: this._godseyeTargetInvolvement,
+        _godseyeTargetNearby: this._godseyeTargetNearby,
+        _godseyeTargetStatus: this._godseyeTargetStatus,
+      },
+      services: {
+        godseye: this._requestServices?.godseye,
+      },
+    });
+    this._godseyeTarget.connect();
   }
 
   /** Compose camera panel controls from the existing camera port and application actions. */
@@ -1717,6 +1868,9 @@ export class StyleManager extends ShellFacade {
     this._cctvControls?.destroy();
     this.services?.streetLevelLayer?.attachNavigation?.(null);
     this._streetLevelControls?.destroy();
+    this._godseyeControls?.destroy();
+    this._godseyeChat?.destroy();
+    this._godseyeTarget?.destroy();
     this._radioControls?.destroy();
     this._localSdrControls?.destroy();
     this._cockpitCoordinator.stop();

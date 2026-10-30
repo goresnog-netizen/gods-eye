@@ -1,0 +1,2629 @@
+{
+  "title": "God's Eye — Dashboard Indonesia & Papua",
+  "generatedAt": 1792683778831,
+  "generatedAtISO": "2026-10-22T15:42:58.831Z",
+  "source": "local-only",
+  "summary": {
+    "cities": 10,
+    "newsItems": 127,
+    "papuaNewsItems": 84,
+    "targets": 8,
+    "visionAreas": 10,
+    "cctvCameras": 21
+  },
+  "regions": {
+    "indonesia": [
+      "jakarta",
+      "papua",
+      "surabaya",
+      "bali",
+      "bandung",
+      "yogyakarta",
+      "medan",
+      "semarang",
+      "denpasar",
+      "makassar"
+    ],
+    "papua": [
+      "jayapura",
+      "sorong",
+      "manokwari",
+      "merauke",
+      "wamena",
+      "nabire",
+      "biak",
+      "timika",
+      "tolikara",
+      "yahukimo",
+      "puncak",
+      "puncak-jaya"
+    ]
+  },
+  "placeCards": {
+    "jakarta": {
+      "query": "Jakarta",
+      "place": {
+        "lat": -6.2,
+        "lon": 106.8167,
+        "name": "Jakarta, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -6.471311519887134,
+        "west": 106.54562109723408,
+        "north": -5.928688480112866,
+        "east": 107.08777890276592
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-6.2&lon=106.8167&id=-6.2_106.8167",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -6.2,
+            "lon": 106.8167
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-1",
+            "name": "Jakarta Center",
+            "lat": -6.2,
+            "lon": 106.8167,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -6.2,
+          "lon": 106.8167,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679443933,
+      "source": "local-only"
+    },
+    "papua": {
+      "query": "Papua",
+      "place": {
+        "lat": -4.5326,
+        "lon": 140.5066,
+        "name": "Papua, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -4.8039115198871345,
+        "west": 140.2362611711743,
+        "north": -4.261288480112866,
+        "east": 140.77693882882568
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-4.5326&lon=140.5066&id=-4.5326_140.5066",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -4.5326,
+            "lon": 140.5066
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-2",
+            "name": "Papua Highlands",
+            "lat": -4.5326,
+            "lon": 140.5066,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -4.5326,
+          "lon": 140.5066,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679444526,
+      "source": "local-only"
+    },
+    "surabaya": {
+      "query": "Surabaya",
+      "place": {
+        "lat": -7.2478,
+        "lon": 112.7644,
+        "name": "Surabaya, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -7.519111519887134,
+        "west": 112.49273599632467,
+        "north": -6.976488480112866,
+        "east": 113.03606400367532
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-7.2478&lon=112.7644&id=-7.2478_112.7644",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -7.2478,
+            "lon": 112.7644
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-3",
+            "name": "Surabaya Port",
+            "lat": -7.2478,
+            "lon": 112.7644,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -7.2478,
+          "lon": 112.7644,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679445277,
+      "source": "local-only"
+    },
+    "bali": {
+      "query": "Bali",
+      "place": {
+        "lat": -8.3405,
+        "lon": 115.092,
+        "name": "Bali, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -8.611811519887135,
+        "west": 114.81962588333441,
+        "north": -8.069188480112865,
+        "east": 115.36437411666559
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-8.3405&lon=115.092&id=-8.3405_115.092",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -8.3405,
+            "lon": 115.092
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 0,
+        "total": 9,
+        "inside": [],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -8.3405,
+          "lon": 115.092,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679446060,
+      "source": "local-only"
+    },
+    "bandung": {
+      "query": "Bandung",
+      "place": {
+        "lat": -6.9175,
+        "lon": 107.6191,
+        "name": "Bandung, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -7.1888115198871345,
+        "west": 107.3476305130389,
+        "north": -6.646188480112866,
+        "east": 107.89056948696111
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-6.9175&lon=107.6191&id=-6.9175_107.6191",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -6.9175,
+            "lon": 107.6191
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-5",
+            "name": "Bandung Plaza",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -6.9175,
+          "lon": 107.6191,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679446901,
+      "source": "local-only"
+    },
+    "yogyakarta": {
+      "query": "Yogyakarta",
+      "place": {
+        "lat": -7.7953,
+        "lon": 110.3678,
+        "name": "Yogyakarta, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -8.066611519887134,
+        "west": 110.09579302285333,
+        "north": -7.523988480112866,
+        "east": 110.63980697714668
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-7.7953&lon=110.3678&id=-7.7953_110.3678",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -7.7953,
+            "lon": 110.3678
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-6",
+            "name": "Yogyakarta Malioboro",
+            "lat": -7.7953,
+            "lon": 110.3678,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -7.7953,
+          "lon": 110.3678,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679447674,
+      "source": "local-only"
+    },
+    "medan": {
+      "query": "Medan",
+      "place": {
+        "lat": 3.5833,
+        "lon": 98.6667,
+        "name": "Medan, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": 3.3119884801128654,
+        "west": 98.39667875261208,
+        "north": 3.8546115198871345,
+        "east": 98.93672124738794
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=3.5833&lon=98.6667&id=3.5833_98.6667",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": 3.5833,
+            "lon": 98.6667
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-7",
+            "name": "Medan Center",
+            "lat": 3.5833,
+            "lon": 98.6667,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": 3.5833,
+          "lon": 98.6667,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679448628,
+      "source": "local-only"
+    },
+    "semarang": {
+      "query": "Semarang",
+      "place": {
+        "lat": -6.9667,
+        "lon": 110.4167,
+        "name": "Semarang, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -7.238011519887134,
+        "west": 110.14520212816528,
+        "north": -6.695388480112866,
+        "east": 110.68819787183473
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-6.9667&lon=110.4167&id=-6.9667_110.4167",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -6.9667,
+            "lon": 110.4167
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-8",
+            "name": "Semarang Harbor",
+            "lat": -6.9667,
+            "lon": 110.4167,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -6.9667,
+          "lon": 110.4167,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679449335,
+      "source": "local-only"
+    },
+    "denpasar": {
+      "query": "Denpasar",
+      "place": {
+        "lat": -8.6507,
+        "lon": 115.2175,
+        "name": "Denpasar, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -8.922011519887135,
+        "west": 114.94490552355524,
+        "north": -8.379388480112866,
+        "east": 115.49009447644477
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-8.6507&lon=115.2175&id=-8.6507_115.2175",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -8.6507,
+            "lon": 115.2175
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-4",
+            "name": "Bali Denpasar",
+            "lat": -8.6507,
+            "lon": 115.2175,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -8.6507,
+          "lon": 115.2175,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679450146,
+      "source": "local-only"
+    },
+    "makassar": {
+      "query": "Makassar",
+      "place": {
+        "lat": -5.1621,
+        "lon": 119.4341,
+        "name": "Makassar, Indonesia"
+      },
+      "radiusKm": 25,
+      "bbox": {
+        "south": -5.433411519887134,
+        "west": 119.16350916689743,
+        "north": -4.890788480112866,
+        "east": 119.70469083310257
+      },
+      "photo": {
+        "available": true,
+        "photoUrl": "/placeholder-street-photo?lat=-5.1621&lon=119.4341&id=-5.1621_119.4341",
+        "provider": "local-mock",
+        "timestamp": "2026-10-21",
+        "reason": null,
+        "metadata": {
+          "location": {
+            "lat": -5.1621,
+            "lon": 119.4341
+          },
+          "radiusKm": 25,
+          "captured": "2024-01-15T10:30:00Z",
+          "confidence": 0.9
+        }
+      },
+      "cctv": {
+        "available": true,
+        "count": 1,
+        "total": 9,
+        "inside": [
+          {
+            "id": "cctv-9",
+            "name": "Makassar Port",
+            "lat": -5.1621,
+            "lon": 119.4341,
+            "provider": "local-mock"
+          }
+        ],
+        "source": "local-mock"
+      },
+      "intent": {
+        "tool": "show_in_gods_eye_view",
+        "camera": {
+          "lat": -5.1621,
+          "lon": 119.4341,
+          "altitude_m": 1200
+        },
+        "layers": [
+          "streetLevel",
+          "cctv"
+        ],
+        "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+      },
+      "generatedAt": 1792679450944,
+      "source": "local-only"
+    }
+  },
+  "news": {
+    "count": 127,
+    "items": [
+      {
+        "title": "Prabowo: Selama Ini Filosofi Ekonomi RI Tak Sesuai UUD 1945 - CNN Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPcWUyLXlENjdISHg1RzhsWVNaVGJhN0pEakdBSEZqRV9ZSDZWS0dMaTBhOExQQTdnOUlIcTFoejVfdjRZVUhBSEZqMjRJZFNOcFZoMEx1ZEZLOWl1Zk9DdXRRcFRXOHVDVnNrYlU3R0xoQ1NsVTkxdUpYcGVLbF9aNVk5MHEtcDNQZUdrR0tQWlFhTUtYOTlDWjlOSDhyTjRmcFpyaWRZWUZhWUlOVFVxUm1yTXNrXzVvZzYydjJZWdIBxAFBVV95cUxNNnZ5Ym1fWjJfZTlYQk1hc2gyeDc4cThGZExtczV6N05mNTd3SWlYM21DRk84Z0cxem1Qc3pqUmZNeERmNGlWTTBOYkQyQnNlc2MzamdIeFNFeUNKT2RqS0JzdURXVHY1SjBweGNHUWRlWWYwQXFFalNDekgwcXFFZU5ZZzBxQ2tESHZvcWFPTUZCdjlYLVlrVm1SRmMzRzBLelVuME5DTlVBSjF0bDFmaUljSkZZYVdxSllmRFQ2ZkswMHV3?oc=5",
+        "source": "CNN Indonesia",
+        "publishedAt": 1792682384000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "Waspada! Kabut Asap di Jalan Salor Merauke Batasi Jarak Pandang Pengendara - KabarPapua.co",
+        "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNldqU1FuTW9fRGoyR2YxbFlxaGtLcXkzZGhQTEc2SlVha01CMExudTBKaVZBN3pPNkJKVXhsVmlhQXFXNmhIcWs2eHF6WnVPMmIteWluSHZJd2taLV80ZFY1bFhLSHMxVW95ZnVpZkkwbzhxQmJwSmViYTFKbUVObjhKUHdhNWg0WjJhakQtcFFqeEUzNTU0ZlJUZVU?oc=5",
+        "source": "KabarPapua.co",
+        "publishedAt": 1792680596000,
+        "query": "Merauke Papua"
+      },
+      {
+        "title": "Pengadilan Tipikor Papua Barat Terima 3 Perkara Korupsi Pembangunan SMK Kehutanan di Sorong - Tabura Pos",
+        "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNNDRtRVh4VEFKb0FPeEpZa19xSWFVTVJGSE1pVFRIZjlrb0xrUEhKNlhIVUhvM3hSVkdyNjJzQ21id01rcWZ3bHBnRFlVQzVRZnRMQ1ZRSk9Gd3lQMkNSdU50OS1yMlh6QWFoWWJhaW5Uak1vbE1FZ09ScmFSTjVzaDY3aHJVSjh5bWhnOUZXT21STmk5RkYtS25yajZjOHZjdFdxRGt1cTJJYm5ydC1pajRsY0tlREZiRUpfVmdTcXRrdw?oc=5",
+        "source": "Tabura Pos",
+        "publishedAt": 1792677081000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "Sumpah Pemuda: Polresta Jayapura Kota-YCS Dorong Pemuda Papua 'Makan Puji' Lewat Prestasi Nyata - Tribunpapuatengah.com",
+        "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPR1BaZjdNVXVLZFVKYTVqMjh1UFdKaG5vaHVVeTcwWnJBWThlblp4S3ZKaWxJU2FIRzFIeXhXbXlDdTBCUlkyVkdZWlZlU0xqWnVYSm5uMDhidnRFSlIxS3YxTVAtazJPOVZ2bXhZUTJFeHZ1S0xRWDQ3MzUxSk16R0pWVFNJNjFNWW1wVUUydG5FdWwzTjBlNzlKcVNYTW1FNXNTaTIwUzF4V3otcjFTQUsyZmR0NFQzY1FKbkc3WkdFa28zcEZlQUtxS21Lb0VoMEhNR19EaTY?oc=5",
+        "source": "Tribunpapuatengah.com",
+        "publishedAt": 1792675084000,
+        "query": "Jayapura Papua"
+      },
+      {
+        "title": "IFRC 2026 Siap Digelar, Mimika Sambut Tim Rescue Terbaik Indonesia - MetroTVNews.com",
+        "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNSHYxTFJlcDVWNXZTd1VJLVFxWFNoX3NoRFFQMy1lQURjSFRqZDFpcGNfdEFUQzBKYmNGQVZYZnhRZDd2OG01cDJ3ODB0d19lUTQzVV9IWXpvYmtreUhLWTdsZXBieC1qQWxZSDQ5bDNmelphczJOSDNFRWNrLWNFSVlHbGIzTjlSRGpOek5fVDVWN2tONmIxWHl3Sy0yUVU0WVNIVWxzVU41UkE?oc=5",
+        "source": "MetroTVNews.com",
+        "publishedAt": 1792674833000,
+        "query": "Timika Papua"
+      },
+      {
+        "title": "Kementrans bantu kader Posyandu di Manokwari bangun usaha camilan - ANTARA News",
+        "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOeHhqSW1vczZOb3owU0h3T3lXb2VValRUcWFDcXNNZW56eFN3OXBTakhpb3k1SS1lTkk1UElnRGZKSFpmaFZJWEFrNnBEYk9uX2t0VTNaWGtad3BmMFJGSmpid1R6MENPYllvT0dHcFhKM05rekRXRlJESHB2a0drVFBaMWw4UGdKSFNtd3k4Sm00WTJpUHpWQUZDNUVCZ3JwVFBFb3o1YkZrQ2_SAa4BQVVfeXFMTldpMlVuU2hnMlpneUtwZUtrVjFyTEk4XzNiWFZpQlkyNDVmUk1Ed0NVV0tHQVl4X09IV1JfbGM2VlpTSnROdnJLdDc2WnFsaE9LQ2VjUmZfYTlFaEZKWUxqakFqQkwtT3RGZmhsd1NWRF9CYVp1QzRmNVdIT2l5YTdIOWh4ZkVBc1ZzaGUwS2RETVVvN0RBQWhsSkZ4VWFvNF9jX3QwSHA3TEhqaVRR?oc=5",
+        "source": "ANTARA News",
+        "publishedAt": 1792672929000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "Satu Unit Rumah di Jalan Pendidikan Timika Terbakar - Fajar Papua",
+        "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNMTBJd0hQSHlfZkpXaEhhQmZjUWphQ1E3T2FzdjJ5VTZsTk02c09UcExBbndnUHpjZ19CYmJsUkk3eXluUmh1NlNJWlJOUjZTMG92Zkp4bW54UUpIakN1V2JMSXIwblRPSHRxVmc0OHotR3ZIUndBT3dUMUpPYVljNjZBQjhkcF9iYkY1dkZxdw?oc=5",
+        "source": "Fajar Papua",
+        "publishedAt": 1792672703000,
+        "query": "Timika Papua"
+      },
+      {
+        "title": "BPN siapkan redistribusi tanah untuk dua kampung di Manokwari Selatan - ANTARA News Papua Tengah",
+        "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPVzFnX2RZQjQ1UUxINEdCV0tCSnJMMWVwVGlzTE1KaFFJWlNKeTFLcGJWX2VpbnJrMFNqX2UzaVRKSlk4Mll0YmZvenBmRkk3eEdXdmJVMW5fUUJJeW96MUxGNmNTd0w2NTEwMlQ0ckZtbTdpRG0yUWpnX0lIMXdzUUlNMEstMnVrT3ZYV1VSeVYtNTBLSkdZZUh1RnlNNlpDbk5IVGt6TGNzTXQ5dlM4M3lPaHpMQlMt0gG-AUFVX3lxTFB4NERkeDFINHk5UWFZVHhGOGVySEFELXpkcWk2MjhSMk1hSXBZMUE4WGVJcnVzRzVVRVJzWVdsclU1SmpjcGVQRXdlYWRxNHZKbWdaYlhuX1NsVHR6WkV3ZnlUOW96ZWYtZGt1OGJRVW81XzJlSWs4WVlsR2kzbWlWaEFMdFpqdS1WMDJmeHFpR09tTDVsQ19pdEp5eWZkaFIwczdYM01saTRBOXdKU3lKQ1VWcWFjemhTSEF1REE?oc=5",
+        "source": "ANTARA News Papua Tengah",
+        "publishedAt": 1792672103000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "Kadin Bidik Ekonomi Indonesia Lebih Kompetitif, UMKM Jadi Sorotan - MetroTVNews.com",
+        "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPS0JoSzdBNUlRbGk1cThuQ1BtT1d0NC1CeXhhUFB5eDdnYUVFMFZ5dTdhU1B3SUdWVFBEZkN5blRWakNDdVQzYUUwamRicEhQclRuYmZ4ZzMxT3h6aGNKTXB3WEw5NUVaeVZ3QUl2STI2R2k1N0tQc2FnTkFxODZZNDR3TG8yWnZ3Q2J6b0xfdTdWS1VaR0VjaksyLVdpeTFZMjNpa0RkU1BIQQ?oc=5",
+        "source": "MetroTVNews.com",
+        "publishedAt": 1792670703000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "Astra Motor Papua Terima Piagam Penghargaan Pemkab. Jayapura AtasPelatihan Perbengkelan Orang Asli Papua - Portal Papua",
+        "link": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxOTjFBYmFfbWZzUFNEajdhOXUwZjZvX1JZakcyR2ZpUUFvampWbTlUbUVNU3RDcnBmMzRuUTZpQjZmRG9hTnFPV1ZPU1c2N3d3d0ZVRGdhNVpMRmFfMGFsbUk1YWJ2bVNkeUdDdk1RUlZNYVpQb2x2aWJBRnhHc1ptVHgzRERtYmx2TlZMdFlCSDlBTmlVNnBsR2lHem0xdzNyZFRFY1dQeHNGcDRyeHJsRjVTY3kzZWY2VDRZUHE1N2szMk9VTWlyWXpyYkNhVWZZcnlZcUxCYm5wRzA4RmRfWUNDVjllZ05MTE9wcFJiM29rNjVxLVQ3S3Z30gH_AUFVX3lxTFBINlJDY1hHQkN4MnFLaUVCaWFrNXVFMjU2Wnh2V2psS2JoLWIwZVp6aGNiSWpTdFE1TnYtWXpQMUUzTXU1OFY0SHV5YVVkckdLZnZXOTEwcEVDU3hXd201S3B4RThORlU2MWs3Mkg1UkpET240NFAtemJ2NHY3V1FxRW40VHRYaGZiODBNdmZCX2t6UGZlZkhBaDF0MWxxS0RLeXM1LUFCVXUxZlNUZmNHRzRNeFRSZzhPWWFHc3hKUzRiSk5NMXFZbmNlQmg3akNReE4zSU9RWE9LVUwxTUdic2NCWUo4Sm9PM2hlLUZYQWY2N0dTYll2N1c4S3M2cw?oc=5",
+        "source": "Portal Papua",
+        "publishedAt": 1792669854000,
+        "query": "Jayapura Papua"
+      },
+      {
+        "title": "TPID Kota Sorong inspeksi harga pangan di pasar - ANTARA News Papua Tengah",
+        "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMGJVc3JCcHl2Ykx3a09HbjZhdXAyLThnTFJDdGRXWk1jck9FcFFsWl9DQTRxb19QbjBQc08yQUtWTW9Rb0dnNzd0Z09UbmpnbnRyZW1EN0MwYnR2SmxmRkxYSENJZElsbksxaHVhb2I2cGxFSHFzWFRHQ0xjTktSUTFScl9fY3gyOHlxVWN5OU9DUS15UXhzVmtLc9IBoAFBVV95cUxQblRHWmJiUlVOUTJfNzJPdTZrUVBjZy1FbkFQbVoxbDBuQmRyR0dSMHZBNnFjd0JIT1kyWGc4cnQwTjlYYXNvT0xTSXRJMVdrTmJNU0YwZjBSTVRDeDhwQmo1N29GaEFpNHVadE9SblJqYWs5SVo0UGsySHktU2t4VG1PNjRxR2x4ZU42UmY1azRtTzVXUjJjZ09MTVFRaGhs?oc=5",
+        "source": "ANTARA News Papua Tengah",
+        "publishedAt": 1792669829000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "Rupiah Dikepung Tekanan Global, BI Bongkar Pemicu: Geopolitik Memanas hingga Ancaman MSCI - Go Parlement",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE93U0VRbkMyUFNudExQTVB3S0Jra2lEc2poTE9JUTNCdzVSTGIwbWE3N2FGX1hVY0FWU1A0Y3hkSUVnT1I5UFBVRlVoUjNWcE84Y3lrckFGYTJGbWJjNGVYeFh6M244bWRvdGlqUGQxRWdUMFQ3cl9BYVdueWNtVHc?oc=5",
+        "source": "Go Parlement",
+        "publishedAt": 1792668480000,
+        "query": "Indonesia geopolitik"
+      },
+      {
+        "title": "Warga Binaan Lapas Manokwari Buat Miniatur Rumah Kaki Seribu, Dijual hingga Rp500 Ribu - klikpapua",
+        "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQYVpxR214anU0QmR1YnhMRzJsQndadkhwWlNyU2xTWXhXTWxPUzN0NVBHMWt3NXRZemlYREQyemdLV2JFWHBJS0c4cUVybGNfakhocjNuUlVXbDNkZXJtMHZDQ0NUUnhzdklIRzVCTFBHQmt4dFMzS29pcWxqUGtIczQ0aGVJcmRlc2l2OWVaZHlBMkJxRWdBclpSM1RrSHk0a0J3RXk1U09uZF9SUG95RE1IZWxVTi1FckloRlEzU3VNUWw5SmFhVjFWZzgxbjg?oc=5",
+        "source": "klikpapua",
+        "publishedAt": 1792667742000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "BNN Papua Barat Hadirkan Unit Layanan Terpadu P4GN di Kota Sorong - RRI.co.id",
+        "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNTU1vNnR5aTZiWUgtSmNnYXdGWXlQdVZ2aDBXV1QxUHpwV1hZMkZyOWJGc3FKeWxqYTlobkYtcDcyaVkyTm5kQUxYYmpKVnRCb1RhYXhjWUZWQjZxeUV0THRlTzQ2UHJzSkpXaVUwUjlORkh1ZGVUOE9RczNlbllrMWU1dnZqQ1c5Sl9XU2JQbjViSkkzQjlTN01ydk1JQWQwV09Kblk5eHYtc1k?oc=5",
+        "source": "RRI.co.id",
+        "publishedAt": 1792667340000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "IA-ITB Dorong Investasi dan Pengembangan SDM untuk Percepat Pembangunan Papua - Galeripapua.com",
+        "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMjVPWk5mb2xyYXllbDlZWERwMFJucHNfS3gwWHdiQzloYmhMVnFHeThUN2tPWWFmaFZKUVFKTXhneGtoeXBJWGM3Rm84cm9OR0xQeUMyTHIyYVk5MVNZQnBDRUVuTmxUV1dBUElvS3NCc0hGZWttWFZlb3lLY1Q3RHhiZTFUZnROOHVRQzgtczN0ME9wcTZlTkdSREhzNUUzTG1BUg?oc=5",
+        "source": "Galeripapua.com",
+        "publishedAt": 1792667229000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "Pemkot Sorong salurkan 120 paket tambahan gizi cegah stunting - ANTARA News Papua Tengah",
+        "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPYWFiRThIRzJ4NGR5MVVoNGlmRnNSYzkzTU5oQWRnakt6SzE2bDNaa0QyWXpOcUVXZG9uc0V3MmYxM3JsbF8wNS1EQ1RIN25pU0dhUzRxTE96Mm9qdXRRWU5EZnNzbHYzZW5RTm5zNkNXd0pRNklzeTkzNXVIMmdIZDFXeDVyMzR2ak53b0FvM1Y0ejZPZmw3ODRsWThaVUtGb0pHVlpldTZGdXlwdkHSAbMBQVVfeXFMT1hUVEp0d1A3QTJIQXdrUG1CemhiVU5VSUZpVURIeGlmMFpUR085eDcyeXJqdkhWUmp5aVBWQlVzbV9lV1E1Ynd1QVFibFM3UWxlcC1iVmdhTmVvMFJKcFFkbTViNThXUFRhYmg1QndsVkVZZnlsc2RwR1NGeWdDeDlVR1AxOExHc1Y5LVpIWGlNamp0SmNZbUlkczZpQzFIR19uQjhHazJNQnQtNFVnZ0c2M3M?oc=5",
+        "source": "ANTARA News Papua Tengah",
+        "publishedAt": 1792666855000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "Papua Reggae Festival ke-XI di Nabire Pecahkan Rekor MURI - Suara Papua",
+        "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMGtzTTc2dHF4SGhyS0ppTi13UllqY0haZ2sxOGJsSjdyOXo0Y0NrcFlUcFpTQkVsekpjYnVTR0dRTnhNaUl5QlA3bWtDRXA1WTRYVXktR3luclEybW9sQmxYSHFScUJkNGlKdXhkR1ROVGV1RU9xdEJUV1hxTGRib0FOU1lJYVNxU2N6czNkbmpWaGIxd1RF?oc=5",
+        "source": "Suara Papua",
+        "publishedAt": 1792666611000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Anak Membakar Ibunya Hidup-hidup - Suara Papua",
+        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1yX2w4N0duZ0F4RHA0dVk0eEROS3B2azhWVExJa0lIU2FZcG1pMTlSTXJlV1YzeUVMUDdYYXhBM2hFVDdrOW1TVDlfT2JxU0ZBYTJFWkRGQlNpT1hSRC04LTRqQ3NwLXlQZE02ZFM2UGJzSHotRkE?oc=5",
+        "source": "Suara Papua",
+        "publishedAt": 1792666075000,
+        "query": "Merauke Papua"
+      },
+      {
+        "title": "LAN Dorong Penguatan Kompetensi ASN dan Kualitas Kebijakan Papua - RRI.co.id",
+        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPOUVFd3BFcXVnX2hyLUZzQXVRbUoxTktpTEtKZGY5NXZfME9yUGt6VF8taFhxTkpUOEc1bjhVdlVBeVpnSXBlczJlNE5lSDc3NkY3ajBUajZPN1NqWUs1SDBpdWhseTJDX3NlblVvUnZwOG9rVWRxZWhoYW95VXR6aE4xTjdmejNOTWlZUC1JTnI4VHM0cm00cGlBeEx1M1A1bmdtbGxmYU5oeXhl?oc=5",
+        "source": "RRI.co.id",
+        "publishedAt": 1792665780000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "Prabowo Bangga RI Jadi Ekonomi Terbesar ke-7 Dunia, Ini Pesannya - CNBC Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ0dIa3NSTWlYN29wR3NJZnFPNTBhVzlLcDlSUkFQM1U0Ym1vaHNNWldTZU9Db0FkSFBwcHJ3bnBGbnd3a3NEVFdTYVVhN3d2cnAxSWNhaENLamFoSjhGdy1TVE85a1FydWN5TkN2TkVSNzRPTkRIRG14Mzhja2RFS0Z6T09Dd09TLWFsaXBNblRnRnJJVG9VVEk4anFhQWZXSXc2WS0wSC14WVIyQk5HZ3ZuSTdxNlZ0aUlxeGVsWdIBxAFBVV95cUxQQnlKbUFOU1U5TW9UTnFTVHA2ODBMdV9uY3lkMTk5YzFuQ21FQWlZZW1sR2RpckEya0J6RkZuMEN5SlNfM3dZYTB5S0xZbnNfaElQWVcxRk0tYjZaeEpZSmlnR2VPV2U3NldSZ1MwdmlLTjZ3ZThsaXFzMW9mVHgtR0p6TWFia28zb2lZQ19OT2p2WTFsTjFXS1llc2ZMLXg2dC1vWW9TYkFjUXZ0anZ5LWZEWVpMR2lneWJjWFRvMzVtWHBG?oc=5",
+        "source": "CNBC Indonesia",
+        "publishedAt": 1792663522000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "Kutip IMF, Prabowo Pamer Ekonomi RI Terbesar ke-7 Dunia - CNN Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUXBXOTdUdjJJdkZ0MHlBS0xZMHU4OE9rTXRqN3JNZ01jX1lvMmNCR3VpMGt5WVZJM3B2ZGl2cEcyOTBlaU1SSENhMllhMk9EM1Zqd3A2dlRuLW5TREc1Tm5MT1NHTmJ3blhMQ1BlLUhHSkNZdmpwMFBVYVlWcVJRcFM0Qm1HNXdXUTNVT2p2b1g2RGw2UTg4eHllaFZ5Mm9WLTJINnl0akxBTGZQNEhKWG5aR1hCQkhVS3fSAb8BQVVfeXFMTVpBdThXc2RrcDR6SnVqVkRDWk5hdnpodksyLTN3d1BOdEJld2VFN2w4Y0hCa2JCaFZZaUMzazVKLV9NSkNvYUlOYzdHUjVXclNhX1NGVHlHUE1nMk1GcHl6YjgxWHo4anhPdjRtZnlPc1FWblZ6NTh5YzN3UHYtam1ManVTYlF3eWFiRDhIZzhlM1dFN09VMFNvV2tQMGN3bEt4aU1uX2t5MEJGZWVCMW5iQ3dWLVRNRGJuZ2gtYXM?oc=5",
+        "source": "CNN Indonesia",
+        "publishedAt": 1792661422000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "Persoalan Lapangan Kerja Masih Jadi Tantangan Serius di Nabire dan Timika - Papua60Detik",
+        "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNRV9QSXA1NHQ0MVBrTUMwdUNveHBTSllQUFhla3pLTWhlVVNkWlc4TEJlOEpISkU3Y1VHcnFUOUJpeFZsYlFLLU5tejE0WjZ3ZmZLN01SdGE0bjY5SmxNWi01eUNDWTkyaHk4WUxzTGd5NFlwaVJxMC1BYjA0b2NUZ3QwcjJZUWkzSS1vVjVIVk1fdDZTUmJ3ckZJMHRCWUViUW01SXZuVQ?oc=5",
+        "source": "Papua60Detik",
+        "publishedAt": 1792660578000,
+        "query": "Timika Papua"
+      },
+      {
+        "title": "Pernah Bertugas di Papua dan Prancis, Kini dr. Rizky Marpaung Layani Kesehatan Warga Sukabumi - Jurnal Sukabumi",
+        "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOWG9DTkRQQUp4c1VGaGRraUVGOG1VV0tFWXQtVTVsQW1XNDNCMHJQdi12MV9mZWlZdVBmZ2V6TklRSnUxYmJGeW5BX2l4VXdEVFJSbE03MnhhMVpaUWJPZjRtWkJjOU1fcDNjUV9vSnpXeXdsdDZPRHRVcGwzYkIxYXlfdnh1dGZGcEJaemx5Vl8zSTREVDluOE9OQlE3alRNRGVTVWV6aENVTFlEMXdWalJxYXROZ2hBWHRKQWZtRFZOZnNWSGIyLWVn?oc=5",
+        "source": "Jurnal Sukabumi",
+        "publishedAt": 1792660320000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Titik Api di Papua Barat Menurun, Asap Masih Selimuti Manokwari - RRI.co.id",
+        "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOEU1TTh2bWJ1bWx1Wm53ZGppS0Mwbl80SkYwekpCdEFmLXJvVmFZZzd5MXppbkx4QVFKZW5xTkdTeEtXTUk2MjVvRXJ1dnoyNFl5bDdCTjNoVnhPY0VqWjl5SDFEeUF3em5CSmduVDNDcnIzb09JdUtFb1FRYTU4UVpSVmhKZFRVX1JNektsNmE0aHpYRUJkTzVKbE50VTlONS1wM2Y0RHQ0cGM?oc=5",
+        "source": "RRI.co.id",
+        "publishedAt": 1792660080000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "Bea Cukai Merauke Siapkan Dukungan Kepabeanan untuk Pembukaan Koridor Logistik di Perbatasan Indonesia-PNG - indoposco",
+        "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOZmNsSVI5eFhsYjlLSUlramhJcHhPZWhsNFN3Skd3VndwOXhUYkhsUGtmQXM1ZFdXdXJCaU0yWXJpaFpMMDJOWTZUSEMtNzVRdjdnbnVRdkQ0aXRCRGFhcjllVGUxTFR2UXlYeXFXM29hR2loUGl4eFZweEx0bnNxYmdPUThoSjd5OFFvVzNkbkZsZWNGWGZIa3dvZWFzWHkzMnBuNVB3ODNXSm9reUV4WE05Tm9iX1RiRUM1TGxlRHR0aHlPdE8tbUMtWGc0ZFNjazV5U0lR?oc=5",
+        "source": "indoposco",
+        "publishedAt": 1792659972000,
+        "query": "Merauke Papua"
+      },
+      {
+        "title": "BPMP Papua Barat: Revitalisasi Sekolah di Manokwari Capai Lebih dari Rp36 Miliar - RRI.co.id",
+        "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQaWw3WkdOWkZhWDhIN0pKYWRfMVdqS0x4WGt1bW9ZY3BoSjE2VkUwZjNIdHprY0NXUktnY0FVQTFRQjhSUkFFYmJCREM1enRVeTRZYWpTWEtSaGgwaDd2VHpjNFFMRFdkaW0tcU9fOThxMU1GTjhqUFJkZVZ3TmdkWTUyNjlFQnROMTktaXB3WTZDSG1sY2hBbzgxWm9uWURVU3RXbEpUaTJSZHRRNC01aFJiN3JzVUhBMUZMNnNsUDVlQQ?oc=5",
+        "source": "RRI.co.id",
+        "publishedAt": 1792659780000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "Potensi Mineral dan Migas Papua Jadi Akselerator Pembangunan, IA-ITB Soroti Pencerdasan Bangsa dan Kesenjangan IPM - Waspada.id",
+        "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNdV9uQVFSNnBqVElhcWh6MXE1SEN1cmk4dktXcFVsNHJGWm8wM0ozemNKWVRGb1lUbjNqbVJ3TDFVN3RxNHkxUzVJWnZPeWNpcFJYbGxGT2M5QmN5RklWb1BsLUlGVWZIQWtjcGRnSkVyd29UOGMzSGlnVHkxa1IwcWF2WFg2bzc3TkFnMFVFdFZSOGQyZy1HZ3pyN2dPd1FBZjVsbFBjZnFua1R6TWJtVFZyQ2pueFNqMV9KOE8zenNhRGZsdnVfZWh4d3M5X2FVYkRQTE5qaDhDcUU?oc=5",
+        "source": "Waspada.id",
+        "publishedAt": 1792659655000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "Pemkot Jayapura tingkatkan pemahaman pelaku usaha cara penanganan ikan yang baik - ANTARA News Papua",
+        "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVmxzby1QdFNqRFdwR09DTW5oTVN0QkJyb2dDTHhQbWJXdENVWnFaQzhTOVNqWEdSRFZzS2p0LTRwSjFrWU44RHJHWmhEVUxUWGlOU2loUDNydVRzWDBuQkUwZC1leE56eE1JYU12V3VwNVhNRFhaQllwOFhZck94V2Fuc211WHBJd0VRUDBubFZ5ejJfQjA2ZGN6bnVZZUc0LTdBdnFpQlg3QzQxdUFYRXVuR2hMREhRc0p2dFdPbzI?oc=5",
+        "source": "ANTARA News Papua",
+        "publishedAt": 1792659342000,
+        "query": "Jayapura Papua"
+      },
+      {
+        "title": "Pemkab Sorong, Bank Papua, dan BKKBN Luncurkan Sahabat Genting untuk Percepat Penurunan Stunting - DETIK Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQT01CcDBoVkFWTGk2dVJ5cFFSLWlMbTBLMW1IZGQzRUNqWjlHdnVqemlzbFF0ODVEcUNjcWRHRW5zMjUydGdaemVLOEpYeTI4MGJkYWwzMVNkenJhN1JUbW5LN09raDNyOWRDSWxmWE9ZT2tPbEdYWjkyT0QzQmV1QUlEVDBMWGlVRWJIbVZNSmJYVWVoX3BsWl9DaEZjcXV1QWk2MFJ3dHptekZBa1NPRGF3MHNmMmFwTEljY3lCZlVBb21DSWhv?oc=5",
+        "source": "DETIK Indonesia",
+        "publishedAt": 1792659240000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Pemkot Jayapura perkuat perlindungan perempuan dan keluarga dari berbagai kekerasan - ANTARA News Papua",
+        "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQU1JCcjBRUXFsR1c3NGc1dm9nelN0THZwVzBFd0F2OGZCeWVKOEtGcWdDNTBQNzF4WHRvVDNEY3ItLU1GOU9NbjVzam1NQmtVOHc4Y3YtaC00QWlwNWpKMXpjeDBWSEZEYTNHY21MNnQ0cWlHc2lGQnR0V2lncFZEck1tbW1TeXdXd1p6T214cGwzR2l6b1lKYk5tOXRkV0ZQa1dzc0dWenFsZVgwM1lWeVNLRk95RlEyR3U5VERQb3lDb3pM?oc=5",
+        "source": "ANTARA News Papua",
+        "publishedAt": 1792659228000,
+        "query": "Jayapura Papua"
+      },
+      {
+        "title": "Papua Pegunungan salurkan bahan pokok dukung rapat BPL Gidi Gilobandu - ANTARA News Papua",
+        "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQaG14Ni0teEdBeGU4SzBKeXlPUExoVFp2ZmpkOWxzMTNFRl9vT1gyX0F1ZEFqckFZZkFURzhzeUtDcnZFU1VGUU1qMmN4X2hzR2l1VlVHOFYwOXNNZWNHOHl3M0FxSG4tbXVVRnMxcERzNUZBSjFsZU5uZ1d1Vjl3OFRXU3ZUbnJYb2tJS1ZjVTdnMFVwQkp2cTNma0lYS0UzcjhsY0NjbUV3NXR2S0pqbGhn?oc=5",
+        "source": "ANTARA News Papua",
+        "publishedAt": 1792659126000,
+        "query": "Tolikara Papua"
+      },
+      {
+        "title": "Senator Filep Wamafma Tinjau Revitalisasi SMK Negeri 4 Manokwari, Guru Minta Kepastian Status PPPK - klikpapua",
+        "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPcm1aYmZWTUR3NFcxTDk5cEFZcWVwZXhUdWRzOUdmU01rV0hRUlVYQUtjNnVnWWlJcDl6RGtLQWEtc0Q1bmNiNkFkelQxZ2dQVkhfMC1jb3pNcHhDRzlOZGo2N2xRQ0Z2XzByM1FZY0R4MjVXMGhDWnVHR1p2dm9vMTYtM0wzRnFZcjFQRWJrRFp4NzFLaEEweG8ya0p6Y2pTTmtoWE9vTlY0OVVZclhYbjd0RmQySGR0ZjVWam5QenJUWF9sRnpQcXJEQ3o3eEJIRWYtVTlyZmlSQWdiLS1F?oc=5",
+        "source": "klikpapua",
+        "publishedAt": 1792658048000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "BPMP Papua Barat Gelar Griya Sekolah di SDN 42 Taman Ria, Hasil Revitalisasi Dirasakan - Tabura Pos",
+        "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNSTlfcGFrRlFnaGxrWGp5T0lUTGM0SDRxbHFjaDF1UXBmdnhDYjJUNXB6OWtTZXZkcnd2Y2NjQzBCakxFWFY2MlV3bnpHcE5Cc01zaWQwZTlIRjFwZnNaZVM4RThJWTBNVFRsblluZFRhU2p5a3NtRUZCMzhDZWVQa05tZlBZQ0F1Z0ktUS1fbW90OUlYN2phWlZnLWNCM0sycVMwS0t5S0Zvb1hkekViLVZuZl9nczlqTUE?oc=5",
+        "source": "Tabura Pos",
+        "publishedAt": 1792657705000,
+        "query": "Manokwari Papua"
+      },
+      {
+        "title": "Kabut Asap Selimuti Tanah Miring Merauke, Pengedara Diminta Waspada - MetroTVNews.com",
+        "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOaTBCZ3lZR2puS1J0Q25RR1hEbTB4dGw3cnRiNUdaWXVyaUJYR1JWeVJ4UTEyVG5MSHNhMGRKdnRuRkFpeEltWHdZdFNzY2hoTjQyWHJHd2tQZjFaVjRXSXNvRWY0RU4zVVd1eXFWZElPbGY2a3BMX3MyZHd2VXNBTUFJcG10b3FvS0tFR2ZFek5RZEhicF9sVlNXbkJHVndaWHpUb1FHVzJWM3V5?oc=5",
+        "source": "MetroTVNews.com",
+        "publishedAt": 1792657437000,
+        "query": "Merauke Papua"
+      },
+      {
+        "title": "Seminar Tentang Pembangunan Tanah Papua di Jakarta Diprotes Aktivis Muda dari Front Anti Militerisme dan Investasi - Kaki News",
+        "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOd3J5bnRuellmX281YXNtZ2FWNzBrNWw0VEdybk1PRnVVQVplZzQtOFJPZ0tHTFpfRWJrN3ViWnZBdHFYQUF1cXlvY0NNend1NUJfMnJGazZSYTNYWVlFY0ZLZ2NSdlZMX01pLURNcFBRcjN6MXh4OENXekx6TVMzNFF1X05LQzJfSVAwQW9OekNvZ3VoUTJuT3Z4cGhZM193M3VSMUVIcERWRFBiTHFhckF3d1RJNlRJTFZ3Ym5CUndRZ0tHQXRyWDVSdngyQWFj?oc=5",
+        "source": "Kaki News",
+        "publishedAt": 1792655319000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "YKKMP Laporkan Penyisiran Dan Dugaan Penganiayaan Penyandang Disabilitas Di Tolikara - Jubi Papua",
+        "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUkdVZ2tSbXBPWnNFa3R1S3JCZ3Z1NHZvd1hYTUpUYVBYTzA4Smx1RDVrR2dOdVFZeTkyX0R0Qk5FenFoU3ZvQ01CeVBlSGtUWXFBLUR2T0laWXRyaW94YmtNd21XX0UtZVlJUXgtOVBCZGhwejlqckF2VF9OZ1RLeDE4dkF1UW5mVmFVZExud1BiR1RLa2VqS2cwVXhoWjNMWUhmU0I2a3BsRnpXdllZYVZ4SQ?oc=5",
+        "source": "Jubi Papua",
+        "publishedAt": 1792654623000,
+        "query": "Tolikara Papua"
+      },
+      {
+        "title": "Peresmian Gedung Delapan Ruang Kelas Baru SMA Negeri 1 Kota Sorong - Pemerintah Kota Sorong",
+        "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNZVhlNHAtVDRLR08tcnlFSnotTndRRXcyV0VSQWdJV3pzSG10UzJrMGVSZmtVclY1TGk5NmwxSkJYbXF5eHBZcXNzMHRNR0x4UXBtOWtyMG9KZ2Jod2Z3STh4TXpnTEM1LVdtYlVCOFhPa3FhV2dnSkZ1a0J4M0x5LXhxaHNyZkEtUlhDOV9ZcUwtWHpGT0hWSmVoeGJYSk5pamc?oc=5",
+        "source": "Pemerintah Kota Sorong",
+        "publishedAt": 1792653626000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "120 Posyandu Aktif, Wali Kota Sorong Resmikan Dua Posyandu ILP di Malasilen - Kapabar.com",
+        "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYkN4U2VEUGpvSmt2bEl3T0Jia2tWZEduVEFvaXhseDJ4eTZHWllfOVpXRm9La0htOHBwenpaNmVPQktQQjhRUGtnU0gyX1VXQlMyS2NMTmc5NzM1SjU2eVBnTUJKcEgxSjN2ZU9NcW82RWFUT0ZnVnZuckxyUTlXWDhYZ0NwZkl3eUJWSnUzSXU4N3dRWS12NDJMRXlna0h6UFZ1bFVod0RVQQ?oc=5",
+        "source": "Kapabar.com",
+        "publishedAt": 1792653611000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "Peresmian Portal Cenderawasih (Central Data Terpadu dan Informasi Handal Papua Barat Daya) - Pemerintah Kota Sorong",
+        "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPbV90V1pEUG9FVzlfSV9heVd2Nm1ZM1U2cVZVOUtjX1pSSkVHM193UUIxY1pfbzdtQmd0X1NQeGZ0ODFSNWxLdE9VdGc1RHZYbF9tckJfLVg0SW1HdzRGbngyN0wxWnJGNks1WVd1R2R1REFfXzJRUE42Q294QVRBU2hrUUNXNzl3a0lIclltNkIzeEtOTS1IT09KV3RtY3V5M2FTb0xqUHhwbE1aZVQtSGNFUWlaNkN3WmtGUUxadw?oc=5",
+        "source": "Pemerintah Kota Sorong",
+        "publishedAt": 1792653325000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "Indonesia dorong kerja sama Selatan-Selatan untuk ekonomi kreatif - ANTARA News Sultra",
+        "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOa3pSLXN1Yk12OE5tM2twZS01akFtSU1CUDVNRGl4X1ZqWTA0b1k1RWl5Tm5VZ1R2SER4dFN4QWNKRlhCZk4zWGJCaExtUEVvSFpyRXpSVF9zZHJqTUYwRDdPaFZvLTFpR2I1VUdiVWYyV3lUMFNELU1xeDVQNC1Ubld4SjI1MXdiYlF5T3JmQ0ljdFR5aVg4LTJheGJZNVhVYlNkTXFPaTF4eWpzbHc?oc=5",
+        "source": "ANTARA News Sultra",
+        "publishedAt": 1792652712000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "6 Risiko Global yang Membayangi Ekonomi RI 2027, dari Geopolitik hingga Suku Bunga - MetroTVNews.com",
+        "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOSU95TlFMc0ZKTG1Da25lam9nQzh2LVRLYW9Wb25yRG1idzdwUENfWThnMHB4bXRhRmx5X29neVNkbFhNb3A5c1VQMW5QeTEyNnQ4SUtWSkdZZHNVc3RvTlk2YUZWOUI3WUFULXRuLTlWWGpCUUhueFllajloU0g4amRpQzZQQUdDOHd1WjY4eGVRSFVyWXZhcHFrR2tvRjQ5WlBqUFYxVnI5TVVHZ2lNaEdXa3o4aXdqOGFpSEFjR28?oc=5",
+        "source": "MetroTVNews.com",
+        "publishedAt": 1792651457000,
+        "query": "Indonesia geopolitik"
+      },
+      {
+        "title": "Wabup Lanny Jaya minta pembangunan infrastruktur harus berkualitas - ANTARA News Papua",
+        "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOcmh6VFNlYlFRTTVSYlM3eGtmNmx6eUhMSUxVazBQS1M5WnBmQnM0UDFDVkhVUEs1cG50UENrTjlIMl9ZeTlaYTROdkItcUV3ZkhhdlVDRmxMWWh0WmZUQnhIUDNzb3cwX0R6dGVpUk0zTmowNEN2VDQyNF9rcV9wTVBvMmw5clNvUXVvTFNaUUt4ZTZqVDlyV2owZFpQdXlIY193b0NuR3ZzNnNqNmc?oc=5",
+        "source": "ANTARA News Papua",
+        "publishedAt": 1792650588000,
+        "query": "Papua pembangunan"
+      },
+      {
+        "title": "Disdikbud Jayapura libatkan lintas sektor tangani keaksaraan - ANTARA News Papua",
+        "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNeUlHSlNGV0xhUW5HSjduVVFZcTFkRGRfYmU2RUNma0prTUdrNThENWprc08xbTh1V1JBN2dXZ21ENFJtcWhqTnVqNW9hUFFkd05ZdGVzYmtHclhncjVPTk95YXdNcHRhZFJLcDFKMGZSZlo2ajFDc1dGV192NDk1NzhJUlRjcVRKSlVCS1k0UXJyN19TVkxweGc2cFRNWHhEbUllY0N3?oc=5",
+        "source": "ANTARA News Papua",
+        "publishedAt": 1792650464000,
+        "query": "Jayapura Papua"
+      },
+      {
+        "title": "Wali Kota Sorong Resmikan 2 Posyandu untuk Pelayanan Kesehatan –... - Sorongraya.co",
+        "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQUhjd3NzZWNRSW1tU2xUUG40YzRrODlBMUhOdXp4Vl85Z0xjN2RLSVkwekhoNXRnU284YWtrSS00a1B5YklxN0p3QmpaRWt4aGlWZ0FJb2xLTzdpMTNyM2E3Rzc0OUs5NWUtem9zTmtEMHlNRjN3a3NQQng3VkNsekxlYVJjRUVXZUxIazlvSDNOamZ6WVE?oc=5",
+        "source": "Sorongraya.co",
+        "publishedAt": 1792648750000,
+        "query": "Sorong Papua"
+      },
+      {
+        "title": "LAN RI dan Pemerintah Provinsi se-Papua Raya Perkuat Kompetensi ASN di Jayapura - Pemerintah Provinsi Papua",
+        "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOU2JBcDdkS2xwWTZIVXI3cC1rVU9QR2JER1FmYmZRSFZPSXFVN1JHZkFvSWZSeGxNVkw2OVBrZnF5Z1hkNVp2SmVOYVlGaFFoTTVOZDFSWFBYU3pkYnlQbzRHalY5RlhEcFlUSi0xeF9QNWt0eERjRGdmeFlEajgwaTdaZjFSbEtsci0tUXNDN0tNbVd6YVllUERKZGloNm9hU1Q0LXpBbmNDMHUwWnFDSERMWTMway12N1poVUtQNTJmSFBzVlZLdXN3TzU?oc=5",
+        "source": "Pemerintah Provinsi Papua",
+        "publishedAt": 1792648686000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Papua Barat Daya Menuju Perencanaan Berbasis Bukti lewat Portal Cenderawasih - Sorongraya.co",
+        "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSGNNZnFPUXN2QWNNZklITzBtdU85RVlIRHY5MjdRSHJRcjlIU3RNTklOXzRNZC1uQldBc2hJUlpoZnJpQkxqaUZqSVFmQ2VULUp4ZkZRWmNMYjFBYjE4Y3RDYVVXelJ3S3hJMTE4UU8xd25CSXFPMGJfRDVRZkdRcmxRYkZENmZQa0M1MUdnSHNlTmhlMUdZRjBEdTNrOEFOX2xINFY0aDc?oc=5",
+        "source": "Sorongraya.co",
+        "publishedAt": 1792648583000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Luncurkan PROSPERA Fase II, Pemerintah Indonesia dan Australia Perkuat Reformasi Kelembagaan Ekonomi - - Kementerian Koordinator Bidang Perekonomian Republik Indonesia",
+        "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQMGFvV3dnRjRsYXhPc3E2VGRlbVZYUVUzdXdWZV83Yi1MUjRqVTAyYzhydF9Ldkt5STBZZkpvVk5BbUVFcUdaQWw2czRzQUp5NVlPRmg2QktiT2JHQXU0U0lIRV84SlVrTDcwekFIWXhrUHhuTU1vbnUwVnIxOTV1MmRwa1doVTROb2FWRm52VW5NbS1pMzNjMmUxVUh2Y3cxSG9EYUkzZm9BVEJ2WG1OLS00eXhOTmdlb2JxaUFRdnRlT2l6SUQ0bndPdFNOa3NSLU54X2VsNA?oc=5",
+        "source": "- Kementerian Koordinator Bidang Perekonomian Republik Indonesia",
+        "publishedAt": 1792647360000,
+        "query": "Indonesia ekonomi"
+      },
+      {
+        "title": "Bamsoet: Keamanan nasional harus adil dan sejahtera - ANTARA News Papua Tengah",
+        "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcmhhTzZPcmE1cVgxYU5WcGh4YnRJR082TXY2UjJCcUpLLXY2QlpabWw1UFk4d0tJSXNSck0wVjhWWi1pbGZlREhEbENsbV9yUHBQYVlfcFd5Wmt6QlJJTnFWWGxzdFhMNWRfOWY3SWVjSF9GNFdnUWlRWVQzYUJZWktYR2haVFlaak1QZlYzZGdEeERZTDRrOXVMTngyal9LeXFsOdIBpAFBVV95cUxOcmhhTzZPcmE1cVgxYU5WcGh4YnRJR082TXY2UjJCcUpLLXY2QlpabWw1UFk4d0tJSXNSck0wVjhWWi1pbGZlREhEbENsbV9yUHBQYVlfcFd5Wmt6QlJJTnFWWGxzdFhMNWRfOWY3SWVjSF9GNFdnUWlRWVQzYUJZWktYR2haVFlaak1QZlYzZGdEeERZTDRrOXVMTngyal9LeXFsOQ?oc=5",
+        "source": "ANTARA News Papua Tengah",
+        "publishedAt": 1792646804000,
+        "query": "Papua Indonesia keamanan"
+      },
+      {
+        "title": "Bamsoet: Capaian dua tahun Prabowo modal utama Indonesia mandiri - ANTARA News Papua Tengah",
+        "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPUERzanBYX3VLRmc4SzB0OFlDdHdqYUVPQU0tZzJMXzNBRGFsTFBHNVVwUTNzRERGcklVZ2I5NEhxd1RlZWtrQkxybmRiRWY4ZDFRWHZlTjBkS2RSNnQtbHBrNXl4c1c2akZsMXZYUW9IZXhKcUh2T3EzVy1IQlB6RWVfQWxRejhHY1daYUE1UE1QUXVsR3pjdG5sQl9PRzBWV0hWbzlhdHV6eEdvOGt2ctIBtgFBVV95cUxNb19sazNYbU9uY200eUg1VGpodkktdFFBNFktX2Q5alRNdVZlVDNGODdOYnktNkNnQ2p6TlNwUWNnT1Q1dXhVXzFJOGZCNmd4bjlVaHpfYUxkVEx0SGFBNy1aWXAxMzF6QmQ0aEszcGZ1TTV0bW4xTGFsMllYWUFtN05oTkdsTnpVdXQyMUo5b1ZlbUpnRVY0VXdQR0dXMURaUFFXbnRfaG5ONUlwckFCWm1zVm1tdw?oc=5",
+        "source": "ANTARA News Papua Tengah",
+        "publishedAt": 1792646674000,
+        "query": "Indonesia Papua"
+      },
+      {
+        "title": "Dumai Transshipment Hub: Ujian Geopolitik Maritim Indonesia - Rmol.id",
+        "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcXB0VUNydmRpU21acTFQb2FCbktjcTZ4N2ZadDFfTmRVT3JkclFzUFlqSmJxSVpyN0hOaGlWOUh3dW9DQ1ZOcVpZYVV1M1NKU0IzeXMxZklUUWJQTmVmLTNXeGJwWkdRN3ZMMWdPa0FpMUpQVHZNYXlMWXpJUE5CTkhhY1pQRG00UHpJX25fT1p1cHVkaVl2cGVYYXhPdw?oc=5",
+        "source": "Rmol.id",
+        "publishedAt": 1792646220000,
+        "query": "Indonesia geopolitik"
+      }
+    ]
+  },
+  "targets": {
+    "targets": [
+      {
+        "id": "t-001",
+        "name": "Target Papua 1",
+        "phone": "+62-812-3456-7890",
+        "lat": -4.5326,
+        "lon": 140.5066,
+        "city": "Papua",
+        "status": "active"
+      },
+      {
+        "id": "t-002",
+        "name": "Target Papua 2",
+        "phone": "+62-813-2345-6789",
+        "lat": -2.5337,
+        "lon": 140.7175,
+        "city": "Jayapura",
+        "status": "active"
+      },
+      {
+        "id": "t-003",
+        "name": "Target Papua 3",
+        "phone": "+62-814-3456-7890",
+        "lat": -0.8763,
+        "lon": 131.2558,
+        "city": "Sorong",
+        "status": "active"
+      },
+      {
+        "id": "t-004",
+        "name": "Target Papua 4",
+        "phone": "+62-815-4567-8901",
+        "lat": -3.9833,
+        "lon": 137.7833,
+        "city": "Puncak",
+        "status": "active"
+      },
+      {
+        "id": "t-005",
+        "name": "Target Papua 5",
+        "phone": "+62-816-5678-9012",
+        "lat": -3.6167,
+        "lon": 137.4833,
+        "city": "Puncak Jaya",
+        "status": "active"
+      },
+      {
+        "id": "t-006",
+        "name": "Target Papua 6",
+        "phone": "+62-817-6789-0123",
+        "lat": -4.4833,
+        "lon": 139.5333,
+        "city": "Yahukimo",
+        "status": "active"
+      },
+      {
+        "id": "t-007",
+        "name": "Target Papua 7",
+        "phone": "+62-818-7890-1234",
+        "lat": -3.6833,
+        "lon": 138.4833,
+        "city": "Tolikara",
+        "status": "active"
+      },
+      {
+        "id": "t-008",
+        "name": "Target Papua 8",
+        "phone": "+62-819-8901-2345",
+        "lat": -4.1,
+        "lon": 138.95,
+        "city": "Wamena",
+        "status": "active"
+      }
+    ],
+    "count": 8
+  },
+  "vision": [
+    {
+      "area": {
+        "id": "papua-001",
+        "name": "Tolikara Highlands",
+        "lat": -3.6833,
+        "lon": 138.4833,
+        "elevation_m": 2400,
+        "terrain": "highland"
+      },
+      "scene": {
+        "description": "Area Tolikara Highlands — highland terrain, elevation 2400m. 6 orang terdeteksi, 3 kendaraan.",
+        "visibility": "clear",
+        "time_of_day": "afternoon"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            814,
+            150,
+            877,
+            344
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.76,
+          "holding": "basket",
+          "activity": "farming"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            141,
+            247,
+            230,
+            392
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "machete",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            1025,
+            396,
+            1113,
+            538
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "food",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            153,
+            61,
+            252,
+            197
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.82,
+          "holding": "basket",
+          "activity": "working"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            1042,
+            188,
+            1162,
+            320
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.91,
+          "holding": "camera",
+          "activity": "walking"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            768,
+            297,
+            871,
+            457
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.88,
+          "holding": "tool",
+          "activity": "patrolling"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "boat",
+          "bbox": [
+            192,
+            201,
+            167,
+            88
+          ],
+          "confidence": 0.7
+        },
+        {
+          "id": "vehicle-2",
+          "type": "motorcycle",
+          "bbox": [
+            9,
+            62,
+            183,
+            106
+          ],
+          "confidence": 0.82
+        },
+        {
+          "id": "vehicle-3",
+          "type": "boat",
+          "bbox": [
+            397,
+            360,
+            120,
+            70
+          ],
+          "confidence": 0.94
+        }
+      ],
+      "summary": {
+        "people_count": 6,
+        "vehicle_count": 3,
+        "dominant_activity": "farming"
+      },
+      "generatedAt": 1792683754351,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-002",
+        "name": "Yahukimo Base",
+        "lat": -4.4833,
+        "lon": 139.5333,
+        "elevation_m": 1800,
+        "terrain": "highland"
+      },
+      "scene": {
+        "description": "Area Yahukimo Base — highland terrain, elevation 1800m. 4 orang terdeteksi, 3 kendaraan.",
+        "visibility": "rainy",
+        "time_of_day": "afternoon"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            809,
+            321,
+            915,
+            450
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.88,
+          "holding": "tool",
+          "activity": "farming"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            942,
+            156,
+            1024,
+            341
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.83,
+          "holding": "rifle (security)",
+          "activity": "standing"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            464,
+            62,
+            548,
+            212
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.94,
+          "holding": "bag",
+          "activity": "walking"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            1014,
+            281,
+            1132,
+            407
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.85,
+          "holding": "camera",
+          "activity": "trading"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "car",
+          "bbox": [
+            1168,
+            281,
+            164,
+            93
+          ],
+          "confidence": 0.86
+        },
+        {
+          "id": "vehicle-2",
+          "type": "truck",
+          "bbox": [
+            459,
+            344,
+            102,
+            88
+          ],
+          "confidence": 0.7
+        },
+        {
+          "id": "vehicle-3",
+          "type": "boat",
+          "bbox": [
+            427,
+            163,
+            118,
+            94
+          ],
+          "confidence": 0.89
+        }
+      ],
+      "summary": {
+        "people_count": 4,
+        "vehicle_count": 3,
+        "dominant_activity": "farming"
+      },
+      "generatedAt": 1792683754351,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-003",
+        "name": "Puncak Pass",
+        "lat": -3.9833,
+        "lon": 137.7833,
+        "elevation_m": 3200,
+        "terrain": "mountain"
+      },
+      "scene": {
+        "description": "Area Puncak Pass — mountain terrain, elevation 3200m. 6 orang terdeteksi, 2 kendaraan.",
+        "visibility": "cloudy",
+        "time_of_day": "night"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            170,
+            458,
+            251,
+            628
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.87,
+          "holding": "machete",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            961,
+            439,
+            1061,
+            628
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.87,
+          "holding": "basket",
+          "activity": "observing"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            192,
+            323,
+            255,
+            443
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.85,
+          "holding": "food",
+          "activity": "resting"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            1049,
+            176,
+            1143,
+            365
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.94,
+          "holding": "phone",
+          "activity": "standing"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            402,
+            108,
+            499,
+            247
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.81,
+          "holding": "bag",
+          "activity": "trading"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            433,
+            490,
+            531,
+            629
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.93,
+          "holding": "camera",
+          "activity": "patrolling"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "car",
+          "bbox": [
+            998,
+            280,
+            159,
+            103
+          ],
+          "confidence": 0.73
+        },
+        {
+          "id": "vehicle-2",
+          "type": "motorcycle",
+          "bbox": [
+            1044,
+            650,
+            198,
+            79
+          ],
+          "confidence": 0.76
+        }
+      ],
+      "summary": {
+        "people_count": 6,
+        "vehicle_count": 2,
+        "dominant_activity": "sitting"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-004",
+        "name": "Puncak Jaya Summit",
+        "lat": -3.6167,
+        "lon": 137.4833,
+        "elevation_m": 4884,
+        "terrain": "glacier"
+      },
+      "scene": {
+        "description": "Area Puncak Jaya Summit — glacier terrain, elevation 4884m. 8 orang terdeteksi, 2 kendaraan.",
+        "visibility": "hazy",
+        "time_of_day": "afternoon"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            621,
+            216,
+            689,
+            339
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.79,
+          "holding": "phone",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            119,
+            307,
+            192,
+            465
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.93,
+          "holding": "camera",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            903,
+            180,
+            1005,
+            304
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.76,
+          "holding": "camera",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            767,
+            210,
+            857,
+            372
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.75,
+          "holding": "basket",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            350,
+            249,
+            452,
+            386
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.83,
+          "holding": "rifle (security)",
+          "activity": "patrolling"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            930,
+            379,
+            1049,
+            523
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.77,
+          "holding": "camera",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-7",
+          "bbox": [
+            608,
+            342,
+            719,
+            501
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.81,
+          "holding": "camera",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-8",
+          "bbox": [
+            659,
+            89,
+            732,
+            216
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.76,
+          "holding": "food",
+          "activity": "walking"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "truck",
+          "bbox": [
+            1019,
+            483,
+            193,
+            60
+          ],
+          "confidence": 0.79
+        },
+        {
+          "id": "vehicle-2",
+          "type": "car",
+          "bbox": [
+            935,
+            507,
+            167,
+            86
+          ],
+          "confidence": 0.78
+        }
+      ],
+      "summary": {
+        "people_count": 8,
+        "vehicle_count": 2,
+        "dominant_activity": "carrying"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-005",
+        "name": "Wamena Valley",
+        "lat": -4.1,
+        "lon": 138.95,
+        "elevation_m": 1600,
+        "terrain": "valley"
+      },
+      "scene": {
+        "description": "Area Wamena Valley — valley terrain, elevation 1600m. 5 orang terdeteksi, 2 kendaraan.",
+        "visibility": "rainy",
+        "time_of_day": "morning"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            1052,
+            51,
+            1112,
+            183
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.83,
+          "holding": "bag",
+          "activity": "resting"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            327,
+            423,
+            437,
+            544
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.94,
+          "holding": "camera",
+          "activity": "standing"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            936,
+            211,
+            1040,
+            341
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.78,
+          "holding": "camera",
+          "activity": "walking"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            165,
+            456,
+            225,
+            624
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.93,
+          "holding": "machete",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            943,
+            442,
+            1046,
+            583
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.85,
+          "holding": "bag",
+          "activity": "sitting"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "truck",
+          "bbox": [
+            96,
+            457,
+            190,
+            71
+          ],
+          "confidence": 0.81
+        },
+        {
+          "id": "vehicle-2",
+          "type": "motorcycle",
+          "bbox": [
+            409,
+            282,
+            136,
+            104
+          ],
+          "confidence": 0.93
+        }
+      ],
+      "summary": {
+        "people_count": 5,
+        "vehicle_count": 2,
+        "dominant_activity": "resting"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-006",
+        "name": "Nabire Port",
+        "lat": -3.3667,
+        "lon": 135.4833,
+        "elevation_m": 50,
+        "terrain": "coastal"
+      },
+      "scene": {
+        "description": "Area Nabire Port — coastal terrain, elevation 50m. 6 orang terdeteksi, 0 kendaraan.",
+        "visibility": "clear",
+        "time_of_day": "evening"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            789,
+            293,
+            861,
+            472
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.83,
+          "holding": "document",
+          "activity": "observing"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            859,
+            427,
+            935,
+            581
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.9,
+          "holding": "rifle (security)",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            394,
+            458,
+            478,
+            647
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.82,
+          "holding": "machete",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            897,
+            153,
+            987,
+            330
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "basket",
+          "activity": "walking"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            442,
+            458,
+            537,
+            590
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.87,
+          "holding": "tool",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            993,
+            72,
+            1104,
+            255
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.92,
+          "holding": "rifle (security)",
+          "activity": "resting"
+        }
+      ],
+      "vehicles": [],
+      "summary": {
+        "people_count": 6,
+        "vehicle_count": 0,
+        "dominant_activity": "observing"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-007",
+        "name": "Biak Airport",
+        "lat": -1.0333,
+        "lon": 136.0833,
+        "elevation_m": 20,
+        "terrain": "coastal"
+      },
+      "scene": {
+        "description": "Area Biak Airport — coastal terrain, elevation 20m. 7 orang terdeteksi, 0 kendaraan.",
+        "visibility": "clear",
+        "time_of_day": "evening"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            235,
+            296,
+            314,
+            494
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.91,
+          "holding": "rifle (security)",
+          "activity": "observing"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            783,
+            112,
+            851,
+            265
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.85,
+          "holding": "document",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            548,
+            179,
+            661,
+            331
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "camera",
+          "activity": "walking"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            85,
+            462,
+            172,
+            625
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.9,
+          "holding": "phone",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            71,
+            239,
+            170,
+            359
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.78,
+          "holding": "tool",
+          "activity": "standing"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            212,
+            187,
+            284,
+            377
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.94,
+          "holding": "none",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-7",
+          "bbox": [
+            788,
+            128,
+            880,
+            323
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "machete",
+          "activity": "walking"
+        }
+      ],
+      "vehicles": [],
+      "summary": {
+        "people_count": 7,
+        "vehicle_count": 0,
+        "dominant_activity": "observing"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-008",
+        "name": "Timika Mine",
+        "lat": -4.55,
+        "lon": 136.8833,
+        "elevation_m": 100,
+        "terrain": "mining"
+      },
+      "scene": {
+        "description": "Area Timika Mine — mining terrain, elevation 100m. 8 orang terdeteksi, 2 kendaraan.",
+        "visibility": "hazy",
+        "time_of_day": "morning"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            301,
+            110,
+            376,
+            301
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.84,
+          "holding": "none",
+          "activity": "walking"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            576,
+            137,
+            696,
+            302
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.8,
+          "holding": "tool",
+          "activity": "trading"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            907,
+            322,
+            987,
+            516
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.81,
+          "holding": "camera",
+          "activity": "patrolling"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            901,
+            512,
+            975,
+            642
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.79,
+          "holding": "document",
+          "activity": "trading"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            474,
+            325,
+            569,
+            486
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.92,
+          "holding": "food",
+          "activity": "observing"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            1029,
+            408,
+            1128,
+            571
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.88,
+          "holding": "camera",
+          "activity": "working"
+        },
+        {
+          "id": "person-7",
+          "bbox": [
+            417,
+            134,
+            486,
+            284
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.79,
+          "holding": "food",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-8",
+          "bbox": [
+            776,
+            71,
+            868,
+            253
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.93,
+          "holding": "basket",
+          "activity": "working"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "truck",
+          "bbox": [
+            931,
+            216,
+            124,
+            89
+          ],
+          "confidence": 0.88
+        },
+        {
+          "id": "vehicle-2",
+          "type": "boat",
+          "bbox": [
+            707,
+            183,
+            146,
+            67
+          ],
+          "confidence": 0.94
+        }
+      ],
+      "summary": {
+        "people_count": 8,
+        "vehicle_count": 2,
+        "dominant_activity": "walking"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-009",
+        "name": "Jayapura City",
+        "lat": -2.5337,
+        "lon": 140.7175,
+        "elevation_m": 50,
+        "terrain": "urban"
+      },
+      "scene": {
+        "description": "Area Jayapura City — urban terrain, elevation 50m. 8 orang terdeteksi, 1 kendaraan.",
+        "visibility": "hazy",
+        "time_of_day": "morning"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            673,
+            293,
+            738,
+            433
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.77,
+          "holding": "food",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            705,
+            179,
+            820,
+            333
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "tool",
+          "activity": "patrolling"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            963,
+            109,
+            1082,
+            241
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.78,
+          "holding": "document",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            530,
+            431,
+            604,
+            587
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.82,
+          "holding": "basket",
+          "activity": "walking"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            694,
+            152,
+            793,
+            319
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.81,
+          "holding": "machete",
+          "activity": "walking"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            350,
+            142,
+            441,
+            266
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.95,
+          "holding": "basket",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-7",
+          "bbox": [
+            487,
+            160,
+            603,
+            355
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.76,
+          "holding": "camera",
+          "activity": "trading"
+        },
+        {
+          "id": "person-8",
+          "bbox": [
+            609,
+            146,
+            718,
+            282
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.92,
+          "holding": "tool",
+          "activity": "walking"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "boat",
+          "bbox": [
+            26,
+            101,
+            192,
+            114
+          ],
+          "confidence": 0.85
+        }
+      ],
+      "summary": {
+        "people_count": 8,
+        "vehicle_count": 1,
+        "dominant_activity": "carrying"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    },
+    {
+      "area": {
+        "id": "papua-010",
+        "name": "Sorong Harbor",
+        "lat": -0.8763,
+        "lon": 131.2558,
+        "elevation_m": 10,
+        "terrain": "coastal"
+      },
+      "scene": {
+        "description": "Area Sorong Harbor — coastal terrain, elevation 10m. 6 orang terdeteksi, 3 kendaraan.",
+        "visibility": "cloudy",
+        "time_of_day": "morning"
+      },
+      "people": [
+        {
+          "id": "person-1",
+          "bbox": [
+            227,
+            251,
+            295,
+            411
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.89,
+          "holding": "phone",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-2",
+          "bbox": [
+            819,
+            265,
+            935,
+            410
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.81,
+          "holding": "rifle (security)",
+          "activity": "carrying"
+        },
+        {
+          "id": "person-3",
+          "bbox": [
+            506,
+            106,
+            604,
+            227
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.79,
+          "holding": "tool",
+          "activity": "trading"
+        },
+        {
+          "id": "person-4",
+          "bbox": [
+            660,
+            231,
+            723,
+            393
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.79,
+          "holding": "basket",
+          "activity": "sitting"
+        },
+        {
+          "id": "person-5",
+          "bbox": [
+            692,
+            289,
+            804,
+            454
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.75,
+          "holding": "rifle (security)",
+          "activity": "trading"
+        },
+        {
+          "id": "person-6",
+          "bbox": [
+            267,
+            366,
+            333,
+            496
+          ],
+          "image_size": [
+            1280,
+            720
+          ],
+          "bboxSpace": "pixels",
+          "confidence": 0.76,
+          "holding": "rifle (security)",
+          "activity": "resting"
+        }
+      ],
+      "vehicles": [
+        {
+          "id": "vehicle-1",
+          "type": "boat",
+          "bbox": [
+            139,
+            247,
+            104,
+            89
+          ],
+          "confidence": 0.84
+        },
+        {
+          "id": "vehicle-2",
+          "type": "car",
+          "bbox": [
+            123,
+            264,
+            113,
+            92
+          ],
+          "confidence": 0.79
+        },
+        {
+          "id": "vehicle-3",
+          "type": "truck",
+          "bbox": [
+            527,
+            320,
+            164,
+            113
+          ],
+          "confidence": 0.9
+        }
+      ],
+      "summary": {
+        "people_count": 6,
+        "vehicle_count": 3,
+        "dominant_activity": "sitting"
+      },
+      "generatedAt": 1792683754352,
+      "source": "vision-mock-papua"
+    }
+  ],
+  "cctv": {
+    "total": 21,
+    "papua": 12,
+    "other": 9
+  }
+}

@@ -1,68 +1,242 @@
-  <!-- Global Context is deliberately independent from the left layer accordion. -->
-  <aside id="right-context-rail">
-    <div id="weather-panel" class="panel-collapsible" data-panel-id="weather-panel" hidden>
-      <div class="panel-glow"></div>
-      <div class="weather-panel-inner" data-rail-scroller>
-        <div class="panel-header">
-          <span class="panel-title" data-i18n>WEATHER</span>
-          <span id="weather-panel-count" aria-label="Active weather products" data-i18n-aria-label>0</span>
-          <span class="panel-divider"></span>
-          <button class="panel-collapse-btn" data-collapse-target="weather-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
-        </div>
-        <div id="weather-panel-body" data-rail-scroller></div>
+<!-- Global Context is deliberately independent from the left layer accordion. -->
+<aside id="right-context-rail">
+  <div id="weather-panel" class="panel-collapsible" data-panel-id="weather-panel" hidden>
+    <div class="panel-glow"></div>
+    <div class="weather-panel-inner" data-rail-scroller>
+      <div class="panel-header">
+        <span class="panel-title" data-i18n>WEATHER</span>
+        <span id="weather-panel-count" aria-label="Active weather products" data-i18n-aria-label>0</span>
+        <span class="panel-divider"></span>
+        <button class="panel-collapse-btn" data-collapse-target="weather-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
       </div>
+      <div id="weather-panel-body" data-rail-scroller></div>
     </div>
-    <div id="recent-imagery-panel" class="panel-collapsible" data-panel-id="recent-imagery-panel" hidden>
-      <div class="panel-glow"></div>
-      <div class="recent-imagery-panel-inner" data-rail-scroller>
-        <div class="panel-header">
-          <span class="panel-title" data-i18n>RECENT IMAGERY</span>
-          <span id="recent-imagery-panel-count" aria-label="Imagery days in the box" data-i18n-aria-label></span>
-          <span class="panel-divider"></span>
-          <button class="panel-collapse-btn" data-collapse-target="recent-imagery-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
-        </div>
-        <div id="recent-imagery-panel-body" data-rail-scroller></div>
+  </div>
+  <div id="recent-imagery-panel" class="panel-collapsible" data-panel-id="recent-imagery-panel" hidden>
+    <div class="panel-glow"></div>
+    <div class="recent-imagery-panel-inner" data-rail-scroller>
+      <div class="panel-header">
+        <span class="panel-title" data-i18n>RECENT IMAGERY</span>
+        <span id="recent-imagery-panel-count" aria-label="Imagery days in the box" data-i18n-aria-label></span>
+        <span class="panel-divider"></span>
+        <button class="panel-collapse-btn" data-collapse-target="recent-imagery-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
       </div>
+      <div id="recent-imagery-panel-body" data-rail-scroller></div>
     </div>
-    <div id="global-context-panel" class="panel-collapsible collapsed" data-panel-id="global-context-panel">
-      <div class="panel-glow"></div>
-      <div class="global-context-panel-inner" data-rail-scroller>
-        <div class="panel-header">
-          <span class="panel-title" data-i18n>CONTEXT</span>
-          <span class="panel-divider"></span>
-          <div id="context-radio-dock" class="context-radio-dock">
-            <button id="context-radio-toggle-btn" class="context-radio-toggle" type="button" aria-expanded="false" aria-controls="context-radio-mini" aria-label="Open compact Radio controls" title="Open compact Radio controls" data-i18n-aria-label data-i18n-title>
-              <span class="material-symbols-outlined" aria-hidden="true">radio</span>
-            </button>
-            <div id="context-radio-mini" class="context-radio-mini" role="group" aria-label="Compact Radio controls" hidden data-i18n-aria-label>
-              <div class="context-radio-mini-heading">
-                <span data-i18n>RADIO</span>
-                <strong id="context-radio-mini-station" data-i18n>RADIO READY</strong>
-                <span class="context-radio-mini-actions">
-                  <button id="context-radio-details-btn" type="button" aria-label="Open detailed Radio controls" aria-expanded="false" aria-controls="radio-panel" title="Open detailed Radio controls" data-i18n-aria-label data-i18n-title>
-                    <span class="material-symbols-outlined" aria-hidden="true">open_in_full</span>
-                  </button>
-                  <button id="context-radio-mini-close-btn" type="button" aria-label="Close compact Radio controls" title="Close compact Radio controls" data-i18n-aria-label data-i18n-title>
-                    <span class="material-symbols-outlined" aria-hidden="true">close</span>
-                  </button>
-                </span>
-              </div>
-              <button id="context-radio-mini-enable-btn" class="panel-layer-toggle" type="button" aria-pressed="false" data-i18n>ENABLE</button>
-              <div class="context-radio-mini-transport">
-                <button id="context-radio-mini-prev-btn" type="button" aria-label="Previous filtered radio station" title="Previous station" disabled data-i18n-aria-label data-i18n-title>◀◀</button>
-                <button id="context-radio-mini-play-btn" type="button" aria-label="Play selected radio station" title="Play" disabled data-i18n-aria-label data-i18n-title>▶</button>
-                <button id="context-radio-mini-next-btn" type="button" aria-label="Next filtered radio station" title="Next station" disabled data-i18n-aria-label data-i18n-title>▶▶</button>
-              </div>
-              <label class="context-radio-mini-volume" for="context-radio-mini-volume">
-                <span data-i18n>VOLUME</span>
-                <input id="context-radio-mini-volume" class="gev-quantitative-slider" type="range" min="0" max="100" value="80" aria-label="Compact Radio volume" disabled data-i18n-aria-label />
-                <output id="context-radio-mini-volume-value" class="gev-slider-value" for="context-radio-mini-volume">80%</output>
-              </label>
+  </div>
+  <div id="godseye-panel" class="panel-collapsible collapsed" data-panel-id="godseye-panel">
+    <div class="panel-glow"></div>
+    <div class="godseye-panel-inner" data-rail-scroller>
+      <div class="panel-header">
+        <span class="panel-title" data-i18n>GOD'S EYE ANALYSIS</span>
+        <span class="panel-divider"></span>
+        <button class="panel-collapse-btn" data-collapse-target="godseye-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
+      </div>
+      <div id="godseye-panel-body" data-rail-scroller>
+        <div class="godseye-tabs" role="tablist" aria-label="God's Eye analysis mode" data-i18n-aria-label>
+          <button id="godseye-tab-latest" class="godseye-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="godseye-pane-latest" data-i18n>LATEST</button>
+          <button id="godseye-tab-news" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-news" tabindex="-1" data-i18n>NEWS</button>
+          <button id="godseye-tab-place" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-place" tabindex="-1" data-i18n>PLACE</button>
+          <button id="godseye-tab-vision" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-vision" tabindex="-1" data-i18n>VISION</button>
+          <button id="godseye-tab-cctv" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-cctv" tabindex="-1" data-i18n>CCTV</button>
+          <button id="godseye-tab-bts" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-bts" tabindex="-1" data-i18n>BTS</button>
+          <button id="godseye-tab-locate" class="godseye-tab" type="button" role="tab" aria-selected="false" aria-controls="godseye-pane-locate" tabindex="-1" data-i18n>TARGET</button>
+        </div>
+        <p id="godseye-live" class="godseye-live" role="status" aria-live="polite"></p>
+        <div id="godseye-pane-latest" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-latest">
+          <div class="godseye-quote">
+            <span id="godseye-gold-price" class="godseye-gold-price">—</span>
+            <span id="godseye-gold-change" class="godseye-gold-change"></span>
+          </div>
+          <p id="godseye-composite" class="godseye-note" data-i18n>RELEVANCE SCORE, NOT A CAUSE</p>
+          <ul id="godseye-drivers" class="godseye-list"></ul>
+          <div class="godseye-actions">
+            <button id="godseye-refresh-btn" class="scene-btn" type="button" data-i18n>REFRESH</button>
+          </div>
+          <p id="godseye-latest-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime>LOADING</p>
+        </div>
+        <div id="godseye-pane-news" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-news" hidden>
+          <div class="godseye-place-form">
+            <select id="godseye-news-region" class="gev-field" aria-label="News region" data-i18n-aria-label>
+              <option value="papua" data-i18n>PAPUA</option>
+              <option value="indonesia" data-i18n>INDONESIA</option>
+            </select>
+            <button id="godseye-news-btn" class="scene-btn" type="button" data-i18n>REFRESH</button>
+          </div>
+          <ul id="godseye-news-list" class="godseye-list"></ul>
+          <p id="godseye-news-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+        </div>
+        <div id="godseye-pane-place" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-place" hidden>
+          <div class="godseye-place-form">
+            <input id="godseye-place-input" class="gev-field" type="text" placeholder="Enter a place name" data-i18n-placeholder />
+            <button id="godseye-place-btn" class="scene-btn" type="button" data-i18n>LOOK UP</button>
+          </div>
+          <div id="godseye-place-card" class="godseye-place-card" hidden>
+            <img id="godseye-place-photo" class="godseye-place-photo" alt="" />
+            <div class="godseye-place-meta">
+              <strong id="godseye-place-name" class="godseye-place-name"></strong>
+              <span id="godseye-place-coords" class="godseye-place-coords"></span>
+              <span id="godseye-place-photo-note" class="godseye-place-note" data-i18n>STREET-LEVEL PHOTO</span>
+            </div>
+            <div class="godseye-actions">
+              <button id="godseye-fly-btn" class="scene-btn" type="button" data-i18n>FLY TO</button>
             </div>
           </div>
-          <button class="panel-collapse-btn" data-collapse-target="global-context-panel" title="Expand panel" data-i18n-title>▶</button>
+          <p id="godseye-place-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
         </div>
-        <div class="cyber-panel-body" data-rail-scroller>
+        <div id="godseye-pane-vision" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-vision" hidden>
+          <div class="godseye-place-form">
+            <input id="godseye-vision-input" class="gev-field" type="text" placeholder="Image URL (http, https or data)" data-i18n-placeholder />
+            <button id="godseye-vision-btn" class="scene-btn" type="button" data-i18n>ANALYSE</button>
+          </div>
+          <input id="godseye-vision-file" class="gev-field" type="file" accept="image/*" aria-label="Choose an image to analyse" data-i18n-aria-label />
+          <div id="godseye-vision-stage" class="godseye-vision-stage" hidden>
+            <img id="godseye-vision-image" alt="" />
+            <canvas id="godseye-vision-overlay"></canvas>
+          </div>
+          <ul id="godseye-vision-list" class="godseye-list"></ul>
+          <p id="godseye-vision-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+        </div>
+        <div id="godseye-pane-cctv" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-cctv" hidden>
+          <div class="godseye-place-form">
+            <input id="godseye-cctv-input" class="gev-field" type="text" placeholder="Lat, lon or a place already looked up" data-i18n-placeholder />
+            <button id="godseye-cctv-btn" class="scene-btn" type="button" data-i18n>SCAN</button>
+          </div>
+          <div class="godseye-place-form">
+            <select id="godseye-cctv-type" class="gev-field" aria-label="Camera type" data-i18n-aria-label>
+              <option value="" data-i18n>ALL TYPES</option>
+              <option value="fixed" data-i18n>FIXED</option>
+              <option value="phone" data-i18n>PHONE</option>
+              <option value="ip-camera" data-i18n>IP CAMERA</option>
+            </select>
+            <input id="godseye-cctv-radius" class="gev-field godseye-target-radius" type="number" min="1" max="500" value="50" aria-label="Radius in kilometres" data-i18n-aria-label />
+          </div>
+          <ul id="godseye-cctv-list" class="godseye-list"></ul>
+          <p id="godseye-cctv-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+        </div>
+        <div id="godseye-pane-bts" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-bts" hidden>
+          <div class="godseye-actions">
+            <button id="godseye-bts-refresh" class="scene-btn" type="button" data-i18n>SCAN</button>
+          </div>
+          <div class="godseye-place-form">
+            <input id="godseye-bts-viewshed-input" class="gev-field" type="text" placeholder="-4.10,138.95" data-i18n-placeholder />
+            <button id="godseye-bts-viewshed-btn" class="scene-btn" type="button" data-i18n>TERRAIN</button>
+          </div>
+          <div id="godseye-bts-viewshed" class="godseye-bts-viewshed" hidden></div>
+          <ul id="godseye-bts-list" class="godseye-list"></ul>
+          <p id="godseye-bts-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+        </div>
+        <div id="godseye-pane-locate" class="godseye-pane" role="tabpanel" aria-labelledby="godseye-tab-locate" hidden>
+          <div class="godseye-place-form">
+            <input id="godseye-locate-input" class="gev-field" type="text" placeholder="Name, @handle, phone or 510-10-12345-67890" data-i18n-placeholder />
+            <button id="godseye-locate-btn" class="scene-btn" type="button" data-i18n>LOCATE</button>
+          </div>
+          <div class="godseye-place-form">
+            <select id="godseye-locate-basis" class="gev-field" aria-label="Legal basis for a person-directed query" data-i18n-aria-label>
+              <option value="" data-i18n>NOT SET</option>
+              <option value="consent" data-i18n>CONSENT</option>
+              <option value="court-order" data-i18n>COURT ORDER</option>
+              <option value="public-task" data-i18n>PUBLIC TASK</option>
+              <option value="legitimate-interest" data-i18n>LEGITIMATE INTEREST</option>
+            </select>
+          </div>
+          <div id="godseye-locate-card" class="godseye-place-meta" hidden>
+            <strong id="godseye-locate-name" class="godseye-place-name"></strong>
+            <span id="godseye-locate-coords" class="godseye-place-coords"></span>
+            <span id="godseye-locate-note" class="godseye-place-note"></span>
+            <img id="godseye-locate-photo" class="godseye-place-photo" alt="" hidden />
+            <span id="godseye-locate-ground" class="godseye-place-note" hidden></span>
+          </div>
+          <div class="godseye-actions">
+            <button id="godseye-locate-fly" class="scene-btn" type="button" data-i18n>FLY TO</button>
+          </div>
+          <ul id="godseye-locate-list" class="godseye-list"></ul>
+          <p id="godseye-locate-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="godseye-target-panel" class="panel-collapsible collapsed" data-panel-id="godseye-target-panel">
+    <div class="panel-glow"></div>
+    <div class="godseye-target-panel-inner" data-rail-scroller>
+      <div class="panel-header">
+        <span class="panel-title" data-i18n>TARGET RESEARCH</span>
+        <span class="panel-divider"></span>
+        <button class="panel-collapse-btn" data-collapse-target="godseye-target-panel" type="button" title="Collapse panel" data-i18n-title>▼</button>
+      </div>
+      <div id="godseye-target-panel-body" data-rail-scroller>
+        <div class="godseye-target-form">
+          <input id="godseye-target-input" class="gev-field" type="text" placeholder="Enter a target name" data-i18n-placeholder />
+          <button id="godseye-target-btn" class="scene-btn" type="button" data-i18n>RESEARCH</button>
+        </div>
+        <div class="godseye-target-form">
+          <label class="godseye-target-label" for="godseye-target-hint" data-i18n>REGION OR COUNTRY</label>
+          <input id="godseye-target-hint" class="gev-field" type="text" placeholder="Region or country" data-i18n-placeholder />
+        </div>
+        <div class="godseye-target-presets">
+          <button id="godseye-preset-indonesia" class="godseye-target-preset" type="button" data-i18n>INDONESIA</button>
+          <button id="godseye-preset-papua" class="godseye-target-preset" type="button" data-i18n>PAPUA</button>
+          <span class="godseye-target-note" data-i18n-runtime>NAME OR LAT, LON</span>
+        </div>
+        <div class="godseye-target-form">
+          <label class="godseye-target-label" for="godseye-target-radius" data-i18n>RADIUS KM</label>
+          <input id="godseye-target-radius" class="gev-field godseye-target-radius" type="number" min="1" max="100" value="25" />
+        </div>
+        <section class="godseye-target-block">
+          <h3 class="godseye-target-heading" data-i18n>POSITION</h3>
+          <div id="godseye-target-position" class="godseye-target-content"></div>
+        </section>
+        <section class="godseye-target-block">
+          <h3 class="godseye-target-heading" data-i18n>INVOLVEMENT</h3>
+          <div id="godseye-target-involvement" class="godseye-target-content"></div>
+        </section>
+        <section class="godseye-target-block">
+          <h3 class="godseye-target-heading" data-i18n>NEARBY ACTORS</h3>
+          <div id="godseye-target-nearby" class="godseye-target-content"></div>
+        </section>
+        <p id="godseye-target-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+      </div>
+    </div>
+  </div>
+  <div id="global-context-panel" class="panel-collapsible collapsed" data-panel-id="global-context-panel">
+    <div class="panel-glow"></div>
+    <div class="global-context-panel-inner" data-rail-scroller>
+      <div class="panel-header">
+        <span class="panel-title" data-i18n>CONTEXT</span>
+        <span class="panel-divider"></span>
+        <div id="context-radio-dock" class="context-radio-dock">
+          <button id="context-radio-toggle-btn" class="context-radio-toggle" type="button" aria-expanded="false" aria-controls="context-radio-mini" aria-label="Open compact Radio controls" title="Open compact Radio controls" data-i18n-aria-label data-i18n-title>
+            <span class="material-symbols-outlined" aria-hidden="true">radio</span>
+          </button>
+          <div id="context-radio-mini" class="context-radio-mini" role="group" aria-label="Compact Radio controls" hidden data-i18n-aria-label>
+            <div class="context-radio-mini-heading">
+              <span data-i18n>RADIO</span>
+              <strong id="context-radio-mini-station" data-i18n>RADIO READY</strong>
+              <span class="context-radio-mini-actions">
+                <button id="context-radio-details-btn" type="button" aria-label="Open detailed Radio controls" aria-expanded="false" aria-controls="radio-panel" title="Open detailed Radio controls" data-i18n-aria-label data-i18n-title>
+                  <span class="material-symbols-outlined" aria-hidden="true">open_in_full</span>
+                </button>
+                <button id="context-radio-mini-close-btn" type="button" aria-label="Close compact Radio controls" title="Close compact Radio controls" data-i18n-aria-label data-i18n-title>
+                  <span class="material-symbols-outlined" aria-hidden="true">close</span>
+                </button>
+              </span>
+            </div>
+            <button id="context-radio-mini-enable-btn" class="panel-layer-toggle" type="button" aria-pressed="false" data-i18n>ENABLE</button>
+            <div class="context-radio-mini-transport">
+              <button id="context-radio-mini-prev-btn" type="button" aria-label="Previous filtered radio station" title="Previous station" disabled data-i18n-aria-label data-i18n-title>◀◀</button>
+              <button id="context-radio-mini-play-btn" type="button" aria-label="Play selected radio station" title="Play" disabled data-i18n-aria-label data-i18n-title>▶</button>
+              <button id="context-radio-mini-next-btn" type="button" aria-label="Next filtered radio station" title="Next station" disabled data-i18n-aria-label data-i18n-title>▶▶</button>
+            </div>
+            <label class="context-radio-mini-volume" for="context-radio-mini-volume">
+              <span data-i18n>VOLUME</span>
+              <input id="context-radio-mini-volume" class="gev-quantitative-slider" type="range" min="0" max="100" value="80" aria-label="Compact Radio volume" disabled data-i18n-aria-label />
+              <output id="context-radio-mini-volume-value" class="gev-slider-value" for="context-radio-mini-volume">80%</output>
+            </label>
+          </div>
+        </div>
+        <button class="panel-collapse-btn" data-collapse-target="global-context-panel" title="Expand panel" data-i18n-title>▶</button>
+      </div>
+      <div class="cyber-panel-body" data-rail-scroller>
         <div class="global-context-modes" role="tablist" aria-label="Context mode" data-i18n-aria-label>
           <button id="global-context-flights-btn" class="context-mode-button" type="button" role="tab" tabindex="0" aria-selected="false" aria-controls="context-flights-view" aria-label="CONTACTS" title="Cycles the nearest contacts of whatever type you select — planes, vessels, installations. Satellites track independently." data-i18n-aria-label data-i18n-title>
             <span class="material-symbols-outlined" aria-hidden="true">radar</span>
@@ -75,7 +249,7 @@
         </div>
         <div id="context-mode-standby" class="context-mode-standby">
           <strong data-i18n>SELECT CONTEXT</strong>
-          <span data-i18n-runtime>CONTACTS — nearest planes · vessels · sites<br>SPACE MISSIONS — launches &amp; orbital assets</span>
+          <span data-i18n-runtime>CONTACTS — nearest planes · vessels · sites<br />SPACE MISSIONS — launches &amp; orbital assets</span>
         </div>
         <section id="context-flights-view" class="context-mode-view" role="tabpanel" aria-labelledby="global-context-flights-btn" hidden>
           <div class="global-context-actions" aria-label="Contact Context actions" data-i18n-aria-label>
@@ -138,8 +312,7 @@
               <div class="radio-tuner-dial">
                 <div class="radio-tuner-scale" aria-hidden="true"></div>
                 <div id="radio-tuner-needle" class="radio-tuner-needle" aria-hidden="true"></div>
-                <input id="radio-tuner-slider" type="range" min="0" max="0" step="1" value="0"
-                  aria-label="Tune available internet radio stations" aria-valuetext="No station available" disabled data-i18n-aria-label />
+                <input id="radio-tuner-slider" type="range" min="0" max="0" step="1" value="0" aria-label="Tune available internet radio stations" aria-valuetext="No station available" disabled data-i18n-aria-label />
               </div>
               <div class="radio-tuner-readout">
                 <span id="radio-tuner-station" data-i18n>ALL · DRAG THE NEEDLE</span>
@@ -238,9 +411,9 @@
             </div>
           </div>
         </section>
-        </div>
       </div>
     </div>
-  </aside>
+  </div>
+</aside>
 
-  <div id="scene-runtime"></div>
+<div id="scene-runtime"></div>

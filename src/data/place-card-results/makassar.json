@@ -1,0 +1,61 @@
+{
+  "query": "Makassar",
+  "place": {
+    "lat": -5.1621,
+    "lon": 119.4341,
+    "name": "Makassar, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -5.433411519887134,
+    "west": 119.16350916689743,
+    "north": -4.890788480112866,
+    "east": 119.70469083310257
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-5.1621&lon=119.4341&id=-5.1621_119.4341",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -5.1621,
+        "lon": 119.4341
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-9",
+        "name": "Makassar Port",
+        "lat": -5.1621,
+        "lon": 119.4341,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -5.1621,
+      "lon": 119.4341,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679450944,
+  "source": "local-only"
+}

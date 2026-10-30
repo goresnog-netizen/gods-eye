@@ -1,0 +1,137 @@
+/* The target research panel: position, involvement and nearby actors. */
+
+#godseye-target-panel {
+  color: var(--text-primary);
+}
+.godseye-target-panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-sans);
+}
+.godseye-target-form {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+.godseye-target-form .gev-field {
+  flex: 1;
+  min-width: 0;
+}
+.godseye-target-radius {
+  flex: 0 0 64px !important;
+  max-width: 64px;
+}
+.godseye-target-label {
+  color: var(--text-dim);
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.godseye-target-block {
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 6px;
+}
+.godseye-target-heading {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.godseye-target-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.godseye-target-name {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.godseye-target-coords {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  margin: 0;
+}
+.godseye-target-meta {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  margin: 0;
+}
+.godseye-target-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.godseye-target-row {
+  align-items: baseline;
+  display: grid;
+  font-size: 0.72rem;
+  gap: 6px;
+  grid-template-columns: 1fr auto auto;
+}
+.godseye-target-row-label {
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.godseye-target-row-kind {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.godseye-target-row-value {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+.godseye-target-empty {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  margin: 0;
+}
+/* Region presets: a hint plus a radius that suits the scale of the place. */
+.godseye-target-presets {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.godseye-target-preset {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+}
+.godseye-target-preset:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+.godseye-target-note {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  margin-left: auto;
+}

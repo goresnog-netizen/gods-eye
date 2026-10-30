@@ -42,6 +42,14 @@ export function railFixture(onWrite = () => {}) {
         append(...nodes) {
           for (const child of nodes) this.appendChild(child);
         },
+        replaceChildren(...nodes) {
+          for (const child of [...this.children]) child.remove();
+          this.append(...nodes);
+        },
+        removeAttribute(key) {
+          onWrite('attribute');
+          this.attributes.delete(key);
+        },
         remove() {
           if (!this.parent) return;
           onWrite('remove');
@@ -83,6 +91,28 @@ export function railFixture(onWrite = () => {}) {
       });
       node.classList = {
         contains: (name) => node.className?.split(' ').includes(name) || false,
+        add(name) {
+          const classes = new Set(
+            (node.className || '').split(' ').filter(Boolean),
+          );
+          classes.add(name);
+          const next = [...classes].join(' ');
+          if (next !== node.className) {
+            node.className = next;
+            onWrite('className');
+          }
+        },
+        remove(name) {
+          const classes = new Set(
+            (node.className || '').split(' ').filter(Boolean),
+          );
+          classes.delete(name);
+          const next = [...classes].join(' ');
+          if (next !== node.className) {
+            node.className = next;
+            onWrite('className');
+          }
+        },
         toggle(name, enabled) {
           const classes = new Set(
             (node.className || '').split(' ').filter(Boolean),

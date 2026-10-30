@@ -24,6 +24,12 @@ export function createApplicationRequestServices({
     regional: '/api/regional-brief',
     weather: '/api/weather-effects',
     summary: '/api/openai/hud-summary',
+    goldImpact: '/api/godseye/gold-impact',
+    placeCard: '/api/godseye/place-card',
+    chat: '/api/godseye/chat',
+    target: '/api/godseye/target',
+    search: '/api/godseye/search',
+    skills: '/api/godseye/skills',
     ...endpoints,
   };
   async function request(endpoint, { signal, ...init } = {}) {
@@ -182,6 +188,64 @@ export function createApplicationRequestServices({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(context),
         });
+      },
+    },
+    godseye: {
+      /** Raw request, so a panel can ask for exactly the view it wants. */
+      async raw(endpoint, options = {}) {
+        return request(endpoint, options);
+      },
+      async goldImpact(options = {}) {
+        return requireOk(
+          await request(`${urls.goldImpact}?top=8`, options),
+          'Gold impact',
+        );
+      },
+      async placeCard(query, options = {}) {
+        return requireOk(
+          await request(
+            `${urls.placeCard}?query=${encodeURIComponent(query)}`,
+            options,
+          ),
+          'Place card',
+        );
+      },
+      /**
+       * Ask the task chat. The payload passes through the server-side privacy
+       * guard, so vision context leaves as synthetic JSON at most.
+       */
+      async chat(message, options = {}) {
+        const { payload, ...init } = options;
+        return requireOk(
+          await request(urls.chat, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload ?? { message }),
+            ...init,
+          }),
+          'Task chat',
+        );
+      },
+      async target(target, options = {}) {
+        return requireOk(
+          await request(
+            `${urls.target}?target=${encodeURIComponent(target)}`,
+            options,
+          ),
+          'Target research',
+        );
+      },
+      async search(query, options = {}) {
+        return requireOk(
+          await request(
+            `${urls.search}?q=${encodeURIComponent(query)}`,
+            options,
+          ),
+          'Search',
+        );
+      },
+      async skills(options = {}) {
+        return requireOk(await request(urls.skills, options), 'Skill library');
       },
     },
   };

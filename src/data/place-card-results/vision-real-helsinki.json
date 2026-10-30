@@ -1,0 +1,47 @@
+{
+  "image": "C:/MRP/kumpulan MCP/Skills/Gods Eye/logs/street-helsinki.jpg",
+  "model": "qwen2.5vl:3b",
+  "scene": {
+    "description": "A rainy city street with buildings and parked cars.",
+    "notes": "The image shows a rainy city street with buildings and parked cars. The car in the center appears to be driving."
+  },
+  "people": [
+    {
+      "id": "person-1",
+      "bbox": [
+        673,
+        499,
+        799,
+        590
+      ],
+      "image_size": [
+        1064,
+        784
+      ],
+      "bboxSpace": "pixels",
+      "holding": [],
+      "activity": "driving",
+      "confidence": 0.8
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "vehicle-1",
+      "type": "car",
+      "bbox": [
+        673,
+        499,
+        799,
+        590
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "summary": {
+    "people_count": 1,
+    "vehicle_count": 1,
+    "dominant_activity": "driving"
+  },
+  "generatedAt": 1792685095713,
+  "source": "ollama-vision-real"
+}

@@ -1,0 +1,380 @@
+{
+  "cell:v2:510:10:12345:67890": {
+    "lat": -3.5708,
+    "lon": 138.63330000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 12345,
+    "cellId": 67890,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Tolikara",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449538
+  },
+  "cell:v2:510:10:0:777": {
+    "lat": -2.3912,
+    "lon": 140.77,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 0,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Jayapura",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449602
+  },
+  "cell:v2:510:10:1:777": {
+    "lat": -4.4036,
+    "lon": 136.9401,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 1,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Timika",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449625
+  },
+  "cell:v2:510:10:2:777": {
+    "lat": -8.3507,
+    "lon": 140.45430000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 2,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Merauke",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449644
+  },
+  "cell:v2:510:10:3:777": {
+    "lat": -3.2241999999999997,
+    "lon": 135.53580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 3,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Nabire",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449663
+  },
+  "cell:v2:510:10:4:777": {
+    "lat": -1.0408,
+    "lon": 136.13580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 4,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Biak",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449683
+  },
+  "cell:v2:510:10:5:777": {
+    "lat": -0.7338,
+    "lon": 131.3083,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 5,
+    "cellId": 777,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Sorong",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449702
+  },
+  "cell:v2:510:99:12345:100": {
+    "lat": -3.3817,
+    "lon": 135.35580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 99,
+    "lac": 12345,
+    "cellId": 100,
+    "carrier": {
+      "name": "Axis",
+      "mcc": 510,
+      "mnc": 99
+    },
+    "region": "Nabire",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449733
+  },
+  "cell:v2:510:99:12345:900": {
+    "lat": -3.2241999999999997,
+    "lon": 135.53580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 99,
+    "lac": 12345,
+    "cellId": 900,
+    "carrier": {
+      "name": "Axis",
+      "mcc": 510,
+      "mnc": 99
+    },
+    "region": "Nabire",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745449754
+  },
+  "cell:v2:510:10:32751:142703337": {
+    "lat": -8.7605,
+    "lon": 115.1751,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 32751,
+    "cellId": 142703337,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Denpasar",
+    "isPapua": false,
+    "estimated": true,
+    "timestamp": 1792745457148
+  },
+  "cell:v2:510:10:99999:99999": {
+    "lat": -8.820500000000001,
+    "lon": 115.06259999999999,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 99999,
+    "cellId": 99999,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Denpasar",
+    "isPapua": false,
+    "estimated": true,
+    "timestamp": 1792745457417
+  },
+  "cell:v2:510:11:0:555": {
+    "lat": -2.5187,
+    "lon": 140.8,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 0,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Jayapura",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745522125
+  },
+  "cell:v2:510:11:1:555": {
+    "lat": -4.5311,
+    "lon": 136.9701,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 1,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Timika",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745522789
+  },
+  "cell:v2:510:11:2:555": {
+    "lat": -8.4782,
+    "lon": 140.48430000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 2,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Merauke",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745523504
+  },
+  "cell:v2:510:11:3:555": {
+    "lat": -3.3516999999999997,
+    "lon": 135.56580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 3,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Nabire",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745524227
+  },
+  "cell:v2:510:11:7:555": {
+    "lat": -4.085,
+    "lon": 139.0325,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 7,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Wamena",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792745524968
+  },
+  "cell:v2:510:11:11:555": {
+    "lat": -6.1938,
+    "lon": 106.9281,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 11,
+    "lac": 11,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 11
+    },
+    "region": "Jakarta",
+    "isPapua": false,
+    "estimated": true,
+    "timestamp": 1792745525759
+  },
+  "cell:v2:510:10:555:666": {
+    "lat": -6.2838,
+    "lon": 106.9131,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 555,
+    "cellId": 666,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Jakarta",
+    "isPapua": false,
+    "estimated": true,
+    "timestamp": 1792833854593
+  },
+  "cell:v2:510:10:7:555": {
+    "lat": -4.085,
+    "lon": 139.0325,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 7,
+    "cellId": 555,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Wamena",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792833893370
+  },
+  "cell:v2:510:10:7:12345": {
+    "lat": -4.22,
+    "lon": 139.01,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 7,
+    "cellId": 12345,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Wamena",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792834942806
+  },
+  "cell:v2:510:10:12345:999": {
+    "lat": -3.7208,
+    "lon": 138.50580000000002,
+    "accuracy": 20000,
+    "mcc": 510,
+    "mnc": 10,
+    "lac": 12345,
+    "cellId": 999,
+    "carrier": {
+      "name": "Telkomsel",
+      "mcc": 510,
+      "mnc": 10
+    },
+    "region": "Tolikara",
+    "isPapua": true,
+    "estimated": true,
+    "timestamp": 1792846902038
+  }
+}

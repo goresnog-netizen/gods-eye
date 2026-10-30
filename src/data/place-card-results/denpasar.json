@@ -1,0 +1,61 @@
+{
+  "query": "Denpasar",
+  "place": {
+    "lat": -8.6507,
+    "lon": 115.2175,
+    "name": "Denpasar, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -8.922011519887135,
+    "west": 114.94490552355524,
+    "north": -8.379388480112866,
+    "east": 115.49009447644477
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-8.6507&lon=115.2175&id=-8.6507_115.2175",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -8.6507,
+        "lon": 115.2175
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-4",
+        "name": "Bali Denpasar",
+        "lat": -8.6507,
+        "lon": 115.2175,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -8.6507,
+      "lon": 115.2175,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679450146,
+  "source": "local-only"
+}

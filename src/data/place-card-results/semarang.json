@@ -1,0 +1,61 @@
+{
+  "query": "Semarang",
+  "place": {
+    "lat": -6.9667,
+    "lon": 110.4167,
+    "name": "Semarang, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": -7.238011519887134,
+    "west": 110.14520212816528,
+    "north": -6.695388480112866,
+    "east": 110.68819787183473
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=-6.9667&lon=110.4167&id=-6.9667_110.4167",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": -6.9667,
+        "lon": 110.4167
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-8",
+        "name": "Semarang Harbor",
+        "lat": -6.9667,
+        "lon": 110.4167,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": -6.9667,
+      "lon": 110.4167,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679449335,
+  "source": "local-only"
+}

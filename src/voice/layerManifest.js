@@ -401,6 +401,31 @@ const layers = [
     context: false,
     noQuery: 'use set_context_mode contacts',
   },
+  {
+    id: 'bts',
+    aliases: [
+      'cell towers',
+      'tower',
+      'bts',
+      'base stations',
+      'mobile towers',
+      'telecom towers',
+    ],
+    context: false,
+    query: {
+      fields: {
+        name: ['t'],
+        tech: ['t'],
+        distanceKm: ['n', 'km'],
+        coveragePct: ['n', '%'],
+        rangeKm: ['n', 'km'],
+        province: ['t'],
+      },
+      timeField: null,
+      window: null,
+      caveat: 'coveragePct and rangeKm are terrain-aware estimates',
+    },
+  },
 ];
 
 /**

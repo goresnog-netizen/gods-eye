@@ -1,0 +1,61 @@
+{
+  "query": "Medan",
+  "place": {
+    "lat": 3.5833,
+    "lon": 98.6667,
+    "name": "Medan, Indonesia"
+  },
+  "radiusKm": 25,
+  "bbox": {
+    "south": 3.3119884801128654,
+    "west": 98.39667875261208,
+    "north": 3.8546115198871345,
+    "east": 98.93672124738794
+  },
+  "photo": {
+    "available": true,
+    "photoUrl": "/placeholder-street-photo?lat=3.5833&lon=98.6667&id=3.5833_98.6667",
+    "provider": "local-mock",
+    "timestamp": "2026-10-21",
+    "reason": null,
+    "metadata": {
+      "location": {
+        "lat": 3.5833,
+        "lon": 98.6667
+      },
+      "radiusKm": 25,
+      "captured": "2024-01-15T10:30:00Z",
+      "confidence": 0.9
+    }
+  },
+  "cctv": {
+    "available": true,
+    "count": 1,
+    "total": 9,
+    "inside": [
+      {
+        "id": "cctv-7",
+        "name": "Medan Center",
+        "lat": 3.5833,
+        "lon": 98.6667,
+        "provider": "local-mock"
+      }
+    ],
+    "source": "local-mock"
+  },
+  "intent": {
+    "tool": "show_in_gods_eye_view",
+    "camera": {
+      "lat": 3.5833,
+      "lon": 98.6667,
+      "altitude_m": 1200
+    },
+    "layers": [
+      "streetLevel",
+      "cctv"
+    ],
+    "providerSwitches": "0.m.0_0.r.google-0*kartaview-1"
+  },
+  "generatedAt": 1792679448628,
+  "source": "local-only"
+}

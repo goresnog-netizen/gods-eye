@@ -1,0 +1,1546 @@
+[
+  {
+    "area": {
+      "id": "papua-001",
+      "name": "Tolikara Highlands",
+      "lat": -3.6833,
+      "lon": 138.4833,
+      "elevation_m": 2400,
+      "terrain": "highland"
+    },
+    "scene": {
+      "description": "Area Tolikara Highlands — highland terrain, elevation 2400m. 6 orang terdeteksi, 3 kendaraan.",
+      "visibility": "clear",
+      "time_of_day": "afternoon"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          814,
+          150,
+          877,
+          344
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.76,
+        "holding": "basket",
+        "activity": "farming"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          141,
+          247,
+          230,
+          392
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "machete",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          1025,
+          396,
+          1113,
+          538
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "food",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          153,
+          61,
+          252,
+          197
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.82,
+        "holding": "basket",
+        "activity": "working"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          1042,
+          188,
+          1162,
+          320
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.91,
+        "holding": "camera",
+        "activity": "walking"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          768,
+          297,
+          871,
+          457
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.88,
+        "holding": "tool",
+        "activity": "patrolling"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "boat",
+        "bbox": [
+          192,
+          201,
+          167,
+          88
+        ],
+        "confidence": 0.7
+      },
+      {
+        "id": "vehicle-2",
+        "type": "motorcycle",
+        "bbox": [
+          9,
+          62,
+          183,
+          106
+        ],
+        "confidence": 0.82
+      },
+      {
+        "id": "vehicle-3",
+        "type": "boat",
+        "bbox": [
+          397,
+          360,
+          120,
+          70
+        ],
+        "confidence": 0.94
+      }
+    ],
+    "summary": {
+      "people_count": 6,
+      "vehicle_count": 3,
+      "dominant_activity": "farming"
+    },
+    "generatedAt": 1792683754351,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-002",
+      "name": "Yahukimo Base",
+      "lat": -4.4833,
+      "lon": 139.5333,
+      "elevation_m": 1800,
+      "terrain": "highland"
+    },
+    "scene": {
+      "description": "Area Yahukimo Base — highland terrain, elevation 1800m. 4 orang terdeteksi, 3 kendaraan.",
+      "visibility": "rainy",
+      "time_of_day": "afternoon"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          809,
+          321,
+          915,
+          450
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.88,
+        "holding": "tool",
+        "activity": "farming"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          942,
+          156,
+          1024,
+          341
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.83,
+        "holding": "rifle (security)",
+        "activity": "standing"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          464,
+          62,
+          548,
+          212
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.94,
+        "holding": "bag",
+        "activity": "walking"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          1014,
+          281,
+          1132,
+          407
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.85,
+        "holding": "camera",
+        "activity": "trading"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "car",
+        "bbox": [
+          1168,
+          281,
+          164,
+          93
+        ],
+        "confidence": 0.86
+      },
+      {
+        "id": "vehicle-2",
+        "type": "truck",
+        "bbox": [
+          459,
+          344,
+          102,
+          88
+        ],
+        "confidence": 0.7
+      },
+      {
+        "id": "vehicle-3",
+        "type": "boat",
+        "bbox": [
+          427,
+          163,
+          118,
+          94
+        ],
+        "confidence": 0.89
+      }
+    ],
+    "summary": {
+      "people_count": 4,
+      "vehicle_count": 3,
+      "dominant_activity": "farming"
+    },
+    "generatedAt": 1792683754351,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-003",
+      "name": "Puncak Pass",
+      "lat": -3.9833,
+      "lon": 137.7833,
+      "elevation_m": 3200,
+      "terrain": "mountain"
+    },
+    "scene": {
+      "description": "Area Puncak Pass — mountain terrain, elevation 3200m. 6 orang terdeteksi, 2 kendaraan.",
+      "visibility": "cloudy",
+      "time_of_day": "night"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          170,
+          458,
+          251,
+          628
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.87,
+        "holding": "machete",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          961,
+          439,
+          1061,
+          628
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.87,
+        "holding": "basket",
+        "activity": "observing"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          192,
+          323,
+          255,
+          443
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.85,
+        "holding": "food",
+        "activity": "resting"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          1049,
+          176,
+          1143,
+          365
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.94,
+        "holding": "phone",
+        "activity": "standing"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          402,
+          108,
+          499,
+          247
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.81,
+        "holding": "bag",
+        "activity": "trading"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          433,
+          490,
+          531,
+          629
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.93,
+        "holding": "camera",
+        "activity": "patrolling"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "car",
+        "bbox": [
+          998,
+          280,
+          159,
+          103
+        ],
+        "confidence": 0.73
+      },
+      {
+        "id": "vehicle-2",
+        "type": "motorcycle",
+        "bbox": [
+          1044,
+          650,
+          198,
+          79
+        ],
+        "confidence": 0.76
+      }
+    ],
+    "summary": {
+      "people_count": 6,
+      "vehicle_count": 2,
+      "dominant_activity": "sitting"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-004",
+      "name": "Puncak Jaya Summit",
+      "lat": -3.6167,
+      "lon": 137.4833,
+      "elevation_m": 4884,
+      "terrain": "glacier"
+    },
+    "scene": {
+      "description": "Area Puncak Jaya Summit — glacier terrain, elevation 4884m. 8 orang terdeteksi, 2 kendaraan.",
+      "visibility": "hazy",
+      "time_of_day": "afternoon"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          621,
+          216,
+          689,
+          339
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.79,
+        "holding": "phone",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          119,
+          307,
+          192,
+          465
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.93,
+        "holding": "camera",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          903,
+          180,
+          1005,
+          304
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.76,
+        "holding": "camera",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          767,
+          210,
+          857,
+          372
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.75,
+        "holding": "basket",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          350,
+          249,
+          452,
+          386
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.83,
+        "holding": "rifle (security)",
+        "activity": "patrolling"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          930,
+          379,
+          1049,
+          523
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.77,
+        "holding": "camera",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-7",
+        "bbox": [
+          608,
+          342,
+          719,
+          501
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.81,
+        "holding": "camera",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-8",
+        "bbox": [
+          659,
+          89,
+          732,
+          216
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.76,
+        "holding": "food",
+        "activity": "walking"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "truck",
+        "bbox": [
+          1019,
+          483,
+          193,
+          60
+        ],
+        "confidence": 0.79
+      },
+      {
+        "id": "vehicle-2",
+        "type": "car",
+        "bbox": [
+          935,
+          507,
+          167,
+          86
+        ],
+        "confidence": 0.78
+      }
+    ],
+    "summary": {
+      "people_count": 8,
+      "vehicle_count": 2,
+      "dominant_activity": "carrying"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-005",
+      "name": "Wamena Valley",
+      "lat": -4.1,
+      "lon": 138.95,
+      "elevation_m": 1600,
+      "terrain": "valley"
+    },
+    "scene": {
+      "description": "Area Wamena Valley — valley terrain, elevation 1600m. 5 orang terdeteksi, 2 kendaraan.",
+      "visibility": "rainy",
+      "time_of_day": "morning"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          1052,
+          51,
+          1112,
+          183
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.83,
+        "holding": "bag",
+        "activity": "resting"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          327,
+          423,
+          437,
+          544
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.94,
+        "holding": "camera",
+        "activity": "standing"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          936,
+          211,
+          1040,
+          341
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.78,
+        "holding": "camera",
+        "activity": "walking"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          165,
+          456,
+          225,
+          624
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.93,
+        "holding": "machete",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          943,
+          442,
+          1046,
+          583
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.85,
+        "holding": "bag",
+        "activity": "sitting"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "truck",
+        "bbox": [
+          96,
+          457,
+          190,
+          71
+        ],
+        "confidence": 0.81
+      },
+      {
+        "id": "vehicle-2",
+        "type": "motorcycle",
+        "bbox": [
+          409,
+          282,
+          136,
+          104
+        ],
+        "confidence": 0.93
+      }
+    ],
+    "summary": {
+      "people_count": 5,
+      "vehicle_count": 2,
+      "dominant_activity": "resting"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-006",
+      "name": "Nabire Port",
+      "lat": -3.3667,
+      "lon": 135.4833,
+      "elevation_m": 50,
+      "terrain": "coastal"
+    },
+    "scene": {
+      "description": "Area Nabire Port — coastal terrain, elevation 50m. 6 orang terdeteksi, 0 kendaraan.",
+      "visibility": "clear",
+      "time_of_day": "evening"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          789,
+          293,
+          861,
+          472
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.83,
+        "holding": "document",
+        "activity": "observing"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          859,
+          427,
+          935,
+          581
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.9,
+        "holding": "rifle (security)",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          394,
+          458,
+          478,
+          647
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.82,
+        "holding": "machete",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          897,
+          153,
+          987,
+          330
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "basket",
+        "activity": "walking"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          442,
+          458,
+          537,
+          590
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.87,
+        "holding": "tool",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          993,
+          72,
+          1104,
+          255
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.92,
+        "holding": "rifle (security)",
+        "activity": "resting"
+      }
+    ],
+    "vehicles": [],
+    "summary": {
+      "people_count": 6,
+      "vehicle_count": 0,
+      "dominant_activity": "observing"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-007",
+      "name": "Biak Airport",
+      "lat": -1.0333,
+      "lon": 136.0833,
+      "elevation_m": 20,
+      "terrain": "coastal"
+    },
+    "scene": {
+      "description": "Area Biak Airport — coastal terrain, elevation 20m. 7 orang terdeteksi, 0 kendaraan.",
+      "visibility": "clear",
+      "time_of_day": "evening"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          235,
+          296,
+          314,
+          494
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.91,
+        "holding": "rifle (security)",
+        "activity": "observing"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          783,
+          112,
+          851,
+          265
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.85,
+        "holding": "document",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          548,
+          179,
+          661,
+          331
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "camera",
+        "activity": "walking"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          85,
+          462,
+          172,
+          625
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.9,
+        "holding": "phone",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          71,
+          239,
+          170,
+          359
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.78,
+        "holding": "tool",
+        "activity": "standing"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          212,
+          187,
+          284,
+          377
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.94,
+        "holding": "none",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-7",
+        "bbox": [
+          788,
+          128,
+          880,
+          323
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "machete",
+        "activity": "walking"
+      }
+    ],
+    "vehicles": [],
+    "summary": {
+      "people_count": 7,
+      "vehicle_count": 0,
+      "dominant_activity": "observing"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-008",
+      "name": "Timika Mine",
+      "lat": -4.55,
+      "lon": 136.8833,
+      "elevation_m": 100,
+      "terrain": "mining"
+    },
+    "scene": {
+      "description": "Area Timika Mine — mining terrain, elevation 100m. 8 orang terdeteksi, 2 kendaraan.",
+      "visibility": "hazy",
+      "time_of_day": "morning"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          301,
+          110,
+          376,
+          301
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.84,
+        "holding": "none",
+        "activity": "walking"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          576,
+          137,
+          696,
+          302
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.8,
+        "holding": "tool",
+        "activity": "trading"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          907,
+          322,
+          987,
+          516
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.81,
+        "holding": "camera",
+        "activity": "patrolling"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          901,
+          512,
+          975,
+          642
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.79,
+        "holding": "document",
+        "activity": "trading"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          474,
+          325,
+          569,
+          486
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.92,
+        "holding": "food",
+        "activity": "observing"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          1029,
+          408,
+          1128,
+          571
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.88,
+        "holding": "camera",
+        "activity": "working"
+      },
+      {
+        "id": "person-7",
+        "bbox": [
+          417,
+          134,
+          486,
+          284
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.79,
+        "holding": "food",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-8",
+        "bbox": [
+          776,
+          71,
+          868,
+          253
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.93,
+        "holding": "basket",
+        "activity": "working"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "truck",
+        "bbox": [
+          931,
+          216,
+          124,
+          89
+        ],
+        "confidence": 0.88
+      },
+      {
+        "id": "vehicle-2",
+        "type": "boat",
+        "bbox": [
+          707,
+          183,
+          146,
+          67
+        ],
+        "confidence": 0.94
+      }
+    ],
+    "summary": {
+      "people_count": 8,
+      "vehicle_count": 2,
+      "dominant_activity": "walking"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-009",
+      "name": "Jayapura City",
+      "lat": -2.5337,
+      "lon": 140.7175,
+      "elevation_m": 50,
+      "terrain": "urban"
+    },
+    "scene": {
+      "description": "Area Jayapura City — urban terrain, elevation 50m. 8 orang terdeteksi, 1 kendaraan.",
+      "visibility": "hazy",
+      "time_of_day": "morning"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          673,
+          293,
+          738,
+          433
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.77,
+        "holding": "food",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          705,
+          179,
+          820,
+          333
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "tool",
+        "activity": "patrolling"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          963,
+          109,
+          1082,
+          241
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.78,
+        "holding": "document",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          530,
+          431,
+          604,
+          587
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.82,
+        "holding": "basket",
+        "activity": "walking"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          694,
+          152,
+          793,
+          319
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.81,
+        "holding": "machete",
+        "activity": "walking"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          350,
+          142,
+          441,
+          266
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.95,
+        "holding": "basket",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-7",
+        "bbox": [
+          487,
+          160,
+          603,
+          355
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.76,
+        "holding": "camera",
+        "activity": "trading"
+      },
+      {
+        "id": "person-8",
+        "bbox": [
+          609,
+          146,
+          718,
+          282
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.92,
+        "holding": "tool",
+        "activity": "walking"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "boat",
+        "bbox": [
+          26,
+          101,
+          192,
+          114
+        ],
+        "confidence": 0.85
+      }
+    ],
+    "summary": {
+      "people_count": 8,
+      "vehicle_count": 1,
+      "dominant_activity": "carrying"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  },
+  {
+    "area": {
+      "id": "papua-010",
+      "name": "Sorong Harbor",
+      "lat": -0.8763,
+      "lon": 131.2558,
+      "elevation_m": 10,
+      "terrain": "coastal"
+    },
+    "scene": {
+      "description": "Area Sorong Harbor — coastal terrain, elevation 10m. 6 orang terdeteksi, 3 kendaraan.",
+      "visibility": "cloudy",
+      "time_of_day": "morning"
+    },
+    "people": [
+      {
+        "id": "person-1",
+        "bbox": [
+          227,
+          251,
+          295,
+          411
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.89,
+        "holding": "phone",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-2",
+        "bbox": [
+          819,
+          265,
+          935,
+          410
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.81,
+        "holding": "rifle (security)",
+        "activity": "carrying"
+      },
+      {
+        "id": "person-3",
+        "bbox": [
+          506,
+          106,
+          604,
+          227
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.79,
+        "holding": "tool",
+        "activity": "trading"
+      },
+      {
+        "id": "person-4",
+        "bbox": [
+          660,
+          231,
+          723,
+          393
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.79,
+        "holding": "basket",
+        "activity": "sitting"
+      },
+      {
+        "id": "person-5",
+        "bbox": [
+          692,
+          289,
+          804,
+          454
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.75,
+        "holding": "rifle (security)",
+        "activity": "trading"
+      },
+      {
+        "id": "person-6",
+        "bbox": [
+          267,
+          366,
+          333,
+          496
+        ],
+        "image_size": [
+          1280,
+          720
+        ],
+        "bboxSpace": "pixels",
+        "confidence": 0.76,
+        "holding": "rifle (security)",
+        "activity": "resting"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "vehicle-1",
+        "type": "boat",
+        "bbox": [
+          139,
+          247,
+          104,
+          89
+        ],
+        "confidence": 0.84
+      },
+      {
+        "id": "vehicle-2",
+        "type": "car",
+        "bbox": [
+          123,
+          264,
+          113,
+          92
+        ],
+        "confidence": 0.79
+      },
+      {
+        "id": "vehicle-3",
+        "type": "truck",
+        "bbox": [
+          527,
+          320,
+          164,
+          113
+        ],
+        "confidence": 0.9
+      }
+    ],
+    "summary": {
+      "people_count": 6,
+      "vehicle_count": 3,
+      "dominant_activity": "sitting"
+    },
+    "generatedAt": 1792683754352,
+    "source": "vision-mock-papua"
+  }
+]
