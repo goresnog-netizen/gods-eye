@@ -8,6 +8,19 @@ import {
   collapsePanelOnEscape,
   createHoverDisclosure,
 } from './panelDisclosure.js';
+
+/** Panels that live in the right context rail, in rail order. */
+const RIGHT_RAIL_PANEL_IDS = Object.freeze([
+  'pp-toggles',
+  'cctv-panel',
+  'weather-panel',
+  'recent-imagery-panel',
+  'street-level-panel',
+  'godseye-panel',
+  'godseye-target-panel',
+  'global-context-panel',
+]);
+
 const SHARE_PANEL_STATE_SPECS = Object.freeze([
   { id: 'control-panel', pinnable: true },
   { id: 'location-bar', pinnable: true },
@@ -123,6 +136,31 @@ export class PanelChrome {
       );
       this._restorePanelCollapsedState(targetId, {
         allowStored: !this._initialShareState,
+      });
+    }
+    // A rail panel also opens from its header, not only from the 14 px arrow.
+    // Clicking "GOD'S EYE ANALYSIS" used to do nothing, which reads exactly
+    // like a panel with no content: the title is the obvious target.
+    for (const targetId of RIGHT_RAIL_PANEL_IDS) {
+      if (!targets.has(targetId)) continue;
+      const panel = document.getElementById(targetId);
+      const header = panel?.querySelector(
+        ':scope > .panel-header, :scope > [class$="-panel-inner"] > .panel-header',
+      );
+      if (!header) continue;
+      const onClick = (event) => {
+        // The arrow, and anything interactive, keeps its own behaviour.
+        if (event.target.closest?.('button, a, input, select, textarea, label'))
+          return;
+        this.setPanelCollapsed(
+          targetId,
+          !panel.classList.contains('collapsed'),
+          { explicit: true },
+        );
+      };
+      header.addEventListener('click', onClick);
+      this._panelDisclosureControls.push({
+        destroy: () => header.removeEventListener('click', onClick),
       });
     }
     // The command dock always starts compact; either wing reveals on hover,
@@ -298,16 +336,7 @@ export class PanelChrome {
   }
 
   _syncPanelCollapseButton(panelEl) {
-    const isRightRail = [
-      'pp-toggles',
-      'cctv-panel',
-      'weather-panel',
-      'recent-imagery-panel',
-      'street-level-panel',
-      'godseye-panel',
-      'godseye-target-panel',
-      'global-context-panel',
-    ].includes(panelEl?.id);
+    const isRightRail = RIGHT_RAIL_PANEL_IDS.includes(panelEl?.id);
     const collapsed = panelEl.classList.contains('collapsed');
     panelEl
       .querySelectorAll('.panel-collapse-btn[data-collapse-target]')

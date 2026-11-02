@@ -5,6 +5,7 @@ import {
   installTrackpadPinchZoom,
 } from '../app/viewer.js';
 import { registerDataCredits } from '../data/dataCredits.js';
+import { installCloseRangeDetail } from './closeRangeDetail.js';
 import { configureCreditKeyboardAccess } from '../creditKeyboard.js';
 import { MapStackController } from '../mapStackController.js';
 import { loadPhotorealisticTileset } from '../mapStartup.js';
@@ -58,6 +59,9 @@ export async function createApplicationScene({
     if (!viewer.isDestroyed()) viewer.destroy();
   });
   defer(installTrackpadPinchZoom(viewer));
+  // Close range is where the default screen-space error looks soft, and where
+  // only a handful of tiles are on screen, so sharpening costs little.
+  defer(installCloseRangeDetail(viewer));
   registerDataCredits(viewer, credits);
   configureCreditKeyboardAccess(document);
   loaderStatus.textContent =

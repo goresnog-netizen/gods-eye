@@ -1740,6 +1740,7 @@
       "src/app/layers/traffic.js",
       "src/app/layers/transit.js",
       "src/app/localGeojsonServices.js",
+      "src/app/closeRangeDetail.js",
       "src/app/operations.js",
       "src/app/scene.js",
       "src/app/sourceComposition.js",

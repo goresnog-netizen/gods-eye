@@ -103,7 +103,10 @@
   content: '◎';
 }
 .godseye-tab:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--glass-border));
+  /* Deliberately weaker than .is-active: a hovered tab and the selected tab
+     were the same brightness, so two tabs looked selected at once. */
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--glass-border));
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
   color: var(--text-primary);
 }
 .godseye-tab:focus-visible {

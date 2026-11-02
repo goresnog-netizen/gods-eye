@@ -21,7 +21,7 @@ const TABS = [
   ['place', 'PLACE'],
   ['vision', 'VISION'],
   ['cctv', 'CCTV'],
-  ['locate', 'TARGET'],
+  ['locate', 'LOCATE'],
 ];
 
 test('every God’s Eye tab points at the pane it owns', () => {

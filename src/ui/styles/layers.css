@@ -203,6 +203,15 @@
   backdrop-filter: blur(14px) saturate(1.2);
 }
 
+#right-context-rail .panel-header {
+  /* The whole header is a disclosure control now, so it has to look like one. */
+  cursor: pointer;
+}
+
+#right-context-rail .panel-header:hover .panel-title {
+  color: var(--text-primary);
+}
+
 #right-context-rail::-webkit-scrollbar-track {
   background: transparent;
 }
