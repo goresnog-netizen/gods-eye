@@ -1311,9 +1311,10 @@ export class GodsEyePanel {
       // If the user has not looked up a place yet, we fall back to a
       // zero footprint (no polygons drawn, only the 2D overlay on the photo).
       const place = this._place || null;
-      const footprint = place && Number.isFinite(place.lat) && Number.isFinite(place.lon)
-        ? { lat: place.lat, lon: place.lon, widthM: 40, heightM: 40 }
-        : null;
+      const footprint =
+        place && Number.isFinite(place.lat) && Number.isFinite(place.lon)
+          ? { lat: place.lat, lon: place.lon, widthM: 40, heightM: 40 }
+          : null;
       this._renderVision(response.data?.detections || {}, source, footprint);
     } catch (error) {
       if (this._disposed) return;
@@ -1352,9 +1353,8 @@ export class GodsEyePanel {
       }));
       (async () => {
         try {
-          const { drawVisionDetections } = await import(
-            '../app/layers/vision-bbox.js'
-          );
+          const { drawVisionDetections } =
+            await import('../app/layers/vision-bbox.js');
           drawVisionDetections(layerDetections, footprint);
         } catch (_e) {
           // vision-bbox unavailable in test env; ignore.
@@ -1363,9 +1363,8 @@ export class GodsEyePanel {
     } else {
       (async () => {
         try {
-          const { clearVisionDetections } = await import(
-            '../app/layers/vision-bbox.js'
-          );
+          const { clearVisionDetections } =
+            await import('../app/layers/vision-bbox.js');
           clearVisionDetections();
         } catch (_e) {
           // ignore in test env
@@ -1433,9 +1432,8 @@ export class GodsEyePanel {
             flyBtn.title = t('Fly to detection');
             flyBtn.addEventListener('click', async () => {
               try {
-                const { flyToVisionDetection } = await import(
-                  '../app/layers/vision-bbox.js'
-                );
+                const { flyToVisionDetection } =
+                  await import('../app/layers/vision-bbox.js');
                 flyToVisionDetection(index);
               } catch (_e) {
                 // unavailable in test env

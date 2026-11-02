@@ -73,11 +73,7 @@ export function createVisionBboxLayer({ overlayHost } = {}) {
       const point = source.flyToDetection(index);
       if (!point || !_viewer) return;
       _viewer.camera.flyTo({
-        destination: Cesium.Cartesian3.fromDegrees(
-          point.lon,
-          point.lat,
-          1000,
-        ),
+        destination: Cesium.Cartesian3.fromDegrees(point.lon, point.lat, 1000),
         duration: 2.0,
       });
     },

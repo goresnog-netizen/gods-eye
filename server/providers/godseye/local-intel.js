@@ -64,9 +64,7 @@ import {
   TECH_PROFILES,
   viewshed,
 } from '../../services/place-card-local/propagation.mjs';
-import {
-  readTerrainCoverage,
-} from '../../services/place-card-local/coverage-terrain.mjs';
+import { readTerrainCoverage } from '../../services/place-card-local/coverage-terrain.mjs';
 import {
   attributionFor,
   sourcesForScope,
@@ -901,7 +899,11 @@ async function loadBtsRegistry() {
 const viewshedCache = new Map();
 const VIEWSHED_TTL_MS = 30 * 60 * 1000;
 
-async function viewshedFor(site, tech, { clutterModel = 'flat', tiltDeg = 0 } = {}) {
+async function viewshedFor(
+  site,
+  tech,
+  { clutterModel = 'flat', tiltDeg = 0 } = {},
+) {
   const key = `${site.id || `${site.lat},${site.lon}`}:${tech}:${clutterModel}:${tiltDeg}`;
   const hit = viewshedCache.get(key);
   if (hit && Date.now() - hit.at < VIEWSHED_TTL_MS)

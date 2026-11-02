@@ -1,6 +1,6 @@
 /**
  * Phase C — Composite Scoring Model (Market + News + OSINT + Vision)
- * 
+ *
  * Adaptive weighted scoring for target areas.
  * All data local, no external calls.
  */
@@ -29,25 +29,41 @@ const SEVERITY = {
  */
 export function compositeScore(data, profile = 'default') {
   const weights = WEIGHT_PROFILES[profile] || WEIGHT_PROFILES.default;
-  
+
   const marketScore = normalizeScore(data.market || 0);
   const newsScore = normalizeScore(data.news || 0);
   const osintScore = normalizeScore(data.osint || 0);
   const visionScore = normalizeScore(data.vision || 0);
-  
-  const composite = 
+
+  const composite =
     marketScore * weights.market +
     newsScore * weights.news +
     osintScore * weights.osint +
     visionScore * weights.vision;
-  
+
   return {
     composite: Math.round(composite * 1000) / 1000,
     breakdown: {
-      market: { score: marketScore, weight: weights.market, contribution: Math.round(marketScore * weights.market * 1000) / 1000 },
-      news: { score: newsScore, weight: weights.news, contribution: Math.round(newsScore * weights.news * 1000) / 1000 },
-      osint: { score: osintScore, weight: weights.osint, contribution: Math.round(osintScore * weights.osint * 1000) / 1000 },
-      vision: { score: visionScore, weight: weights.vision, contribution: Math.round(visionScore * weights.vision * 1000) / 1000 },
+      market: {
+        score: marketScore,
+        weight: weights.market,
+        contribution: Math.round(marketScore * weights.market * 1000) / 1000,
+      },
+      news: {
+        score: newsScore,
+        weight: weights.news,
+        contribution: Math.round(newsScore * weights.news * 1000) / 1000,
+      },
+      osint: {
+        score: osintScore,
+        weight: weights.osint,
+        contribution: Math.round(osintScore * weights.osint * 1000) / 1000,
+      },
+      vision: {
+        score: visionScore,
+        weight: weights.vision,
+        contribution: Math.round(visionScore * weights.vision * 1000) / 1000,
+      },
     },
     profile,
     severity: getSeverity(composite),
@@ -84,7 +100,7 @@ function getSeverity(score) {
  */
 export function detectAnomaly(target, history, sensitiveAreas = []) {
   const anomalies = [];
-  
+
   // Check if target moved to sensitive area
   for (const area of sensitiveAreas) {
     const dist = haversineKm(target.lat, target.lon, area.lat, area.lon);
@@ -98,12 +114,13 @@ export function detectAnomaly(target, history, sensitiveAreas = []) {
       });
     }
   }
-  
+
   // Check sudden movement (speed anomaly)
   if (history && history.length >= 1) {
     const prev = history[history.length - 1];
     const speed = calculateSpeed(prev, target);
-    if (speed > 100) { // > 100 km/h
+    if (speed > 100) {
+      // > 100 km/h
       anomalies.push({
         type: 'SPEED_ANOMALY',
         target: target.id,
@@ -112,7 +129,7 @@ export function detectAnomaly(target, history, sensitiveAreas = []) {
       });
     }
   }
-  
+
   // Check area density change
   if (history && history.length >= 3) {
     const densityChange = calculateDensityChange(history);
@@ -125,7 +142,7 @@ export function detectAnomaly(target, history, sensitiveAreas = []) {
       });
     }
   }
-  
+
   return {
     hasAnomaly: anomalies.length > 0,
     anomalies,
@@ -139,12 +156,15 @@ export function detectAnomaly(target, history, sensitiveAreas = []) {
  */
 function haversineKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
@@ -166,7 +186,12 @@ function calculateDensityChange(history) {
   const recent = history.slice(-3);
   const densities = recent.map((h, i) => {
     if (i === 0) return 1;
-    const dist = haversineKm(recent[i-1].lat, recent[i-1].lon, h.lat, h.lon);
+    const dist = haversineKm(
+      recent[i - 1].lat,
+      recent[i - 1].lon,
+      h.lat,
+      h.lon,
+    );
     return dist < 1 ? 2 : 1; // closer = higher density
   });
   return densities[densities.length - 1] - densities[0];
@@ -177,24 +202,24 @@ function calculateDensityChange(history) {
  */
 export function generateHeatmap(points, options = {}) {
   const { gridDegrees = 0.5, minCount = 1 } = options;
-  
+
   const grid = {};
-  
+
   for (const point of points) {
     const gridLat = Math.floor(point.lat / gridDegrees) * gridDegrees;
     const gridLon = Math.floor(point.lon / gridDegrees) * gridDegrees;
     const key = `${gridLat.toFixed(1)},${gridLon.toFixed(1)}`;
-    
+
     if (!grid[key]) {
       grid[key] = { lat: gridLat, lon: gridLon, count: 0, points: [] };
     }
     grid[key].count++;
     grid[key].points.push(point);
   }
-  
+
   return Object.values(grid)
-    .filter(g => g.count >= minCount)
-    .map(g => ({
+    .filter((g) => g.count >= minCount)
+    .map((g) => ({
       lat: g.lat,
       lon: g.lon,
       weight: Math.min(g.count / 10, 1), // normalize to 0-1
@@ -208,10 +233,10 @@ export function generateHeatmap(points, options = {}) {
  */
 export function trackMovement(targetId, positions, options = {}) {
   const { maxPoints = 100 } = options;
-  
+
   const sorted = [...positions].sort((a, b) => a.timestamp - b.timestamp);
   const trimmed = sorted.slice(-maxPoints);
-  
+
   const segments = [];
   for (let i = 1; i < trimmed.length; i++) {
     const prev = trimmed[i - 1];
@@ -219,7 +244,7 @@ export function trackMovement(targetId, positions, options = {}) {
     const dist = haversineKm(prev.lat, prev.lon, curr.lat, curr.lon);
     const timeDiff = (curr.timestamp - prev.timestamp) / 1000; // seconds
     const speed = timeDiff > 0 ? (dist / timeDiff) * 3600 : 0; // km/h
-    
+
     segments.push({
       from: { lat: prev.lat, lon: prev.lon, ts: prev.timestamp },
       to: { lat: curr.lat, lon: curr.lon, ts: curr.timestamp },
@@ -229,13 +254,23 @@ export function trackMovement(targetId, positions, options = {}) {
       bearing: calculateBearing(prev.lat, prev.lon, curr.lat, curr.lon),
     });
   }
-  
+
   return {
     targetId,
     totalPoints: trimmed.length,
-    totalDistanceKm: Math.round(segments.reduce((s, seg) => s + seg.distanceKm, 0) * 100) / 100,
-    avgSpeedKmh: segments.length > 0 ? Math.round(segments.reduce((s, seg) => s + seg.speedKmh, 0) / segments.length * 10) / 10 : 0,
-    maxSpeedKmh: segments.length > 0 ? Math.max(...segments.map(s => s.speedKmh)) : 0,
+    totalDistanceKm:
+      Math.round(segments.reduce((s, seg) => s + seg.distanceKm, 0) * 100) /
+      100,
+    avgSpeedKmh:
+      segments.length > 0
+        ? Math.round(
+            (segments.reduce((s, seg) => s + seg.speedKmh, 0) /
+              segments.length) *
+              10,
+          ) / 10
+        : 0,
+    maxSpeedKmh:
+      segments.length > 0 ? Math.max(...segments.map((s) => s.speedKmh)) : 0,
     segments,
     positions: trimmed,
   };
@@ -245,11 +280,14 @@ export function trackMovement(targetId, positions, options = {}) {
  * Calculate bearing between two points
  */
 function calculateBearing(lat1, lon1, lat2, lon2) {
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
-  const x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
-            Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
-  let bearing = Math.atan2(y, x) * 180 / Math.PI;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const y = Math.sin(dLon) * Math.cos((lat2 * Math.PI) / 180);
+  const x =
+    Math.cos((lat1 * Math.PI) / 180) * Math.sin((lat2 * Math.PI) / 180) -
+    Math.sin((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.cos(dLon);
+  let bearing = (Math.atan2(y, x) * 180) / Math.PI;
   return (bearing + 360) % 360;
 }
 
@@ -258,9 +296,9 @@ function calculateBearing(lat1, lon1, lat2, lon2) {
  */
 export function exportGeoJSON(data, options = {}) {
   const { name = 'GodsEye Export', description = '' } = options;
-  
+
   const features = [];
-  
+
   if (data.points) {
     for (const p of data.points) {
       features.push({
@@ -270,10 +308,10 @@ export function exportGeoJSON(data, options = {}) {
       });
     }
   }
-  
+
   if (data.tracks) {
     for (const track of data.tracks) {
-      const coords = track.positions.map(p => [p.lon, p.lat]);
+      const coords = track.positions.map((p) => [p.lon, p.lat]);
       features.push({
         type: 'Feature',
         geometry: { type: 'LineString', coordinates: coords },
@@ -281,20 +319,30 @@ export function exportGeoJSON(data, options = {}) {
       });
     }
   }
-  
+
   if (data.heatmap) {
     for (const h of data.heatmap) {
       features.push({
         type: 'Feature',
         geometry: { type: 'Point', coordinates: [h.lon, h.lat] },
-        properties: { weight: h.weight, count: h.count, intensity: h.intensity, __type: 'heatmap' },
+        properties: {
+          weight: h.weight,
+          count: h.count,
+          intensity: h.intensity,
+          __type: 'heatmap',
+        },
       });
     }
   }
-  
+
   return {
     type: 'FeatureCollection',
-    metadata: { name, description, generated: new Date().toISOString(), source: 'GodsEye Local' },
+    metadata: {
+      name,
+      description,
+      generated: new Date().toISOString(),
+      source: 'GodsEye Local',
+    },
     features,
   };
 }
@@ -304,14 +352,14 @@ export function exportGeoJSON(data, options = {}) {
  */
 export function exportKML(data, options = {}) {
   const { name = 'GodsEye Export' } = options;
-  
+
   let kml = `<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
   <name>${escapeXml(name)}</name>
   <description>Generated by God's Eye View — Local</description>
 `;
-  
+
   if (data.points) {
     for (const p of data.points) {
       kml += `  <Placemark>
@@ -321,10 +369,12 @@ export function exportKML(data, options = {}) {
 `;
     }
   }
-  
+
   if (data.tracks) {
     for (const track of data.tracks) {
-      const coords = track.positions.map(p => `${p.lon},${p.lat},0`).join(' ');
+      const coords = track.positions
+        .map((p) => `${p.lon},${p.lat},0`)
+        .join(' ');
       kml += `  <Placemark>
     <name>${escapeXml(track.targetId || 'Track')}</name>
     <LineString><coordinates>${coords}</coordinates></LineString>
@@ -332,10 +382,10 @@ export function exportKML(data, options = {}) {
 `;
     }
   }
-  
+
   kml += `</Document>
 </kml>`;
-  
+
   return kml;
 }
 
@@ -344,23 +394,27 @@ export function exportKML(data, options = {}) {
  */
 export function exportCSV(data, options = {}) {
   const { columns = ['id', 'lat', 'lon', 'timestamp', 'name'] } = options;
-  
+
   const rows = [columns.join(',')];
-  
+
   const points = data.points || [];
   for (const p of points) {
-    const row = columns.map(col => {
+    const row = columns.map((col) => {
       const val = p[col] !== undefined ? p[col] : '';
       return escapeCsv(String(val));
     });
     rows.push(row.join(','));
   }
-  
+
   return rows.join('\n');
 }
 
 function escapeXml(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function escapeCsv(str) {
@@ -376,17 +430,22 @@ function escapeCsv(str) {
 async function main() {
   const args = process.argv.slice(2);
   let mode = 'score';
-  
+
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--mode' && args[i + 1]) { mode = args[i + 1]; i++; }
+    if (args[i] === '--mode' && args[i + 1]) {
+      mode = args[i + 1];
+      i++;
+    }
   }
-  
+
   console.log(`Phase C module loaded. Mode: ${mode}`);
-  console.log('Available exports: compositeScore, detectAnomaly, generateHeatmap, trackMovement, exportGeoJSON, exportKML, exportCSV');
+  console.log(
+    'Available exports: compositeScore, detectAnomaly, generateHeatmap, trackMovement, exportGeoJSON, exportKML, exportCSV',
+  );
 }
 
 if (process.argv[1] && process.argv[1].endsWith('phaseC.mjs')) {
-  main().catch(e => {
+  main().catch((e) => {
     console.error('Error:', e.message);
     process.exit(1);
   });

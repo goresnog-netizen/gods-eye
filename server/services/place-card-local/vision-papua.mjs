@@ -10,26 +10,112 @@
  */
 
 const PAPUA_AREAS = [
-  { id: 'papua-001', name: 'Tolikara Highlands', lat: -3.6833, lon: 138.4833, elevation_m: 2400, terrain: 'highland' },
-  { id: 'papua-002', name: 'Yahukimo Base', lat: -4.4833, lon: 139.5333, elevation_m: 1800, terrain: 'highland' },
-  { id: 'papua-003', name: 'Puncak Pass', lat: -3.9833, lon: 137.7833, elevation_m: 3200, terrain: 'mountain' },
-  { id: 'papua-004', name: 'Puncak Jaya Summit', lat: -3.6167, lon: 137.4833, elevation_m: 4884, terrain: 'glacier' },
-  { id: 'papua-005', name: 'Wamena Valley', lat: -4.1000, lon: 138.9500, elevation_m: 1600, terrain: 'valley' },
-  { id: 'papua-006', name: 'Nabire Port', lat: -3.3667, lon: 135.4833, elevation_m: 50, terrain: 'coastal' },
-  { id: 'papua-007', name: 'Biak Airport', lat: -1.0333, lon: 136.0833, elevation_m: 20, terrain: 'coastal' },
-  { id: 'papua-008', name: 'Timika Mine', lat: -4.5500, lon: 136.8833, elevation_m: 100, terrain: 'mining' },
-  { id: 'papua-009', name: 'Jayapura City', lat: -2.5337, lon: 140.7175, elevation_m: 50, terrain: 'urban' },
-  { id: 'papua-010', name: 'Sorong Harbor', lat: -0.8763, lon: 131.2558, elevation_m: 10, terrain: 'coastal' },
+  {
+    id: 'papua-001',
+    name: 'Tolikara Highlands',
+    lat: -3.6833,
+    lon: 138.4833,
+    elevation_m: 2400,
+    terrain: 'highland',
+  },
+  {
+    id: 'papua-002',
+    name: 'Yahukimo Base',
+    lat: -4.4833,
+    lon: 139.5333,
+    elevation_m: 1800,
+    terrain: 'highland',
+  },
+  {
+    id: 'papua-003',
+    name: 'Puncak Pass',
+    lat: -3.9833,
+    lon: 137.7833,
+    elevation_m: 3200,
+    terrain: 'mountain',
+  },
+  {
+    id: 'papua-004',
+    name: 'Puncak Jaya Summit',
+    lat: -3.6167,
+    lon: 137.4833,
+    elevation_m: 4884,
+    terrain: 'glacier',
+  },
+  {
+    id: 'papua-005',
+    name: 'Wamena Valley',
+    lat: -4.1,
+    lon: 138.95,
+    elevation_m: 1600,
+    terrain: 'valley',
+  },
+  {
+    id: 'papua-006',
+    name: 'Nabire Port',
+    lat: -3.3667,
+    lon: 135.4833,
+    elevation_m: 50,
+    terrain: 'coastal',
+  },
+  {
+    id: 'papua-007',
+    name: 'Biak Airport',
+    lat: -1.0333,
+    lon: 136.0833,
+    elevation_m: 20,
+    terrain: 'coastal',
+  },
+  {
+    id: 'papua-008',
+    name: 'Timika Mine',
+    lat: -4.55,
+    lon: 136.8833,
+    elevation_m: 100,
+    terrain: 'mining',
+  },
+  {
+    id: 'papua-009',
+    name: 'Jayapura City',
+    lat: -2.5337,
+    lon: 140.7175,
+    elevation_m: 50,
+    terrain: 'urban',
+  },
+  {
+    id: 'papua-010',
+    name: 'Sorong Harbor',
+    lat: -0.8763,
+    lon: 131.2558,
+    elevation_m: 10,
+    terrain: 'coastal',
+  },
 ];
 
 const ACTIVITIES = [
-  'walking', 'standing', 'sitting', 'carrying', 'working', 'resting',
-  'farming', 'trading', 'patrolling', 'observing',
+  'walking',
+  'standing',
+  'sitting',
+  'carrying',
+  'working',
+  'resting',
+  'farming',
+  'trading',
+  'patrolling',
+  'observing',
 ];
 
 const HOLDINGS = [
-  'none', 'bag', 'tool', 'phone', 'basket', 'machete', 'rifle (security)',
-  'camera', 'document', 'food',
+  'none',
+  'bag',
+  'tool',
+  'phone',
+  'basket',
+  'machete',
+  'rifle (security)',
+  'camera',
+  'document',
+  'food',
 ];
 
 function randomInt(min, max) {
@@ -79,7 +165,12 @@ export function generateVisionOutput(area, options = {}) {
     vehicles.push({
       id: `vehicle-${i + 1}`,
       type: randomChoice(['car', 'motorcycle', 'truck', 'boat']),
-      bbox: [randomInt(0, imageWidth - 100), randomInt(0, imageHeight - 60), randomInt(100, 200), randomInt(60, 120)],
+      bbox: [
+        randomInt(0, imageWidth - 100),
+        randomInt(0, imageHeight - 60),
+        randomInt(100, 200),
+        randomInt(60, 120),
+      ],
       confidence: Number((0.7 + Math.random() * 0.25).toFixed(2)),
     });
   }
@@ -124,10 +215,13 @@ export function generateAllPapuaVision(options = {}) {
  */
 export function getArea(query) {
   const normalized = String(query).toLowerCase().trim();
-  return PAPUA_AREAS.find((a) =>
-    a.id.toLowerCase() === normalized ||
-    a.name.toLowerCase().includes(normalized)
-  ) || null;
+  return (
+    PAPUA_AREAS.find(
+      (a) =>
+        a.id.toLowerCase() === normalized ||
+        a.name.toLowerCase().includes(normalized),
+    ) || null
+  );
 }
 
 export { PAPUA_AREAS };

@@ -19,7 +19,10 @@ import { fileURLToPath } from 'node:url';
 
 import { runTerrainCoverage } from './coverage-terrain.mjs';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+const ROOT = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../../..',
+);
 
 function arg(name, fallback) {
   const index = process.argv.indexOf(`--${name}`);
@@ -36,7 +39,9 @@ async function loadRegistry() {
   const parsed = JSON.parse(await readFile(file, 'utf8'));
   const sites = Array.isArray(parsed?.sites) ? parsed.sites : [];
   if (!sites.length) {
-    throw new Error(`no sites in ${file} — import a registry first (bts:sweep / bts:probe)`);
+    throw new Error(
+      `no sites in ${file} — import a registry first (bts:sweep / bts:probe)`,
+    );
   }
   return sites;
 }
@@ -73,7 +78,9 @@ async function main() {
   console.log(
     `computed ${artifact.sitesComputedThisRun} sites this run (${artifact.sitesFailedThisRun} failed), ${artifact.sites} total, in ${seconds}s`,
   );
-  console.log(`flat-earth sites (every ring at cap): ${artifact.report.flatEarthSites}`);
+  console.log(
+    `flat-earth sites (every ring at cap): ${artifact.report.flatEarthSites}`,
+  );
   for (const row of artifact.report.provinces) {
     console.log(
       `  ${row.name.padEnd(18)} ${String(row.coveredPct).padStart(6)} % of box (${row.sites} sites)`,

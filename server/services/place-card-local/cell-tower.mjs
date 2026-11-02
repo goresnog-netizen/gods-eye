@@ -1,9 +1,9 @@
 /**
  * Cell Tower Tracker — OpenCellID based location lookup.
- * 
+ *
  * Free, no API key needed for basic queries.
  * Database: https://opencellid.org (3.4M+ towers)
- * 
+ *
  * Usage:
  *   node cell-tower.mjs --mcc 510 --mnc 10 --lac 12345 --cellid 456789
  *   node cell-tower.mjs --phone "+62-812-3456-7890"  # Needs cell info
@@ -35,8 +35,10 @@ const INDONESIA_CARRIERS = {
 
 // Papua region (rough bounding box)
 const PAPUA_BOUNDS = {
-  latMin: -9.5, latMax: 1.5,
-  lonMin: 130.0, lonMax: 141.5
+  latMin: -9.5,
+  latMax: 1.5,
+  lonMin: 130.0,
+  lonMax: 141.5,
 };
 
 /**
@@ -62,8 +64,8 @@ const CARRIER_REGIONS = {
     { name: 'Nabire', lat: -3.3667, lon: 135.4833 },
     { name: 'Biak', lat: -1.1833, lon: 136.0833 },
     { name: 'Sorong', lat: -0.8763, lon: 131.2558 },
-    { name: 'Manokwari', lat: -0.8615, lon: 134.0620 },
-    { name: 'Wamena', lat: -4.1000, lon: 138.9500 },
+    { name: 'Manokwari', lat: -0.8615, lon: 134.062 },
+    { name: 'Wamena', lat: -4.1, lon: 138.95 },
     { name: 'Puncak Jaya', lat: -3.6167, lon: 137.4833 },
     { name: 'Tolikara', lat: -3.6833, lon: 138.4833 },
     { name: 'Yahukimo', lat: -4.4833, lon: 139.5333 },
@@ -75,7 +77,7 @@ const CARRIER_REGIONS = {
   ],
   '510-20': [
     { name: 'Sorong', lat: -0.8763, lon: 131.2558 },
-    { name: 'Manokwari', lat: -0.8615, lon: 134.0620 },
+    { name: 'Manokwari', lat: -0.8615, lon: 134.062 },
     { name: 'Jayapura', lat: -2.5337, lon: 140.7175 },
     { name: 'Biak', lat: -1.1833, lon: 136.0833 },
     { name: 'Jakarta', lat: -6.2088, lon: 106.8456 },
@@ -83,7 +85,7 @@ const CARRIER_REGIONS = {
     { name: 'Semarang', lat: -6.9932, lon: 110.4203 },
   ],
   '510-28': [
-    { name: 'Manokwari', lat: -0.8615, lon: 134.0620 },
+    { name: 'Manokwari', lat: -0.8615, lon: 134.062 },
     { name: 'Sorong', lat: -0.8763, lon: 131.2558 },
     { name: 'Jakarta', lat: -6.2088, lon: 106.8456 },
     { name: 'Surabaya', lat: -7.2575, lon: 112.7521 },
@@ -103,7 +105,7 @@ const CARRIER_REGIONS = {
     { name: 'Medan', lat: 3.5952, lon: 98.6722 },
   ],
   '510-99': [
-    { name: 'Wamena', lat: -4.1000, lon: 138.9500 },
+    { name: 'Wamena', lat: -4.1, lon: 138.95 },
     { name: 'Nabire', lat: -3.3667, lon: 135.4833 },
     { name: 'Jakarta', lat: -6.2088, lon: 106.8456 },
     { name: 'Bandung', lat: -6.9175, lon: 107.6191 },
@@ -138,7 +140,7 @@ function regionFor(mcc, mnc, lac) {
 function getCarrier(mcc, mnc) {
   const key = `${mcc}-${mnc}`;
   if (INDONESIA_CARRIERS[key]) return INDONESIA_CARRIERS[key];
-  
+
   // Generic fallback
   return { name: `Carrier ${mcc}-${mnc}`, mcc, mnc };
 }
@@ -147,8 +149,12 @@ function getCarrier(mcc, mnc) {
  * Check if location is in Papua
  */
 function isInPapua(lat, lon) {
-  return lat >= PAPUA_BOUNDS.latMin && lat <= PAPUA_BOUNDS.latMax &&
-         lon >= PAPUA_BOUNDS.lonMin && lon <= PAPUA_BOUNDS.lonMax;
+  return (
+    lat >= PAPUA_BOUNDS.latMin &&
+    lat <= PAPUA_BOUNDS.latMax &&
+    lon >= PAPUA_BOUNDS.lonMin &&
+    lon <= PAPUA_BOUNDS.lonMax
+  );
 }
 
 /**
@@ -186,13 +192,18 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
   // The version is part of the key: an estimate written by an older estimator
   // must not survive a change to how estimates are made.
   const cacheKey = `cell:v${CELL_CACHE_VERSION}:${mcc}:${mnc}:${lac}:${cellId}`;
-  
+
   // Check cache first (7 day TTL for cell towers - they don't move)
-  if (cache[cacheKey] && cache[cacheKey].timestamp > Date.now() - 7 * 86400000) {
-    console.log(`[CACHE] Cell ${cellId} -> ${cache[cacheKey].lat},${cache[cacheKey].lon}`);
+  if (
+    cache[cacheKey] &&
+    cache[cacheKey].timestamp > Date.now() - 7 * 86400000
+  ) {
+    console.log(
+      `[CACHE] Cell ${cellId} -> ${cache[cacheKey].lat},${cache[cacheKey].lon}`,
+    );
     return { ...cache[cacheKey], source: 'cache' };
   }
-  
+
   // Try OpenCellID API (needs key for proper query)
   if (apiKey) {
     try {
@@ -200,11 +211,13 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
       const url = `https://opencellid.org/cell/get?key=${apiKey}&mcc=${mcc}&mnc=${mnc}&lac=${lac}&cellid=${cellId}&format=json`;
       const res = await fetch(url);
       const text = await res.text();
-      console.log(`[API] Response status: ${res.status}, body: ${text.substring(0, 200)}`);
-      
+      console.log(
+        `[API] Response status: ${res.status}, body: ${text.substring(0, 200)}`,
+      );
+
       if (res.ok) {
         const data = JSON.parse(text);
-        
+
         if (data.status === 'ok' && data.lat && data.lon) {
           const result = {
             lat: parseFloat(data.lat),
@@ -216,13 +229,15 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
             cellId: data.cellid,
             carrier: getCarrier(data.mcc, data.mnc),
             isPapua: isInPapua(parseFloat(data.lat), parseFloat(data.lon)),
-            timestamp: Date.now()
+            timestamp: Date.now(),
           };
-          
+
           cache[cacheKey] = result;
           saveCache(cache);
-          
-          console.log(`[OK] Cell ${cellId} -> ${result.lat},${result.lon} (${result.carrier.name})`);
+
+          console.log(
+            `[OK] Cell ${cellId} -> ${result.lat},${result.lon} (${result.carrier.name})`,
+          );
           return result;
         }
       }
@@ -230,7 +245,7 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
       console.error('[API] Error:', e.message);
     }
   }
-  
+
   // Fallback: estimate inside the carrier's region for this LAC (mock data).
   // In real use, user needs to provide cell info from target device
   console.log('[FALLBACK] Estimating inside the carrier region');
@@ -246,17 +261,20 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
     lat: anchor.lat + dLat,
     lon: anchor.lon + dLon,
     accuracy: ESTIMATE_ACCURACY_M,
-    mcc, mnc, lac, cellId,
+    mcc,
+    mnc,
+    lac,
+    cellId,
     carrier: getCarrier(mcc, mnc),
     region: anchor.name,
     isPapua: isInPapua(anchor.lat + dLat, anchor.lon + dLon),
     estimated: true,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   };
-  
+
   cache[cacheKey] = result;
   saveCache(cache);
-  
+
   return result;
 }
 
@@ -266,24 +284,24 @@ export async function lookupCell(mcc, mnc, lac, cellId, apiKey = '') {
 export function parseCellInfo(input) {
   // Format: MCC-MNC-LAC-CELLID or just cellId
   const parts = input.split(/[-_:]/);
-  
+
   if (parts.length === 4) {
     return {
       mcc: parseInt(parts[0]),
       mnc: parseInt(parts[1]),
       lac: parseInt(parts[2]),
-      cellId: parseInt(parts[3])
+      cellId: parseInt(parts[3]),
     };
   } else if (parts.length === 1) {
     // Just cell ID, assume Indonesia
     return {
       mcc: 510, // Indonesia
-      mnc: 10,  // Default Telkomsel
+      mnc: 10, // Default Telkomsel
       lac: 0,
-      cellId: parseInt(parts[0])
+      cellId: parseInt(parts[0]),
     };
   }
-  
+
   throw new Error('Invalid cell info format. Use: MCC-MNC-LAC-CELLID');
 }
 
@@ -292,10 +310,13 @@ export function parseCellInfo(input) {
  */
 async function main() {
   const args = process.argv.slice(2);
-  let mcc = 510, mnc = 10, lac = 0, cellId = 0;
+  let mcc = 510,
+    mnc = 10,
+    lac = 0,
+    cellId = 0;
   let apiKey = '';
   let showCarriers = false;
-  
+
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--mcc' && args[i + 1]) {
       mcc = parseInt(args[i + 1]);
@@ -311,7 +332,10 @@ async function main() {
       i++;
     } else if (args[i] === '--cell' && args[i + 1]) {
       const info = parseCellInfo(args[i + 1]);
-      mcc = info.mcc; mnc = info.mnc; lac = info.lac; cellId = info.cellId;
+      mcc = info.mcc;
+      mnc = info.mnc;
+      lac = info.lac;
+      cellId = info.cellId;
       i++;
     } else if (args[i] === '--key' && args[i + 1]) {
       apiKey = args[i + 1];
@@ -320,7 +344,7 @@ async function main() {
       showCarriers = true;
     }
   }
-  
+
   if (showCarriers) {
     console.log('📡 Indonesian Carriers (MCC 510):');
     Object.entries(INDONESIA_CARRIERS).forEach(([key, c]) => {
@@ -328,9 +352,11 @@ async function main() {
     });
     return;
   }
-  
+
   if (!cellId) {
-    console.log('Usage: node cell-tower.mjs --mcc 510 --mnc 10 --lac 12345 --cellid 456789 [--key API_KEY]');
+    console.log(
+      'Usage: node cell-tower.mjs --mcc 510 --mnc 10 --lac 12345 --cellid 456789 [--key API_KEY]',
+    );
     console.log('');
     console.log('Options:');
     console.log('  --mcc <code>      Mobile Country Code (510 = Indonesia)');
@@ -338,7 +364,9 @@ async function main() {
     console.log('  --lac <id>        Location Area Code');
     console.log('  --cellid <id>     Cell ID');
     console.log('  --cell <info>     Combined: MCC-MNC-LAC-CELLID');
-    console.log('  --key <key>       OpenCellID API key (optional, for live lookup)');
+    console.log(
+      '  --key <key>       OpenCellID API key (optional, for live lookup)',
+    );
     console.log('  --carriers        Show Indonesia carriers');
     console.log('');
     console.log('Get cell info from target phone:');
@@ -348,7 +376,7 @@ async function main() {
     console.log('Get OpenCellID key: https://opencellid.org');
     return;
   }
-  
+
   try {
     const result = await lookupCell(mcc, mnc, lac, cellId, apiKey);
     console.log('\n📡 Result:');
@@ -361,10 +389,18 @@ async function main() {
 
 // Run if executed directly
 if (process.argv[1] && process.argv[1].endsWith('cell-tower.mjs')) {
-  main().catch(e => {
+  main().catch((e) => {
     console.error('Error:', e.message);
     process.exit(1);
   });
 }
 
-export { loadCache, saveCache, getCarrier, isInPapua, regionFor, PAPUA_BOUNDS, CARRIER_REGIONS };
+export {
+  loadCache,
+  saveCache,
+  getCarrier,
+  isInPapua,
+  regionFor,
+  PAPUA_BOUNDS,
+  CARRIER_REGIONS,
+};

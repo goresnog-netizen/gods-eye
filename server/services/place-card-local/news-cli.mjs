@@ -30,13 +30,16 @@ async function main() {
   if (json) {
     console.log(JSON.stringify(result, null, 2));
   } else {
-    console.log(`Indonesia News Feed — ${result.count} items from ${result.queries} queries`);
+    console.log(
+      `Indonesia News Feed — ${result.count} items from ${result.queries} queries`,
+    );
     console.log(`Generated: ${new Date(result.generatedAt).toISOString()}`);
     console.log('');
     for (const item of result.items.slice(0, 20)) {
       console.log(`[${item.source}] ${item.title}`);
       console.log(`  ${item.link}`);
-      if (item.publishedAt) console.log(`  ${new Date(item.publishedAt).toISOString()}`);
+      if (item.publishedAt)
+        console.log(`  ${new Date(item.publishedAt).toISOString()}`);
       console.log('');
     }
   }

@@ -106,11 +106,11 @@ const REGENCIES = [
 
 /** Districts, where the seed knows them by name. */
 const DISTRICTS = [
-  ['Abepura', -2.6100, 140.6500, 'kecamatan'],
-  ['Muara Tami', -2.5100, 140.7500, 'kecamatan'],
-  ['Sentani', -2.5760, 140.5140, 'kecamatan'],
-  ['Waena', -2.5900, 140.6400, 'kecamatan'],
-  ['Heram', -2.5600, 140.6900, 'kecamatan'],
+  ['Abepura', -2.61, 140.65, 'kecamatan'],
+  ['Muara Tami', -2.51, 140.75, 'kecamatan'],
+  ['Sentani', -2.576, 140.514, 'kecamatan'],
+  ['Waena', -2.59, 140.64, 'kecamatan'],
+  ['Heram', -2.56, 140.69, 'kecamatan'],
   ['Timika', -4.5461, 136.8876, 'kecamatan'],
   ['Karubaga (Tolikara)', -3.6833, 138.4833, 'distrik'],
   ['Dekai (Yahukimo)', -4.4833, 139.5333, 'distrik'],

@@ -28,8 +28,8 @@ export const REGION_PRESETS = Object.freeze([
  * @returns {RegionPreset|null}
  */
 export function findRegionPreset(id) {
-  const wanted = String(id || '').trim().toLowerCase();
-  return (
-    REGION_PRESETS.find((preset) => preset.id === wanted) || null
-  );
+  const wanted = String(id || '')
+    .trim()
+    .toLowerCase();
+  return REGION_PRESETS.find((preset) => preset.id === wanted) || null;
 }

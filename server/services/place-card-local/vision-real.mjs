@@ -18,7 +18,8 @@ const FALLBACK_MODEL = process.env.VISION_FALLBACK || 'moondream:latest';
 
 const SCENE_PROMPT = `You are a careful scene analyst. Look for people in this image. Report the image pixel size and, for each person, a bounding box as pixel corners [x0, y0, x1, y1] measured from the top-left, the things they visibly hold (empty list if nothing), their visible activity, and your confidence between 0 and 1. If nothing is legible, say so instead of guessing. Answer with JSON only.`;
 
-const SCENE_SHAPE = '{"image_size": [width, height], "scene": "string", "people": [{"bbox": [x0, y0, x1, y1], "holding": ["item"], "activity": "string", "confidence": 0.0}], "vehicles": [{"bbox": [x0, y0, x1, y1], "type": "string", "confidence": 0.0}], "notes": "string"}';
+const SCENE_SHAPE =
+  '{"image_size": [width, height], "scene": "string", "people": [{"bbox": [x0, y0, x1, y1], "holding": ["item"], "activity": "string", "confidence": 0.0}], "vehicles": [{"bbox": [x0, y0, x1, y1], "type": "string", "confidence": 0.0}], "notes": "string"}';
 
 function arg(name, fallback) {
   const index = process.argv.indexOf(`--${name}`);
@@ -52,26 +53,40 @@ async function callOllama(imagePath, model, prompt) {
 
 function parseJson(raw) {
   // Try direct parse, then extract fenced block, then find first { ... }
-  try { return JSON.parse(raw); } catch {}
+  try {
+    return JSON.parse(raw);
+  } catch {}
   const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-  if (fenced) { try { return JSON.parse(fenced[1]); } catch {} }
+  if (fenced) {
+    try {
+      return JSON.parse(fenced[1]);
+    } catch {}
+  }
   const start = raw.indexOf('{');
   const end = raw.lastIndexOf('}');
   if (start !== -1 && end > start) {
-    try { return JSON.parse(raw.slice(start, end + 1)); } catch {}
+    try {
+      return JSON.parse(raw.slice(start, end + 1));
+    } catch {}
   }
   return null;
 }
 
 function normalizeResult(parsed, imagePath) {
   if (!parsed) return null;
-  const imageSize = Array.isArray(parsed.image_size) ? parsed.image_size : [0, 0];
+  const imageSize = Array.isArray(parsed.image_size)
+    ? parsed.image_size
+    : [0, 0];
   const people = (parsed.people || []).map((p, i) => ({
     id: `person-${i + 1}`,
     bbox: Array.isArray(p.bbox) ? p.bbox : [0, 0, 0, 0],
     image_size: imageSize,
     bboxSpace: 'pixels',
-    holding: Array.isArray(p.holding) ? p.holding : (p.holding ? [p.holding] : []),
+    holding: Array.isArray(p.holding)
+      ? p.holding
+      : p.holding
+        ? [p.holding]
+        : [],
     activity: p.activity || 'unknown',
     confidence: Number(p.confidence) || 0.5,
   }));
@@ -106,7 +121,9 @@ export async function analyzeImage(imagePath, model = DEFAULT_MODEL) {
     raw = await callOllama(imagePath, model, SCENE_PROMPT);
   } catch (e) {
     if (model !== FALLBACK_MODEL) {
-      console.warn(`Model ${model} gagal: ${e.message}, coba ${FALLBACK_MODEL}...`);
+      console.warn(
+        `Model ${model} gagal: ${e.message}, coba ${FALLBACK_MODEL}...`,
+      );
       raw = await callOllama(imagePath, FALLBACK_MODEL, SCENE_PROMPT);
       model = FALLBACK_MODEL;
     } else throw e;
@@ -137,7 +154,9 @@ async function main() {
   const output = arg('output', null);
 
   if (!imagePath) {
-    console.log('Usage: node vision-real.mjs --image <path> [--model qwen2.5vl:3b] [--json] [--output file.json]');
+    console.log(
+      'Usage: node vision-real.mjs --image <path> [--model qwen2.5vl:3b] [--json] [--output file.json]',
+    );
     console.log(`Default model: ${DEFAULT_MODEL}`);
     console.log(`Fallback: ${FALLBACK_MODEL}`);
     console.log(`Ollama: ${OLLAMA_BASE}`);
@@ -148,13 +167,17 @@ async function main() {
   const t0 = Date.now();
   const result = await analyzeImage(imagePath, model);
   const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
-  console.log(`Done in ${elapsed}s — ${result.summary.people_count} orang, ${result.summary.vehicle_count} kendaraan`);
+  console.log(
+    `Done in ${elapsed}s — ${result.summary.people_count} orang, ${result.summary.vehicle_count} kendaraan`,
+  );
 
   if (json) console.log(JSON.stringify(result, null, 2));
   else {
     console.log(`Scene: ${result.scene.description}`);
     for (const p of result.people) {
-      console.log(`  Person ${p.id}: bbox=${p.bbox}, holding=${p.holding.join(',') || 'none'}, activity=${p.activity}, conf=${p.confidence}`);
+      console.log(
+        `  Person ${p.id}: bbox=${p.bbox}, holding=${p.holding.join(',') || 'none'}, activity=${p.activity}, conf=${p.confidence}`,
+      );
     }
     for (const v of result.vehicles) {
       console.log(`  Vehicle ${v.id}: type=${v.type}, conf=${v.confidence}`);

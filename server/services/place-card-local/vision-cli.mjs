@@ -7,7 +7,12 @@
  *   node server/services/place-card-local/vision-cli.mjs --all --output src/data/vision-papua.json
  */
 
-import { generateVisionOutput, generateAllPapuaVision, getArea, PAPUA_AREAS } from './vision-papua.mjs';
+import {
+  generateVisionOutput,
+  generateAllPapuaVision,
+  getArea,
+  PAPUA_AREAS,
+} from './vision-papua.mjs';
 import { writeFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 
@@ -30,7 +35,9 @@ async function main() {
     else {
       console.log(`Vision Papua — ${results.length} areas`);
       for (const r of results) {
-        console.log(`  ${r.area.name}: ${r.summary.people_count} orang, ${r.summary.vehicle_count} kendaraan`);
+        console.log(
+          `  ${r.area.name}: ${r.summary.people_count} orang, ${r.summary.vehicle_count} kendaraan`,
+        );
       }
     }
     if (output) {
@@ -53,8 +60,12 @@ async function main() {
     else {
       console.log(`Vision: ${result.area.name}`);
       console.log(`  Scene: ${result.scene.description}`);
-      console.log(`  Orang: ${result.summary.people_count}, Kendaraan: ${result.summary.vehicle_count}`);
-      console.log(`  Visibility: ${result.scene.visibility}, Time: ${result.scene.time_of_day}`);
+      console.log(
+        `  Orang: ${result.summary.people_count}, Kendaraan: ${result.summary.vehicle_count}`,
+      );
+      console.log(
+        `  Visibility: ${result.scene.visibility}, Time: ${result.scene.time_of_day}`,
+      );
     }
     if (output) {
       mkdirSync(dirname(resolve(output)), { recursive: true });
@@ -67,9 +78,13 @@ async function main() {
   // Default: list areas
   console.log('Vision Papua Areas:');
   for (const a of PAPUA_AREAS) {
-    console.log(`  ${a.id}: ${a.name} (${a.lat}, ${a.lon}) — ${a.terrain}, ${a.elevation_m}m`);
+    console.log(
+      `  ${a.id}: ${a.name} (${a.lat}, ${a.lon}) — ${a.terrain}, ${a.elevation_m}m`,
+    );
   }
-  console.log('\nUsage: node vision-cli.mjs --area "Tolikara" --json | --all --output file.json');
+  console.log(
+    '\nUsage: node vision-cli.mjs --area "Tolikara" --json | --all --output file.json',
+  );
 }
 
 main().catch((e) => {

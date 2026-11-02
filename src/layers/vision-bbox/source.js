@@ -34,7 +34,10 @@ export function createVisionBboxSource({ overlayHost } = {}) {
   return {
     setDetections(detections, footprint) {
       _detections = Array.isArray(detections) ? detections : [];
-      _footprint = footprint && overlayHost && typeof overlayHost.setEntries === 'function' ? { ...footprint } : null;
+      _footprint =
+        footprint && overlayHost && typeof overlayHost.setEntries === 'function'
+          ? { ...footprint }
+          : null;
       if (!overlayHost || typeof overlayHost.setEntries !== 'function') {
         return 0;
       }
@@ -67,7 +70,10 @@ export function createVisionBboxSource({ overlayHost } = {}) {
     },
 
     snapshot() {
-      return { detections: [..._detections], footprint: _footprint ? { ..._footprint } : null };
+      return {
+        detections: [..._detections],
+        footprint: _footprint ? { ..._footprint } : null,
+      };
     },
 
     flyToDetection(index) {

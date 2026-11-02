@@ -44,7 +44,8 @@ test('fetchStreetPhoto returns available', async () => {
   const place = { name: 'Test', lat: -6.2, lon: 106.8167 };
   const photo = await fetchStreetPhoto(place);
   if (!photo.available) throw new Error('not available');
-  if (photo.provider !== 'local-mock') throw new Error(`provider=${photo.provider}`);
+  if (photo.provider !== 'local-mock')
+    throw new Error(`provider=${photo.provider}`);
 });
 
 test('bboxAround computes valid bounds', () => {
@@ -55,7 +56,8 @@ test('bboxAround computes valid bounds', () => {
 
 test('buildPlaceCard end-to-end', async () => {
   const card = await buildPlaceCard('Jakarta');
-  if (card.place.name !== 'Jakarta, Indonesia') throw new Error(`name=${card.place.name}`);
+  if (card.place.name !== 'Jakarta, Indonesia')
+    throw new Error(`name=${card.place.name}`);
   if (!card.photo.available) throw new Error('photo not available');
   if (card.source !== 'local-only') throw new Error(`source=${card.source}`);
   if (!card.intent.tool) throw new Error('no intent tool');
@@ -63,7 +65,8 @@ test('buildPlaceCard end-to-end', async () => {
 
 test('buildPlaceCard for Papua', async () => {
   const card = await buildPlaceCard('Papua');
-  if (card.place.name !== 'Papua, Indonesia') throw new Error(`name=${card.place.name}`);
+  if (card.place.name !== 'Papua, Indonesia')
+    throw new Error(`name=${card.place.name}`);
   if (card.place.lat !== -4.5326) throw new Error(`lat=${card.place.lat}`);
 });
 
@@ -71,37 +74,60 @@ async function runAll() {
   console.log('Running tests...\n');
   // Re-run async tests
   const tests = [
-    ['resolvePlace exact match (Jakarta)', async () => {
-      const p = await resolvePlace('jakarta');
-      if (p.name !== 'Jakarta, Indonesia') throw new Error(`name=${p.name}`);
-      if (p.lat !== -6.2) throw new Error(`lat=${p.lat}`);
-    }],
-    ['resolvePlace partial match (pap)', async () => {
-      const p = await resolvePlace('pap');
-      if (!p.name.includes('Papua')) throw new Error(`name=${p.name}`);
-    }],
-    ['resolvePlace fallback for unknown', async () => {
-      const p = await resolvePlace('zzzzzunknown');
-      if (!p) throw new Error('null result');
-    }],
-    ['fetchStreetPhoto returns available', async () => {
-      const place = { name: 'Test', lat: -6.2, lon: 106.8167 };
-      const photo = await fetchStreetPhoto(place);
-      if (!photo.available) throw new Error('not available');
-      if (photo.provider !== 'local-mock') throw new Error(`provider=${photo.provider}`);
-    }],
-    ['buildPlaceCard end-to-end', async () => {
-      const card = await buildPlaceCard('Jakarta');
-      if (card.place.name !== 'Jakarta, Indonesia') throw new Error(`name=${card.place.name}`);
-      if (!card.photo.available) throw new Error('photo not available');
-      if (card.source !== 'local-only') throw new Error(`source=${card.source}`);
-      if (!card.intent.tool) throw new Error('no intent tool');
-    }],
-    ['buildPlaceCard for Papua', async () => {
-      const card = await buildPlaceCard('Papua');
-      if (card.place.name !== 'Papua, Indonesia') throw new Error(`name=${card.place.name}`);
-      if (card.place.lat !== -4.5326) throw new Error(`lat=${card.place.lat}`);
-    }],
+    [
+      'resolvePlace exact match (Jakarta)',
+      async () => {
+        const p = await resolvePlace('jakarta');
+        if (p.name !== 'Jakarta, Indonesia') throw new Error(`name=${p.name}`);
+        if (p.lat !== -6.2) throw new Error(`lat=${p.lat}`);
+      },
+    ],
+    [
+      'resolvePlace partial match (pap)',
+      async () => {
+        const p = await resolvePlace('pap');
+        if (!p.name.includes('Papua')) throw new Error(`name=${p.name}`);
+      },
+    ],
+    [
+      'resolvePlace fallback for unknown',
+      async () => {
+        const p = await resolvePlace('zzzzzunknown');
+        if (!p) throw new Error('null result');
+      },
+    ],
+    [
+      'fetchStreetPhoto returns available',
+      async () => {
+        const place = { name: 'Test', lat: -6.2, lon: 106.8167 };
+        const photo = await fetchStreetPhoto(place);
+        if (!photo.available) throw new Error('not available');
+        if (photo.provider !== 'local-mock')
+          throw new Error(`provider=${photo.provider}`);
+      },
+    ],
+    [
+      'buildPlaceCard end-to-end',
+      async () => {
+        const card = await buildPlaceCard('Jakarta');
+        if (card.place.name !== 'Jakarta, Indonesia')
+          throw new Error(`name=${card.place.name}`);
+        if (!card.photo.available) throw new Error('photo not available');
+        if (card.source !== 'local-only')
+          throw new Error(`source=${card.source}`);
+        if (!card.intent.tool) throw new Error('no intent tool');
+      },
+    ],
+    [
+      'buildPlaceCard for Papua',
+      async () => {
+        const card = await buildPlaceCard('Papua');
+        if (card.place.name !== 'Papua, Indonesia')
+          throw new Error(`name=${card.place.name}`);
+        if (card.place.lat !== -4.5326)
+          throw new Error(`lat=${card.place.lat}`);
+      },
+    ],
   ];
 
   for (const [name, fn] of tests) {

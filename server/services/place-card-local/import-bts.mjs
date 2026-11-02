@@ -23,7 +23,10 @@ const ROOT = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '../../..',
 );
-const DEFAULT_OUT = path.join(ROOT, 'src/data/place-card-results/bts-registry.json');
+const DEFAULT_OUT = path.join(
+  ROOT,
+  'src/data/place-card-results/bts-registry.json',
+);
 
 /** Papua, the area this console watches. Override with --bbox. */
 export const PAPUA_BBOX = Object.freeze({
@@ -69,7 +72,9 @@ function distanceMeters(lat1, lon1, lat2, lon2) {
 }
 
 function inBox(lat, lon, box) {
-  return lat >= box.south && lat <= box.north && lon >= box.west && lon <= box.east;
+  return (
+    lat >= box.south && lat <= box.north && lon >= box.west && lon <= box.east
+  );
 }
 
 /**
@@ -198,7 +203,9 @@ export function parseOsmElements(payload) {
     const tags = element.tags || {};
     const tech = /5g/i.test(tags['communication:5g'] || '')
       ? '5G'
-      : /lte|4g/i.test(tags['communication:lte'] || tags['communication:4g'] || '')
+      : /lte|4g/i.test(
+            tags['communication:lte'] || tags['communication:4g'] || '',
+          )
         ? '4G'
         : /umts|3g/i.test(tags['communication:3g'] || '')
           ? '3G'
@@ -243,14 +250,21 @@ out center tags;`;
 }
 
 function parseArgs(argv) {
-  const args = { mergeM: 120, minSamples: 1, out: DEFAULT_OUT, bbox: PAPUA_BBOX };
+  const args = {
+    mergeM: 120,
+    minSamples: 1,
+    out: DEFAULT_OUT,
+    bbox: PAPUA_BBOX,
+  };
   for (let i = 0; i < argv.length; i += 1) {
     const flag = argv[i];
     if (flag === '--ocid' && argv[i + 1]) args.ocid = argv[++i];
     else if (flag === '--osm') args.osm = true;
     else if (flag === '--out' && argv[i + 1]) args.out = argv[++i];
-    else if (flag === '--merge-m' && argv[i + 1]) args.mergeM = Number(argv[++i]);
-    else if (flag === '--min-samples' && argv[i + 1]) args.minSamples = Number(argv[++i]);
+    else if (flag === '--merge-m' && argv[i + 1])
+      args.mergeM = Number(argv[++i]);
+    else if (flag === '--min-samples' && argv[i + 1])
+      args.minSamples = Number(argv[++i]);
     else if (flag === '--bbox' && argv[i + 1]) {
       const [south, west, north, east] = argv[++i].split(',').map(Number);
       if ([south, west, north, east].every(Number.isFinite)) {
@@ -271,11 +285,17 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (!args.ocid && !args.osm) {
     console.log('Usage:');
-    console.log('  node import-bts.mjs --ocid cell_towers.csv [--merge-m 120] [--min-samples 5]');
+    console.log(
+      '  node import-bts.mjs --ocid cell_towers.csv [--merge-m 120] [--min-samples 5]',
+    );
     console.log('  node import-bts.mjs --osm [--bbox south,west,north,east]');
     console.log('');
-    console.log('OpenCellID export: https://opencellid.org/downloads.php (API token required)');
-    console.log('Attribution: OpenCelliD, CC BY-SA 4.0 · OSM data © OpenStreetMap, ODbL');
+    console.log(
+      'OpenCellID export: https://opencellid.org/downloads.php (API token required)',
+    );
+    console.log(
+      'Attribution: OpenCelliD, CC BY-SA 4.0 · OSM data © OpenStreetMap, ODbL',
+    );
     return;
   }
 
@@ -283,10 +303,15 @@ async function main() {
   let source = 'imported';
   if (args.ocid) {
     const text = readFileSync(args.ocid, 'utf8');
-    const rows = parseOcidCsv(text, { bbox: args.bbox, minSamples: args.minSamples });
+    const rows = parseOcidCsv(text, {
+      bbox: args.bbox,
+      minSamples: args.minSamples,
+    });
     sites = groupIntoSites(rows, { mergeM: args.mergeM });
     source = `opencellid:${path.basename(args.ocid)}`;
-    console.log(`OpenCellID: ${rows.length} cell rows -> ${sites.length} sites`);
+    console.log(
+      `OpenCellID: ${rows.length} cell rows -> ${sites.length} sites`,
+    );
   } else {
     const response = await fetch(OVERPASS_URL, {
       method: 'POST',
@@ -299,8 +324,13 @@ async function main() {
     console.log(`OpenStreetMap: ${sites.length} masts`);
   }
 
-  const document = writeRegistry(toRegistry(sites, { source, bbox: args.bbox }), args.out);
-  console.log(`Wrote ${document.count} sites (${document.cells} cells) to ${args.out}`);
+  const document = writeRegistry(
+    toRegistry(sites, { source, bbox: args.bbox }),
+    args.out,
+  );
+  console.log(
+    `Wrote ${document.count} sites (${document.cells} cells) to ${args.out}`,
+  );
 }
 
 if (process.argv[1] && process.argv[1].endsWith('import-bts.mjs')) {

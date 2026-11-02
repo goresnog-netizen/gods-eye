@@ -144,7 +144,9 @@ export function buildCapabilities(facts = {}) {
       detail: btsReal
         ? 'per-site 2G/3G/4G from the registry; per-cell radio from the provider when keyed'
         : 'no registry yet: the radio is guessed from the carrier region',
-      source: btsReal ? 'bts-registry (+ OpenCellID radio field when live)' : null,
+      source: btsReal
+        ? 'bts-registry (+ OpenCellID radio field when live)'
+        : null,
       accuracy: 'the generation the cell serves — not its frequency',
       needs: null,
     },
@@ -153,7 +155,7 @@ export function buildCapabilities(facts = {}) {
       name: 'Band frequency (MHz)',
       status: 'estimate',
       detail:
-        'the technology profile\'s planning frequency; the exact EARFCN/UARFCN is not published per cell',
+        "the technology profile's planning frequency; the exact EARFCN/UARFCN is not published per cell",
       source: 'TECH_PROFILES planning table',
       accuracy:
         'a representative MHz per generation (e.g. 4G ≈ 1800), never a measured channel',
@@ -165,7 +167,7 @@ export function buildCapabilities(facts = {}) {
       name: 'IMEI detection',
       status: 'blocked',
       detail:
-        'an IMEI exists only in the handset and the operator\'s HLR/EIR — nothing on the air or in any public API reveals it',
+        "an IMEI exists only in the handset and the operator's HLR/EIR — nothing on the air or in any public API reveals it",
       source: null,
       accuracy: 'none — any tool claiming this from a phone number is a scam',
       needs:
@@ -176,17 +178,18 @@ export function buildCapabilities(facts = {}) {
       name: 'Device brand / model',
       status: 'blocked',
       detail:
-        'the IMEI\'s first 8 digits (TAC) name the model — but reading them needs the IMEI, which is blocked',
+        "the IMEI's first 8 digits (TAC) name the model — but reading them needs the IMEI, which is blocked",
       source: null,
       accuracy: 'none — without the IMEI there is nothing to look up',
-      needs: 'the IMEI (see imei-detect), then a TAC database such as the GSMA TAC',
+      needs:
+        'the IMEI (see imei-detect), then a TAC database such as the GSMA TAC',
     },
     {
       id: 'phone-owner',
       name: 'Number → owner',
       status: 'blocked',
       detail:
-        'the subscriber record lives in the operator\'s HLR under lawful process only',
+        "the subscriber record lives in the operator's HLR under lawful process only",
       source: null,
       accuracy: 'none',
       needs:

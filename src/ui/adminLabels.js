@@ -108,10 +108,7 @@ export class AdminLabelsOverlay {
     this.units = Array.isArray(units) ? units : [];
     this.document = doc || globalThis.document;
     this.container =
-      container ||
-      this.viewer?.container ||
-      this.document?.body ||
-      null;
+      container || this.viewer?.container || this.document?.body || null;
     this.enabled = Boolean(enabled);
     this.elements = elements || {};
     this._root = null;

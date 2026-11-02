@@ -43,7 +43,10 @@ export function estimateFootprintM(altitudeM, fovDeg = 60) {
     return { widthM: 0, heightM: 0 };
   }
   const fov = Number(fovDeg);
-  const half = Number.isFinite(fov) && fov > 0 ? (fov / 2) * (Math.PI / 180) : (60 / 2) * (Math.PI / 180);
+  const half =
+    Number.isFinite(fov) && fov > 0
+      ? (fov / 2) * (Math.PI / 180)
+      : (60 / 2) * (Math.PI / 180);
   const halfSpan = altitude * Math.tan(half);
   return { widthM: halfSpan * 2, heightM: halfSpan * 2 };
 }

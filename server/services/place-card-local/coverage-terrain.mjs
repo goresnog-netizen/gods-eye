@@ -90,7 +90,11 @@ export function defaultArtifactFile() {
  * the viewshed was computed with, so a 24-ring polygon is painted at its own
  * 15° resolution — no pretending between the radials.
  */
-export function paintViewshedCells(site, rings = [], cellDeg = DEFAULT_CELL_DEG) {
+export function paintViewshedCells(
+  site,
+  rings = [],
+  cellDeg = DEFAULT_CELL_DEG,
+) {
   const painted = new Set();
   const usable = rings.filter(
     (ring) => Number.isFinite(ring?.rangeKm) && ring.rangeKm > 0,
@@ -100,7 +104,8 @@ export function paintViewshedCells(site, rings = [], cellDeg = DEFAULT_CELL_DEG)
   if (!(maxKm > 0)) return painted;
   const step = 360 / rings.length;
   const dLat = maxKm / 111.32;
-  const dLon = maxKm / (111.32 * Math.max(0.05, Math.cos((site.lat * Math.PI) / 180)));
+  const dLon =
+    maxKm / (111.32 * Math.max(0.05, Math.cos((site.lat * Math.PI) / 180)));
   const south = Math.floor((site.lat - dLat) / cellDeg);
   const north = Math.ceil((site.lat + dLat) / cellDeg);
   const west = Math.floor((site.lon - dLon) / cellDeg);
@@ -333,7 +338,9 @@ export async function runTerrainCoverage({
     .sort((a, b) => {
       const ta = tileFor(a.lat, a.lon);
       const tb = tileFor(b.lat, b.lon);
-      return ta.y - tb.y || ta.x - tb.x || String(a.id).localeCompare(String(b.id));
+      return (
+        ta.y - tb.y || ta.x - tb.x || String(a.id).localeCompare(String(b.id))
+      );
     });
   const queue = limit > 0 ? pending.slice(0, limit) : pending;
   const chunks = [];
@@ -463,7 +470,9 @@ export async function runTerrainCoverage({
 }
 
 /** Read the published report, or null when no run has happened yet. */
-export async function readTerrainCoverage(artifactFile = defaultArtifactFile()) {
+export async function readTerrainCoverage(
+  artifactFile = defaultArtifactFile(),
+) {
   try {
     const parsed = JSON.parse(await readFile(artifactFile, 'utf8'));
     if (parsed?.version === TERRAIN_COVERAGE_VERSION && parsed.report) {

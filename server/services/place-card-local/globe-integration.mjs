@@ -1,6 +1,6 @@
 /**
  * Globe Integration — Fly to target location on God's Eye globe.
- * 
+ *
  * Generates JS code snippets for CesiumJS camera flyTo.
  * All local, no external calls.
  */
@@ -21,7 +21,12 @@ export function generateFlyToCode(lat, lon, altitude = 5000, duration = 3) {
 });`;
 }
 
-export function generateTargetMarker(lat, lon, label = 'Target', color = '#ff0000') {
+export function generateTargetMarker(
+  lat,
+  lon,
+  label = 'Target',
+  color = '#ff0000',
+) {
   return `viewer.entities.add({
   name: '${label}',
   position: Cesium.Cartesian3.fromDegrees(${lon}, ${lat}),
@@ -48,39 +53,58 @@ export function generateCellTowerOverlay(cellResult) {
   const { lat, lon, carrier, accuracy, estimated } = cellResult;
   const color = estimated ? '#ffaa00' : '#00ff00';
   const label = `${carrier.name} - ${estimated ? 'EST' : 'REAL'}`;
-  
-  return generateTargetMarker(lat, lon, label, color) + '\n' + generateFlyToCode(lat, lon, accuracy * 2, 2);
+
+  return (
+    generateTargetMarker(lat, lon, label, color) +
+    '\n' +
+    generateFlyToCode(lat, lon, accuracy * 2, 2)
+  );
 }
 
 export function generatePhoneLocationOverlay(phoneResult) {
   const { lat, lon, location, country } = phoneResult;
   if (!lat || !lon) return null;
-  
-  return generateTargetMarker(lat, lon, `${location}, ${country}`, '#00aaff') + '\n' + generateFlyToCode(lat, lon, 10000, 3);
+
+  return (
+    generateTargetMarker(lat, lon, `${location}, ${country}`, '#00aaff') +
+    '\n' +
+    generateFlyToCode(lat, lon, 10000, 3)
+  );
 }
 
 export function generateMultiTargetOverlay(targets) {
-  const codes = targets.map(t => 
-    generateTargetMarker(t.lat, t.lon, t.name || t.id, t.color || '#ff0000')
+  const codes = targets.map((t) =>
+    generateTargetMarker(t.lat, t.lon, t.name || t.id, t.color || '#ff0000'),
   );
   return codes.join('\n');
 }
 
-function generateMultiTarget(targets) { return generateMultiTargetOverlay(targets); }
+function generateMultiTarget(targets) {
+  return generateMultiTargetOverlay(targets);
+}
 
 /**
  * CLI
  */
 async function main() {
   const args = process.argv.slice(2);
-  let lat = -4.5326, lon = 140.5066, label = 'Target';
-  
+  let lat = -4.5326,
+    lon = 140.5066,
+    label = 'Target';
+
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--lat' && args[i + 1]) { lat = parseFloat(args[i + 1]); i++; }
-    else if (args[i] === '--lon' && args[i + 1]) { lon = parseFloat(args[i + 1]); i++; }
-    else if (args[i] === '--label' && args[i + 1]) { label = args[i + 1]; i++; }
+    if (args[i] === '--lat' && args[i + 1]) {
+      lat = parseFloat(args[i + 1]);
+      i++;
+    } else if (args[i] === '--lon' && args[i + 1]) {
+      lon = parseFloat(args[i + 1]);
+      i++;
+    } else if (args[i] === '--label' && args[i + 1]) {
+      label = args[i + 1];
+      i++;
+    }
   }
-  
+
   console.log('=== Globe Fly-To Code ===');
   console.log(generateFlyToCode(lat, lon));
   console.log('\n=== Target Marker Code ===');
@@ -88,7 +112,7 @@ async function main() {
 }
 
 if (process.argv[1] && process.argv[1].endsWith('globe-integration.mjs')) {
-  main().catch(e => {
+  main().catch((e) => {
     console.error('Error:', e.message);
     process.exit(1);
   });

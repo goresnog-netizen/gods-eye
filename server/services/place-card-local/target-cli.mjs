@@ -7,7 +7,11 @@
  *   node server/services/place-card-local/target-cli.mjs "Jayapura" --region papua
  */
 
-import { buildTargetProfile, resolveTarget, getTargetsByRegion } from './target-tracker.mjs';
+import {
+  buildTargetProfile,
+  resolveTarget,
+  getTargetsByRegion,
+} from './target-tracker.mjs';
 import { writeFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 
@@ -38,7 +42,9 @@ async function main() {
   }
 
   if (!query) {
-    console.log('Usage: node target-cli.mjs <query> [--region papua] [--json] [--output file]');
+    console.log(
+      'Usage: node target-cli.mjs <query> [--region papua] [--json] [--output file]',
+    );
     process.exit(1);
   }
 

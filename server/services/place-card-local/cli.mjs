@@ -39,7 +39,9 @@ async function main() {
     console.log(`  Name:    ${card.place.name}`);
     console.log(`  Lat/Lon: ${card.place.lat}, ${card.place.lon}`);
     console.log(`  Radius:  ${card.radiusKm} km`);
-    console.log(`  Photo:   ${card.photo.available ? 'available' : 'not available'}`);
+    console.log(
+      `  Photo:   ${card.photo.available ? 'available' : 'not available'}`,
+    );
     console.log(`  Source:  ${card.source}`);
     console.log(`  Intent:  ${card.intent.tool}`);
   }
