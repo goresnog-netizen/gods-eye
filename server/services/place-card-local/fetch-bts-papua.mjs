@@ -95,9 +95,12 @@ export function probeBoxes(centre, { radiusKm = 4, boxKm = 1.8 } = {}) {
       const south = startLat + row * stepLat;
       const west = startLon + col * stepLon;
       const box = {
-        // The id is the coordinates, not the grid position: widening the
-        // radius must not make an old "done" mark point at a different area.
-        id: `${centre.id}:${south.toFixed(4)},${west.toFixed(4)}`,
+        // The identity of a box is the ground it covers, so the id is its
+        // south-west corner and nothing else. Keying on the centre as well
+        // meant re-probing the same square from a second town (or from
+        // `--centre`) was billed again — a 49-credit repeat of ground the
+        // state file already had.
+        id: `${south.toFixed(4)},${west.toFixed(4)}`,
         label: centre.label || centre.id,
         south: Number(south.toFixed(5)),
         west: Number(west.toFixed(5)),
@@ -123,6 +126,40 @@ export function defaultCentres() {
 /** Read the resumable state; a missing or broken file starts a fresh run. */
 export const STATE_VERSION = 2;
 
+/**
+ * The coordinate part of a state key.
+ *
+ * Older runs keyed a box as `<centre>:<south>,<west>`. The centre carried no
+ * information about the ground, and it made the same square look new whenever
+ * it was reached from a different town, so the key is now coordinates only.
+ * Normalising on load keeps the credits already spent: every old mark still
+ * matches the box it was paid for.
+ * @param {string} key
+ * @returns {string}
+ */
+export function normalizeBoxKey(key) {
+  const text = String(key ?? '');
+  const cut = text.lastIndexOf(':');
+  return cut >= 0 ? text.slice(cut + 1) : text;
+}
+
+/**
+ * Re-key a state's boxes by coordinates, keeping the strongest mark when two
+ * legacy keys collapse onto the same square.
+ * @param {object} boxes
+ * @returns {object}
+ */
+export function normalizeBoxes(boxes) {
+  if (!boxes || typeof boxes !== 'object') return {};
+  const out = {};
+  for (const [key, value] of Object.entries(boxes)) {
+    const id = normalizeBoxKey(key);
+    const previous = out[id];
+    out[id] = previous?.done ? previous : value;
+  }
+  return out;
+}
+
 export function loadState(file) {
   try {
     const parsed = JSON.parse(readFileSync(file, 'utf8'));
@@ -139,8 +176,7 @@ export function loadState(file) {
       };
     }
     return {
-      boxes:
-        parsed?.boxes && typeof parsed.boxes === 'object' ? parsed.boxes : {},
+      boxes: normalizeBoxes(parsed?.boxes),
       requests: Number(parsed?.requests) || 0,
       cells: Number(parsed?.cells) || 0,
       probe: parsed?.probe || null,
@@ -271,6 +307,8 @@ export async function collectCellsByProbe({
   if (!key) return { ok: false, error: 'key_required', cells: [], requests: 0 };
   const collected = [];
   let requests = 0;
+  // What previous runs already spent; the state carries the running total.
+  const requestsBefore = Number(state.requests) || 0;
   let stopped = null;
   let visited = 0;
 
@@ -336,7 +374,11 @@ export async function collectCellsByProbe({
       fetched,
       at: new Date().toISOString(),
     };
-    state.requests = requests;
+    // Credits are cumulative across runs: a second sweep must not reset the
+    // counter to that sweep's spend, or the registry reports a budget it never
+    // had. `requests` is this run's running total, so adding it to the value
+    // read at the start stays idempotent while the loop writes state per box.
+    state.requests = requestsBefore + requests;
     state.cells = (state.cells || 0) + fetched;
     if (fetched) log(`box ${box.id}: ${fetched}/${total ?? '?'} cells`);
     onBox?.({ box, state, requests, cells: fetched });

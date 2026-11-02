@@ -1,14 +1,14 @@
 {
   "source": "opencellid:api-probe",
-  "generatedAt": "2026-10-25T01:46:29.934Z",
+  "generatedAt": "2026-11-02T07:16:22.571Z",
   "bbox": {
     "south": -9.5,
     "west": 130,
     "north": 1.5,
     "east": 141.5
   },
-  "count": 2030,
-  "cells": 4629,
+  "count": 2188,
+  "cells": 4935,
   "sites": [
     {
       "id": "bts-510-10-10062-106271263",
@@ -9982,6 +9982,10 @@
         {
           "lac": 9921,
           "cellId": 65038364
+        },
+        {
+          "lac": 19427,
+          "cellId": 26273
         }
       ],
       "source": "opencellid",
@@ -18732,6 +18736,10 @@
         {
           "lac": 10111,
           "cellId": 105217547
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988885
         }
       ],
       "source": "opencellid",
@@ -23508,6 +23516,14 @@
         {
           "lac": 10380,
           "cellId": 105258775
+        },
+        {
+          "lac": 9911,
+          "cellId": 64950367
+        },
+        {
+          "lac": 19442,
+          "cellId": 44733
         }
       ],
       "source": "opencellid",
@@ -30839,6 +30855,10 @@
         {
           "lac": 10350,
           "cellId": 105481249
+        },
+        {
+          "lac": 9913,
+          "cellId": 41212
         }
       ],
       "source": "opencellid",
@@ -35345,6 +35365,22 @@
         {
           "lac": 9991,
           "cellId": 65513926
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742488
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513930
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513932
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513933
         }
       ],
       "source": "opencellid",
@@ -50054,8 +50090,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G",
-        "3G"
+        "2G"
       ],
       "samples": 1
     },
@@ -50750,8 +50785,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G",
-        "4G"
+        "2G"
       ],
       "samples": 1
     },
@@ -51032,8 +51066,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -51087,8 +51120,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G",
-        "3G"
+        "4G"
       ],
       "samples": 1
     },
@@ -51170,9 +51202,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G",
-        "3G",
-        "4G"
+        "2G"
       ],
       "samples": 1
     },
@@ -51314,8 +51344,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G",
-        "3G"
+        "2G"
       ],
       "samples": 1
     },
@@ -51407,8 +51436,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G",
-        "3G"
+        "2G"
       ],
       "samples": 1
     },
@@ -51512,8 +51540,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G",
-        "3G"
+        "4G"
       ],
       "samples": 1
     },
@@ -51567,8 +51594,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -51635,8 +51661,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G",
-        "3G"
+        "4G"
       ],
       "samples": 1
     },
@@ -52100,8 +52125,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -52147,8 +52171,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -52553,8 +52576,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -52616,8 +52638,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -52825,8 +52846,7 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G",
-        "2G"
+        "3G"
       ],
       "samples": 1
     },
@@ -53051,11 +53071,3885 @@
         "2G"
       ],
       "samples": 1
+    },
+    {
+      "id": "bts-510-10-19422-41923",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.59,
+      "lon": 140.674,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19422,
+          "cellId": 41923
+        },
+        {
+          "lac": 56907,
+          "cellId": 41923
+        },
+        {
+          "lac": 10011,
+          "cellId": 106296843
+        },
+        {
+          "lac": 19422,
+          "cellId": 28381
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033203",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.589,
+      "lon": 140.67,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033203
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033137
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033210
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033134
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10040-65837169",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.512,
+      "lon": 140.725,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10040,
+          "cellId": 65837169
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10040-65801076",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.51,
+      "lon": 140.712,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10040,
+          "cellId": 65801076
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65013643",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.51,
+      "lon": 140.71,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65013643
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10040-0",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.52,
+      "lon": 140.726,
+      "tech": "3G",
+      "rangeKm": 2.595,
+      "cells": [
+        {
+          "lac": 10040,
+          "cellId": 0
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105224213",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.597,
+      "lon": 136.874,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105224213
+        },
+        {
+          "lac": 10320,
+          "cellId": 67676658
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10320-67676655",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.595,
+      "lon": 136.871,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10320,
+          "cellId": 67676655
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988463",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.593,
+      "lon": 136.879,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988463
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105242399",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.591,
+      "lon": 136.871,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105242399
+        },
+        {
+          "lac": 19600,
+          "cellId": 42283
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988878",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.59,
+      "lon": 136.877,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988878
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988457
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988182
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988465",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.589,
+      "lon": 136.871,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988465
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988882",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.589,
+      "lon": 136.874,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988882
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64989695",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.588,
+      "lon": 136.873,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64989695
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988459",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.587,
+      "lon": 136.866,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988459
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988462
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988881",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.587,
+      "lon": 136.877,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988881
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988179
+        },
+        {
+          "lac": 4027,
+          "cellId": 6704221
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19600-43501",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.587,
+      "lon": 136.875,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19600,
+          "cellId": 43501
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675861
+        },
+        {
+          "lac": 19600,
+          "cellId": 42702
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675854
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675857
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675158
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675860
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675853
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675859
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675856
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675855
+        },
+        {
+          "lac": 10320,
+          "cellId": 67675155
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64989945",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.594,
+      "lon": 136.882,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64989945
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989942
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989939
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64989091",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.542,
+      "lon": 136.842,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64989091
+        },
+        {
+          "lac": 9911,
+          "cellId": 1733276
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105218315",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.531,
+      "lon": 136.843,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105218315
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64950369",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.528,
+      "lon": 136.835,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64950369
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988984
+        },
+        {
+          "lac": 19443,
+          "cellId": 2121
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988982",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.526,
+      "lon": 136.835,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988982
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988979
+        },
+        {
+          "lac": 19443,
+          "cellId": 2122
+        },
+        {
+          "lac": 19442,
+          "cellId": 2073
+        },
+        {
+          "lac": 19442,
+          "cellId": 2522
+        },
+        {
+          "lac": 9911,
+          "cellId": 64950372
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19443-42802",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.526,
+      "lon": 136.837,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19443,
+          "cellId": 42802
+        },
+        {
+          "lac": 19443,
+          "cellId": 42911
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988985
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64950375",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.524,
+      "lon": 136.837,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64950375
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988983",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.523,
+      "lon": 136.84,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988983
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988980
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-2072",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.522,
+      "lon": 136.841,
+      "tech": "2G",
+      "rangeKm": 8.56,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 2072
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105218335",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.519,
+      "lon": 136.843,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105218335
+        },
+        {
+          "lac": 19443,
+          "cellId": 42801
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105218336",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.516,
+      "lon": 136.844,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105218336
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64950370",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.516,
+      "lon": 136.846,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64950370
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989669
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989675
+        },
+        {
+          "lac": 19443,
+          "cellId": 4193
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19443-2193",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.515,
+      "lon": 136.845,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19443,
+          "cellId": 2193
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64950373",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.512,
+      "lon": 136.846,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64950373
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989152
+        },
+        {
+          "lac": 9911,
+          "cellId": 1630879
+        },
+        {
+          "lac": 10380,
+          "cellId": 105258765
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64990915",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.511,
+      "lon": 136.844,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64990915
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64990909",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.509,
+      "lon": 136.846,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64990909
+        },
+        {
+          "lac": 10380,
+          "cellId": 105273623
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10320-67677124",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.508,
+      "lon": 136.847,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10320,
+          "cellId": 67677124
+        },
+        {
+          "lac": 10111,
+          "cellId": 105233951
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105218316",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.507,
+      "lon": 136.844,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105218316
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10380-105233943",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.506,
+      "lon": 136.847,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10380,
+          "cellId": 105233943
+        },
+        {
+          "lac": 9911,
+          "cellId": 64990912
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105233675",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.496,
+      "lon": 136.843,
+      "tech": "4G",
+      "rangeKm": 2.383,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105233675
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-44732",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.503,
+      "lon": 136.848,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 44732
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105243915",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.503,
+      "lon": 136.851,
+      "tech": "4G",
+      "rangeKm": 6.296,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105243915
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-42922",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.499,
+      "lon": 136.848,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 42922
+        },
+        {
+          "lac": 9911,
+          "cellId": 64990910
+        },
+        {
+          "lac": 9911,
+          "cellId": 582297
+        },
+        {
+          "lac": 19442,
+          "cellId": 44731
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105221407",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.499,
+      "lon": 136.853,
+      "tech": "4G",
+      "rangeKm": 5.556,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105221407
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-4132",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.497,
+      "lon": 136.848,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 4132
+        },
+        {
+          "lac": 19443,
+          "cellId": 42391
+        },
+        {
+          "lac": 9911,
+          "cellId": 64990907
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989101
+        },
+        {
+          "lac": 9911,
+          "cellId": 684699
+        },
+        {
+          "lac": 19442,
+          "cellId": 42921
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988570
+        },
+        {
+          "lac": 19442,
+          "cellId": 2303
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105241611",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.496,
+      "lon": 136.859,
+      "tech": "4G",
+      "rangeKm": 5.987,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105241611
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19443-42392",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.496,
+      "lon": 136.849,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19443,
+          "cellId": 42392
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988567
+        },
+        {
+          "lac": 9911,
+          "cellId": 582298
+        },
+        {
+          "lac": 9911,
+          "cellId": 582299
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988977
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64989568",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.496,
+      "lon": 136.855,
+      "tech": "3G",
+      "rangeKm": 2.219,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64989568
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-1630874",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.495,
+      "lon": 136.848,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 1630874
+        },
+        {
+          "lac": 9911,
+          "cellId": 1630876
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989104
+        },
+        {
+          "lac": 9911,
+          "cellId": 64988573
+        },
+        {
+          "lac": 9911,
+          "cellId": 64989098
+        },
+        {
+          "lac": 19442,
+          "cellId": 42233
+        },
+        {
+          "lac": 9911,
+          "cellId": 64990913
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10380-105241623",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.493,
+      "lon": 136.848,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10380,
+          "cellId": 105241623
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10320-67677117",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.492,
+      "lon": 136.849,
+      "tech": "3G",
+      "rangeKm": 2.264,
+      "cells": [
+        {
+          "lac": 10320,
+          "cellId": 67677117
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10111-105241621",
+      "name": "Timika Kota · Telkomsel 4G",
+      "lat": -4.492,
+      "lon": 136.847,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10111,
+          "cellId": 105241621
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-2232",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.49,
+      "lon": 136.854,
+      "tech": "2G",
+      "rangeKm": 3.673,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 2232
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64988479",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.501,
+      "lon": 136.879,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64988479
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10320-67675949",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.49,
+      "lon": 136.868,
+      "tech": "3G",
+      "rangeKm": 5.172,
+      "cells": [
+        {
+          "lac": 10320,
+          "cellId": 67675949
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9911-64948350",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.502,
+      "lon": 136.892,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9911,
+          "cellId": 64948350
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10320-67635327",
+      "name": "Timika Kota · Telkomsel 3G",
+      "lat": -4.499,
+      "lon": 136.882,
+      "tech": "3G",
+      "rangeKm": 6.84,
+      "cells": [
+        {
+          "lac": 10320,
+          "cellId": 67635327
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19442-2301",
+      "name": "Timika Kota · Telkomsel 2G",
+      "lat": -4.499,
+      "lon": 136.898,
+      "tech": "2G",
+      "rangeKm": 2.003,
+      "cells": [
+        {
+          "lac": 19442,
+          "cellId": 2301
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19485-5173",
+      "name": "Merauke Kota · Telkomsel 2G",
+      "lat": -8.541,
+      "lon": 140.42,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19485,
+          "cellId": 5173
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65253492",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.541,
+      "lon": 140.442,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65253492
+        },
+        {
+          "lac": 9951,
+          "cellId": 65319030
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65319032",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.538,
+      "lon": 140.429,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65319032
+        },
+        {
+          "lac": 19484,
+          "cellId": 45173
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65319031",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.538,
+      "lon": 140.433,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65319031
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65319679",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.545,
+      "lon": 140.453,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65319679
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19484-45171",
+      "name": "Merauke Kota · Telkomsel 2G",
+      "lat": -8.54,
+      "lon": 140.443,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19484,
+          "cellId": 45171
+        },
+        {
+          "lac": 9951,
+          "cellId": 65319033
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65253491",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.539,
+      "lon": 140.449,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65253491
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19484-45172",
+      "name": "Merauke Kota · Telkomsel 2G",
+      "lat": -8.537,
+      "lon": 140.453,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19484,
+          "cellId": 45172
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9951-65319087",
+      "name": "Merauke Kota · Telkomsel 3G",
+      "lat": -8.457,
+      "lon": 140.449,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9951,
+          "cellId": 65319087
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-3933",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.375,
+      "lon": 135.429,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 3933
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-1212",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.354,
+      "lon": 135.527,
+      "tech": "2G",
+      "rangeKm": 1.845,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 1212
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10010-65627678",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.35,
+      "lon": 135.526,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10010,
+          "cellId": 65627678
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10010-65627681",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.349,
+      "lon": 135.528,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10010,
+          "cellId": 65627681
+        },
+        {
+          "lac": 10010,
+          "cellId": 65623481
+        },
+        {
+          "lac": 10010,
+          "cellId": 65623471
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9913-64987389",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.349,
+      "lon": 135.525,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9913,
+          "cellId": 64987389
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9913-64972298",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.346,
+      "lon": 135.527,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9913,
+          "cellId": 64972298
+        },
+        {
+          "lac": 9913,
+          "cellId": 64972318
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-21932",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.345,
+      "lon": 135.525,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 21932
+        },
+        {
+          "lac": 10350,
+          "cellId": 105481227
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-4213",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.343,
+      "lon": 135.527,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 4213
+        },
+        {
+          "lac": 19474,
+          "cellId": 26183
+        },
+        {
+          "lac": 9913,
+          "cellId": 64972301
+        },
+        {
+          "lac": 10350,
+          "cellId": 105480725
+        },
+        {
+          "lac": 19474,
+          "cellId": 21931
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-26182",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.343,
+      "lon": 135.529,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 26182
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-29032",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.343,
+      "lon": 135.532,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 29032
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10350-105480715",
+      "name": "Nabire Kota · Telkomsel 4G",
+      "lat": -3.342,
+      "lon": 135.528,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10350,
+          "cellId": 105480715
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-4212",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.342,
+      "lon": 135.531,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 4212
+        },
+        {
+          "lac": 10350,
+          "cellId": 105488919
+        },
+        {
+          "lac": 10350,
+          "cellId": 105472536
+        },
+        {
+          "lac": 19474,
+          "cellId": 29031
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10350-185349134",
+      "name": "Nabire Kota · Telkomsel 4G",
+      "lat": -3.341,
+      "lon": 135.532,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10350,
+          "cellId": 185349134
+        },
+        {
+          "lac": 10350,
+          "cellId": 105477152
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10350-105477151",
+      "name": "Nabire Kota · Telkomsel 4G",
+      "lat": -3.34,
+      "lon": 135.533,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10350,
+          "cellId": 105477151
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9913-64972300",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.338,
+      "lon": 135.532,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9913,
+          "cellId": 64972300
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10350-185349135",
+      "name": "Nabire Kota · Telkomsel 4G",
+      "lat": -3.337,
+      "lon": 135.538,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10350,
+          "cellId": 185349135
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9913-64972297",
+      "name": "Nabire Kota · Telkomsel 3G",
+      "lat": -3.336,
+      "lon": 135.539,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9913,
+          "cellId": 64972297
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19474-4211",
+      "name": "Nabire Kota · Telkomsel 2G",
+      "lat": -3.335,
+      "lon": 135.535,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19474,
+          "cellId": 4211
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65513653",
+      "name": "Biak Kota · Telkomsel 3G",
+      "lat": -1.135,
+      "lon": 136.062,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65513653
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19476-43163",
+      "name": "Biak Kota · Telkomsel 2G",
+      "lat": -1.13,
+      "lon": 136.079,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19476,
+          "cellId": 43163
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65505788",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.925,
+      "lon": 131.287,
+      "tech": "3G",
+      "rangeKm": 5.786,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65505788
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62742487",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.903,
+      "lon": 131.304,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62742487
+        },
+        {
+          "lac": 19436,
+          "cellId": 4473
+        },
+        {
+          "lac": 19435,
+          "cellId": 24822
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62742484",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.9,
+      "lon": 131.306,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62742484
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62742490",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.899,
+      "lon": 131.307,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62742490
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19434-24012",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.897,
+      "lon": 131.302,
+      "tech": "2G",
+      "rangeKm": 1.314,
+      "cells": [
+        {
+          "lac": 19434,
+          "cellId": 24012
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19437-4243",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.897,
+      "lon": 131.31,
+      "tech": "2G",
+      "rangeKm": 2.492,
+      "cells": [
+        {
+          "lac": 19437,
+          "cellId": 4243
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62742528",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.896,
+      "lon": 131.308,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62742528
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742491
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19437-44523",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.895,
+      "lon": 131.31,
+      "tech": "2G",
+      "rangeKm": 1.275,
+      "cells": [
+        {
+          "lac": 19437,
+          "cellId": 44523
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103472405",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.895,
+      "lon": 131.312,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103472405
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62762017",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.894,
+      "lon": 131.311,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62762017
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62753080",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.894,
+      "lon": 131.303,
+      "tech": "3G",
+      "rangeKm": 4.014,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62753080
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-44542",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.894,
+      "lon": 131.307,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 44542
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9931-65099390",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.893,
+      "lon": 131.309,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9931,
+          "cellId": 65099390
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742145
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103461663",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.892,
+      "lon": 131.305,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103461663
+        },
+        {
+          "lac": 10000,
+          "cellId": 62740110
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103452959",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.891,
+      "lon": 131.308,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103452959
+        },
+        {
+          "lac": 10000,
+          "cellId": 62740109
+        },
+        {
+          "lac": 10091,
+          "cellId": 103462923
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-22152",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.891,
+      "lon": 131.304,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 22152
+        },
+        {
+          "lac": 10000,
+          "cellId": 62740105
+        },
+        {
+          "lac": 10091,
+          "cellId": 103462933
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38511-59358",
+      "name": "Sorong Kota · Carrier 510-1 2G",
+      "lat": -0.891,
+      "lon": 131.302,
+      "tech": "2G",
+      "rangeKm": 1.221,
+      "cells": [
+        {
+          "lac": 38511,
+          "cellId": 59358
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515320",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.89,
+      "lon": 131.309,
+      "tech": "3G",
+      "rangeKm": 3.196,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515320
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38511-59322",
+      "name": "Sorong Kota · Carrier 510-1 2G",
+      "lat": -0.89,
+      "lon": 131.297,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 38511,
+          "cellId": 59322
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515006",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.89,
+      "lon": 131.297,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515006
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513929
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513931
+        },
+        {
+          "lac": 10091,
+          "cellId": 103466005
+        },
+        {
+          "lac": 9991,
+          "cellId": 65515012
+        },
+        {
+          "lac": 19435,
+          "cellId": 24113
+        },
+        {
+          "lac": 9991,
+          "cellId": 65514497
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19436-24293",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.89,
+      "lon": 131.312,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19436,
+          "cellId": 24293
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742068
+        },
+        {
+          "lac": 9931,
+          "cellId": 65122223
+        },
+        {
+          "lac": 10000,
+          "cellId": 62762927
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742857
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515005",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.889,
+      "lon": 131.299,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515005
+        },
+        {
+          "lac": 9991,
+          "cellId": 65513925
+        },
+        {
+          "lac": 9991,
+          "cellId": 65515011
+        },
+        {
+          "lac": 9991,
+          "cellId": 65515008
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9931-65099402",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.889,
+      "lon": 131.307,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9931,
+          "cellId": 65099402
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9931-65122222",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.889,
+      "lon": 131.311,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9931,
+          "cellId": 65122222
+        },
+        {
+          "lac": 10000,
+          "cellId": 62762929
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742066
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65495251",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.889,
+      "lon": 131.303,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65495251
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515372",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.888,
+      "lon": 131.304,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515372
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65514817",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.875,
+      "lon": 131.21,
+      "tech": "3G",
+      "rangeKm": 2.566,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65514817
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-24843",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.884,
+      "lon": 131.298,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 24843
+        },
+        {
+          "lac": 19435,
+          "cellId": 44252
+        },
+        {
+          "lac": 10091,
+          "cellId": 103426837
+        },
+        {
+          "lac": 19435,
+          "cellId": 44672
+        },
+        {
+          "lac": 19435,
+          "cellId": 4252
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103431691",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.884,
+      "lon": 131.312,
+      "tech": "4G",
+      "rangeKm": 1.815,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103431691
+        },
+        {
+          "lac": 19436,
+          "cellId": 24242
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-44251",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.883,
+      "lon": 131.303,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 44251
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515136",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.882,
+      "lon": 131.297,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515136
+        },
+        {
+          "lac": 19435,
+          "cellId": 24663
+        },
+        {
+          "lac": 9991,
+          "cellId": 65494858
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515592",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.882,
+      "lon": 131.305,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515592
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-103426847",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.882,
+      "lon": 131.3,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 103426847
+        },
+        {
+          "lac": 10091,
+          "cellId": 103426847
+        },
+        {
+          "lac": 9991,
+          "cellId": 65514479
+        },
+        {
+          "lac": 9991,
+          "cellId": 65514476
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-24842",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.881,
+      "lon": 131.299,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 24842
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38511-59094",
+      "name": "Sorong Kota · Carrier 510-1 2G",
+      "lat": -0.881,
+      "lon": 131.302,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 38511,
+          "cellId": 59094
+        },
+        {
+          "lac": 38511,
+          "cellId": 59095
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103426827",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.881,
+      "lon": 131.302,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103426827
+        },
+        {
+          "lac": 9991,
+          "cellId": 65514721
+        },
+        {
+          "lac": 9991,
+          "cellId": 65514478
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65514722",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.881,
+      "lon": 131.304,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65514722
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-1831-65514719",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.881,
+      "lon": 131.307,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 1831,
+          "cellId": 65514719
+        },
+        {
+          "lac": 19435,
+          "cellId": 44193
+        },
+        {
+          "lac": 9991,
+          "cellId": 65495156
+        },
+        {
+          "lac": 19436,
+          "cellId": 4373
+        },
+        {
+          "lac": 19435,
+          "cellId": 24202
+        },
+        {
+          "lac": 10000,
+          "cellId": 65495159
+        },
+        {
+          "lac": 9991,
+          "cellId": 65495159
+        },
+        {
+          "lac": 9991,
+          "cellId": 65495162
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-62742500",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.881,
+      "lon": 131.311,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 62742500
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742365
+        },
+        {
+          "lac": 10000,
+          "cellId": 62742497
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10000-65495162",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.881,
+      "lon": 131.309,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10000,
+          "cellId": 65495162
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103449109",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.88,
+      "lon": 131.312,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103449109
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-24122",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.88,
+      "lon": 131.3,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 24122
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103449119",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.879,
+      "lon": 131.308,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103449119
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-44573",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.879,
+      "lon": 131.298,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 44573
+        },
+        {
+          "lac": 19435,
+          "cellId": 44671
+        },
+        {
+          "lac": 19435,
+          "cellId": 4253
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103434773",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.878,
+      "lon": 131.299,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103434773
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-44572",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.877,
+      "lon": 131.3,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 44572
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-24121",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.875,
+      "lon": 131.297,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 24121
+        },
+        {
+          "lac": 19435,
+          "cellId": 44381
+        },
+        {
+          "lac": 9991,
+          "cellId": 65515587
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19435-44571",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.874,
+      "lon": 131.298,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19435,
+          "cellId": 44571
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103450123",
+      "name": "Sorong Kota · Telkomsel 4G",
+      "lat": -0.831,
+      "lon": 131.235,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103450123
+        },
+        {
+          "lac": 9991,
+          "cellId": 65494840
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65494835",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.83,
+      "lon": 131.238,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65494835
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65494839",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.829,
+      "lon": 131.235,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65494839
+        },
+        {
+          "lac": 9991,
+          "cellId": 65494836
+        },
+        {
+          "lac": 9991,
+          "cellId": 65494842
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19431-4113",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.829,
+      "lon": 131.239,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19431,
+          "cellId": 4113
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19504-14371",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.827,
+      "lon": 131.235,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19504,
+          "cellId": 14371
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65494838",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.823,
+      "lon": 131.237,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65494838
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65514769",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.823,
+      "lon": 131.24,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65514769
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9991-65515102",
+      "name": "Sorong Kota · Telkomsel 3G",
+      "lat": -0.822,
+      "lon": 131.246,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9991,
+          "cellId": 65515102
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19504-44301",
+      "name": "Sorong Kota · Telkomsel 2G",
+      "lat": -0.821,
+      "lon": 131.243,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19504,
+          "cellId": 44301
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65171128",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.918,
+      "lon": 134.031,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65171128
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65184545",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.915,
+      "lon": 134.035,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65184545
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65154039",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.913,
+      "lon": 134.037,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65154039
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65168833",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.907,
+      "lon": 134.037,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65168833
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10041-103169548",
+      "name": "Manokwari Kota · Telkomsel 4G",
+      "lat": -0.904,
+      "lon": 134.035,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10041,
+          "cellId": 103169548
+        },
+        {
+          "lac": 9941,
+          "cellId": 65172263
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10041-103171595",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.903,
+      "lon": 134.036,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10041,
+          "cellId": 103171595
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65168827",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.902,
+      "lon": 134.037,
+      "tech": "3G",
+      "rangeKm": 1.115,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65168827
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65172262",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.905,
+      "lon": 134.038,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65172262
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19464-11251",
+      "name": "Manokwari Kota · Telkomsel 2G",
+      "lat": -0.904,
+      "lon": 134.041,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19464,
+          "cellId": 11251
+        },
+        {
+          "lac": 19464,
+          "cellId": 11252
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19464-26043",
+      "name": "Manokwari Kota · Telkomsel 2G",
+      "lat": -0.903,
+      "lon": 134.039,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19464,
+          "cellId": 26043
+        },
+        {
+          "lac": 9941,
+          "cellId": 65172256
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65171731",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.871,
+      "lon": 134.105,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65171731
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65163817",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.871,
+      "lon": 134.107,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65163817
+        },
+        {
+          "lac": 9941,
+          "cellId": 65171725
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9941-65171728",
+      "name": "Manokwari Kota · Telkomsel 3G",
+      "lat": -0.871,
+      "lon": 134.112,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9941,
+          "cellId": 65171728
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19462-21033",
+      "name": "Manokwari Kota · Telkomsel 2G",
+      "lat": -0.867,
+      "lon": 134.114,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19462,
+          "cellId": 21033
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10091-103179787",
+      "name": "Manokwari Kota · Telkomsel 4G",
+      "lat": -0.86,
+      "lon": 134.112,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10091,
+          "cellId": 103179787
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19462-11033",
+      "name": "Manokwari Kota · Telkomsel 2G",
+      "lat": -0.859,
+      "lon": 134.104,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19462,
+          "cellId": 11033
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19451-11101",
+      "name": "Napua · Telkomsel 2G",
+      "lat": -4.052,
+      "lon": 138.943,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19451,
+          "cellId": 11101
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
     }
   ],
   "attribution": "OpenCelliD (CC BY-SA 4.0)",
   "credits": {
-    "used": 425,
+    "used": 642,
     "budget": 900,
     "daily": 1000,
     "boxesPending": 0

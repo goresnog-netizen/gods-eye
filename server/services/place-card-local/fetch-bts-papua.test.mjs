@@ -23,6 +23,8 @@ import {
   siteLabel,
   sitesFromExport,
   MAX_BOX_M2,
+  normalizeBoxes,
+  normalizeBoxKey,
 } from './fetch-bts-papua.mjs';
 
 const bboxParam = (box) => [box.south, box.west, box.north, box.east].join(',');
@@ -456,4 +458,81 @@ test('a state file from another grid scheme is ignored', () => {
     'version is written, not read back as state',
   );
   assert.ok(again.boxes.b.done);
+});
+
+test('a box id is the ground it covers, not the town that asked for it', () => {
+  const fromTown = probeBoxes({ id: 'wamena', lat: -4.1, lon: 138.95 });
+  const fromCustom = probeBoxes({ id: 'custom', lat: -4.1, lon: 138.95 });
+  assert.deepEqual(
+    fromTown.map((box) => box.id),
+    fromCustom.map((box) => box.id),
+    'the same square has one id however it was reached',
+  );
+  assert.ok(
+    fromTown.every((box) => !box.id.includes(':')),
+    'no centre prefix in the id',
+  );
+});
+
+test('a legacy state key is normalised to its coordinates', () => {
+  assert.equal(normalizeBoxKey('custom:-2.5903,140.6615'), '-2.5903,140.6615');
+  assert.equal(
+    normalizeBoxKey('bts-510-10-1-2:-2.5903,140.6615'),
+    '-2.5903,140.6615',
+  );
+  assert.equal(normalizeBoxKey('-2.5903,140.6615'), '-2.5903,140.6615');
+});
+
+test('legacy marks survive re-keying, so paid ground is not billed twice', () => {
+  const boxes = normalizeBoxes({
+    'bts-510-10-1-2:-2.5903,140.6615': { done: true, cells: 4 },
+    'custom:-2.5903,140.6615': { done: false },
+    'custom:-2.5741,140.6615': { done: true, cells: 3 },
+  });
+  assert.deepEqual(Object.keys(boxes).sort(), [
+    '-2.5741,140.6615',
+    '-2.5903,140.6615',
+  ]);
+  assert.equal(boxes['-2.5903,140.6615'].done, true, 'the done mark wins');
+  assert.equal(boxes['-2.5903,140.6615'].cells, 4);
+});
+
+test('a missing or broken box map normalises to an empty object', () => {
+  assert.deepEqual(normalizeBoxes(null), {});
+  assert.deepEqual(normalizeBoxes('nope'), {});
+});
+
+test('credits accumulate across runs instead of resetting to the last sweep', async () => {
+  const box = {
+    south: -2.6,
+    west: 140.7,
+    north: -2.5838,
+    east: 140.7162,
+    id: '-2.6,140.7',
+  };
+  const state = { boxes: {}, requests: 425, cells: 0 };
+  const first = await collectCellsByProbe({
+    key: 'k',
+    boxes: [box],
+    state,
+    fetchImpl: fakeApi(),
+  });
+  assert.equal(first.requests, 1);
+  assert.equal(state.requests, 426, 'the earlier 425 is not thrown away');
+
+  const next = {
+    south: -2.6,
+    west: 140.72,
+    north: -2.5838,
+    east: 140.7362,
+    id: '-2.6,140.72',
+  };
+  const second = await collectCellsByProbe({
+    key: 'k',
+    boxes: [next],
+    state,
+    fetchImpl: fakeApi(),
+  });
+  assert.equal(second.requests, 1);
+  assert.equal(state.requests, 427, 'a second run adds to the total');
 });
