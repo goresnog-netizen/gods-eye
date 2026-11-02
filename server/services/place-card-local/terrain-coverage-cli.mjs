@@ -4,10 +4,12 @@
  *
  *   node server/services/place-card-local/terrain-coverage-cli.mjs
  *   node server/services/place-card-local/terrain-coverage-cli.mjs --limit 200
- *   node server/services/place-card-local/terrain-coverage-cli.mjs --clutter flat --tilt 4
+ *   node server/services/place-card-local/terrain-coverage-cli.mjs --clutter roughness --tilt 4
  *
- * One viewshed per site (24 radials, knife-edge diffraction, optional
- * roughness clutter), resumable through `.gev-cache/terrain-coverage-state.json`
+ * One viewshed per site (24 radials, knife-edge diffraction, land-cover clutter
+ * by default — ESA WorldCover 10 m, keyless; `--clutter roughness` keeps the old
+ * terrain-grade proxy, `--clutter flat` the planning circle), resumable through
+ * `.gev-cache/terrain-coverage-state.json`
  * and published to `.gev-cache/terrain-coverage.json`, which
  * `GET /api/godseye/bts?coverage=1&terrain=1` serves. Without a prior run the
  * route says "not computed" — this file is what makes the number exist.
@@ -48,7 +50,7 @@ async function loadRegistry() {
 
 async function main() {
   const limit = Number(arg('limit', 0)) || 0;
-  const clutterModel = String(arg('clutter', 'roughness'));
+  const clutterModel = String(arg('clutter', 'landcover'));
   const tiltDeg = Number(arg('tilt', 0)) || 0;
   const concurrency = Number(arg('concurrency', 2)) || 2;
   const sites = await loadRegistry();

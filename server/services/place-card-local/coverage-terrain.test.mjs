@@ -285,3 +285,75 @@ test('a ridge on one azimuth costs exactly that sector', () => {
   assert.ok(row.controlPct > row.coveredPct);
   assert.equal(report.flatEarthSites, 0);
 });
+
+test('a state built on one clutter model is not resumed under another', async () => {
+  const { stateFile, artifactFile } = tmpPaths();
+  const sites = [{ id: 's1', lat: -4.1, lon: 138.95, tech: '4G' }];
+  const base = {
+    sites,
+    stateFile,
+    artifactFile,
+    elevationAt: async () => 0,
+    prefetchTiles: async () => 0,
+    tilesOf: () => [],
+    concurrency: 1,
+  };
+  const rough = await runTerrainCoverage({
+    ...base,
+    clutterModel: 'roughness',
+  });
+  assert.equal(rough.model.clutterBasis, 'terrain-roughness-proxy');
+  assert.equal(rough.sitesComputedThisRun, 1);
+
+  const flat = await runTerrainCoverage({ ...base, clutterModel: 'flat' });
+  assert.equal(
+    flat.sitesComputedThisRun,
+    1,
+    'a roughness ring is not a flat ring, so it is recomputed',
+  );
+  const again = await runTerrainCoverage({ ...base, clutterModel: 'flat' });
+  assert.equal(again.sitesComputedThisRun, 0, 'the same model resumes');
+});
+
+test('a land-cover run records its source and uses the lookup', async () => {
+  const { stateFile, artifactFile } = tmpPaths();
+  let calls = 0;
+  const artifact = await runTerrainCoverage({
+    sites: [{ id: 's1', lat: -4.1, lon: 138.95, tech: '4G' }],
+    stateFile,
+    artifactFile,
+    elevationAt: async () => 0,
+    prefetchTiles: async () => 0,
+    tilesOf: () => [],
+    concurrency: 1,
+    clutterModel: 'landcover',
+    landCoverAt: async () => {
+      calls += 1;
+      return { key: 'tree-cover', cluttered: true };
+    },
+  });
+  assert.ok(calls > 0, 'every sample asked for its class');
+  assert.equal(artifact.model.clutterBasis, 'worldcover-2021-class-codes');
+  assert.match(artifact.model.landCoverSource, /WorldCover/);
+  assert.equal(artifact.sitesComputedThisRun, 1);
+});
+
+test('a land-cover lookup that fails leaves the site for the next run', async () => {
+  const { stateFile, artifactFile } = tmpPaths();
+  const artifact = await runTerrainCoverage({
+    sites: [{ id: 's1', lat: -4.1, lon: 138.95, tech: '4G' }],
+    stateFile,
+    artifactFile,
+    elevationAt: async () => 0,
+    prefetchTiles: async () => 0,
+    tilesOf: () => [],
+    concurrency: 1,
+    clutterModel: 'landcover',
+    landCoverAt: async () => {
+      throw new Error('worldcover: HTTP 503');
+    },
+  });
+  assert.equal(artifact.sitesComputedThisRun, 0);
+  assert.equal(artifact.sitesFailedThisRun, 1);
+  assert.equal(artifact.sites, 0, 'an unanswered ring is not published');
+});

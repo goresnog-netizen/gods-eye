@@ -272,6 +272,15 @@ export function landCoverClutterDb(stats, { flatDb = 8, maxDb = 10 } = {}) {
 
 const headerCache = new Map();
 const tileCache = new Map();
+/**
+ * How many decoded blocks stay in memory.
+ *
+ * A block is 1 MB of class pixels and a full coverage sweep walks thousands of
+ * them, so an unbounded map would hold the whole province in RAM. 64 blocks is
+ * 64 MB and still covers a site's whole ring, whose radials are computed back
+ * to back and share their blocks.
+ */
+const TILE_CACHE_LIMIT = 64;
 
 async function rangeFetch(url, start, end, fetchImpl) {
   const response = await fetchImpl(url, {
@@ -347,6 +356,9 @@ export async function loadTilePixels(
   const pixels =
     header.compression === 1 ? compressed : zlib.inflateSync(compressed);
   tileCache.set(key, pixels);
+  if (tileCache.size > TILE_CACHE_LIMIT) {
+    tileCache.delete(tileCache.keys().next().value);
+  }
   return pixels;
 }
 

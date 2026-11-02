@@ -41,8 +41,15 @@ import {
 } from './elevation.mjs';
 import { PAPUA_PROVINCES, provinceOf, distanceKm } from './papua-provinces.mjs';
 import { bearing } from './bts-registry.mjs';
+import { WORLDCOVER_ATTRIBUTION, landCoverAt } from './landcover.mjs';
 
-export const TERRAIN_COVERAGE_VERSION = 1;
+/**
+ * Bumped when the shape of a cached ring changes.
+ *
+ * 2 — rings may now be built on land-cover clutter, and the state records which
+ *     model produced them. A v1 state is not wrong, it is a different model.
+ */
+export const TERRAIN_COVERAGE_VERSION = 2;
 
 /** The same ~2.2 km raster `provinceCoverage` paints, so the deltas are real. */
 export const DEFAULT_CELL_DEG = 0.02;
@@ -278,16 +285,28 @@ function expandRings(rings) {
     }));
 }
 
-async function readState(stateFile) {
+async function readState(stateFile, { clutterModel = null } = {}) {
   try {
     const parsed = JSON.parse(await readFile(stateFile, 'utf8'));
-    if (parsed?.version === TERRAIN_COVERAGE_VERSION && parsed.viewsheds) {
+    // The clutter model is part of the state's identity: a cached ring built
+    // on roughness is not a ring built on land cover, and resuming across the
+    // two would publish a report that mixes them without saying so.
+    if (
+      parsed?.version === TERRAIN_COVERAGE_VERSION &&
+      parsed.viewsheds &&
+      (!clutterModel || parsed.clutterModel === clutterModel)
+    ) {
       return parsed;
     }
   } catch {
     // A missing or stale state file is a first run, not an error.
   }
-  return { version: TERRAIN_COVERAGE_VERSION, viewsheds: {}, updatedAt: null };
+  return {
+    version: TERRAIN_COVERAGE_VERSION,
+    clutterModel,
+    viewsheds: {},
+    updatedAt: null,
+  };
 }
 
 async function writeState(stateFile, state) {
@@ -322,10 +341,12 @@ export async function runTerrainCoverage({
   elevationAt: elev = elevationAt,
   tilesAround: tilesOf = tilesAround,
   prefetch: fetchTiles = prefetchTiles,
+  landCoverAt: coverAt = landCoverAt,
   onProgress = () => {},
   now = () => new Date().toISOString(),
 } = {}) {
-  const state = await readState(stateFile);
+  const state = await readState(stateFile, { clutterModel });
+  state.clutterModel = clutterModel;
   const pending = sites
     .filter(
       (site) =>
@@ -397,6 +418,7 @@ export async function runTerrainCoverage({
               azimuths,
               stepM,
               clutterModel,
+              landCoverAt: coverAt,
               tiltDeg,
             });
             if (!result.ok) throw new Error(result.error || 'viewshed_failed');
@@ -447,7 +469,13 @@ export async function runTerrainCoverage({
     model: {
       clutterModel,
       clutterBasis:
-        clutterModel === 'roughness' ? 'terrain-roughness-proxy' : 'flat',
+        clutterModel === 'landcover'
+          ? 'worldcover-2021-class-codes'
+          : clutterModel === 'roughness'
+            ? 'terrain-roughness-proxy'
+            : 'flat',
+      landCoverSource:
+        clutterModel === 'landcover' ? WORLDCOVER_ATTRIBUTION : null,
       tiltDeg,
       azimuths,
       stepM,
