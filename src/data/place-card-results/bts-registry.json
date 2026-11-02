@@ -1,14 +1,14 @@
 {
   "source": "opencellid:api-probe",
-  "generatedAt": "2026-11-02T07:16:22.571Z",
+  "generatedAt": "2026-11-02T11:00:56.121Z",
   "bbox": {
     "south": -9.5,
     "west": 130,
     "north": 1.5,
     "east": 141.5
   },
-  "count": 2188,
-  "cells": 4935,
+  "count": 2313,
+  "cells": 5341,
   "sites": [
     {
       "id": "bts-510-10-10062-106271263",
@@ -1029,7 +1029,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1095,7 +1096,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1173,7 +1175,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1225,13 +1228,31 @@
         {
           "lac": 9311,
           "cellId": 61043978
+        },
+        {
+          "lac": 10011,
+          "cellId": 106291979
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043981
+        },
+        {
+          "lac": 19488,
+          "cellId": 26372
+        },
+        {
+          "lac": 10011,
+          "cellId": 106345749
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1246,13 +1267,18 @@
         {
           "lac": 9311,
           "cellId": 61053028
+        },
+        {
+          "lac": 10011,
+          "cellId": 106280469
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -1277,7 +1303,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -1326,7 +1353,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -1361,13 +1389,18 @@
         {
           "lac": 9311,
           "cellId": 61053031
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043331
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1398,6 +1431,14 @@
         {
           "lac": 9311,
           "cellId": 61040741
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053032
+        },
+        {
+          "lac": 9311,
+          "cellId": 61056591
         }
       ],
       "source": "opencellid",
@@ -1445,7 +1486,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1627,7 +1669,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -1660,7 +1704,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1689,7 +1735,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1739,7 +1786,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -1882,6 +1930,10 @@
         {
           "lac": 9311,
           "cellId": 61055655
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043961
         }
       ],
       "source": "opencellid",
@@ -2109,7 +2161,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -2134,7 +2187,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -2285,13 +2339,26 @@
         {
           "lac": 10011,
           "cellId": 106259211
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040324
+        },
+        {
+          "lac": 19422,
+          "cellId": 31211
+        },
+        {
+          "lac": 19422,
+          "cellId": 29362
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -2481,7 +2548,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -2583,13 +2651,34 @@
         {
           "lac": 19422,
           "cellId": 29361
+        },
+        {
+          "lac": 9921,
+          "cellId": 65032863
+        },
+        {
+          "lac": 9921,
+          "cellId": 21154
+        },
+        {
+          "lac": 19422,
+          "cellId": 1922
+        },
+        {
+          "lac": 9311,
+          "cellId": 61056599
+        },
+        {
+          "lac": 10070,
+          "cellId": 66033159
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -2608,13 +2697,23 @@
         {
           "lac": 9311,
           "cellId": 61053478
+        },
+        {
+          "lac": 9311,
+          "cellId": 41163
+        },
+        {
+          "lac": 9311,
+          "cellId": 21912
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -2660,7 +2759,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -2710,7 +2810,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -3438,7 +3539,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -3463,7 +3565,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -3998,7 +4101,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -4115,7 +4220,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -4189,7 +4295,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -4222,7 +4330,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -4247,7 +4356,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -4408,6 +4518,10 @@
         {
           "lac": 9921,
           "cellId": 65040567
+        },
+        {
+          "lac": 19424,
+          "cellId": 1691
         }
       ],
       "source": "opencellid",
@@ -4450,6 +4564,10 @@
         {
           "lac": 9921,
           "cellId": 65053407
+        },
+        {
+          "lac": 10021,
+          "cellId": 106301205
         }
       ],
       "source": "opencellid",
@@ -4492,6 +4610,26 @@
         {
           "lac": 19424,
           "cellId": 41693
+        },
+        {
+          "lac": 10021,
+          "cellId": 106247711
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050799
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050795
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033331
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050798
         }
       ],
       "source": "opencellid",
@@ -4513,6 +4651,10 @@
         {
           "lac": 9921,
           "cellId": 65033325
+        },
+        {
+          "lac": 9311,
+          "cellId": 61056157
         }
       ],
       "source": "opencellid",
@@ -4628,7 +4770,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -4745,7 +4888,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -4933,7 +5078,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -5062,7 +5208,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -5149,7 +5297,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -5210,7 +5359,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -5251,7 +5402,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -5299,13 +5451,18 @@
         {
           "lac": 9921,
           "cellId": 65040634
+        },
+        {
+          "lac": 10021,
+          "cellId": 106244127
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -5497,7 +5654,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -5555,7 +5713,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -5584,7 +5743,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -5617,7 +5777,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -5675,7 +5837,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -5851,6 +6014,10 @@
         {
           "lac": 9921,
           "cellId": 65040339
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040547
         }
       ],
       "source": "opencellid",
@@ -5978,7 +6145,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -6053,7 +6221,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -6181,7 +6350,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -6239,7 +6409,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -6264,7 +6435,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -6339,7 +6511,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -6459,7 +6632,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -6512,7 +6686,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -6793,6 +6969,18 @@
         {
           "lac": 9921,
           "cellId": 65050814
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050944
+        },
+        {
+          "lac": 9921,
+          "cellId": 65038134
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052907
         }
       ],
       "source": "opencellid",
@@ -6832,7 +7020,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -6894,7 +7083,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -7078,7 +7268,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -7103,7 +7294,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -7296,6 +7488,10 @@
         {
           "lac": 9921,
           "cellId": 65050947
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050923
         }
       ],
       "source": "opencellid",
@@ -7394,7 +7590,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -7456,7 +7653,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -7526,7 +7724,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -8032,7 +8232,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -8181,7 +8383,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -8264,7 +8468,8 @@
       "mcc": 510,
       "mnc": 11,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -9029,13 +9234,31 @@
         {
           "lac": 9921,
           "cellId": 65038051
+        },
+        {
+          "lac": 10021,
+          "cellId": 106247701
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053409
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053410
+        },
+        {
+          "lac": 19424,
+          "cellId": 41692
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -9076,7 +9299,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -9178,13 +9403,23 @@
         {
           "lac": 9921,
           "cellId": 65038445
+        },
+        {
+          "lac": 10021,
+          "cellId": 106280971
+        },
+        {
+          "lac": 10021,
+          "cellId": 106272543
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -9246,7 +9481,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -9328,7 +9565,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -9426,6 +9664,10 @@
         {
           "lac": 49446,
           "cellId": 65033329
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033326
         }
       ],
       "source": "opencellid",
@@ -9478,7 +9720,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -9531,7 +9774,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -9558,13 +9803,22 @@
         {
           "lac": 49446,
           "cellId": 65040087
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040085
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040131
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -9661,7 +9915,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -9724,13 +9980,19 @@
         {
           "lac": 9921,
           "cellId": 65032791
+        },
+        {
+          "lac": 10021,
+          "cellId": 106244629
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -9763,7 +10025,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -9829,7 +10092,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -10163,7 +10428,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -10407,6 +10673,14 @@
         {
           "lac": 14375,
           "cellId": 65827283
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040248
+        },
+        {
+          "lac": 14375,
+          "cellId": 65827280
         }
       ],
       "source": "opencellid",
@@ -10487,7 +10761,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -10607,7 +10882,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -10669,7 +10945,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -10782,7 +11059,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -15074,13 +15352,23 @@
         {
           "lac": 19415,
           "cellId": 28932
+        },
+        {
+          "lac": 10011,
+          "cellId": 106286101
+        },
+        {
+          "lac": 19415,
+          "cellId": 11241
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -15138,7 +15426,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -15163,7 +15452,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -15209,7 +15499,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -15259,7 +15550,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -15288,7 +15580,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -15375,7 +15669,9 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -15398,13 +15694,27 @@
         {
           "lac": 19413,
           "cellId": 29352
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055158
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053649
+        },
+        {
+          "lac": 10011,
+          "cellId": 106242059
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G",
+        "4G"
       ],
       "samples": 1
     },
@@ -15480,13 +15790,23 @@
         {
           "lac": 9311,
           "cellId": 61043998
+        },
+        {
+          "lac": 9311,
+          "cellId": 61044001
+        },
+        {
+          "lac": 10011,
+          "cellId": 106242069
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -15527,7 +15847,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "2G"
       ],
       "samples": 1
     },
@@ -15579,13 +15900,18 @@
         {
           "lac": 10011,
           "cellId": 106242079
+        },
+        {
+          "lac": 10011,
+          "cellId": 106336789
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -15628,6 +15954,14 @@
         {
           "lac": 9311,
           "cellId": 61055643
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055638
+        },
+        {
+          "lac": 19488,
+          "cellId": 16723
         }
       ],
       "source": "opencellid",
@@ -16011,6 +16345,34 @@
         {
           "lac": 19421,
           "cellId": 28952
+        },
+        {
+          "lac": 10011,
+          "cellId": 106287371
+        },
+        {
+          "lac": 19421,
+          "cellId": 28953
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042974
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042110
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042113
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042972
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042041
         }
       ],
       "source": "opencellid",
@@ -16032,6 +16394,18 @@
         {
           "lac": 9311,
           "cellId": 61042300
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042297
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053030
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042303
         }
       ],
       "source": "opencellid",
@@ -16141,7 +16515,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -16160,6 +16535,18 @@
         {
           "lac": 9311,
           "cellId": 61040395
+        },
+        {
+          "lac": 19429,
+          "cellId": 49212
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040390
+        },
+        {
+          "lac": 19421,
+          "cellId": 28281
         }
       ],
       "source": "opencellid",
@@ -16227,6 +16614,14 @@
         {
           "lac": 9311,
           "cellId": 61055644
+        },
+        {
+          "lac": 19488,
+          "cellId": 16722
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055640
         }
       ],
       "source": "opencellid",
@@ -16269,6 +16664,10 @@
         {
           "lac": 38501,
           "cellId": 59281
+        },
+        {
+          "lac": 38501,
+          "cellId": 59192
         }
       ],
       "source": "opencellid",
@@ -16294,6 +16693,26 @@
         {
           "lac": 9311,
           "cellId": 61042111
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043979
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042114
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055892
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042108
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055891
         }
       ],
       "source": "opencellid",
@@ -17014,7 +17433,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -17254,13 +17674,22 @@
         {
           "lac": 9311,
           "cellId": 61042191
+        },
+        {
+          "lac": 9311,
+          "cellId": 61044000
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042538
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "4G"
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -17279,13 +17708,18 @@
         {
           "lac": 10011,
           "cellId": 106336779
+        },
+        {
+          "lac": 10011,
+          "cellId": 106286613
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "4G"
       ],
       "samples": 1
     },
@@ -18010,7 +18444,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -18385,6 +18820,10 @@
         {
           "lac": 19422,
           "cellId": 1923
+        },
+        {
+          "lac": 10011,
+          "cellId": 106320405
         }
       ],
       "source": "opencellid",
@@ -18448,6 +18887,42 @@
         {
           "lac": 9311,
           "cellId": 61035971
+        },
+        {
+          "lac": 19486,
+          "cellId": 21893
+        },
+        {
+          "lac": 19486,
+          "cellId": 21891
+        },
+        {
+          "lac": 24356,
+          "cellId": 61042402
+        },
+        {
+          "lac": 24356,
+          "cellId": 61040322
+        },
+        {
+          "lac": 24356,
+          "cellId": 61043649
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053875
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053872
+        },
+        {
+          "lac": 10011,
+          "cellId": 106263829
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053869
         }
       ],
       "source": "opencellid",
@@ -18575,7 +19050,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "3G"
+        "3G",
+        "2G"
       ],
       "samples": 1
     },
@@ -18594,6 +19070,14 @@
         {
           "lac": 19413,
           "cellId": 26031
+        },
+        {
+          "lac": 19413,
+          "cellId": 29211
+        },
+        {
+          "lac": 19413,
+          "cellId": 11111
         }
       ],
       "source": "opencellid",
@@ -18625,7 +19109,8 @@
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "3G"
       ],
       "samples": 1
     },
@@ -53095,13 +53580,35 @@
         {
           "lac": 19422,
           "cellId": 28381
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055942
+        },
+        {
+          "lac": 24356,
+          "cellId": 61042403
+        },
+        {
+          "lac": 24356,
+          "cellId": 61045233
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055455
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055942
         }
       ],
       "source": "opencellid",
       "mcc": 510,
       "mnc": 10,
       "techs": [
-        "2G"
+        "2G",
+        "4G",
+        "3G"
       ],
       "samples": 1
     },
@@ -56945,11 +57452,3409 @@
         "2G"
       ],
       "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-1231",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.609,
+      "lon": 140.657,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 1231
+        },
+        {
+          "lac": 10011,
+          "cellId": 106243851
+        },
+        {
+          "lac": 10011,
+          "cellId": 106286091
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042947
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052943
+        },
+        {
+          "lac": 19415,
+          "cellId": 41231
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10410-68262842",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.608,
+      "lon": 140.658,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10410,
+          "cellId": 68262842
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042953
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035263",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.607,
+      "lon": 140.651,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035263
+        },
+        {
+          "lac": 10031,
+          "cellId": 41733
+        },
+        {
+          "lac": 10011,
+          "cellId": 106243871
+        },
+        {
+          "lac": 10410,
+          "cellId": 68249531
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G",
+        "2G",
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-1233",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.607,
+      "lon": 140.655,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 1233
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052945
+        },
+        {
+          "lac": 19488,
+          "cellId": 28931
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033264
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055247
+        },
+        {
+          "lac": 19415,
+          "cellId": 21553
+        },
+        {
+          "lac": 9921,
+          "cellId": 65032953
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042950
+        },
+        {
+          "lac": 10410,
+          "cellId": 68272000
+        },
+        {
+          "lac": 10410,
+          "cellId": 106335757
+        },
+        {
+          "lac": 10410,
+          "cellId": 106335755
+        },
+        {
+          "lac": 19415,
+          "cellId": 29373
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043462
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055250
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G",
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042160",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.607,
+      "lon": 140.657,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042160
+        },
+        {
+          "lac": 19415,
+          "cellId": 26723
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043461
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042955
+        },
+        {
+          "lac": 19422,
+          "cellId": 61043461
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G",
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106286623",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.606,
+      "lon": 140.654,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106286623
+        },
+        {
+          "lac": 19415,
+          "cellId": 29443
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040569
+        },
+        {
+          "lac": 10410,
+          "cellId": 68272002
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106255627",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.606,
+      "lon": 140.649,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106255627
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042948
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040570
+        },
+        {
+          "lac": 10410,
+          "cellId": 68249530
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65053543",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.606,
+      "lon": 140.652,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65053543
+        },
+        {
+          "lac": 10410,
+          "cellId": 68251911
+        },
+        {
+          "lac": 19415,
+          "cellId": 41233
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040571
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042162
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043465
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G",
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-33912-39999189",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.613,
+      "lon": 140.673,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 33912,
+          "cellId": 39999189
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19421-41251",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.613,
+      "lon": 140.668,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19421,
+          "cellId": 41251
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-49715",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.613,
+      "lon": 140.676,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 49715
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042971",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.612,
+      "lon": 140.676,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042971
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042107
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042968
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61043985",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.612,
+      "lon": 140.674,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61043985
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61043964",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.612,
+      "lon": 140.679,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61043964
+        },
+        {
+          "lac": 10011,
+          "cellId": 106285589
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043958
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-37416",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.612,
+      "lon": 140.675,
+      "tech": "2G",
+      "rangeKm": 3.362,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 37416
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61040992",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.588,
+      "lon": 140.597,
+      "tech": "3G",
+      "rangeKm": 9.093,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61040992
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040578
+        },
+        {
+          "lac": 19413,
+          "cellId": 1453
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10031-65762482",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.588,
+      "lon": 140.595,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10031,
+          "cellId": 65762482
+        },
+        {
+          "lac": 10031,
+          "cellId": 65762487
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-41141",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.594,
+      "lon": 140.646,
+      "tech": "2G",
+      "rangeKm": 1.185,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 41141
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040892
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106265109",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.591,
+      "lon": 140.643,
+      "tech": "4G",
+      "rangeKm": 7.996,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106265109
+        },
+        {
+          "lac": 9311,
+          "cellId": 61035134
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042524
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042521",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.59,
+      "lon": 140.642,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042521
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035127",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.589,
+      "lon": 140.644,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035127
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035133",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.588,
+      "lon": 140.642,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035133
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042523
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-38922",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.588,
+      "lon": 140.644,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 38922
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61055865",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.585,
+      "lon": 140.642,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61055865
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055859
+        },
+        {
+          "lac": 9311,
+          "cellId": 61035135
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042275
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055858
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-28502",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.585,
+      "lon": 140.647,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 28502
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043823
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042594",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.584,
+      "lon": 140.645,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042594
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042620",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.595,
+      "lon": 140.672,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042620
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106296853",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.594,
+      "lon": 140.674,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106296853
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055941
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042267
+        },
+        {
+          "lac": 19422,
+          "cellId": 26301
+        },
+        {
+          "lac": 10011,
+          "cellId": 106296863
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042623
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055453
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106331679",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.594,
+      "lon": 140.668,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106331679
+        },
+        {
+          "lac": 19422,
+          "cellId": 21951
+        },
+        {
+          "lac": 10011,
+          "cellId": 106263839
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040144
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61055452",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.593,
+      "lon": 140.667,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61055452
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61055450",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.593,
+      "lon": 140.67,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61055450
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033205
+        },
+        {
+          "lac": 24356,
+          "cellId": 61042405
+        },
+        {
+          "lac": 19422,
+          "cellId": 21953
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61040432",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.593,
+      "lon": 140.673,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61040432
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033625",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.595,
+      "lon": 140.679,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033625
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65053404",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.576,
+      "lon": 140.686,
+      "tech": "3G",
+      "rangeKm": 1.15,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65053404
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040227",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.577,
+      "lon": 140.692,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040227
+        },
+        {
+          "lac": 10021,
+          "cellId": 106257695
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040297
+        },
+        {
+          "lac": 10011,
+          "cellId": 106290443
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G",
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65053406",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.575,
+      "lon": 140.691,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65053406
+        },
+        {
+          "lac": 10021,
+          "cellId": 106244107
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G",
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040230",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.574,
+      "lon": 140.693,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040230
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65038518",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.565,
+      "lon": 140.69,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65038518
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033327
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033330
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033326",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.563,
+      "lon": 140.689,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033326
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033331
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033328
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033324
+        },
+        {
+          "lac": 49446,
+          "cellId": 65033325
+        },
+        {
+          "lac": 19424,
+          "cellId": 21613
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106273823",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.562,
+      "lon": 140.69,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106273823
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106289951",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.561,
+      "lon": 140.686,
+      "tech": "4G",
+      "rangeKm": 7.282,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106289951
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19523-1793",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.565,
+      "lon": 140.705,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19523,
+          "cellId": 1793
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033327",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.565,
+      "lon": 140.692,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033327
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033468",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.565,
+      "lon": 140.699,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033468
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033457
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19424-26803",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.565,
+      "lon": 140.694,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19424,
+          "cellId": 26803
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19424-21751",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.565,
+      "lon": 140.701,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19424,
+          "cellId": 21751
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-49594",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.565,
+      "lon": 140.705,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 49594
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033465",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.564,
+      "lon": 140.7,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033465
+        },
+        {
+          "lac": 10021,
+          "cellId": 106270751
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040566
+        },
+        {
+          "lac": 10021,
+          "cellId": 106270731
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040300
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19424-1993",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.564,
+      "lon": 140.696,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19424,
+          "cellId": 1993
+        },
+        {
+          "lac": 9921,
+          "cellId": 65013705
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65051585",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.564,
+      "lon": 140.698,
+      "tech": "3G",
+      "rangeKm": 6.358,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65051585
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053403
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38501-59348",
+      "name": "Jayapura Kota · Carrier 510-1 2G",
+      "lat": -2.564,
+      "lon": 140.702,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 38501,
+          "cellId": 59348
+        },
+        {
+          "lac": 38501,
+          "cellId": 59242
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65037815",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.563,
+      "lon": 140.701,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65037815
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033469
+        },
+        {
+          "lac": 9921,
+          "cellId": 65033466
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-49595",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.563,
+      "lon": 140.694,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 49595
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106273813",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.563,
+      "lon": 140.694,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106273813
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-38535",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.563,
+      "lon": 140.697,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 38535
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-38536",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.563,
+      "lon": 140.701,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 38536
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-33912-40015445",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.562,
+      "lon": 140.699,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 33912,
+          "cellId": 40015445
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65037820",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.562,
+      "lon": 140.703,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65037820
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053367
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65053364",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.562,
+      "lon": 140.705,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65053364
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053363
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050981
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106323477",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.561,
+      "lon": 140.696,
+      "tech": "4G",
+      "rangeKm": 4.8,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106323477
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65038534",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.561,
+      "lon": 140.698,
+      "tech": "3G",
+      "rangeKm": 2.681,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65038534
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65038338",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.561,
+      "lon": 140.704,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65038338
+        },
+        {
+          "lac": 9921,
+          "cellId": 65051043
+        },
+        {
+          "lac": 9921,
+          "cellId": 65051044
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65051588",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.561,
+      "lon": 140.7,
+      "tech": "3G",
+      "rangeKm": 6.773,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65051588
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106247455",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.559,
+      "lon": 140.704,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106247455
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053368
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106247445",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.559,
+      "lon": 140.706,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106247445
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-49446-65053365",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.559,
+      "lon": 140.701,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 49446,
+          "cellId": 65053365
+        },
+        {
+          "lac": 49446,
+          "cellId": 65053371
+        },
+        {
+          "lac": 49446,
+          "cellId": 65053367
+        },
+        {
+          "lac": 49446,
+          "cellId": 65038338
+        },
+        {
+          "lac": 49446,
+          "cellId": 65053368
+        },
+        {
+          "lac": 49446,
+          "cellId": 65038341
+        },
+        {
+          "lac": 17228,
+          "cellId": 41653
+        },
+        {
+          "lac": 17228,
+          "cellId": 41652
+        },
+        {
+          "lac": 17228,
+          "cellId": 1653
+        },
+        {
+          "lac": 17228,
+          "cellId": 1652
+        },
+        {
+          "lac": 17228,
+          "cellId": 1793
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65038170",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.547,
+      "lon": 140.698,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65038170
+        },
+        {
+          "lac": 19520,
+          "cellId": 1312
+        },
+        {
+          "lac": 19520,
+          "cellId": 1902
+        },
+        {
+          "lac": 9921,
+          "cellId": 65013645
+        },
+        {
+          "lac": 9921,
+          "cellId": 65050926
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052908
+        },
+        {
+          "lac": 49446,
+          "cellId": 65032791
+        },
+        {
+          "lac": 49446,
+          "cellId": 65038140
+        },
+        {
+          "lac": 49446,
+          "cellId": 65037730
+        },
+        {
+          "lac": 10021,
+          "cellId": 106315797
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040440",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.547,
+      "lon": 140.7,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040440
+        },
+        {
+          "lac": 19427,
+          "cellId": 1901
+        },
+        {
+          "lac": 10021,
+          "cellId": 106269205
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-49696",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.547,
+      "lon": 140.698,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 49696
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65037727",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.547,
+      "lon": 140.703,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65037727
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040515
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38501-59489",
+      "name": "Jayapura Kota · Carrier 510-1 2G",
+      "lat": -2.546,
+      "lon": 140.703,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 38501,
+          "cellId": 59489
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040370",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.546,
+      "lon": 140.701,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040370
+        },
+        {
+          "lac": 9921,
+          "cellId": 65038537
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65050925",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.545,
+      "lon": 140.7,
+      "tech": "3G",
+      "rangeKm": 2.829,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65050925
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042610",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.606,
+      "lon": 140.656,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042610
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-35111-39999189",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.606,
+      "lon": 140.657,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 35111,
+          "cellId": 39999189
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-28933",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.605,
+      "lon": 140.65,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 28933
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10040-65827660",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.605,
+      "lon": 140.658,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10040,
+          "cellId": 65827660
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-26852",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.604,
+      "lon": 140.652,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 26852
+        },
+        {
+          "lac": 10410,
+          "cellId": 68261060
+        },
+        {
+          "lac": 10410,
+          "cellId": 68251570
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10410-68249831",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.603,
+      "lon": 140.651,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10410,
+          "cellId": 68249831
+        },
+        {
+          "lac": 9311,
+          "cellId": 61052102
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040874
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042952",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.603,
+      "lon": 140.653,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042952
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-11-29211-49716",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.603,
+      "lon": 140.658,
+      "tech": "2G",
+      "rangeKm": 2.079,
+      "cells": [
+        {
+          "lac": 29211,
+          "cellId": 49716
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 11,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106315019",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.603,
+      "lon": 140.658,
+      "tech": "4G",
+      "rangeKm": 2.491,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106315019
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10410-68249830",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.602,
+      "lon": 140.652,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10410,
+          "cellId": 68249830
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040868
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10410-106332939",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.607,
+      "lon": 140.669,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10410,
+          "cellId": 106332939
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052944
+        },
+        {
+          "lac": 10011,
+          "cellId": 106315039
+        },
+        {
+          "lac": 19488,
+          "cellId": 26233
+        },
+        {
+          "lac": 10011,
+          "cellId": 106240799
+        },
+        {
+          "lac": 19488,
+          "cellId": 41033
+        },
+        {
+          "lac": 10011,
+          "cellId": 106319647
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055049
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G",
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-9311-61040250",
+      "name": "Waena · Carrier 510-1 3G",
+      "lat": -2.607,
+      "lon": 140.669,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61040250
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106285579",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.607,
+      "lon": 140.674,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106285579
+        },
+        {
+          "lac": 9311,
+          "cellId": 61045234
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053127
+        },
+        {
+          "lac": 10011,
+          "cellId": 106255382
+        },
+        {
+          "lac": 9311,
+          "cellId": 61045229
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19488-41032",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.606,
+      "lon": 140.671,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19488,
+          "cellId": 41032
+        },
+        {
+          "lac": 10410,
+          "cellId": 106240799
+        },
+        {
+          "lac": 19488,
+          "cellId": 1032
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052963
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055048
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042558
+        },
+        {
+          "lac": 10410,
+          "cellId": 106240789
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053134
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053131
+        },
+        {
+          "lac": 9311,
+          "cellId": 61032308
+        },
+        {
+          "lac": 9311,
+          "cellId": 61032309
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055055
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055054
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040487
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055054
+        },
+        {
+          "lac": 24356,
+          "cellId": 61040253
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040232
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043869
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053128
+        },
+        {
+          "lac": 19422,
+          "cellId": 61053128
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040539
+        },
+        {
+          "lac": 9311,
+          "cellId": 61052418
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053129
+        },
+        {
+          "lac": 9311,
+          "cellId": 61053133
+        },
+        {
+          "lac": 10410,
+          "cellId": 106328341
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61056597",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.606,
+      "lon": 140.675,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61056597
+        },
+        {
+          "lac": 9311,
+          "cellId": 61056603
+        },
+        {
+          "lac": 9921,
+          "cellId": 61035921
+        },
+        {
+          "lac": 9311,
+          "cellId": 61045232
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19422-28542",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.606,
+      "lon": 140.668,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19422,
+          "cellId": 28542
+        },
+        {
+          "lac": 24356,
+          "cellId": 61055052
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042564
+        },
+        {
+          "lac": 9311,
+          "cellId": 61042561
+        },
+        {
+          "lac": 19488,
+          "cellId": 26231
+        },
+        {
+          "lac": 10011,
+          "cellId": 106291989
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G",
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-24356-61040227",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.606,
+      "lon": 140.662,
+      "tech": "3G",
+      "rangeKm": 2.319,
+      "cells": [
+        {
+          "lac": 24356,
+          "cellId": 61040227
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10410-106328351",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.605,
+      "lon": 140.673,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10410,
+          "cellId": 106328351
+        },
+        {
+          "lac": 19422,
+          "cellId": 41162
+        },
+        {
+          "lac": 10070,
+          "cellId": 66033157
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106243339",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.606,
+      "lon": 140.679,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106243339
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61055183",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.604,
+      "lon": 140.678,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61055183
+        },
+        {
+          "lac": 9311,
+          "cellId": 61056137
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-28571",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.591,
+      "lon": 140.633,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 28571
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043834
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61055613",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.591,
+      "lon": 140.637,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61055613
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035623",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.59,
+      "lon": 140.639,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035623
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61043835",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.589,
+      "lon": 140.632,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61043835
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-28523",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.589,
+      "lon": 140.636,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 28523
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-1681",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.589,
+      "lon": 140.638,
+      "tech": "2G",
+      "rangeKm": 1.332,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 1681
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-21601",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.588,
+      "lon": 140.635,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 21601
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-28503",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.587,
+      "lon": 140.641,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 28503
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61043832",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.587,
+      "lon": 140.632,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61043832
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035617",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.586,
+      "lon": 140.633,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035617
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043829
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042411",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.584,
+      "lon": 140.641,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042411
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055862
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61042269",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.582,
+      "lon": 140.638,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61042269
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19413-28501",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.583,
+      "lon": 140.648,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19413,
+          "cellId": 28501
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10011-106274079",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.583,
+      "lon": 140.644,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10011,
+          "cellId": 106274079
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040055
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055864
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043505
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043504
+        },
+        {
+          "lac": 9311,
+          "cellId": 61043499
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61040049",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.582,
+      "lon": 140.645,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61040049
+        },
+        {
+          "lac": 9311,
+          "cellId": 61040051
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19415-21601",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.582,
+      "lon": 140.653,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19415,
+          "cellId": 21601
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61035179",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.591,
+      "lon": 140.666,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61035179
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19486-11891",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.591,
+      "lon": 140.668,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19486,
+          "cellId": 11891
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9311-61056161",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.591,
+      "lon": 140.675,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9311,
+          "cellId": 61056161
+        },
+        {
+          "lac": 9311,
+          "cellId": 61055945
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106257685",
+      "name": "Waena · Telkomsel 4G",
+      "lat": -2.575,
+      "lon": 140.685,
+      "tech": "4G",
+      "rangeKm": 5.881,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106257685
+        },
+        {
+          "lac": 9921,
+          "cellId": 65053411
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19424-26333",
+      "name": "Waena · Telkomsel 2G",
+      "lat": -2.575,
+      "lon": 140.688,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19424,
+          "cellId": 26333
+        },
+        {
+          "lac": 9921,
+          "cellId": 41692
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040571",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.574,
+      "lon": 140.686,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040571
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-49446-65053411",
+      "name": "Waena · Telkomsel 3G",
+      "lat": -2.574,
+      "lon": 140.681,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 49446,
+          "cellId": 65053411
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65033324",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.566,
+      "lon": 140.691,
+      "tech": "3G",
+      "rangeKm": 1.933,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65033324
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65040544",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.568,
+      "lon": 140.708,
+      "tech": "3G",
+      "rangeKm": 1.152,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65040544
+        },
+        {
+          "lac": 9921,
+          "cellId": 65040333
+        },
+        {
+          "lac": 9921,
+          "cellId": 65041143
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106313237",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.565,
+      "lon": 140.709,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106313237
+        },
+        {
+          "lac": 10021,
+          "cellId": 106252053
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-9921-65038335",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.562,
+      "lon": 140.708,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 9921,
+          "cellId": 65038335
+        },
+        {
+          "lac": 9921,
+          "cellId": 65038340
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106324245",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.542,
+      "lon": 140.699,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106324245
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-1-38501-59488",
+      "name": "Jayapura Kota · Carrier 510-1 2G",
+      "lat": -2.542,
+      "lon": 140.704,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 38501,
+          "cellId": 59488
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 1,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10021-106318613",
+      "name": "Jayapura Kota · Telkomsel 4G",
+      "lat": -2.542,
+      "lon": 140.705,
+      "tech": "4G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10021,
+          "cellId": 106318613
+        },
+        {
+          "lac": 9921,
+          "cellId": 65052807
+        },
+        {
+          "lac": 19425,
+          "cellId": 1092
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "4G",
+        "3G",
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-19426-29381",
+      "name": "Jayapura Kota · Telkomsel 2G",
+      "lat": -2.542,
+      "lon": 140.713,
+      "tech": "2G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 19426,
+          "cellId": 29381
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "2G"
+      ],
+      "samples": 1
+    },
+    {
+      "id": "bts-510-10-10040-65837457",
+      "name": "Jayapura Kota · Telkomsel 3G",
+      "lat": -2.526,
+      "lon": 140.718,
+      "tech": "3G",
+      "rangeKm": 1,
+      "cells": [
+        {
+          "lac": 10040,
+          "cellId": 65837457
+        },
+        {
+          "lac": 10040,
+          "cellId": 65827029
+        }
+      ],
+      "source": "opencellid",
+      "mcc": 510,
+      "mnc": 10,
+      "techs": [
+        "3G"
+      ],
+      "samples": 1
     }
   ],
   "attribution": "OpenCelliD (CC BY-SA 4.0)",
   "credits": {
-    "used": 642,
+    "used": 740,
     "budget": 900,
     "daily": 1000,
     "boxesPending": 0
