@@ -12,6 +12,7 @@ import {
   SCENE_PROMPT,
 } from './vision-contract.js';
 import { postJson, readStreamedAnswer } from './vision-request.js';
+import { normaliseImage } from './vision-image.js';
 
 /**
  * @module vision
@@ -37,8 +38,15 @@ import { postJson, readStreamedAnswer } from './vision-request.js';
 
 const DEFAULT_PROMPT =
   'Describe this image in one short sentence. If people are visible, say what they appear to be holding and what they appear to be doing. If nothing is clear, say so.';
-const MAX_BODY_BYTES = 256 * 1024;
 const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
+/**
+ * The JSON body carries the image as a data URL, so it is about 4/3 the image
+ * plus a little JSON. This used to be 256 KB, which contradicted MAX_IMAGE_BYTES
+ * and rejected every real photograph before the model saw it: a 434 KB JPEG
+ * becomes a 580 KB body and the route answered 400. The cap now follows the
+ * image limit instead of fighting it.
+ */
+const MAX_BODY_BYTES = Math.ceil((MAX_IMAGE_BYTES * 4) / 3) + 1024 * 1024;
 const IMAGE_FETCH_TIMEOUT_MS = 30000;
 /**
  * A local model on a busy CPU can take minutes to answer, and the default
@@ -176,6 +184,32 @@ async function handleVisionAnalyze(req, res) {
   try {
     let text = '';
     let usage = null;
+    /** What the image actually was, before and after the latency cap. */
+    let imageInfo = null;
+    /**
+     * Scale the image to the vision budget before any gateway sees it.
+     *
+     * A 2592×1936 photograph is minutes of prefill for detail a 3B model cannot
+     * use, and a 200×113 thumbnail has no detail to use. Both are handled here
+     * rather than at each gateway, so every gateway sees the same input.
+     */
+    const normalisePayload = async (payload) => {
+      const normalised = await normaliseImage(
+        Buffer.from(payload.base64, 'base64'),
+      );
+      imageInfo = {
+        width: normalised.width,
+        height: normalised.height,
+        originalWidth: normalised.originalWidth,
+        originalHeight: normalised.originalHeight,
+        scaled: normalised.scaled,
+      };
+      if (normalised.warning) imageInfo.warning = normalised.warning;
+      return {
+        base64: normalised.buffer.toString('base64'),
+        mime: normalised.mime,
+      };
+    };
     /** Every reading of the answer, most complete first. */
     const answerCandidates = [];
     if (ollama) {
@@ -190,6 +224,7 @@ async function handleVisionAnalyze(req, res) {
         }
         payload = await fetchRemoteImage(image);
       }
+      payload = await normalisePayload(payload);
       const { status, body: raw } = await postJson(
         `${gateway.replace(/\/v1$/, '')}/api/chat`,
         {
@@ -201,6 +236,11 @@ async function handleVisionAnalyze(req, res) {
           // Stream: a CPU-only vision pass takes minutes, and a client that
           // waits for the full answer gets its connection closed first.
           stream: true,
+          // Note: Ollama's `format: 'json'` was tried here to force the scene
+          // contract. With streaming on a 3B model it produced an empty answer
+          // (the decoder spent its budget on whitespace), which is worse than
+          // prose. The contract is enforced by parsing and reporting
+          // `parsed: false` instead — never by pretending.
           options: {
             num_ctx: Number(process.env.GEV_VISION_NUM_CTX || 8192),
             num_gpu: Number(process.env.GEV_VISION_NUM_GPU ?? 0),
@@ -223,6 +263,10 @@ async function handleVisionAnalyze(req, res) {
       usage = streamed.usage;
       answerCandidates.push(streamed.cumulative, streamed.deltas);
     } else {
+      // Same budget as the local path: a cloud gateway bills by the pixel too.
+      const payload = await normalisePayload(
+        parseDataUrl(image) || (await fetchRemoteImage(image)),
+      );
       const { status, body: raw } = await postJson(
         `${gateway}/chat/completions`,
         {
@@ -234,7 +278,12 @@ async function handleVisionAnalyze(req, res) {
               role: 'user',
               content: [
                 { type: 'text', text: userText },
-                { type: 'image_url', image_url: { url: image } },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: `data:${payload.mime};base64,${payload.base64}`,
+                  },
+                },
               ],
             },
           ],
@@ -291,6 +340,9 @@ async function handleVisionAnalyze(req, res) {
       gateway,
       text,
       usage,
+      // The caller can now tell "the model missed the people" from "there were
+      // 113 pixels of street": the size that went in is in the answer.
+      ...(imageInfo ? { imageSize: imageInfo } : {}),
       ...(scene ? { detections } : {}),
     });
   } catch (error) {
