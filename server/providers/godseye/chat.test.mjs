@@ -573,3 +573,21 @@ test('an unknown lane falls back to the private local lane', () => {
   assert.equal(normalizeLane('remote'), 'local');
   assert.equal(normalizeLane(undefined), 'local');
 });
+
+test('the chat lane prefers GEV_CHAT_MODEL over the vision model', async () => {
+  const { localModel } = await import('./llm-lanes.js');
+  assert.equal(
+    localModel({
+      GEV_CHAT_MODEL: 'gemma4-e4b',
+      GEV_VISION_MODEL: 'qwen2.5vl:3b',
+    }),
+    'gemma4-e4b',
+    'text chat must not be answered by the vision model',
+  );
+  assert.equal(
+    localModel({ GEV_VISION_MODEL: 'qwen2.5vl:3b' }),
+    'qwen2.5vl:3b',
+    'an old install with only the vision variable still works',
+  );
+  assert.equal(localModel({}), 'qwen2.5vl:3b');
+});

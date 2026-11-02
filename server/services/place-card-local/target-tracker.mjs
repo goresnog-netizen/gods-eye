@@ -13,6 +13,7 @@
  */
 
 import { fetchCctvEnhanced } from './cctv-enhanced.mjs';
+import { describePhone } from './phone-prefix.mjs';
 
 const TARGET_CATALOG = [
   // Indonesia - Papua
@@ -195,6 +196,7 @@ export async function resolveTarget(query) {
       found: true,
       target: byPhone,
       matchType: 'phone',
+      phoneIntel: describePhone(query),
       ...CATALOG_MARK,
     };
 
@@ -218,6 +220,20 @@ export async function resolveTarget(query) {
   );
   if (byCity)
     return { found: true, target: byCity, matchType: 'city', ...CATALOG_MARK };
+
+  // A number that is not in the sample catalogue still resolves to something
+  // real: the allocation block decides the operator. It never resolves to a
+  // position, and the answer says which of the two it is.
+  const phone = describePhone(query);
+  if (phone.kind === 'mobile-number') {
+    return {
+      found: false,
+      phoneIntel: phone,
+      reason: phone.operator
+        ? `No sample entry for this number. It is a ${phone.operator} number (${phone.prefix}), and a number carries no position — send the cell id the handset reports instead.`
+        : 'No sample entry for this number, and its prefix is not a mobile block.',
+    };
+  }
 
   return {
     found: false,
@@ -287,6 +303,8 @@ export async function buildTargetProfile(query, options = {}) {
     matchType: result.matchType,
     ...CATALOG_MARK,
     notice: CATALOG_NOTICE,
+    // What the number itself proves: the operator. Never a position.
+    phoneIntel: result.phoneIntel || describePhone(target.phone),
     target: {
       id: target.id,
       name: target.name,

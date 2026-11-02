@@ -28,7 +28,7 @@ export const ZEN_CHAT_URL = 'https://opencode.ai/zen/v1/chat/completions';
 
 /** Base URL default lane lokal (env GEV_VISION_BASE_URL). */
 export const LOCAL_BASE_URL_DEFAULT = 'http://127.0.0.1:11434/v1';
-/** Model default lane lokal (env GEV_VISION_MODEL). */
+/** Model default lane lokal (env GEV_CHAT_MODEL, lalu GEV_VISION_MODEL). */
 export const LOCAL_MODEL_DEFAULT = 'qwen2.5vl:3b';
 
 /** Deadline default satu panggilan lane: model lokal butuh waktu lama. */
@@ -297,14 +297,22 @@ export function localChatUrl(environment = process.env) {
 }
 
 /**
- * Model lane lokal (env GEV_VISION_MODEL).
+ * Model lane lokal untuk **chat teks**.
+ *
+ * `GEV_CHAT_MODEL` didahulukan. Sebelum ini lane chat meminjam
+ * `GEV_VISION_MODEL`, jadi obrolan teks dijawab model vision 3B — lambat dan
+ * jawabannya melenceng ("tower terdekat ada di sebelah kiri"). `GEV_VISION_MODEL`
+ * tetap dibaca sebagai cadangan supaya pemasangan lama tidak rusak, tapi
+ * pemasangan baru sebaiknya mengisi keduanya.
  *
  * @param {Record<string, string|undefined>} [environment]
  * @returns {string}
  */
 export function localModel(environment = process.env) {
-  const configured = String(environment?.GEV_VISION_MODEL || '').trim();
-  return configured || LOCAL_MODEL_DEFAULT;
+  const chat = String(environment?.GEV_CHAT_MODEL || '').trim();
+  if (chat) return chat;
+  const vision = String(environment?.GEV_VISION_MODEL || '').trim();
+  return vision || LOCAL_MODEL_DEFAULT;
 }
 
 /**

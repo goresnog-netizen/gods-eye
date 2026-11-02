@@ -569,6 +569,38 @@ async function handleLocate(req, res) {
   // the presence of a target is the success signal.
   if (!profile?.target) {
     const direct = await resolveTarget(query);
+    // A mobile number that is not a sample entry still has a real answer: the
+    // numbering plan names the operator. It has no position, so the response
+    // carries `position: null` rather than a catalogue point pretending to be
+    // one.
+    if (direct?.phoneIntel?.kind === 'mobile-number') {
+      const entry = await recordAudit({
+        action: 'locate',
+        query,
+        mode: 'phone',
+        source: 'phone-prefix',
+        legalBasis: legal.basis,
+        result: 'metadata-only',
+      });
+      return sendJson(res, 200, {
+        ok: true,
+        mode: 'phone',
+        audit: { seq: entry.seq, hash: entry.hash },
+        legalBasis: legal.basis,
+        source: 'phone-prefix',
+        capability: 'number-metadata',
+        synthetic: false,
+        position: null,
+        estimated: false,
+        positionBasis: 'none',
+        phone: direct.phoneIntel,
+        detail: direct.reason,
+        notice:
+          'A phone number identifies a subscription, not a place. The operator ' +
+          'is read from the national numbering plan; a position can only come ' +
+          'from the cell id the handset reports (mcc-mnc-lac-cellid).',
+      });
+    }
     await recordAudit({
       action: 'locate',
       query,

@@ -8,16 +8,37 @@
   flex-direction: column;
   gap: 8px;
   font-family: var(--font-sans);
+  /* A flex child will not shrink below its content unless this is 0. Without
+     it the panel grew past the rail and squeezed every panel under it; with it
+     the body scrolls inside whatever height the rail grants. */
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .godseye-tabs {
   display: flex;
-  flex-wrap: wrap;
+  /* Seven tabs in a narrow rail: wrapping made the strip two or three rows
+     tall, the last row's tab stretched full width, and the panel pushed every
+     panel under it out of the rail. One row that scrolls keeps the height
+     fixed and the labels readable. */
+  flex-wrap: nowrap;
   gap: 4px;
   border-bottom: 1px solid var(--glass-border);
   padding-bottom: 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+.godseye-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+.godseye-tabs::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 2px;
 }
 .godseye-tab {
-  flex: 1;
+  flex: 0 0 auto;
+  white-space: nowrap;
   background: transparent;
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);

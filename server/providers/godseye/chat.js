@@ -120,6 +120,22 @@ export function sceneDescriptor(scene) {
 }
 
 /**
+ * What the console can and cannot do, stated plainly for the model.
+ *
+ * A small local model with no facts about its host will confabulate: asked for
+ * the nearest tower it answers with a direction, because "direction" is the
+ * shape of the question. These lines are the boundary it must answer inside.
+ */
+export const CONSOLE_FACTS = [
+  'CONSOLE FACTS (answer inside these, and say so when a question falls outside):',
+  '- A phone number carries no position. The console reads the operator from the Indonesian numbering prefix; it never turns a number into coordinates.',
+  '- A cell id (mcc-mnc-lac-cellid) resolves against a local registry of ~2,300 towers and returns a real tower position with an accuracy radius.',
+  '- Metre accuracy needs an operator feed (timing advance), which this console does not have and cannot obtain on its own.',
+  '- Terrain range comes from a DEM viewshed; land cover comes from ESA WorldCover. Coverage is a fraction of a province box, not a promise.',
+  '- If you do not know a number, say you do not know. Never invent a coordinate, a distance or a bearing.',
+].join('\n');
+
+/**
  * System prompt: skill yang ditanam, aturan privasi, dan deskripsi adegan.
  *
  * @param {object} options
@@ -130,6 +146,10 @@ export function sceneDescriptor(scene) {
 export function buildSystemPrompt({ library, scene = null } = {}) {
   const parts = [
     'You are the chat assistant of the God Eye console, a local research console for open-source situational awareness.',
+    // The console's own facts. Without these a small model invents answers
+    // about what the console can do — it once replied that the nearest tower
+    // to Waena was "on the left", which is not a thing a registry can say.
+    CONSOLE_FACTS,
     renderSkillContext(library),
     ...PRIVACY_RULES,
   ];
