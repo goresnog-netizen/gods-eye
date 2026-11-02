@@ -284,9 +284,6 @@
     "./tools/services": "./src/tools/services.js",
     "./view": "./src/view/index.js",
     "./agent/world-packet": "./src/agent/worldPacket.js",
-    "./layers/vision-bbox": {
-      "import": "./src/app/layers/vision-bbox.js",
-      "require": "./src/app/layers/vision-bbox.js"
-    }
+    "./layers/vision-bbox": "./src/app/layers/vision-bbox.js"
   }
 }

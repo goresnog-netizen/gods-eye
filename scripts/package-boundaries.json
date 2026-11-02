@@ -13,37 +13,21 @@
       "src/data/localGeojsonLod.js",
       "src/sources/infrastructureData.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "application": {
-    "exports": [
-      "./application"
-    ],
-    "modules": [
-      "src/app/application.js"
-    ],
+    "exports": ["./application"],
+    "modules": ["src/app/application.js"],
     "external": []
   },
   "viewer": {
-    "exports": [
-      "./application/viewer"
-    ],
-    "modules": [
-      "src/app/atmosphereCompat.js",
-      "src/app/viewer.js"
-    ],
-    "external": [
-      "cesium"
-    ]
+    "exports": ["./application/viewer"],
+    "modules": ["src/app/atmosphereCompat.js", "src/app/viewer.js"],
+    "external": ["cesium"]
   },
   "vite-build": {
     "runtime": "node",
-    "exports": [
-      "./build/vite",
-      "./build/html"
-    ],
+    "exports": ["./build/vite", "./build/html"],
     "modules": [
       "build/allowedHosts.js",
       "build/application-html.js",
@@ -51,15 +35,11 @@
       "build/panel.js",
       "build/vite.js"
     ],
-    "external": [
-      "vite-plugin-cesium"
-    ]
+    "external": ["vite-plugin-cesium"]
   },
   "live-providers": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/live"
-    ],
+    "exports": ["./server/providers/live"],
     "modules": [
       "server/providers/aircraft/adsb-lol.js",
       "server/providers/aircraft/enrichment.js",
@@ -76,24 +56,16 @@
       "src/i18n/marker.js",
       "src/sources/httpBody.js"
     ],
-    "external": [
-      "ws"
-    ]
+    "external": ["ws"]
   },
   "adsb-lol-source": {
-    "exports": [
-      "./sources/adsb-lol"
-    ],
-    "modules": [
-      "src/data/adsbLolFallback.js"
-    ],
+    "exports": ["./sources/adsb-lol"],
+    "modules": ["src/data/adsbLolFallback.js"],
     "external": []
   },
   "place-providers": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/places"
-    ],
+    "exports": ["./server/providers/places"],
     "modules": [
       "scripts/google-server-key.mjs",
       "server/providers/common/geo.js",
@@ -114,19 +86,13 @@
     "external": []
   },
   "place-payloads": {
-    "exports": [
-      "./sources/places"
-    ],
-    "modules": [
-      "src/data/placeProviderPayloads.js"
-    ],
+    "exports": ["./sources/places"],
+    "modules": ["src/data/placeProviderPayloads.js"],
     "external": []
   },
   "space-providers": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/space"
-    ],
+    "exports": ["./server/providers/space"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/space.js",
@@ -139,19 +105,13 @@
     "external": []
   },
   "space-requests": {
-    "exports": [
-      "./sources/space"
-    ],
-    "modules": [
-      "src/data/spaceProviderRequests.js"
-    ],
+    "exports": ["./sources/space"],
+    "modules": ["src/data/spaceProviderRequests.js"],
     "external": []
   },
   "terrain-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/terrain"
-    ],
+    "exports": ["./server/providers/terrain"],
     "modules": [
       "server/providers/common/rate-limit.js",
       "server/providers/common/same-site.js",
@@ -163,19 +123,13 @@
     "external": []
   },
   "terrain-source": {
-    "exports": [
-      "./sources/terrain"
-    ],
-    "modules": [
-      "src/data/terrainHeightsProxy.js"
-    ],
+    "exports": ["./sources/terrain"],
+    "modules": ["src/data/terrainHeightsProxy.js"],
     "external": []
   },
   "traffic-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/traffic"
-    ],
+    "exports": ["./server/providers/traffic"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/same-site.js",
@@ -188,28 +142,18 @@
     "external": []
   },
   "traffic-source": {
-    "exports": [
-      "./sources/traffic"
-    ],
-    "modules": [
-      "src/data/tomtomTiles.js"
-    ],
+    "exports": ["./sources/traffic"],
+    "modules": ["src/data/tomtomTiles.js"],
     "external": []
   },
   "firms-csv": {
-    "exports": [
-      "./sources/firms-csv"
-    ],
-    "modules": [
-      "src/data/firmsCsv.js"
-    ],
+    "exports": ["./sources/firms-csv"],
+    "modules": ["src/data/firmsCsv.js"],
     "external": []
   },
   "firms-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/firms"
-    ],
+    "exports": ["./server/providers/firms"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/firms.js",
@@ -221,9 +165,7 @@
   },
   "gbfs-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/gbfs"
-    ],
+    "exports": ["./server/providers/gbfs"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/rate-limit.js",
@@ -236,19 +178,13 @@
     "external": []
   },
   "gbfs-source": {
-    "exports": [
-      "./sources/gbfs"
-    ],
-    "modules": [
-      "src/data/gbfsSource.js"
-    ],
+    "exports": ["./sources/gbfs"],
+    "modules": ["src/data/gbfsSource.js"],
     "external": []
   },
   "cctv-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/cctv"
-    ],
+    "exports": ["./server/providers/cctv"],
     "modules": [
       "scripts/google-server-key.mjs",
       "server/providers/cctv.js",
@@ -276,9 +212,7 @@
   },
   "mapillary-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/mapillary"
-    ],
+    "exports": ["./server/providers/mapillary"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/rate-limit.js",
@@ -291,15 +225,11 @@
       "src/sources/httpBody.js",
       "src/sources/rateLimit.js"
     ],
-    "external": [
-      "pbf"
-    ]
+    "external": ["pbf"]
   },
   "radio-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/radio"
-    ],
+    "exports": ["./server/providers/radio"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/radio.js",
@@ -316,9 +246,7 @@
   },
   "overpass-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/overpass"
-    ],
+    "exports": ["./server/providers/overpass"],
     "modules": [
       "server/providers/common/geo.js",
       "server/providers/common/http.js",
@@ -344,9 +272,7 @@
   },
   "military-installations-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/military-installations"
-    ],
+    "exports": ["./server/providers/military-installations"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/query.js",
@@ -366,9 +292,7 @@
   },
   "regional-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/regional"
-    ],
+    "exports": ["./server/providers/regional"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/query.js",
@@ -397,9 +321,7 @@
   },
   "openai-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/openai"
-    ],
+    "exports": ["./server/providers/openai"],
     "modules": [
       "server/providers/common/rate-limit.js",
       "server/providers/common/request.js",
@@ -436,9 +358,7 @@
   },
   "standalone-key-setup": {
     "runtime": "node",
-    "exports": [
-      "./server/standalone/key-setup"
-    ],
+    "exports": ["./server/standalone/key-setup"],
     "modules": [
       "scripts/pinokio-environment.mjs",
       "server/providers/common/source-root.js",
@@ -451,9 +371,7 @@
     "external": []
   },
   "place-search": {
-    "exports": [
-      "./search"
-    ],
+    "exports": ["./search"],
     "modules": [
       "src/data/bundledJson.js",
       "src/data/local_data/natural_earth/marine.json",
@@ -482,27 +400,17 @@
     "external": []
   },
   "panel-disclosure": {
-    "exports": [
-      "./ui/panels"
-    ],
-    "modules": [
-      "src/ui/panelDisclosure.js"
-    ],
+    "exports": ["./ui/panels"],
+    "modules": ["src/ui/panelDisclosure.js"],
     "external": []
   },
   "surface-keyboard": {
-    "exports": [
-      "./ui/surfaces"
-    ],
-    "modules": [
-      "src/ui/surfaceKeyboard.js"
-    ],
+    "exports": ["./ui/surfaces"],
+    "modules": ["src/ui/surfaceKeyboard.js"],
     "external": []
   },
   "panel-rail-layout": {
-    "exports": [
-      "./ui/layout"
-    ],
+    "exports": ["./ui/layout"],
     "modules": [
       "src/panelStackLayout.js",
       "src/ui/displayPanelScroll.js",
@@ -515,9 +423,7 @@
     "external": []
   },
   "visual-input": {
-    "exports": [
-      "./ui/input"
-    ],
+    "exports": ["./ui/input"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -531,20 +437,12 @@
     "external": []
   },
   "display-controls": {
-    "exports": [
-      "./ui/display"
-    ],
-    "modules": [
-      "src/ui/displayControls.js",
-      "src/ui/segmentedControl.js"
-    ],
+    "exports": ["./ui/display"],
+    "modules": ["src/ui/displayControls.js", "src/ui/segmentedControl.js"],
     "external": []
   },
   "visual-effects": {
-    "exports": [
-      "./ui/effects",
-      "./ui/effects/bloom"
-    ],
+    "exports": ["./ui/effects", "./ui/effects/bloom"],
     "modules": [
       "src/bloom.js",
       "src/i18n/index.js",
@@ -561,14 +459,10 @@
       "src/ui/visualEffects.js",
       "src/ui/visualPresets.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "map-source-controls": {
-    "exports": [
-      "./ui/maps"
-    ],
+    "exports": ["./ui/maps"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -584,10 +478,7 @@
     "external": []
   },
   "layer-panel": {
-    "exports": [
-      "./ui/layers",
-      "./ui/layers/feedback"
-    ],
+    "exports": ["./ui/layers", "./ui/layers/feedback"],
     "modules": [
       "src/data/feedState.js",
       "src/data/installationFeedback.js",
@@ -618,9 +509,7 @@
     "external": []
   },
   "location-controls": {
-    "exports": [
-      "./ui/location"
-    ],
+    "exports": ["./ui/location"],
     "modules": [
       "src/app/stateChannel.js",
       "src/i18n/index.js",
@@ -636,9 +525,7 @@
     "external": []
   },
   "radio-controls": {
-    "exports": [
-      "./ui/radio"
-    ],
+    "exports": ["./ui/radio"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -653,9 +540,7 @@
     "external": []
   },
   "cctv-controls": {
-    "exports": [
-      "./ui/cctv"
-    ],
+    "exports": ["./ui/cctv"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -674,10 +559,7 @@
     "external": []
   },
   "context-controls": {
-    "exports": [
-      "./ui/context",
-      "./ui/context/policy"
-    ],
+    "exports": ["./ui/context", "./ui/context/policy"],
     "modules": [
       "src/contextModePolicy.js",
       "src/i18n/index.js",
@@ -731,14 +613,10 @@
       "src/ui/panelRailGeometry.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "scene-controls": {
-    "exports": [
-      "./ui/scenes"
-    ],
+    "exports": ["./ui/scenes"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -753,9 +631,7 @@
     "external": []
   },
   "ui-shell": {
-    "exports": [
-      "./ui/shell"
-    ],
+    "exports": ["./ui/shell"],
     "modules": [
       "src/app/stateChannel.js",
       "src/app/layers/overlayHost.js",
@@ -922,14 +798,10 @@
       "src/overlays/worldOverlayTokens.js",
       "src/overlays/worldOverlayDraw.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "ui-styles": {
-    "exports": [
-      "./ui/styles"
-    ],
+    "exports": ["./ui/styles"],
     "modules": [
       "src/ui/styles.js",
       "src/ui/styles/bhote-koshi.css",
@@ -960,9 +832,7 @@
     "external": []
   },
   "director": {
-    "exports": [
-      "./director"
-    ],
+    "exports": ["./director"],
     "modules": [
       "src/director/authoring.js",
       "src/director/camera.js",
@@ -986,9 +856,7 @@
     "external": []
   },
   "scenes": {
-    "exports": [
-      "./scenes"
-    ],
+    "exports": ["./scenes"],
     "modules": [
       "src/app/stateChannel.js",
       "src/bloom.js",
@@ -1045,14 +913,10 @@
       "src/ui/scenes.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "live-observations": {
-    "exports": [
-      "./sources/live"
-    ],
+    "exports": ["./sources/live"],
     "modules": [
       "src/data/aircraftEmergency.js",
       "src/i18n/marker.js",
@@ -1065,9 +929,7 @@
     "external": []
   },
   "civil-flights": {
-    "exports": [
-      "./layers/flights"
-    ],
+    "exports": ["./layers/flights"],
     "modules": [
       "src/cyberSonar.js",
       "src/data/aircraftClass.js",
@@ -1116,14 +978,10 @@
       "src/layers/flights/tracking.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "military-flights": {
-    "exports": [
-      "./layers/military"
-    ],
+    "exports": ["./layers/military"],
     "modules": [
       "src/cyberSonar.js",
       "src/data/aircraftClass.js",
@@ -1165,14 +1023,10 @@
       "src/layers/military/testing.js",
       "src/layers/military/tracking.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "aircraft-mechanics": {
-    "exports": [
-      "./aircraft"
-    ],
+    "exports": ["./aircraft"],
     "modules": [
       "src/data/aircraftClass.js",
       "src/data/aircraftIcons.js",
@@ -1198,14 +1052,10 @@
       "src/layers/aircraft/classification.js",
       "src/layers/aircraft/index.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "vessel-layer": {
-    "exports": [
-      "./layers/vessels"
-    ],
+    "exports": ["./layers/vessels"],
     "modules": [
       "src/data/iconOrientation.js",
       "src/data/inputOwnership.js",
@@ -1233,14 +1083,10 @@
       "src/layers/vessels/tracking.js",
       "src/layers/vessels/viewArea.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "earthquakes": {
-    "exports": [
-      "./layers/earthquakes"
-    ],
+    "exports": ["./layers/earthquakes"],
     "modules": [
       "src/layers/bts/index.js",
       "src/layers/bts/model.js",
@@ -1250,14 +1096,10 @@
       "src/layers/earthquakes/records.js",
       "src/layers/earthquakes/source.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "recent-imagery": {
-    "exports": [
-      "./layers/recent-imagery"
-    ],
+    "exports": ["./layers/recent-imagery"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -1274,14 +1116,10 @@
       "src/maps/imageryHost.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "fire-layer": {
-    "exports": [
-      "./layers/firms"
-    ],
+    "exports": ["./layers/firms"],
     "modules": [
       "src/data/firmsAdapt.js",
       "src/data/firmsLabels.js",
@@ -1305,14 +1143,10 @@
       "src/layers/firms/state.js",
       "src/layers/firms/viewport.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "satellites-layer": {
-    "exports": [
-      "./layers/satellites"
-    ],
+    "exports": ["./layers/satellites"],
     "modules": [
       "src/data/inputOwnership.js",
       "src/data/issPass.js",
@@ -1340,15 +1174,10 @@
       "src/sources/tle.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium",
-      "satellite.js"
-    ]
+    "external": ["cesium", "satellite.js"]
   },
   "launches-layer": {
-    "exports": [
-      "./layers/launches"
-    ],
+    "exports": ["./layers/launches"],
     "modules": [
       "src/cyberSonar.js",
       "src/data/inputOwnership.js",
@@ -1376,14 +1205,10 @@
       "src/layers/launches/state.js",
       "src/layers/launches/testing.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "installations-layer": {
-    "exports": [
-      "./layers/installations"
-    ],
+    "exports": ["./layers/installations"],
     "modules": [
       "src/data/bundledJson.js",
       "src/data/cameraSensitivity.js",
@@ -1422,16 +1247,10 @@
       "src/sources/requestDeadline.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "cesium",
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["cesium", "@mapbox/vector-tile", "pbf"]
   },
   "awareness-layer": {
-    "exports": [
-      "./layers/awareness"
-    ],
+    "exports": ["./layers/awareness"],
     "modules": [
       "src/cockpitMath.js",
       "src/cyberSonar.js",
@@ -1462,14 +1281,10 @@
       "src/ui/panelRailGeometry.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "traffic-layer": {
-    "exports": [
-      "./layers/traffic"
-    ],
+    "exports": ["./layers/traffic"],
     "modules": [
       "src/data/cameraSensitivity.js",
       "src/data/flowMatch.js",
@@ -1514,16 +1329,10 @@
       "src/sources/requestDeadline.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "cesium",
-      "pbf",
-      "@mapbox/vector-tile"
-    ]
+    "external": ["cesium", "pbf", "@mapbox/vector-tile"]
   },
   "bikeshare-layer": {
-    "exports": [
-      "./layers/bikeshare"
-    ],
+    "exports": ["./layers/bikeshare"],
     "modules": [
       "src/data/cameraSensitivity.js",
       "src/data/inputOwnership.js",
@@ -1548,14 +1357,10 @@
       "src/layers/bikeshare/viewport.js",
       "src/sources/gbfsStations.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "cctv-layer": {
-    "exports": [
-      "./layers/cctv"
-    ],
+    "exports": ["./layers/cctv"],
     "modules": [
       "src/data/cctvCards.js",
       "src/data/cctvFootprint.js",
@@ -1599,10 +1404,7 @@
       "src/layers/cctv/videoPlayback.js",
       "src/overlays/worldOverlayTokens.js"
     ],
-    "external": [
-      "hls.js",
-      "cesium"
-    ]
+    "external": ["hls.js", "cesium"]
   },
   "street-level-layer": {
     "exports": [
@@ -1663,17 +1465,10 @@
       "src/layers/streetLevel/view.js",
       "src/layers/streetLevel/viewerHost.js"
     ],
-    "external": [
-      "cesium",
-      "pbf",
-      "@mapbox/vector-tile",
-      "mapillary-js"
-    ]
+    "external": ["cesium", "pbf", "@mapbox/vector-tile", "mapillary-js"]
   },
   "alpr-cameras": {
-    "exports": [
-      "./layers/alpr"
-    ],
+    "exports": ["./layers/alpr"],
     "modules": [
       "src/data/inputOwnership.js",
       "src/data/tomtomTiles.js",
@@ -1697,16 +1492,10 @@
       "src/sources/phaseTiming.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "cesium",
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["cesium", "@mapbox/vector-tile", "pbf"]
   },
   "radio-layer": {
-    "exports": [
-      "./layers/radio"
-    ],
+    "exports": ["./layers/radio"],
     "modules": [
       "src/data/iconOrientation.js",
       "src/data/idSwitches.js",
@@ -1742,14 +1531,10 @@
       "src/layers/radio/volume.js",
       "src/ui/radioTunerModel.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "submarine-cables": {
-    "exports": [
-      "./layers/submarine-cables"
-    ],
+    "exports": ["./layers/submarine-cables"],
     "modules": [
       "src/data/inputOwnership.js",
       "src/i18n/index.js",
@@ -1767,14 +1552,10 @@
       "src/layers/submarineCables/state.js",
       "src/layers/submarineCables/surface.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "bundled-cables": {
-    "exports": [
-      "./sources/bundled-cables"
-    ],
+    "exports": ["./sources/bundled-cables"],
     "modules": [
       "src/data/local_data/telegeography_submarine_cables/cable-geo.json",
       "src/data/local_data/telegeography_submarine_cables/landing-point-geo.json",
@@ -1783,10 +1564,7 @@
     "external": []
   },
   "geography": {
-    "exports": [
-      "./geography/natural-earth",
-      "./geography/neighborhoods"
-    ],
+    "exports": ["./geography/natural-earth", "./geography/neighborhoods"],
     "modules": [
       "src/data/bundledJson.js",
       "src/data/local_data/natural_earth/marine.json",
@@ -1829,9 +1607,7 @@
       "src/maps/terrain.js",
       "src/maps/terrainRetry.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "voice-connection": {
     "exports": [
@@ -2771,7 +2547,10 @@
       "src/voice/voiceCost.js",
       "src/weatherEffectsMath.js",
       "src/worldFocus.js",
-      "src/app/layers/vision-bbox.js"
+      "src/app/layers/vision-bbox.js",
+      "src/layers/vision-bbox/index.js",
+      "src/layers/vision-bbox/model.js",
+      "src/layers/vision-bbox/source.js"
     ],
     "external": [
       "hls.js",
@@ -2786,18 +2565,12 @@
     ]
   },
   "application-catalog": {
-    "exports": [
-      "./application/catalog"
-    ],
-    "modules": [
-      "src/app/catalog.js"
-    ],
+    "exports": ["./application/catalog"],
+    "modules": ["src/app/catalog.js"],
     "external": []
   },
   "application-layer-construction": {
-    "exports": [
-      "./application/layers"
-    ],
+    "exports": ["./application/layers"],
     "modules": [
       "scripts/qa-street-level.mjs",
       "src/annotations/annotationResolver.js",
@@ -3364,9 +3137,7 @@
     ]
   },
   "application-operations": {
-    "exports": [
-      "./application/operations"
-    ],
+    "exports": ["./application/operations"],
     "modules": [
       "src/annotations/annotationResolver.js",
       "src/annotations/resolver.js",
@@ -3433,19 +3204,12 @@
     ]
   },
   "layer-lifecycle": {
-    "exports": [
-      "./data/lifecycle"
-    ],
-    "modules": [
-      "src/data/cameraArrival.js",
-      "src/data/lifecycle.js"
-    ],
+    "exports": ["./data/lifecycle"],
+    "modules": ["src/data/cameraArrival.js", "src/data/lifecycle.js"],
     "external": []
   },
   "ui-navigation": {
-    "exports": [
-      "./ui/navigation"
-    ],
+    "exports": ["./ui/navigation"],
     "modules": [
       "src/app/stateChannel.js",
       "src/data/cameraArrival.js",
@@ -3456,14 +3220,10 @@
       "src/navigationPolicy.js",
       "src/ui/navigationController.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "ui-share-restoration": {
-    "exports": [
-      "./ui/share-restoration"
-    ],
+    "exports": ["./ui/share-restoration"],
     "modules": [
       "src/data/idSwitches.js",
       "src/data/installationFeedback.js",
@@ -3483,9 +3243,7 @@
     "external": []
   },
   "ui-visual-settings": {
-    "exports": [
-      "./ui/visual-settings"
-    ],
+    "exports": ["./ui/visual-settings"],
     "modules": [
       "src/bloom.js",
       "src/cockpitVisionPolicy.js",
@@ -3516,14 +3274,10 @@
       "src/ui/visualPresets.js",
       "src/ui/visualSettings.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "ui-panel-chrome": {
-    "exports": [
-      "./ui/panel-chrome"
-    ],
+    "exports": ["./ui/panel-chrome"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -3546,9 +3300,7 @@
     "external": []
   },
   "civil-flight-records": {
-    "exports": [
-      "./layers/flights/records"
-    ],
+    "exports": ["./layers/flights/records"],
     "modules": [
       "src/data/aircraftClass.js",
       "src/data/aircraftEmergency.js",
@@ -3562,9 +3314,7 @@
     "external": []
   },
   "civil-flight-ingestion": {
-    "exports": [
-      "./layers/flights/ingestion"
-    ],
+    "exports": ["./layers/flights/ingestion"],
     "modules": [
       "src/data/approxDistance.js",
       "src/layers/flights/ingestion.js",
@@ -3573,9 +3323,7 @@
     "external": []
   },
   "military-flight-records": {
-    "exports": [
-      "./layers/military/records"
-    ],
+    "exports": ["./layers/military/records"],
     "modules": [
       "src/data/aircraftClass.js",
       "src/data/aircraftEmergency.js",
@@ -3588,9 +3336,7 @@
     "external": []
   },
   "military-flight-ingestion": {
-    "exports": [
-      "./layers/military/ingestion"
-    ],
+    "exports": ["./layers/military/ingestion"],
     "modules": [
       "src/layers/military/ingestion.js",
       "src/layers/military/recordPolicy.js"
@@ -3598,9 +3344,7 @@
     "external": []
   },
   "vessel-records": {
-    "exports": [
-      "./layers/vessels/records"
-    ],
+    "exports": ["./layers/vessels/records"],
     "modules": [
       "src/layers/vessels/recordPolicy.js",
       "src/layers/vessels/records.js"
@@ -3608,9 +3352,7 @@
     "external": []
   },
   "vessel-ingestion": {
-    "exports": [
-      "./layers/vessels/ingestion"
-    ],
+    "exports": ["./layers/vessels/ingestion"],
     "modules": [
       "src/layers/vessels/ingestion.js",
       "src/layers/vessels/recordPolicy.js",
@@ -3619,18 +3361,12 @@
     "external": []
   },
   "directions-source": {
-    "exports": [
-      "./layers/directions/source"
-    ],
-    "modules": [
-      "src/layers/directions/source.js"
-    ],
+    "exports": ["./layers/directions/source"],
+    "modules": ["src/layers/directions/source.js"],
     "external": []
   },
   "recent-imagery-source": {
-    "exports": [
-      "./layers/recent-imagery/source"
-    ],
+    "exports": ["./layers/recent-imagery/source"],
     "modules": [
       "src/layers/recentImagery/catalog.js",
       "src/layers/recentImagery/model.js",
@@ -3639,9 +3375,7 @@
     "external": []
   },
   "directions-layer": {
-    "exports": [
-      "./layers/directions"
-    ],
+    "exports": ["./layers/directions"],
     "modules": [
       "src/data/pointerOwnerNames.js",
       "src/data/routeSteps.js",
@@ -3654,43 +3388,25 @@
       "src/layers/directions/source.js",
       "src/ui/unitLabels.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "radio-browser-source": {
-    "exports": [
-      "./sources/radio-browser"
-    ],
-    "modules": [
-      "src/data/radioCountry.js",
-      "src/sources/radioBrowser.js"
-    ],
+    "exports": ["./sources/radio-browser"],
+    "modules": ["src/data/radioCountry.js", "src/sources/radioBrowser.js"],
     "external": []
   },
   "cctv-types-source": {
-    "exports": [
-      "./sources/cctv-types"
-    ],
-    "modules": [
-      "src/sources/cctvTypes.js"
-    ],
+    "exports": ["./sources/cctv-types"],
+    "modules": ["src/sources/cctvTypes.js"],
     "external": []
   },
   "regional-source": {
-    "exports": [
-      "./sources/regional"
-    ],
-    "modules": [
-      "src/data/regionalModel.js",
-      "src/geoDistance.js"
-    ],
+    "exports": ["./sources/regional"],
+    "modules": ["src/data/regionalModel.js", "src/geoDistance.js"],
     "external": []
   },
   "voice-action-schemas": {
-    "exports": [
-      "./voice/action-schemas"
-    ],
+    "exports": ["./voice/action-schemas"],
     "modules": [
       "src/hudLayoutPolicy.js",
       "src/voice/actionSchemas.js",
@@ -3699,18 +3415,12 @@
     "external": []
   },
   "voice-session": {
-    "exports": [
-      "./voice/session"
-    ],
-    "modules": [
-      "src/voice/session.js"
-    ],
+    "exports": ["./voice/session"],
+    "modules": ["src/voice/session.js"],
     "external": []
   },
   "voice-session-controls": {
-    "exports": [
-      "./voice/session-controls"
-    ],
+    "exports": ["./voice/session-controls"],
     "modules": [
       "src/cityPois.js",
       "src/i18n/index.js",
@@ -3736,9 +3446,7 @@
     "external": []
   },
   "alpr-source": {
-    "exports": [
-      "./layers/alpr/source"
-    ],
+    "exports": ["./layers/alpr/source"],
     "modules": [
       "src/data/tomtomTiles.js",
       "src/i18n/marker.js",
@@ -3750,34 +3458,20 @@
       "src/sources/phaseTiming.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["@mapbox/vector-tile", "pbf"]
   },
   "bikeshare-source": {
-    "exports": [
-      "./layers/bikeshare/source"
-    ],
-    "modules": [
-      "src/layers/bikeshare/source.js"
-    ],
+    "exports": ["./layers/bikeshare/source"],
+    "modules": ["src/layers/bikeshare/source.js"],
     "external": []
   },
   "cctv-source": {
-    "exports": [
-      "./layers/cctv/source"
-    ],
-    "modules": [
-      "src/layers/cctv/source.js",
-      "src/layers/cctv/sourcePolicy.js"
-    ],
+    "exports": ["./layers/cctv/source"],
+    "modules": ["src/layers/cctv/source.js", "src/layers/cctv/sourcePolicy.js"],
     "external": []
   },
   "earthquakes-source": {
-    "exports": [
-      "./layers/earthquakes/source"
-    ],
+    "exports": ["./layers/earthquakes/source"],
     "modules": [
       "src/layers/bts/source.js",
       "src/layers/earthquakes/records.js",
@@ -3786,18 +3480,12 @@
     "external": []
   },
   "firms-source": {
-    "exports": [
-      "./layers/firms/source"
-    ],
-    "modules": [
-      "src/layers/firms/source.js"
-    ],
+    "exports": ["./layers/firms/source"],
+    "modules": ["src/layers/firms/source.js"],
     "external": []
   },
   "installations-source": {
-    "exports": [
-      "./layers/installations/source"
-    ],
+    "exports": ["./layers/installations/source"],
     "modules": [
       "src/data/bundledJson.js",
       "src/data/installationNames.js",
@@ -3816,43 +3504,25 @@
       "src/sources/requestDeadline.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["@mapbox/vector-tile", "pbf"]
   },
   "launches-source": {
-    "exports": [
-      "./layers/launches/source"
-    ],
-    "modules": [
-      "src/layers/launches/source.js"
-    ],
+    "exports": ["./layers/launches/source"],
+    "modules": ["src/layers/launches/source.js"],
     "external": []
   },
   "radio-source": {
-    "exports": [
-      "./layers/radio/source"
-    ],
-    "modules": [
-      "src/layers/radio/policy.js",
-      "src/layers/radio/source.js"
-    ],
+    "exports": ["./layers/radio/source"],
+    "modules": ["src/layers/radio/policy.js", "src/layers/radio/source.js"],
     "external": []
   },
   "satellites-source": {
-    "exports": [
-      "./layers/satellites/source"
-    ],
-    "modules": [
-      "src/layers/satellites/source.js"
-    ],
+    "exports": ["./layers/satellites/source"],
+    "modules": ["src/layers/satellites/source.js"],
     "external": []
   },
   "traffic-source-factory": {
-    "exports": [
-      "./layers/traffic/source"
-    ],
+    "exports": ["./layers/traffic/source"],
     "modules": [
       "src/data/flowMatch.js",
       "src/data/installationNames.js",
@@ -3870,16 +3540,10 @@
       "src/sources/phaseTiming.js",
       "src/sources/vectorTiles.js"
     ],
-    "external": [
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["@mapbox/vector-tile", "pbf"]
   },
   "reference-sources": {
-    "exports": [
-      "./sources/reference",
-      "./layers/submarine-cables/source"
-    ],
+    "exports": ["./sources/reference", "./layers/submarine-cables/source"],
     "modules": [
       "src/i18n/marker.js",
       "src/layers/airQuality/model.js",
@@ -3897,9 +3561,7 @@
     "external": []
   },
   "nominatim-provider": {
-    "exports": [
-      "./search/nominatim"
-    ],
+    "exports": ["./search/nominatim"],
     "modules": [
       "src/data/regionalModel.js",
       "src/geoDistance.js",
@@ -3914,28 +3576,17 @@
     "external": []
   },
   "source-http-body": {
-    "exports": [
-      "./sources/http-body"
-    ],
-    "modules": [
-      "src/i18n/marker.js",
-      "src/sources/httpBody.js"
-    ],
+    "exports": ["./sources/http-body"],
+    "modules": ["src/i18n/marker.js", "src/sources/httpBody.js"],
     "external": []
   },
   "overpass-lexer": {
-    "exports": [
-      "./sources/overpass"
-    ],
-    "modules": [
-      "src/sources/overpass.js"
-    ],
+    "exports": ["./sources/overpass"],
+    "modules": ["src/sources/overpass.js"],
     "external": []
   },
   "nominatim-source": {
-    "exports": [
-      "./sources/nominatim"
-    ],
+    "exports": ["./sources/nominatim"],
     "modules": [
       "src/data/regionalModel.js",
       "src/geoDistance.js",
@@ -3949,9 +3600,7 @@
   },
   "transit-provider": {
     "runtime": "node",
-    "exports": [
-      "./server/providers/transit"
-    ],
+    "exports": ["./server/providers/transit"],
     "modules": [
       "server/providers/common/http.js",
       "server/providers/common/rate-limit.js",
@@ -3968,14 +3617,10 @@
       "src/sources/transitHistoryStore.js",
       "src/sources/transitService.js"
     ],
-    "external": [
-      "pbf"
-    ]
+    "external": ["pbf"]
   },
   "transit-source": {
-    "exports": [
-      "./sources/transit"
-    ],
+    "exports": ["./sources/transit"],
     "modules": [
       "src/data/gtfsRealtime.js",
       "src/data/transitFeeds.js",
@@ -3983,14 +3628,10 @@
       "src/geoDistance.js",
       "src/sources/transitHistory.js"
     ],
-    "external": [
-      "pbf"
-    ]
+    "external": ["pbf"]
   },
   "transit-standalone": {
-    "exports": [
-      "./layers/transit/standalone"
-    ],
+    "exports": ["./layers/transit/standalone"],
     "modules": [
       "src/app/sourceSlot.js",
       "src/celestialRing.js",
@@ -4055,16 +3696,10 @@
       "src/sources/sourceSlot.js",
       "src/sources/transitHistory.js"
     ],
-    "external": [
-      "cesium",
-      "egm96-universal",
-      "pbf"
-    ]
+    "external": ["cesium", "egm96-universal", "pbf"]
   },
   "transit-layer": {
-    "exports": [
-      "./layers/transit"
-    ],
+    "exports": ["./layers/transit"],
     "modules": [
       "scripts/qa-transit-browser.mjs",
       "scripts/qa-transit-controls.mjs",
@@ -4103,15 +3738,10 @@
       "src/layers/transit/viewport.js",
       "src/sources/transitHistory.js"
     ],
-    "external": [
-      "cesium",
-      "pbf"
-    ]
+    "external": ["cesium", "pbf"]
   },
   "transit-source-factory": {
-    "exports": [
-      "./layers/transit/source"
-    ],
+    "exports": ["./layers/transit/source"],
     "modules": [
       "src/layers/transit/source.js",
       "src/sources/transitHistory.js"
@@ -4119,9 +3749,7 @@
     "external": []
   },
   "transit-service": {
-    "exports": [
-      "./sources/transit-service"
-    ],
+    "exports": ["./sources/transit-service"],
     "modules": [
       "src/data/gtfsRealtime.js",
       "src/data/transitFeeds.js",
@@ -4134,14 +3762,10 @@
       "src/sources/transitHistoryStore.js",
       "src/sources/transitService.js"
     ],
-    "external": [
-      "pbf"
-    ]
+    "external": ["pbf"]
   },
   "map-feature-source": {
-    "exports": [
-      "./sources/map-features"
-    ],
+    "exports": ["./sources/map-features"],
     "modules": [
       "src/sources/capability.js",
       "src/sources/featureGeometry.js",
@@ -4152,9 +3776,7 @@
     "external": []
   },
   "perimeters": {
-    "exports": [
-      "./layers/perimeters"
-    ],
+    "exports": ["./layers/perimeters"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -4168,14 +3790,10 @@
       "src/layers/perimeters/source.js",
       "src/sources/httpBody.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "gnss": {
-    "exports": [
-      "./layers/gnss"
-    ],
+    "exports": ["./layers/gnss"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -4189,14 +3807,10 @@
       "src/ui/layerNames.js",
       "src/ui/statusText.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "gnss-source": {
-    "exports": [
-      "./layers/gnss/source"
-    ],
+    "exports": ["./layers/gnss/source"],
     "modules": [
       "src/i18n/marker.js",
       "src/layers/gnss/source.js",
@@ -4205,9 +3819,7 @@
     "external": []
   },
   "perimeters-source": {
-    "exports": [
-      "./layers/perimeters/source"
-    ],
+    "exports": ["./layers/perimeters/source"],
     "modules": [
       "src/i18n/marker.js",
       "src/layers/perimeters/records.js",
@@ -4217,9 +3829,7 @@
     "external": []
   },
   "tools": {
-    "exports": [
-      "./tools"
-    ],
+    "exports": ["./tools"],
     "modules": [
       "src/data/bhoteKoshiFloodPath.js",
       "src/data/contactPlayback.js",
@@ -4271,14 +3881,10 @@
       "src/tools/views.js",
       "src/view/index.js"
     ],
-    "external": [
-      "satellite.js"
-    ]
+    "external": ["satellite.js"]
   },
   "tools-mcp": {
-    "exports": [
-      "./tools/mcp"
-    ],
+    "exports": ["./tools/mcp"],
     "modules": [
       "src/tools/catalog.js",
       "src/tools/mcp/http.js",
@@ -4289,9 +3895,7 @@
     "external": []
   },
   "tools-panel": {
-    "exports": [
-      "./tools/panel"
-    ],
+    "exports": ["./tools/panel"],
     "modules": [
       "src/app/globePanelRuntime.js",
       "src/tools/globePanel.js",
@@ -4300,9 +3904,7 @@
     "external": []
   },
   "tools-services": {
-    "exports": [
-      "./tools/services"
-    ],
+    "exports": ["./tools/services"],
     "modules": [
       "src/data/aircraftEmergency.js",
       "src/data/bundledJson.js",
@@ -4371,15 +3973,10 @@
       "src/tools/schema.js",
       "src/tools/services.js"
     ],
-    "external": [
-      "@mapbox/vector-tile",
-      "pbf"
-    ]
+    "external": ["@mapbox/vector-tile", "pbf"]
   },
   "view": {
-    "exports": [
-      "./view"
-    ],
+    "exports": ["./view"],
     "modules": [
       "src/data/idSwitches.js",
       "src/data/layerState.js",
@@ -4389,9 +3986,7 @@
     "external": []
   },
   "air-quality": {
-    "exports": [
-      "./layers/air-quality"
-    ],
+    "exports": ["./layers/air-quality"],
     "modules": [
       "src/i18n/index.js",
       "src/i18n/locale.js",
@@ -4405,14 +4000,10 @@
       "src/ui/layerNames.js",
       "src/ui/statusText.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "air-quality-source": {
-    "exports": [
-      "./layers/air-quality/source"
-    ],
+    "exports": ["./layers/air-quality/source"],
     "modules": [
       "src/i18n/marker.js",
       "src/layers/airQuality/model.js",
@@ -4422,9 +4013,7 @@
     "external": []
   },
   "agent-world-packet": {
-    "exports": [
-      "./agent/world-packet"
-    ],
+    "exports": ["./agent/world-packet"],
     "modules": [
       "src/agent/worldPacket.js",
       "src/contextModePolicy.js",
@@ -4434,35 +4023,15 @@
       "src/i18n/marker.js",
       "src/loadingFeedback.js"
     ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   },
   "bts": {
-    "exports": [
-      "./layers/bts"
-    ],
+    "exports": ["./layers/bts"],
     "modules": [
       "src/layers/bts/index.js",
       "src/layers/bts/model.js",
       "src/layers/bts/source.js"
     ],
-    "external": [
-      "cesium"
-    ]
-  },
-  "vision-bbox": {
-    "exports": [
-      "./layers/vision-bbox"
-    ],
-    "modules": [
-      "src/app/layers/vision-bbox.js",
-      "src/layers/vision-bbox/index.js",
-      "src/layers/vision-bbox/model.js",
-      "src/layers/vision-bbox/source.js"
-    ],
-    "external": [
-      "cesium"
-    ]
+    "external": ["cesium"]
   }
 }
