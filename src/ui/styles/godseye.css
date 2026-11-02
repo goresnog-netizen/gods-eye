@@ -3,6 +3,23 @@
 #godseye-panel {
   color: var(--text-primary);
 }
+/* Collapsed means header only.
+ *
+ * The shared collapse rule names `.cctv-panel-inner` and
+ * `.global-context-panel-inner`; this panel wraps everything — header included —
+ * in `.godseye-panel-inner`, so a collapsed panel kept rendering seven tabs
+ * inside a 50 px box: three wrapped rows, spilling past the edge. Measured
+ * before the fix: tabs 99 px tall in a 50 px panel, scrollWidth 188 against
+ * clientWidth 176.
+ *
+ * Hiding the inner is wrong and was tried: the header lives inside it, so the
+ * whole panel vanished. Only the body is hidden, so the title stays and the
+ * panel can be opened again. No theme guard on purpose — `data-ui-theme` is not
+ * always set, and a rule that only fires under one theme silently stops
+ * working. */
+#right-context-rail #godseye-panel.collapsed #godseye-panel-body {
+  display: none;
+}
 .godseye-panel-inner {
   display: flex;
   flex-direction: column;
