@@ -156,9 +156,81 @@
   align-items: flex-end;
   gap: 8px;
   pointer-events: none;
+  /* The rail is a column with a bounded height, so whatever does not fit has
+     to scroll inside it. Measured before this rule: rail 330x166 with
+     scrollHeight 186 and overflow visible — 20 px of panel painted over the
+     scene, and a fully opened panel would have spilled far more.
+     `overscroll-behavior` stops the wheel from continuing into the globe once
+     the rail reaches its end. The rail itself stays pointer-events:none so the
+     scene keeps its drag corridor; the panels inside restore pointer events,
+     and a wheel over a panel still bubbles here to scroll. */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 34%, transparent)
+    transparent;
   transition:
     top var(--transition-fast),
     max-height var(--transition-fast);
+}
+
+#right-context-rail::-webkit-scrollbar {
+  width: 6px;
+}
+
+#right-context-rail::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 3px;
+}
+
+#right-context-rail > [data-panel-id] {
+  /* Every panel in this rail measured fully transparent — background
+     rgba(0,0,0,0), no border, no radius, no backdrop — so its text sat
+     directly on satellite imagery. The panel chrome lives in cyber.css behind
+     :root[data-ui-theme='cyber'], and the app runs the tactical layout where
+     that attribute is never set. This is the surface those panels need,
+     written without a theme guard so it holds in every layout. */
+  background: linear-gradient(
+    180deg,
+    rgba(10, 15, 19, 0.94),
+    rgba(7, 11, 14, 0.9)
+  );
+  border: 1px solid var(--glass-border);
+  border-radius: var(--panel-radius);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+}
+
+#right-context-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* The rail itself cannot scroll by wheel: it is pointer-events:none so the
+ * scene keeps its drag corridor, and a wheel over that column goes to the globe
+ * instead. Measured: rail scrollHeight 263 against clientHeight 128 after a
+ * wheel, scrollTop still 0.
+ *
+ * So the scroll belongs to the panel body, which does take pointer events. The
+ * body only scrolls when the rail has allocated the panel less height than its
+ * content — the normal case is content-sized and unaffected. */
+#right-context-rail
+  > .panel-collapsible:not(.collapsed)
+  > [class$='-panel-inner'] {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#right-context-rail > .panel-collapsible:not(.collapsed) [id$='-panel-body'] {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 34%, transparent)
+    transparent;
 }
 #right-context-rail > #pp-toggles,
 #right-context-rail > #cctv-panel,

@@ -71,7 +71,12 @@ test('opening already-expanded Radio reveals Context and closes Display', () => 
   } finally { globalThis.document = prior; }
 });
 
-test('non-Cyber explicit panels and restored preferences retain their existing policy', () => {
+test('an explicit open leaves one panel open in every layout, not just Cyber', () => {
+  // This used to assert that non-Cyber layouts kept two panels open at once.
+  // That policy is what let the right rail run out of height and paint one
+  // panel over the next; the accordion is now owned by the stack, not by a
+  // theme. `restore` still skips it, so a shared link can rebuild a saved
+  // arrangement without being rewritten.
   for (const theme of ['tactical', 'operator', 'minimal', 'cyber']) {
     const f = fixture(theme), prior = globalThis.document;
     globalThis.document = f.doc;
@@ -79,9 +84,21 @@ test('non-Cyber explicit panels and restored preferences retain their existing p
       const options = theme === 'cyber' ? { restore: true, persist: false } : { explicit: true };
       f.owner.setPanelCollapsed('pp-toggles', false, options);
       f.owner.setPanelCollapsed('cctv-panel', false, options);
-      assert.equal(f.display.classList.contains('collapsed'), false);
       assert.equal(f.cctv.classList.contains('collapsed'), false);
-      if (theme === 'cyber') assert.deepEqual(f.saved, []);
+      if (theme === 'cyber') {
+        assert.equal(
+          f.display.classList.contains('collapsed'),
+          false,
+          'a restore rebuilds the saved arrangement without collapsing peers',
+        );
+        assert.deepEqual(f.saved, []);
+      } else {
+        assert.equal(
+          f.display.classList.contains('collapsed'),
+          true,
+          'the peer closes so the rail never holds two open bodies',
+        );
+      }
     } finally { globalThis.document = prior; }
   }
 });

@@ -142,8 +142,10 @@ test('the CCTV rows are buttons that fly to their camera', () => {
   assert.match(panel, /button\.className = 'godseye-camera'/);
   assert.match(panel, /this\.flyToPoint\?\.\(camera\.lat, camera\.lon, 1200\)/);
   assert.match(css, /\.godseye-camera:hover:not\(:disabled\)/);
-  // Five tabs have to wrap in a narrow rail.
-  assert.match(css, /\.godseye-tabs \{[^}]*flex-wrap: wrap;/);
+  // Seven modes have to fit a narrow rail. Wrapping was the old answer and it
+  // broke into ragged rows; a fixed four-column grid is the current one.
+  assert.match(css, /\.godseye-tabs \{[^}]*grid-template-columns: repeat\(4,/);
+  assert.doesNotMatch(css, /\.godseye-tabs \{[^}]*flex-wrap/);
 });
 
 test('the target tab reports the stored track', () => {

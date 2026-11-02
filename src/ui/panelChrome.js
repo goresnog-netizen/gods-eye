@@ -434,13 +434,16 @@ export class PanelChrome {
     const wasAutoCollapsed =
       panelEl.classList.contains('layout-auto-collapsed') ||
       panelEl.classList.contains('cyber-accordion-collapsed');
-    // A user opening a Cyber rail panel owns the whole accordion, including
-    // peers that were only presentation-collapsed during a saved-state restore.
+    // A user opening a right-rail panel owns the whole accordion: the peers
+    // close, so the rail never has to show two expanded bodies at once and can
+    // never run out of height. This used to be gated on
+    // `data-ui-theme === 'cyber'`, which nothing ever sets at runtime — so the
+    // accordion never ran and panels piled up. Ownership of the stack is the
+    // real condition; the theme was a proxy for it.
     if (
       explicit &&
       !restore &&
       !nextCollapsed &&
-      document.documentElement?.dataset.uiTheme === 'cyber' &&
       panelEl.parentElement === this._rightPanelStack
     ) {
       for (const peer of this._rightPanelStack.children) {

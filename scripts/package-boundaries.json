@@ -339,6 +339,7 @@
       "server/providers/openai/toolDescriptions.js",
       "server/providers/openai/tools.js",
       "server/providers/openai/vision-contract.js",
+      "server/providers/openai/vision-image.js",
       "server/providers/openai/vision-request.js",
       "server/providers/openai/vision.js",
       "src/data/feedState.js",
@@ -354,7 +355,7 @@
       "src/voice/layerManifest.js",
       "src/voice/voiceCost.js"
     ],
-    "external": []
+    "external": ["sharp"]
   },
   "standalone-key-setup": {
     "runtime": "node",

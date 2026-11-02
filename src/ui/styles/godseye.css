@@ -25,28 +25,100 @@
   gap: 8px;
   font-family: var(--font-sans);
 }
+/* Seven modes, four columns: two deliberate rows that always fit the 330 px
+ * panel, instead of flex-wrap guessing where to break. Measured with flex-wrap
+ * in the same panel: strip 67 px tall over two ragged rows, tabs 64 px wide and
+ * uneven. A grid gives every mode the same hit target.
+ *
+ * The icon is a ::before pseudo-element on purpose. `data-i18n` translates these
+ * buttons by writing `element.textContent`, so any child element would be
+ * destroyed on a locale switch; a pseudo-element survives it and the label
+ * stays a plain text node for the translator. */
 .godseye-tabs {
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 4px;
-  border-bottom: 1px solid var(--glass-border);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+}
+.godseye-tabs::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 55%, transparent),
+    transparent
+  );
 }
 .godseye-tab {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
   background: transparent;
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);
   color: var(--text-secondary);
   cursor: pointer;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 6px 8px;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  padding: 6px 4px;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+.godseye-tab::before {
+  content: '◈';
+  flex: 0 0 auto;
+  font-size: 0.58rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+#godseye-tab-news::before {
+  content: '▤';
+}
+#godseye-tab-place::before {
+  content: '▦';
+}
+#godseye-tab-vision::before {
+  content: '◉';
+}
+#godseye-tab-cctv::before {
+  content: '▣';
+}
+#godseye-tab-bts::before {
+  content: '▲';
+}
+#godseye-tab-locate::before {
+  content: '◎';
+}
+.godseye-tab:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--glass-border));
+  color: var(--text-primary);
+}
+.godseye-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 .godseye-tab.is-active {
   border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 22%, transparent);
   color: var(--text-primary);
+}
+.godseye-tab.is-active::before {
+  opacity: 1;
+  color: var(--accent);
 }
 .godseye-pane {
   display: flex;
