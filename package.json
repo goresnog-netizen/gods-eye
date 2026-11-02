@@ -58,7 +58,8 @@
     "bts:sweep": "node --env-file-if-exists=.env server/services/place-card-local/fetch-bts-papua.mjs",
     "bts:osm": "node server/services/place-card-local/import-bts.mjs --osm",
     "bts:probe": "node --env-file-if-exists=.env server/services/place-card-local/fetch-bts-papua.mjs --api-probe",
-    "bts:coverage": "node --env-file-if-exists=.env server/services/place-card-local/terrain-coverage-cli.mjs"
+    "bts:coverage": "node --env-file-if-exists=.env server/services/place-card-local/terrain-coverage-cli.mjs",
+    "bts:gaps": "node server/services/place-card-local/bts-gaps.mjs"
   },
   "dependencies": {
     "@jtarrio/signals": "^0.10.0",
