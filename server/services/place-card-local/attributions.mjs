@@ -38,6 +38,15 @@ export const ATTRIBUTIONS = Object.freeze({
     url: 'https://kartaview.org',
     text: 'Street-level imagery © KartaView contributors, licensed CC BY-SA 4.0.',
   },
+  worldcover: {
+    id: 'worldcover',
+    name: 'ESA WorldCover',
+    license: 'CC BY 4.0',
+    url: 'https://esa-worldcover.org',
+    text:
+      'Land cover © ESA WorldCover project 2021 (10 m v200), licensed CC BY 4.0. ' +
+      'Class codes are used unmodified; no colours are interpreted.',
+  },
   local: {
     id: 'local',
     name: "God's Eye local catalogs",

@@ -64,6 +64,7 @@ import {
   TECH_PROFILES,
   viewshed,
 } from '../../services/place-card-local/propagation.mjs';
+import { landCoverAt } from '../../services/place-card-local/landcover.mjs';
 import { readTerrainCoverage } from '../../services/place-card-local/coverage-terrain.mjs';
 import {
   attributionFor,
@@ -899,12 +900,44 @@ async function loadBtsRegistry() {
 const viewshedCache = new Map();
 const VIEWSHED_TTL_MS = 30 * 60 * 1000;
 
+/**
+ * Which clutter model the caller asked for.
+ *
+ * Anything unrecognised falls back to `flat` rather than to the newest model:
+ * an old client that sends `?clutter=forest` must not silently get a polygon
+ * built on a model it never asked for.
+ */
+const CLUTTER_MODELS = new Set(['flat', 'roughness', 'landcover']);
+function readClutterModel(url) {
+  const raw = String(url.searchParams.get('clutter') || '')
+    .trim()
+    .toLowerCase();
+  return CLUTTER_MODELS.has(raw) ? raw : 'flat';
+}
+
+/**
+ * The cache key for a viewshed.
+ *
+ * The coordinate is always in the key, even when the site has an id: an ad-hoc
+ * `?lat&lon` request is given the id `adhoc`, so keying on the id alone served
+ * one coordinate's polygon for every other coordinate — the same ring for a
+ * mountain site and a coastal one.
+ */
+export function viewshedCacheKey(
+  site,
+  tech,
+  { clutterModel = 'flat', tiltDeg = 0 } = {},
+) {
+  const where = `${site.id || 'site'}@${site.lat},${site.lon}`;
+  return `${where}:${tech}:${clutterModel}:${tiltDeg}`;
+}
+
 async function viewshedFor(
   site,
   tech,
   { clutterModel = 'flat', tiltDeg = 0 } = {},
 ) {
-  const key = `${site.id || `${site.lat},${site.lon}`}:${tech}:${clutterModel}:${tiltDeg}`;
+  const key = viewshedCacheKey(site, tech, { clutterModel, tiltDeg });
   const hit = viewshedCache.get(key);
   if (hit && Date.now() - hit.at < VIEWSHED_TTL_MS)
     return { ...hit.value, cached: true };
@@ -923,6 +956,7 @@ async function viewshedFor(
     profile,
     elevationAt,
     clutterModel,
+    landCoverAt,
     tiltDeg,
   });
   value.tilesPrefetched = tiles;
@@ -1108,7 +1142,10 @@ async function handleBts(req, res) {
         hint: 'Pass ?site=<id>&viewshed=1, or ?lat&lon&tech=4G&viewshed=1',
       });
     }
-    const result = await viewshedFor(site, tech || site.tech);
+    const result = await viewshedFor(site, tech || site.tech, {
+      clutterModel: readClutterModel(url),
+      tiltDeg: boundedNumber(url.searchParams.get('tiltDeg'), 0, 0, 20),
+    });
     return sendJson(res, 200, {
       ok: true,
       ...meta,

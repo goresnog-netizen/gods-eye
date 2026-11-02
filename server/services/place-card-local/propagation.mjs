@@ -8,9 +8,11 @@
  *   budget  — free-space loss against the technology's EIRP and sensitivity,
  *             capped by a planning radius (interference, not physics, is what
  *             really limits a 4G cell, so the cap is honest and stated).
- *             `clutterModel: 'roughness'` replaces the flat clutter allowance
- *             with the terrain's own roughness — a keyless proxy for forest,
- *             buildings and broken ground that no single knife edge models.
+ *             `clutterModel: 'landcover'` spends the flat allowance scaled by
+ *             the share of the walk that is actually in scattering cover
+ *             (ESA WorldCover 10 m, keyless). `'roughness'` is the older proxy
+ *             — the terrain's own grade — kept for comparisons where the
+ *             land-cover tile is not cached yet.
  *   terrain — first Fresnel zone clearance, and knife-edge diffraction when a
  *             ridge cuts into it (ITU-R P.526).
  *   antenna — `tiltDeg` turns on a 3GPP-style vertical pattern: a downtilted
@@ -21,6 +23,12 @@
  * The result is a polygon, not a circle: in Papua that is the difference
  * between "5 km" and "9 km up the valley, 1.1 km behind the ridge".
  */
+
+import {
+  WORLDCOVER_ATTRIBUTION,
+  landCoverClutterDb,
+  landCoverStats,
+} from './landcover.mjs';
 
 /** Link budgets and caps per technology. Cap = interference-limited planning radius. */
 export const TECH_PROFILES = Object.freeze({
@@ -70,12 +78,12 @@ export const DEFAULT_V_BEAM_DEG = 10;
 /**
  * Extra clutter loss implied by the terrain's own roughness.
  *
- * Land cover is the missing term in a knife-edge model: forest, buildings and
- * broken ground scatter energy without ever blocking the line of sight, and
- * there is no keyless global land-cover service to look it up in. Terrain
- * roughness is the honest proxy — steep, broken ground is where clutter lives —
- * and it only ever *reduces* a reported range, which is the safe direction for
- * a coverage claim.
+ * This was the stand-in for land cover, on the premise that no keyless global
+ * land-cover service existed. That premise is dead: `landcover.mjs` reads ESA
+ * WorldCover 10 m and is now the preferred model. Roughness stays because it
+ * measures a different thing — broken ground scatters energy even where the
+ * cover is open — and because it needs no tiles, so an offline ring still has a
+ * defensible answer.
  *
  * The number is the RMS grade of the sampled profile (percent), scaled by
  * `gainDbPerPctGrade` and capped at `maxDb` so it can never dominate the link.
@@ -231,6 +239,7 @@ export async function radialRange({
   toleranceDb = DEFAULT_TERRAIN_TOLERANCE_DB,
   maxKm = null,
   clutterModel = 'flat',
+  landCoverAt = null,
   tiltDeg = 0,
   vBeamDeg = DEFAULT_V_BEAM_DEG,
 }) {
@@ -242,6 +251,7 @@ export async function radialRange({
   const antennaM = (site.groundM ?? 0) + (site.heightM ?? 30);
   const stepKm = stepM / 1000;
   const terrain = [];
+  const cover = [];
   let rangeKm = 0;
   let worst = { lossDb: 0, atKm: null };
   let patternWorstDb = 0;
@@ -258,6 +268,16 @@ export async function radialRange({
     // the path actually earned — flat into a valley, rough into the mountains.
     if (clutterModel === 'roughness' && terrain.length > 1) {
       extraClutterDb = terrainClutterDb(terrain, stepKm);
+    }
+    // Land cover answers what a knife edge cannot: flat water and flat canopy
+    // have the same profile. The allowance is the technology's own flat figure
+    // scaled by the cluttered share of the walk, so it can only ever spend
+    // margin the budget already had — never invent a new decibel.
+    if (clutterModel === 'landcover' && typeof landCoverAt === 'function') {
+      cover.push(await landCoverAt(point.lat, point.lon));
+      extraClutterDb = landCoverClutterDb(landCoverStats(cover), {
+        flatDb: profile.clutterDb,
+      });
     }
     // The receiver stands on the ground at this sample, so the depression angle
     // is measured down to it; the pattern loss is what the beam costs in that
@@ -309,6 +329,19 @@ export async function radialRange({
     obstructionAtKm:
       worst.atKm === null ? null : Math.round(worst.atKm * 100) / 100,
     clutterDb: extraClutterDb,
+    landCover:
+      cover.length > 0
+        ? (() => {
+            const stats = landCoverStats(cover);
+            return {
+              dominant: stats.dominant,
+              cluttered: stats.cluttered,
+              samples: stats.total,
+              clutteredFraction: Math.round(stats.fraction * 1000) / 1000,
+              histogram: stats.histogram,
+            };
+          })()
+        : null,
     patternDb: Math.round(patternWorstDb * 10) / 10,
     marginDb: Math.round(marginAtRange * 10) / 10,
   };
@@ -333,31 +366,50 @@ export async function viewshed({
   elevationAt,
   maxKm = null,
   clutterModel = 'flat',
+  landCoverAt = null,
   tiltDeg = 0,
   vBeamDeg = DEFAULT_V_BEAM_DEG,
 }) {
   if (typeof elevationAt !== 'function') {
     return { ok: false, error: 'elevation_required' };
   }
+  if (clutterModel === 'landcover' && typeof landCoverAt !== 'function') {
+    return { ok: false, error: 'landcover_required' };
+  }
   const groundM = await elevationAt(site.lat, site.lon);
   const anchor = { ...site, groundM: groundM ?? 0 };
   const rings = [];
   for (let i = 0; i < azimuths; i += 1) {
     const azimuthDeg = Math.round((360 / azimuths) * i);
-    rings.push(
-      await radialRange({
-        site: anchor,
-        azimuthDeg,
-        profile,
-        elevationAt,
-        stepM,
-        toleranceDb,
-        maxKm,
-        clutterModel,
-        tiltDeg,
-        vBeamDeg,
-      }),
-    );
+    try {
+      rings.push(
+        await radialRange({
+          site: anchor,
+          azimuthDeg,
+          profile,
+          elevationAt,
+          stepM,
+          toleranceDb,
+          maxKm,
+          clutterModel,
+          landCoverAt,
+          tiltDeg,
+          vBeamDeg,
+        }),
+      );
+    } catch (error) {
+      // A land-cover ring without land cover is not a ring with less clutter:
+      // it is an unanswered question. Say so instead of returning a polygon
+      // built on a model that never ran.
+      if (clutterModel === 'landcover') {
+        return {
+          ok: false,
+          error: 'landcover_unavailable',
+          detail: String(error?.message || error),
+        };
+      }
+      throw error;
+    }
   }
   const polygon = rings.map((ring) => {
     const point = destination(
@@ -373,6 +425,32 @@ export async function viewshed({
   });
   if (polygon.length) polygon.push(polygon[0]);
   const ranges = rings.map((ring) => ring.rangeKm).filter((value) => value > 0);
+  // The whole ring's land cover, not just the worst radial: a site on a
+  // headland is half sea and half canopy, and one number should say so.
+  const coverTotals = {};
+  let coverCluttered = 0;
+  let coverSamples = 0;
+  for (const ring of rings) {
+    if (!ring.landCover) continue;
+    coverCluttered += ring.landCover.cluttered;
+    coverSamples += ring.landCover.samples;
+    for (const [key, count] of Object.entries(ring.landCover.histogram)) {
+      coverTotals[key] = (coverTotals[key] || 0) + count;
+    }
+  }
+  const landCover =
+    coverSamples > 0
+      ? {
+          source: WORLDCOVER_ATTRIBUTION,
+          samples: coverSamples,
+          clutteredFraction:
+            Math.round((coverCluttered / coverSamples) * 1000) / 1000,
+          dominant:
+            Object.entries(coverTotals).sort((a, b) => b[1] - a[1])[0]?.[0] ??
+            null,
+          histogram: coverTotals,
+        }
+      : null;
   return {
     ok: true,
     site: {
@@ -392,11 +470,16 @@ export async function viewshed({
       toleranceDb,
       clutterModel,
       clutterBasis:
-        clutterModel === 'roughness' ? 'terrain-roughness-proxy' : 'flat',
+        clutterModel === 'landcover'
+          ? 'worldcover-2021-class-codes'
+          : clutterModel === 'roughness'
+            ? 'terrain-roughness-proxy'
+            : 'flat',
       tiltDeg,
       vBeamDeg: tiltDeg ? vBeamDeg : null,
     },
     rings,
+    landCover,
     polygon,
     stats: {
       minKm: ranges.length ? Math.min(...ranges) : 0,

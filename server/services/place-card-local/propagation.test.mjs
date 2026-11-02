@@ -277,3 +277,87 @@ test('the flat model is the default and is reported as such', async () => {
   }
 });
 
+
+test('a flat path through canopy pays clutter that flat ground does not', async () => {
+  const site = { lat: -4, lon: 138, heightM: 30 };
+  const forest = async () => ({ key: 'tree-cover', cluttered: true });
+  const water = async () => ({ key: 'water', cluttered: false });
+  const base = {
+    site,
+    azimuthDeg: 0,
+    profile: TECH_PROFILES['4G'],
+    elevationAt: ridgeNorth(site.lat),
+    // The ridge costs ~45 dB; 50 leaves room for clutter to decide the walk.
+    toleranceDb: 50,
+  };
+
+  const openRing = await radialRange({ ...base, clutterModel: 'flat' });
+  const waterRing = await radialRange({
+    ...base,
+    clutterModel: 'landcover',
+    landCoverAt: water,
+  });
+  const forestRing = await radialRange({
+    ...base,
+    clutterModel: 'landcover',
+    landCoverAt: forest,
+  });
+
+  assert.equal(openRing.rangeKm, TECH_PROFILES['4G'].capKm);
+  assert.equal(waterRing.clutterDb, 0, 'open water is not clutter');
+  assert.equal(waterRing.rangeKm, openRing.rangeKm);
+  assert.equal(forestRing.clutterDb, TECH_PROFILES['4G'].clutterDb);
+  assert.ok(
+    forestRing.rangeKm < 1,
+    `canopy spent the margin the ridge needed: ${forestRing.rangeKm} km`,
+  );
+  assert.equal(forestRing.landCover.dominant, 'tree-cover');
+  assert.equal(forestRing.landCover.clutteredFraction, 1);
+});
+
+test('a land-cover ring refuses rather than falling back to flat', async () => {
+  const result = await viewshed({
+    site: { lat: -4, lon: 138 },
+    elevationAt: flat,
+    clutterModel: 'landcover',
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'landcover_required');
+});
+
+test('a land-cover viewshed reports what the ring actually crossed', async () => {
+  const result = await viewshed({
+    site: { lat: -4, lon: 138, heightM: 30 },
+    elevationAt: flat,
+    azimuths: 4,
+    stepM: 600,
+    clutterModel: 'landcover',
+    landCoverAt: async (_lat, lon) =>
+      lon > 138
+        ? { key: 'tree-cover', cluttered: true }
+        : { key: 'water', cluttered: false },
+  });
+  assert.equal(result.ok, true);
+  assert.equal(result.profile.clutterBasis, 'worldcover-2021-class-codes');
+  assert.ok(result.landCover.samples > 0);
+  assert.ok(result.landCover.clutteredFraction > 0);
+  assert.ok(
+    result.landCover.clutteredFraction < 1,
+    'one azimuth walked out to sea',
+  );
+});
+
+test('a land-cover tile that will not load is an error, not a quiet ring', async () => {
+  const result = await viewshed({
+    site: { lat: -4, lon: 138, heightM: 30 },
+    elevationAt: flat,
+    azimuths: 4,
+    clutterModel: 'landcover',
+    landCoverAt: async () => {
+      throw new Error('worldcover: HTTP 503');
+    },
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'landcover_unavailable');
+  assert.match(result.detail, /HTTP 503/);
+});

@@ -4,7 +4,11 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { buildLiveSnapshot, installLocalIntel } from './local-intel.js';
+import {
+  buildLiveSnapshot,
+  installLocalIntel,
+  viewshedCacheKey,
+} from './local-intel.js';
 
 // The track store is a real local artifact, so the tests write to a temporary
 // file instead of the one the application uses.
@@ -950,5 +954,24 @@ test('the catalog can hand the registry itself to the globe layer', async () => 
     counts.json.sites.length,
     undefined,
     'counts are numbers, not a list',
+  );
+});
+
+test('two ad-hoc coordinates never share a cached viewshed', () => {
+  const mountain = { id: 'adhoc', lat: -4.0975, lon: 138.9517 };
+  const coast = { id: 'adhoc', lat: -2.5337, lon: 140.7181 };
+  assert.notEqual(
+    viewshedCacheKey(mountain, '4G'),
+    viewshedCacheKey(coast, '4G'),
+    'the same id for two places must not collapse to one key',
+  );
+  assert.equal(
+    viewshedCacheKey(mountain, '4G', { clutterModel: 'landcover' }),
+    viewshedCacheKey({ ...mountain }, '4G', { clutterModel: 'landcover' }),
+    'the same site and model still hits the cache',
+  );
+  assert.notEqual(
+    viewshedCacheKey(mountain, '4G'),
+    viewshedCacheKey(mountain, '4G', { tiltDeg: 6 }),
   );
 });

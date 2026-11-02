@@ -127,6 +127,19 @@ export function buildCapabilities(facts = {}) {
       needs: null,
     },
     {
+      id: 'landcover-clutter',
+      name: 'Land-cover clutter',
+      status: 'real',
+      detail:
+        'ESA WorldCover 10 m class codes sampled along every radial (?clutter=landcover); the allowance is the technology flat figure scaled by the cluttered share of the walk',
+      source:
+        'ESA WorldCover 10 m 2021 v200 · CC BY 4.0 · keyless COG read over HTTP range requests',
+      accuracy:
+        'separates flat water from flat canopy, which a knife edge cannot — it can shorten a range, never extend one',
+      needs:
+        'network access to esa-worldcover.s3.eu-central-1.amazonaws.com; the first tile per 3° square is cached on disk',
+    },
+    {
       id: 'terrain-coverage',
       name: 'Terrain-aware coverage',
       status: 'real',
