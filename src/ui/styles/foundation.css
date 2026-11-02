@@ -275,23 +275,6 @@ body.cockpit-mode #cockpit-cloud-effects.active {
   opacity: 0.42;
 }
 
-/* Cesium's own failure panel covers the whole widget and swallows every click.
-   In a real browser that only happens when WebGL is unavailable or the driver
-   resets — and then the console becomes unclickable with no way back. Keep the
-   message readable, but let the rest of the UI stay live underneath it. */
-.cesium-widget-errorPanel {
-  align-items: flex-start !important;
-  justify-content: center !important;
-  padding-top: 64px;
-  background: transparent !important;
-  pointer-events: none;
-}
-.cesium-widget-errorPanel-content {
-  pointer-events: auto;
-  max-width: 560px;
-  max-height: 50vh;
-}
-
 /* Hide Cesium default UI elements */
 .cesium-viewer-toolbar,
 .cesium-viewer-animationContainer,
