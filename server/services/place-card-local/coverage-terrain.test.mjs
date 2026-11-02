@@ -357,3 +357,28 @@ test('a land-cover lookup that fails leaves the site for the next run', async ()
   assert.equal(artifact.sitesFailedThisRun, 1);
   assert.equal(artifact.sites, 0, 'an unanswered ring is not published');
 });
+
+test('concurrent chunk workers do not race on the state file', async () => {
+  const { stateFile, artifactFile } = tmpPaths();
+  // Six chunks over two workers: their state writes overlap in time, which is
+  // exactly what made a real 2 188-site sweep die with ENOENT on the rename.
+  const sites = Array.from({ length: 12 }, (_, i) => ({
+    id: `s${i}`,
+    lat: -4.1 + i * 0.001,
+    lon: 138.95 + i * 0.001,
+    tech: '4G',
+  }));
+  const artifact = await runTerrainCoverage({
+    sites,
+    stateFile,
+    artifactFile,
+    elevationAt: async () => 0,
+    prefetchTiles: async () => 0,
+    tilesOf: () => [],
+    concurrency: 2,
+    chunkSites: 2,
+  });
+  assert.equal(artifact.sitesComputedThisRun, 12);
+  assert.equal(artifact.sitesFailedThisRun, 0);
+  assert.equal(artifact.sites, 12);
+});

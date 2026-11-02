@@ -309,11 +309,29 @@ async function readState(stateFile, { clutterModel = null } = {}) {
   };
 }
 
+/**
+ * Serialised state writes.
+ *
+ * Chunk workers run concurrently and each one rewrites the whole state file.
+ * Two `writeFile`+`rename` pairs racing on the same `.tmp` path is a lost
+ * update at best and `ENOENT` on the rename at worst — the other worker has
+ * already moved the file away. Every write therefore goes through one chain,
+ * and the temporary name is unique so a stale one can never be picked up.
+ */
+let stateWriteChain = Promise.resolve();
+let stateWriteSeq = 0;
+
 async function writeState(stateFile, state) {
-  await mkdir(path.dirname(stateFile), { recursive: true });
-  const tmp = `${stateFile}.tmp`;
-  await writeFile(tmp, JSON.stringify(state));
-  await rename(tmp, stateFile);
+  const run = stateWriteChain.then(async () => {
+    await mkdir(path.dirname(stateFile), { recursive: true });
+    stateWriteSeq += 1;
+    const tmp = `${stateFile}.${process.pid}.${stateWriteSeq}.tmp`;
+    await writeFile(tmp, JSON.stringify(state));
+    await rename(tmp, stateFile);
+  });
+  // The chain must survive a failed write, but the caller still sees the error.
+  stateWriteChain = run.catch(() => {});
+  return run;
 }
 
 /**
