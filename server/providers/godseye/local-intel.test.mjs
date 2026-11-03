@@ -189,6 +189,98 @@ test('a phone number resolves to the same catalog target', async () => {
   assert.equal(result.json.target.name, 'Target Papua 1');
 });
 
+test('a number outside the catalog names its operator and offers network context', async () => {
+  const result = await call(
+    '/api/godseye/locate',
+    '?q=085212347890&legalBasis=consent',
+  );
+  assert.equal(result.status, 200);
+  assert.equal(result.json.mode, 'phone');
+  assert.equal(result.json.phone.operator, 'Telkomsel');
+  assert.equal(result.json.position, null);
+  assert.equal(result.json.network, null, 'no point, no network list yet');
+  assert.match(result.json.networkHint, /lat=\.\.\.&lon=\.\.\./);
+});
+
+test('a supplied point fills the network with towers of the same operator', async () => {
+  const registryFile = path.join(
+    os.tmpdir(),
+    `gev-bts-network-${process.pid}.json`,
+  );
+  writeFileSync(
+    registryFile,
+    JSON.stringify({
+      source: 'test-registry',
+      synthetic: false,
+      sites: [
+        {
+          id: 't-1',
+          name: 'Kota · Telkomsel 4G',
+          lat: -2.53,
+          lon: 140.71,
+          tech: '4G',
+          rangeKm: 5,
+          mcc: 510,
+          mnc: 10,
+          cells: [{ lac: 10062, cellId: 106271263 }],
+          samples: 26,
+        },
+        {
+          id: 't-2',
+          name: 'Kota · Telkomsel 3G',
+          lat: -2.6,
+          lon: 140.8,
+          tech: '3G',
+          rangeKm: 10,
+          mcc: 510,
+          mnc: 10,
+          cells: [],
+        },
+        {
+          id: 'x-1',
+          name: 'Kota · XL Axiata 4G',
+          lat: -2.53,
+          lon: 140.72,
+          tech: '4G',
+          rangeKm: 5,
+          mcc: 510,
+          mnc: 30,
+          cells: [],
+        },
+      ],
+    }),
+  );
+  const previous = process.env.GODSEYE_BTS_REGISTRY;
+  process.env.GODSEYE_BTS_REGISTRY = registryFile;
+  try {
+    const result = await call(
+      '/api/godseye/locate',
+      '?q=085212347890&legalBasis=consent&lat=-2.53&lon=140.71',
+    );
+    assert.equal(result.status, 200);
+    assert.equal(result.json.network.basis, 'caller-supplied-point');
+    assert.equal(result.json.network.operator, 'Telkomsel');
+    assert.equal(result.json.network.towers.length, 2, 'XL tower excluded');
+    assert.ok(
+      result.json.network.towers.every((t) => t.distanceKm >= 0),
+    );
+    assert.equal(result.json.network.towers[0].id, 't-1', 'nearest first');
+    assert.ok(Number.isFinite(result.json.network.towers[0].bearing));
+  } finally {
+    process.env.GODSEYE_BTS_REGISTRY = previous;
+  }
+});
+
+test('an out-of-range context point degrades to metadata instead of a claim', async () => {
+  const result = await call(
+    '/api/godseye/locate',
+    '?q=085212347890&legalBasis=consent&lat=999&lon=140',
+  );
+  assert.equal(result.status, 200);
+  assert.equal(result.json.network, null, 'an invalid point is not a point');
+  assert.ok(result.json.networkHint);
+});
+
 test('an unknown target is a 404 with the reason', async () => {
   const result = await call(
     '/api/godseye/locate',

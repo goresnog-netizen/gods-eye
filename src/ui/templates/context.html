@@ -153,6 +153,13 @@
           <div class="godseye-actions">
             <button id="godseye-locate-fly" class="scene-btn" type="button" data-i18n>FLY TO</button>
           </div>
+          <div id="godseye-locate-network" class="godseye-network-ctl" hidden>
+            <div class="godseye-place-form">
+              <input id="godseye-locate-geo" class="gev-field" type="text" placeholder="lat, lon" data-i18n-placeholder />
+              <button id="godseye-locate-network-btn" class="scene-btn" type="button" data-i18n>Operator towers near a point</button>
+            </div>
+            <p class="godseye-status" data-i18n>NETWORK CONTEXT, NOT A POSITION</p>
+          </div>
           <ul id="godseye-locate-list" class="godseye-list"></ul>
           <p id="godseye-locate-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
         </div>

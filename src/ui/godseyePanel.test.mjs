@@ -198,6 +198,9 @@ function fixture({
     _godseyeLocateList: element(),
     _godseyeLocateStatus: element(),
     _godseyeLocateFly: f.document.createElement('button'),
+    _godseyeLocateNetwork: element(),
+    _godseyeLocateGeo: f.document.createElement('input'),
+    _godseyeLocateNetworkBtn: f.document.createElement('button'),
     _godseyeTabBts: f.document.createElement('button'),
     _godseyePaneBts: element(),
     _godseyeBtsRefresh: f.document.createElement('button'),
@@ -774,4 +777,121 @@ test('the cctv camera row marks a live ATCS stream and offers a player button', 
   });
   assert.equal(dead.querySelector('.godseye-live-badge').hidden, true);
   assert.equal(dead.querySelector('.godseye-stream-btn'), null);
+});
+
+const PHONE_NETWORK = {
+  ...PHONE,
+  query: '081234567890',
+  legalBasis: 'consent',
+  network: {
+    around: { lat: -2.55, lon: 140.7 },
+    operator: 'Telkomsel',
+    radiusKm: 30,
+    basis: 'caller-supplied-point',
+    towers: [
+      {
+        id: 'bts-1',
+        name: 'Jayapura Kota · Telkomsel 4G',
+        lat: -2.5337,
+        lon: 140.7175,
+        tech: '4G',
+        rangeKm: 5,
+        cells: 2,
+        samples: 26,
+        distanceKm: 0.11,
+        bearing: 180,
+      },
+      {
+        id: 'bts-2',
+        name: 'Waena · Telkomsel 3G',
+        lat: -2.59,
+        lon: 140.64,
+        tech: '3G',
+        rangeKm: 10,
+        cells: 0,
+        samples: null,
+        distanceKm: 5.2,
+        bearing: 240,
+      },
+    ],
+  },
+};
+
+test('a phone answer with a supplied point lists the operator towers and offers a flight', async () => {
+  const f = fixture({ locate: PHONE_NETWORK });
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081234567890';
+  const option = f.document.createElement('option');
+  option.value = 'consent';
+  f.elements._godseyeLocateBasis.append(option);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  const text = [...f.elements._godseyeLocateList.children]
+    .map((li) => [...li.children].map((span) => span.textContent).join(' '))
+    .join('\n');
+  assert.match(text, /0\.11 km · 180°/);
+  assert.match(text, /Jayapura Kota · Telkomsel 4G/);
+  assert.match(text, /5\.2 km · 240°/);
+  // Nearest tower is flyable, and the label carries the distance.
+  assert.equal(f.elements._godseyeLocateFly.hidden, false);
+  assert.match(f.elements._godseyeLocateFly.textContent, /0\.11 km/);
+  assert.deepEqual(f.panel._located, {
+    lat: -2.5337,
+    lon: 140.7175,
+    name: 'Jayapura Kota · Telkomsel 4G',
+  });
+  // The honest label stays on the card.
+  assert.match(
+    f.elements._godseyeLocateNote.textContent,
+    /NETWORK CONTEXT, NOT A POSITION/,
+  );
+});
+
+test('a phone answer without a point offers the network-context action', async () => {
+  const f = fixture({
+    locate: { ...PHONE, network: null, networkHint: 'Add ?lat=...&lon=...' },
+  });
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081234567890';
+  const option = f.document.createElement('option');
+  option.value = 'consent';
+  f.elements._godseyeLocateBasis.append(option);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.equal(
+    f.elements._godseyeLocateNetwork.hidden,
+    false,
+    'the action is offered',
+  );
+  assert.match(
+    f.elements._godseyeLocateStatus.textContent,
+    /lat=\.\.\.&lon=\.\.\./,
+  );
+  assert.equal(
+    f.elements._godseyeLocateFly.hidden,
+    true,
+    'nothing to fly to yet',
+  );
+  assert.equal(f.panel._located, null);
+});
+
+test('a malformed context point refuses instead of guessing', async () => {
+  const f = fixture({ locate: PHONE_NETWORK });
+  await f.panel.connect();
+  await f.panel._locateTarget();
+  f.elements._godseyeLocateGeo.value = 'not-a-point';
+  f.elements._godseyeLocateNetworkBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.match(
+    f.elements._godseyeLocateStatus.textContent,
+    /ENTER LATITUDE AND LONGITUDE/,
+  );
+  const locateCalls = f.requests.filter(
+    (url) => url.startsWith('/api/godseye/locate') && url.includes('lat='),
+  );
+  assert.equal(locateCalls.length, 0, 'no request with a bogus point');
 });

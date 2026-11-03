@@ -58,6 +58,8 @@
     "KM",
     "km/h",
     "KM/H",
+    "lat, lon",
+    "{distance} km · {bearing}°",
     "Landsat 8/9",
     "LOCAL",
     "Metal",
@@ -126,6 +128,7 @@
   "ru": [
     "AIS: --",
     "AIS: {name}",
+    "lat, lon",
     "CCTV",
     "CRT",
     "FLIR",

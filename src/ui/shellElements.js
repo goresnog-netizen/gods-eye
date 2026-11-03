@@ -128,6 +128,11 @@ export function readShellElements(document = globalThis.document) {
     _godseyeLocatePhoto: document.getElementById('godseye-locate-photo'),
     _godseyeLocateGround: document.getElementById('godseye-locate-ground'),
     _godseyeLocateFly: document.getElementById('godseye-locate-fly'),
+    _godseyeLocateNetwork: document.getElementById('godseye-locate-network'),
+    _godseyeLocateGeo: document.getElementById('godseye-locate-geo'),
+    _godseyeLocateNetworkBtn: document.getElementById(
+      'godseye-locate-network-btn',
+    ),
     _godseyeLocateList: document.getElementById('godseye-locate-list'),
     _godseyeLocateStatus: document.getElementById('godseye-locate-status'),
     _godseyeLive: document.getElementById('godseye-live'),

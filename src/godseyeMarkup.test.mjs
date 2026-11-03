@@ -97,6 +97,9 @@ test('the shell reads and passes every new element', () => {
     ['_godseyeLocateCoords', 'godseye-locate-coords'],
     ['_godseyeLocateNote', 'godseye-locate-note'],
     ['_godseyeLocateFly', 'godseye-locate-fly'],
+    ['_godseyeLocateNetwork', 'godseye-locate-network'],
+    ['_godseyeLocateGeo', 'godseye-locate-geo'],
+    ['_godseyeLocateNetworkBtn', 'godseye-locate-network-btn'],
     ['_godseyeLocateList', 'godseye-locate-list'],
     ['_godseyeLocateStatus', 'godseye-locate-status'],
     ['_godseyeLive', 'godseye-live'],
@@ -104,7 +107,7 @@ test('the shell reads and passes every new element', () => {
   for (const [key, id] of elements) {
     assert.match(
       shellElements,
-      new RegExp(`${key}: document\\.getElementById\\('${id}'\\)`),
+      new RegExp(`${key}: document\\.getElementById\\(\\s*'${id}'\\s*,?\\s*\\)`),
       `${key} reads #${id}`,
     );
     assert.match(
@@ -124,10 +127,10 @@ test('the panel selects every tab and handles the new actions', () => {
   assert.match(panel, /_godseyeLocateFly\?\.addEventListener\('click'/);
   assert.match(panel, /_godseyeBtsViewshedBtn\?\.addEventListener\('click'/);
   // Enter in any field runs the same action as its button: place, CCTV,
-  // target, terrain, world-news query.
+  // target, terrain, world-news query, network-context point.
   assert.equal(
     (panel.match(/if \(event\.key !== 'Enter'\) return;/g) || []).length,
-    5,
+    6,
     'every field with a button submits on Enter',
   );
 });

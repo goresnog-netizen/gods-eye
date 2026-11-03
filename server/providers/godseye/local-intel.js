@@ -33,6 +33,7 @@ import {
   BTS_SEED,
   describePoint,
   findCells,
+  towersOfOperator,
   trilaterate,
 } from '../../services/place-card-local/bts-registry.mjs';
 import {
@@ -101,6 +102,26 @@ const DATA_DIR = path.join(ROOT, 'src/data/place-card-results');
 
 /** Cell identifiers arrive as `510-10-12345-67890` (mcc-mnc-lac-cellid). */
 const CELL_PATTERN = /^(\d{3})\D(\d{1,3})\D(\d+)\D(\d+)$/;
+
+/** Radius for the operator-network context around a caller-supplied point. */
+const NETWORK_RADIUS_KM = 30;
+
+/**
+ * A caller-supplied point of context (?lat=&lon=) for the phone-network view.
+ * Returns null when absent or outside a valid globe range, so a typo silently
+ * degrades to metadata-only instead of a wrong claim.
+ */
+function parsePoint(url) {
+  const latRaw = url.searchParams.get('lat');
+  const lonRaw = url.searchParams.get('lon');
+  if (latRaw === null || lonRaw === null) return null;
+  if (String(latRaw).trim() === '' || String(lonRaw).trim() === '') return null;
+  const lat = Number(latRaw);
+  const lon = Number(lonRaw);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+  if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return null;
+  return { lat, lon };
+}
 
 /**
  * The areas whose entry counts as an anomaly.
@@ -663,6 +684,35 @@ async function handleLocate(req, res) {
         legalBasis: legal.basis,
         result: 'metadata-only',
       });
+      // A phone number has no position, but it does name an operator, and the
+      // operator has a network. When the caller supplies a point of context
+      // ("the handset is probably around here") the registry answers with the
+      // towers of that operator around it — real data, explicitly not the
+      // number's location.
+      const around = parsePoint(url);
+      let network = null;
+      if (around) {
+        const registry = await loadBtsRegistry();
+        const operator = direct.phoneIntel.operator || null;
+        const towers = operator
+          ? towersOfOperator(registry.sites, operator, around.lat, around.lon, {
+              radiusKm: NETWORK_RADIUS_KM,
+              limit: 8,
+              carrierOf: (site) => getCarrier(site.mcc, site.mnc)?.name || null,
+            })
+          : [];
+        network = {
+          around,
+          operator,
+          radiusKm: NETWORK_RADIUS_KM,
+          basis: 'caller-supplied-point',
+          notice:
+            'The point is yours; the towers are real registry data. This is ' +
+            'the network the number would attach to around there — not the ' +
+            "number's position.",
+          towers,
+        };
+      }
       return sendJson(res, 200, {
         ok: true,
         mode: 'phone',
@@ -676,6 +726,12 @@ async function handleLocate(req, res) {
         positionBasis: 'none',
         phone: direct.phoneIntel,
         detail: direct.reason,
+        network,
+        networkHint: around
+          ? null
+          : 'Add ?lat=...&lon=... and the console lists the towers of this ' +
+            'operator around that point — the network context a number of ' +
+            'this operator would attach to, not a claim about where it is.',
         notice:
           'A phone number identifies a subscription, not a place. The operator ' +
           'is read from the national numbering plan; a position can only come ' +

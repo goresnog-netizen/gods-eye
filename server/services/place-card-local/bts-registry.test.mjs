@@ -4,10 +4,12 @@ import test from 'node:test';
 import {
   BTS_SEED,
   bearing,
+  carrierAlias,
   describePoint,
   distanceKm,
   findCells,
   nearestTowers,
+  towersOfOperator,
   trilaterate,
 } from './bts-registry.mjs';
 
@@ -178,4 +180,53 @@ test('a ring of towers gives a round answer', () => {
       placed.ellipse.semiMajorM * 0.5,
     `ring is round: major ${placed.ellipse.semiMajorM}, minor ${placed.ellipse.semiMinorM}`,
   );
+});
+
+test('carrierAlias folds the different spellings of one operator', () => {
+  assert.equal(carrierAlias('Telkomsel'), 'telkomsel');
+  assert.equal(carrierAlias('Indosat Ooredoo Hutchison'), 'indosat');
+  assert.equal(carrierAlias('Indosat'), 'indosat');
+  assert.equal(carrierAlias('Tri'), 'indosat');
+  assert.equal(carrierAlias('3 (Three)'), 'indosat');
+  assert.equal(carrierAlias('XL Axiata'), 'xl');
+  assert.equal(carrierAlias('AXIS'), 'axis');
+  assert.equal(carrierAlias('Smartfren'), 'smartfren');
+  assert.equal(carrierAlias('Random ISP'), null);
+});
+
+test('towersOfOperator lists only the operator and sorts nearest first', () => {
+  const registry = [
+    { id: 'a', name: 'Kota · Telkomsel 4G', lat: -2.53, lon: 140.71, tech: '4G', rangeKm: 5, cells: [{ lac: 1, cellId: 2 }] },
+    { id: 'b', name: 'Kota · XL Axiata 4G', lat: -2.53, lon: 140.72, tech: '4G', rangeKm: 5 },
+    { id: 'c', name: 'Luar · Telkomsel 4G', lat: -2.6, lon: 140.8, tech: '4G', rangeKm: 5 },
+    { id: 'd', name: 'Jauh · Telkomsel 4G', lat: -4.0, lon: 138.0, tech: '4G', rangeKm: 5 },
+  ];
+  const towers = towersOfOperator(registry, 'Telkomsel', -2.53, 140.71, {
+    radiusKm: 30,
+    limit: 8,
+  });
+  assert.equal(towers.length, 2, 'XL tower is not Telkomsel, far tower is out of range');
+  assert.ok(towers.every((t) => t.name.includes('Telkomsel')));
+  assert.equal(towers[0].id, 'a', 'nearest first');
+  assert.equal(towers[0].distanceKm, 0);
+  assert.ok(towers[0].distanceKm <= towers[1].distanceKm);
+
+  // carrierOf callback: MNC decides, not the name.
+  const byMnc = towersOfOperator(
+    [
+      { id: 'x', name: 'Anything', mcc: 510, mnc: 10, lat: -2.5, lon: 140.7, tech: '4G' },
+      { id: 'y', name: 'Anything', mcc: 510, mnc: 30, lat: -2.5, lon: 140.71, tech: '4G' },
+    ],
+    'Telkomsel',
+    -2.5,
+    140.7,
+    {
+      radiusKm: 30,
+      carrierOf: (site) =>
+        ({ '510-10': 'Telkomsel', '510-30': 'XL Axiata' })[`${site.mcc}-${site.mnc}`] ||
+        null,
+    },
+  );
+  assert.equal(byMnc.length, 1);
+  assert.equal(byMnc[0].id, 'x');
 });

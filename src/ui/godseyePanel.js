@@ -153,6 +153,8 @@ export class GodsEyePanel {
     this._newsRequest = null;
     this._newsLoaded = false;
     this._newsTopic = null;
+    this._phoneQuery = null;
+    this._locateBasis = '';
     this._btsLoaded = false;
     this._liveSource = null;
   }
@@ -253,6 +255,14 @@ export class GodsEyePanel {
     this.elements._godseyeLocateFly?.addEventListener('click', () =>
       this._flyToLocated(),
     );
+    this.elements._godseyeLocateNetworkBtn?.addEventListener('click', () =>
+      this._locateNetworkTowers(),
+    );
+    this.elements._godseyeLocateGeo?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      this._locateNetworkTowers();
+    });
     this._selectTab('latest');
     this._startLive();
     return this._loadLatest();
@@ -1169,6 +1179,9 @@ export class GodsEyePanel {
       _godseyeLocateBasis?.focus?.();
       return;
     }
+    // Remembered for the network-context refetch: same number, same basis.
+    this._locateBasis = legalBasis;
+    this._phoneQuery = query;
     if (_godseyeLocateStatus) _godseyeLocateStatus.textContent = t('LOADING');
     this._locateRequest?.abort?.();
     const controller = new AbortController();
@@ -1208,7 +1221,10 @@ export class GodsEyePanel {
       _godseyeLocateList,
       _godseyeLocateStatus,
       _godseyeLocateFly,
+      _godseyeLocateNetwork,
     } = this.elements;
+    // The network-context controls belong to phone answers only.
+    if (_godseyeLocateNetwork) _godseyeLocateNetwork.hidden = true;
     // A phone number has no position, and that is the answer rather than a
     // failure: the numbering plan names the operator, and no amount of
     // searching turns a subscription into a coordinate. Sending it down the
@@ -1369,6 +1385,8 @@ export class GodsEyePanel {
       _godseyeLocateList,
       _godseyeLocateStatus,
       _godseyeLocateFly,
+      _godseyeLocateNetwork,
+      _godseyeLocateGeo,
     } = this.elements;
     const phone = payload?.phone || {};
     const operator = phone.operator || t('UNKNOWN');
@@ -1397,12 +1415,129 @@ export class GodsEyePanel {
     }
     if (_godseyeLocateGround) _godseyeLocateGround.hidden = true;
     if (_godseyeLocateList) this._fillFacts(_godseyeLocateList, rows);
-    // There is nothing to fly to, so the button is not offered.
-    if (_godseyeLocateFly) _godseyeLocateFly.hidden = true;
+    // The number carries the operator, and the operator carries a network:
+    // towers of the same operator around a point the caller supplies. That is
+    // the one "tracking" step that is real — and it is labelled as context,
+    // never as the number's position.
+    this._phoneQuery = payload?.query || this._phoneQuery;
+    if (payload?.legalBasis) this._locateBasis = payload.legalBasis;
+    const network = payload?.network || null;
+    const towers = Array.isArray(network?.towers) ? network.towers : [];
+    if (towers.length) {
+      if (_godseyeLocateList && this.document) {
+        const heading = this.document.createElement('li');
+        heading.className = 'godseye-fact';
+        heading.textContent = `${t('TOWERS AROUND THE POINT')} · ${operator}`;
+        _godseyeLocateList.append(heading);
+        _godseyeLocateList.append(
+          ...towers.map((tower) => this._towerRow(tower)),
+        );
+      }
+      // Fly to the nearest tower of the operator — the actionable part.
+      this._located = {
+        lat: towers[0].lat,
+        lon: towers[0].lon,
+        name: towers[0].name,
+      };
+      if (_godseyeLocateFly) {
+        _godseyeLocateFly.hidden = false;
+        _godseyeLocateFly.textContent = `${t('FLY TO')} ${towers[0].distanceKm} km`;
+      }
+      if (_godseyeLocateNote) {
+        _godseyeLocateNote.textContent = t('NETWORK CONTEXT, NOT A POSITION');
+      }
+    } else {
+      if (_godseyeLocateFly) _godseyeLocateFly.hidden = true;
+      this._located = null;
+      if (network) {
+        // A point was given but the registry has no tower of this operator
+        // within range — a real negative, said as such.
+        if (_godseyeLocateStatus) {
+          _godseyeLocateStatus.textContent = t('NO TOWERS IN RANGE');
+        }
+      } else if (_godseyeLocateNetwork) {
+        // No point yet: the action is to supply one.
+        _godseyeLocateNetwork.hidden = false;
+        if (payload?.networkHint) {
+          if (_godseyeLocateStatus) {
+            _godseyeLocateStatus.textContent = payload.networkHint;
+          }
+        } else if (_godseyeLocateStatus) {
+          _godseyeLocateStatus.textContent = `${t('NUMBER METADATA')} · ${t('SOURCE')} ${payload?.source || '—'}`;
+        }
+        _godseyeLocateGeo?.focus?.();
+      } else if (_godseyeLocateStatus) {
+        _godseyeLocateStatus.textContent = `${t('NUMBER METADATA')} · ${t('SOURCE')} ${payload?.source || '—'}`;
+      }
+    }
     if (_godseyeLocateCard) _godseyeLocateCard.hidden = false;
-    this._located = null;
-    if (_godseyeLocateStatus) {
-      _godseyeLocateStatus.textContent = `${t('NUMBER METADATA')} · ${t('SOURCE')} ${payload?.source || '—'}`;
+  }
+
+  /** One tower of the operator's network, with its real distance and bearing. */
+  _towerRow(tower) {
+    const item = this.document.createElement('li');
+    item.className = 'godseye-fact';
+    const keyEl = this.document.createElement('span');
+    keyEl.className = 'godseye-driver-label';
+    keyEl.textContent = t('{distance} km · {bearing}°', {
+      distance: tower.distanceKm,
+      bearing: tower.bearing,
+    });
+    const valueEl = this.document.createElement('span');
+    valueEl.className = 'godseye-driver-score';
+    valueEl.textContent = `${tower.tech} · ${tower.name || tower.id || '—'}`;
+    item.append(keyEl, valueEl);
+    return item;
+  }
+
+  /**
+   * Refetch the phone answer with a caller-supplied point of context, so the
+   * registry can list the towers of the operator around it.
+   */
+  async _locateNetworkTowers() {
+    if (this._disposed) return;
+    const { _godseyeLocateGeo, _godseyeLocateStatus } = this.elements;
+    const raw = String(_godseyeLocateGeo?.value || '').trim();
+    const match = /^\s*(-?\d+(?:\.\d+)?)\s*[,;\s]\s*(-?\d+(?:\.\d+)?)\s*$/.exec(
+      raw,
+    );
+    if (!match) {
+      if (_godseyeLocateStatus) {
+        _godseyeLocateStatus.textContent = t('ENTER LATITUDE AND LONGITUDE');
+      }
+      return;
+    }
+    const lat = Number(match[1]);
+    const lon = Number(match[2]);
+    if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+      if (_godseyeLocateStatus) {
+        _godseyeLocateStatus.textContent = t('ENTER LATITUDE AND LONGITUDE');
+      }
+      return;
+    }
+    if (!this._phoneQuery) return;
+    if (_godseyeLocateStatus) _godseyeLocateStatus.textContent = t('LOADING');
+    this._locateRequest?.abort?.();
+    const controller = new AbortController();
+    this._locateRequest = controller;
+    try {
+      const basis = this._locateBasis
+        ? `&legalBasis=${encodeURIComponent(this._locateBasis)}`
+        : '';
+      const response = await this._request(
+        `${LOCATE_ENDPOINT}?q=${encodeURIComponent(this._phoneQuery)}&lat=${lat}&lon=${lon}${basis}`,
+        { signal: controller.signal },
+      );
+      if (this._disposed) return;
+      if (!response.ok) {
+        throw new Error(response.data?.detail || t('TARGET NOT FOUND'));
+      }
+      this._renderLocate(response.data);
+    } catch (error) {
+      if (this._disposed || error?.name === 'AbortError') return;
+      if (_godseyeLocateStatus) {
+        _godseyeLocateStatus.textContent = error?.message || t('UNAVAILABLE');
+      }
     }
   }
 

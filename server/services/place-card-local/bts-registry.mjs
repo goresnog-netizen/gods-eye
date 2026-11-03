@@ -272,3 +272,72 @@ export function trilaterate(observations = []) {
     },
   };
 }
+
+/**
+ * Fold the different spellings of one carrier into a single key, so a phone
+ * prefix ("Indosat Ooredoo Hutchison", "Tri") matches registry MNC names
+ * ("Indosat", "3 (Three)"). Returns null for anything unrecognised.
+ */
+export function carrierAlias(name) {
+  const n = String(name || '').toLowerCase();
+  if (n.includes('telkomsel')) return 'telkomsel';
+  if (
+    n.includes('indosat') ||
+    n.includes('ooredoo') ||
+    n.includes('im3') ||
+    n.includes('three') ||
+    n === 'tri'
+  ) {
+    return 'indosat';
+  }
+  if (n.includes('axiata') || n === 'xl') return 'xl';
+  if (n.includes('axis')) return 'axis';
+  if (n.includes('smartfren')) return 'smartfren';
+  return null;
+}
+
+/**
+ * Towers of one operator around a point, nearest first. The operator comes
+ * from a phone number's prefix; the point is the caller's own context ("I
+ * think the handset is around here"). That is the honest reading: the towers
+ * are real registry data, the point is supplied, and neither claims to be the
+ * number's position.
+ *
+ * `carrierOf` names a site's carrier from its own fields (mcc/mnc); when it is
+ * absent the site's name is parsed instead ("Sentani · Telkomsel 4G").
+ */
+export function towersOfOperator(
+  registry,
+  operator,
+  lat,
+  lon,
+  { carrierOf = null, radiusKm = 25, limit = 8 } = {},
+) {
+  const alias = carrierAlias(operator);
+  if (!alias) return [];
+  const found = [];
+  for (const site of registry || []) {
+    if (!Number.isFinite(site?.lat) || !Number.isFinite(site?.lon)) continue;
+    let siteAlias = carrierOf ? carrierAlias(carrierOf(site)) : null;
+    if (!siteAlias) siteAlias = carrierAlias(site?.name);
+    if (siteAlias !== alias) continue;
+    const distance = distanceKm(lat, lon, site.lat, site.lon);
+    if (distance > radiusKm) continue;
+    found.push({
+      id: site.id,
+      name: site.name,
+      lat: site.lat,
+      lon: site.lon,
+      tech: site.tech,
+      rangeKm: site.rangeKm,
+      source: site.source || null,
+      synthetic: Boolean(site.synthetic),
+      cells: Array.isArray(site.cells) ? site.cells.length : 0,
+      samples: Number.isFinite(site.samples) ? site.samples : null,
+      distanceKm: Math.round(distance * 100) / 100,
+      bearing: Math.round(bearing(lat, lon, site.lat, site.lon)),
+    });
+  }
+  found.sort((a, b) => a.distanceKm - b.distanceKm);
+  return found.slice(0, Math.max(1, limit));
+}
