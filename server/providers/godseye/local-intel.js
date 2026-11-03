@@ -78,6 +78,10 @@ import {
   verifyChain,
 } from '../../services/place-card-local/audit-log.mjs';
 import { historyFor, listTracks, recordPosition } from './target-history.js';
+import {
+  fetchWorldPapuaNews,
+  WORLD_TOPICS,
+} from '../../services/place-card-local/news-papua.mjs';
 
 /**
  * Local intelligence routes for the God's Eye panel.
@@ -914,19 +918,62 @@ async function handleAnomaly(req, res) {
 }
 
 /**
- * GET /api/godseye/news?region=papua|indonesia&limit=20
+ * GET /api/godseye/news
  *
- * The local news artifact, filtered. It is collected by a separate run and
- * only read here, so the panel shows what was actually gathered rather than
- * asking a feed on every render.
+ * Default: the local news artifact, filtered by `?region=papua|indonesia`. It
+ * is collected by a separate run and only read here.
+ *
+ * `?live=1` answers world news about Papua straight from Google News RSS
+ * (keyless), restricted to international outlets — the module that covers
+ * KNPB, ULMWP and the separatist movement as foreign outlets report them.
+ * `?topic=<id>` narrows to one of WORLD_TOPICS; `?q=` overrides the topic with
+ * a free query. Results are cached on disk for 15 minutes.
+ *
+ * `?topics=1` answers the topic list without touching the network.
  */
 async function handleNews(req, res) {
   if (!readOnly(req, res)) return;
   const url = new URL(req.url || '/', 'http://localhost');
+  const limit = boundedNumber(url.searchParams.get('limit'), 20, 1, 60);
+
+  if (url.searchParams.get('topics') === '1') {
+    return sendJson(res, 200, {
+      ok: true,
+      live: true,
+      topics: WORLD_TOPICS,
+    });
+  }
+
+  if (url.searchParams.get('live') === '1') {
+    const topicId = String(url.searchParams.get('topic') || '').trim();
+    const freeQuery = String(url.searchParams.get('q') || '').trim();
+    const topics = freeQuery
+      ? [{ id: 'custom', label: 'Custom', query: freeQuery }]
+      : topicId
+        ? WORLD_TOPICS.filter((topic) => topic.id === topicId)
+        : WORLD_TOPICS;
+    if (!topics.length) {
+      return sendJson(res, 400, {
+        ok: false,
+        error: 'unknown_topic',
+        topics: WORLD_TOPICS.map((topic) => topic.id),
+      });
+    }
+    const data = await fetchWorldPapuaNews({
+      topics,
+      perTopic: Math.min(limit, 15),
+      force: url.searchParams.get('fresh') === '1',
+    });
+    return sendJson(res, 200, {
+      ok: true,
+      ...data,
+      items: data.items.slice(0, limit),
+    });
+  }
+
   const region = String(
     url.searchParams.get('region') || 'papua',
   ).toLowerCase();
-  const limit = boundedNumber(url.searchParams.get('limit'), 20, 1, 60);
   const data = await readArtifact('indonesia-news.json');
   if (!data) {
     return sendJson(res, 404, {

@@ -152,6 +152,7 @@ export class GodsEyePanel {
     this._locateRequest = null;
     this._newsRequest = null;
     this._newsLoaded = false;
+    this._newsTopic = null;
     this._btsLoaded = false;
     this._liveSource = null;
   }
@@ -201,9 +202,17 @@ export class GodsEyePanel {
     this.elements._godseyeNewsBtn?.addEventListener('click', () =>
       this._loadNews(),
     );
-    this.elements._godseyeNewsRegion?.addEventListener('change', () =>
-      this._loadNews(),
-    );
+    this.elements._godseyeNewsRegion?.addEventListener('change', () => {
+      this._newsTopic = null;
+      this._syncNewsWorldControls();
+      this._loadNews();
+    });
+    this.elements._godseyeNewsQuery?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter') return;
+      event.preventDefault();
+      this._newsTopic = null;
+      this._loadNews();
+    });
     this.elements._godseyeCctvBtn?.addEventListener('click', () =>
       this._scanCctv(),
     );
@@ -432,21 +441,88 @@ export class GodsEyePanel {
     }
   }
 
-  /** Read the local news artifact, filtered to the chosen region. */
+  /**
+   * Show or hide the world-news controls. Only the live international scope
+   * needs the query box and the topic chips; the local artifact scopes are
+   * just a region select.
+   */
+  _syncNewsWorldControls() {
+    const { _godseyeNewsRegion, _godseyeNewsQuery, _godseyeNewsTopics } =
+      this.elements;
+    const isWorld = String(_godseyeNewsRegion?.value || 'papua') === 'world';
+    if (_godseyeNewsQuery) _godseyeNewsQuery.hidden = !isWorld;
+    if (_godseyeNewsTopics) _godseyeNewsTopics.hidden = !isWorld;
+    if (isWorld && _godseyeNewsTopics) this._loadNewsTopics();
+  }
+
+  /** The topic chips: KNPB, ULMWP, separatists — one click per scope. */
+  async _loadNewsTopics() {
+    const { _godseyeNewsTopics } = this.elements;
+    if (!_godseyeNewsTopics || _godseyeNewsTopics.dataset.loaded) return;
+    try {
+      const response = await this._request(`${NEWS_ENDPOINT}?topics=1`);
+      if (this._disposed || !response.ok) return;
+      const topics = Array.isArray(response.data?.topics)
+        ? response.data.topics
+        : [];
+      if (!topics.length) return;
+      _godseyeNewsTopics.replaceChildren(
+        ...topics.map((topic) => {
+          const chip = this.document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'godseye-topic-chip';
+          chip.textContent = topic.label;
+          chip.setAttribute('data-topic', topic.id);
+          chip.addEventListener('click', () => {
+            this._newsTopic = topic.id;
+            for (const other of _godseyeNewsTopics.querySelectorAll(
+              '.godseye-topic-chip',
+            )) {
+              other.classList.toggle('is-active', other === chip);
+            }
+            this._loadNews();
+          });
+          return chip;
+        }),
+      );
+      _godseyeNewsTopics.dataset.loaded = '1';
+    } catch {
+      // Chips are an accelerator, not a requirement; the query box still works.
+    }
+  }
+
+  /**
+   * Read the local news artifact, or the live world feed when `world` is the
+   * chosen region. The world feed asks the server, which in turn asks Google
+   * News RSS (keyless) and filters to international outlets.
+   */
   async _loadNews() {
     if (this._disposed) return;
-    const { _godseyeNewsRegion, _godseyeNewsList, _godseyeNewsStatus } =
-      this.elements;
+    const {
+      _godseyeNewsRegion,
+      _godseyeNewsQuery,
+      _godseyeNewsList,
+      _godseyeNewsStatus,
+    } = this.elements;
     const region = String(_godseyeNewsRegion?.value || 'papua');
     if (_godseyeNewsStatus) _godseyeNewsStatus.textContent = t('LOADING');
     this._newsRequest?.abort?.();
     const controller = new AbortController();
     this._newsRequest = controller;
+    let endpoint = `${NEWS_ENDPOINT}?region=${encodeURIComponent(region)}&limit=${NEWS_LIMIT}`;
+    if (region === 'world') {
+      const freeQuery = String(_godseyeNewsQuery?.value || '').trim();
+      endpoint = `${NEWS_ENDPOINT}?live=1&limit=${NEWS_LIMIT}`;
+      if (freeQuery) {
+        endpoint += `&q=${encodeURIComponent(freeQuery)}`;
+      } else if (this._newsTopic) {
+        endpoint += `&topic=${encodeURIComponent(this._newsTopic)}`;
+      }
+    }
     try {
-      const response = await this._request(
-        `${NEWS_ENDPOINT}?region=${encodeURIComponent(region)}&limit=${NEWS_LIMIT}`,
-        { signal: controller.signal },
-      );
+      const response = await this._request(endpoint, {
+        signal: controller.signal,
+      });
       if (this._disposed) return;
       if (!response.ok) {
         throw new Error(response.data?.detail || `HTTP ${response.status}`);
@@ -481,11 +557,12 @@ export class GodsEyePanel {
       const total = Number.isFinite(payload?.total)
         ? payload.total
         : items.length;
-      _godseyeNewsStatus.textContent = `${items.length}/${total} ${t('headlines')}`;
+      const live = payload?.live ? `${t('LIVE')} · ` : '';
+      _godseyeNewsStatus.textContent = `${live}${items.length}/${total} ${t('headlines')}`;
     }
   }
 
-  /** One headline: the title is the link, the source and time are the meta. */
+  /** One headline: the title is the link, source and time are the meta. */
   _newsRow(item) {
     const row = this.document.createElement('li');
     const link = this.document.createElement('a');
@@ -502,15 +579,21 @@ export class GodsEyePanel {
     meta.className = 'godseye-news-meta';
     const published = Number(item?.publishedAt);
     meta.textContent = [
-      item?.source,
+      item?.outlet || item?.source,
       Number.isFinite(published)
-        ? new Date(published).toISOString().slice(11, 16)
+        ? new Date(published).toISOString().slice(0, 16).replace('T', ' ')
         : null,
     ]
       .filter(Boolean)
       .join(' · ');
     link.append(title, meta);
     row.append(link);
+    if (item?.snippet) {
+      const snippet = this.document.createElement('div');
+      snippet.className = 'godseye-news-snippet';
+      snippet.textContent = item.snippet;
+      row.append(snippet);
+    }
     return row;
   }
 

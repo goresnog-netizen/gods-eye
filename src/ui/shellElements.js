@@ -74,6 +74,8 @@ export function readShellElements(document = globalThis.document) {
     _godseyeTabNews: document.getElementById('godseye-tab-news'),
     _godseyePaneNews: document.getElementById('godseye-pane-news'),
     _godseyeNewsRegion: document.getElementById('godseye-news-region'),
+    _godseyeNewsQuery: document.getElementById('godseye-news-query'),
+    _godseyeNewsTopics: document.getElementById('godseye-news-topics'),
     _godseyeNewsBtn: document.getElementById('godseye-news-btn'),
     _godseyeNewsList: document.getElementById('godseye-news-list'),
     _godseyeNewsStatus: document.getElementById('godseye-news-status'),

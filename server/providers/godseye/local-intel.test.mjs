@@ -285,6 +285,27 @@ test('the news tab answers from the local artifact', async () => {
   );
 });
 
+test('the news tab lists the world topics without touching the network', async () => {
+  const topics = await call('/api/godseye/news', '?topics=1');
+  assert.equal(topics.status, 200);
+  assert.equal(topics.json.ok, true);
+  assert.equal(topics.json.live, true);
+  const ids = topics.json.topics.map((topic) => topic.id);
+  for (const expected of ['west-papua', 'knpb', 'ulmwp', 'free-papua']) {
+    assert.ok(ids.includes(expected), `topic ${expected} is advertised`);
+  }
+  for (const topic of topics.json.topics) {
+    assert.ok(topic.label);
+    assert.ok(topic.query);
+  }
+});
+
+test('a live world query with an unknown topic is refused', async () => {
+  const result = await call('/api/godseye/news', '?live=1&topic=does-not-exist');
+  assert.equal(result.status, 400);
+  assert.equal(result.json.error, 'unknown_topic');
+});
+
 test('a second cell for the same carrier extends one track', async () => {
   const first = await call('/api/godseye/locate', '?q=510-99-12345-100');
   assert.equal(first.status, 200);

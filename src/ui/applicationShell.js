@@ -1146,6 +1146,8 @@ export class StyleManager extends ShellFacade {
         _godseyeTabNews: this._godseyeTabNews,
         _godseyePaneNews: this._godseyePaneNews,
         _godseyeNewsRegion: this._godseyeNewsRegion,
+        _godseyeNewsQuery: this._godseyeNewsQuery,
+        _godseyeNewsTopics: this._godseyeNewsTopics,
         _godseyeNewsBtn: this._godseyeNewsBtn,
         _godseyeNewsList: this._godseyeNewsList,
         _godseyeNewsStatus: this._godseyeNewsStatus,

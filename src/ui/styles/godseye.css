@@ -481,3 +481,35 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+.godseye-news-snippet {
+  color: var(--text-dim);
+  font-size: 0.65rem;
+  line-height: 1.35;
+  margin: 2px 0 4px;
+}
+.godseye-news-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.godseye-topic-chip {
+  background: rgba(127, 127, 127, 0.12);
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  text-transform: uppercase;
+}
+.godseye-topic-chip:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+.godseye-topic-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--background);
+}

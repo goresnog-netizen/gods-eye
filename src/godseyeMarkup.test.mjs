@@ -75,6 +75,8 @@ test('the shell reads and passes every new element', () => {
     ['_godseyeTabNews', 'godseye-tab-news'],
     ['_godseyePaneNews', 'godseye-pane-news'],
     ['_godseyeNewsRegion', 'godseye-news-region'],
+    ['_godseyeNewsQuery', 'godseye-news-query'],
+    ['_godseyeNewsTopics', 'godseye-news-topics'],
     ['_godseyeNewsBtn', 'godseye-news-btn'],
     ['_godseyeNewsList', 'godseye-news-list'],
     ['_godseyeNewsStatus', 'godseye-news-status'],
@@ -122,10 +124,10 @@ test('the panel selects every tab and handles the new actions', () => {
   assert.match(panel, /_godseyeLocateFly\?\.addEventListener\('click'/);
   assert.match(panel, /_godseyeBtsViewshedBtn\?\.addEventListener\('click'/);
   // Enter in any field runs the same action as its button: place, CCTV,
-  // target, terrain.
+  // target, terrain, world-news query.
   assert.equal(
     (panel.match(/if \(event\.key !== 'Enter'\) return;/g) || []).length,
-    4,
+    5,
     'every field with a button submits on Enter',
   );
 });
