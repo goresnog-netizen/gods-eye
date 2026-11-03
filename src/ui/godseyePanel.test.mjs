@@ -103,6 +103,30 @@ const LOCATE = {
   cctv: { available: true, count: 1, radiusKm: 50, cameras: [] },
 };
 
+const PHONE = {
+  ok: true,
+  mode: 'phone',
+  source: 'phone-prefix',
+  capability: 'number-metadata',
+  synthetic: false,
+  position: null,
+  estimated: false,
+  positionBasis: 'none',
+  phone: {
+    kind: 'mobile-number',
+    input: '081234567890',
+    national: '081234567890',
+    e164: '+6281234567890',
+    operator: 'Telkomsel',
+    prefix: '0812',
+    source: 'Kemenkominfo national numbering plan (08xx mobile blocks)',
+    position: null,
+    reason: 'A number identifies a subscription, not a place.',
+  },
+  detail:
+    'No sample entry for this number. It is a Telkomsel number (0812), and a number carries no position — send the cell id the handset reports instead.',
+};
+
 const GROUND = {
   ok: true,
   height: {
@@ -173,6 +197,7 @@ function fixture({
     _godseyeLocateGround: element(),
     _godseyeLocateList: element(),
     _godseyeLocateStatus: element(),
+    _godseyeLocateFly: f.document.createElement('button'),
     _godseyeTabBts: f.document.createElement('button'),
     _godseyePaneBts: element(),
     _godseyeBtsRefresh: f.document.createElement('button'),
@@ -496,6 +521,51 @@ test('with a basis the query goes out and carries it', async () => {
   const call = f.requests.find((url) => url.startsWith('/api/godseye/locate'));
   assert.ok(call, 'the query was sent');
   assert.match(call, /legalBasis=consent/);
+});
+
+test('a phone number answers with its operator and no invented position', async () => {
+  const f = fixture({ locate: PHONE });
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081234567890';
+  const option = f.document.createElement('option');
+  option.value = 'consent';
+  f.elements._godseyeLocateBasis.append(option);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  // The card has to appear: an empty card plus "unavailable" is exactly the
+  // failure that reads as "the phone check does not exist".
+  assert.equal(f.elements._godseyeLocateCard.hidden, false);
+  assert.equal(f.elements._godseyeLocateName.textContent, 'Telkomsel');
+  assert.equal(f.elements._godseyeLocateCoords.textContent, '+6281234567890');
+  assert.match(f.elements._godseyeLocateStatus.textContent, /NUMBER METADATA/);
+  const rows = [...f.elements._godseyeLocateList.children].map((li) =>
+    [...li.children].map((span) => span.textContent).join(' '),
+  );
+  assert.ok(
+    rows.some((row) => row.includes('0812')),
+    'the prefix is a fact',
+  );
+  assert.ok(
+    rows.some((row) => row.includes('NO POSITION')),
+    'the absence of a position is stated, not implied',
+  );
+  // Nothing to fly to, so the button is not offered.
+  assert.equal(f.elements._godseyeLocateFly.hidden, true);
+});
+
+test('a phone answer never pretends to have a coordinate', async () => {
+  const f = fixture({ locate: PHONE });
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081234567890';
+  const option = f.document.createElement('option');
+  option.value = 'consent';
+  f.elements._godseyeLocateBasis.append(option);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(f.panel._located, null);
 });
 
 test('the terrain field answers with the ground height and the real ranges', async () => {

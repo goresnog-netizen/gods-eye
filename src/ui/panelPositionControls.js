@@ -49,7 +49,13 @@ export class PanelPositionControls {
   }
 
   _panelCollapseStorageKey(panelId) {
-    return `godsEyeView.${PANEL_LAYOUT_STORAGE_VERSION}.panelCollapsed.${panelId}`;
+    // The God's Eye panel now opens by default: it shipped collapsed, and a
+    // stored "closed" from that era would keep all seven tools invisible —
+    // exactly the state a reader describes as "the function is gone". That one
+    // panel gets a fresh key, so it starts from the new default once and then
+    // remembers whatever the user does with it.
+    const suffix = panelId === 'godseye-panel' ? '.open' : '';
+    return `godsEyeView.${PANEL_LAYOUT_STORAGE_VERSION}.panelCollapsed.${panelId}${suffix}`;
   }
 
   _restorePanelCollapsedState(panelId, { allowStored = true } = {}) {

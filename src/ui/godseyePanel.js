@@ -1000,6 +1000,9 @@ export class GodsEyePanel {
       if (_godseyeLocateStatus) {
         _godseyeLocateStatus.textContent = t('LEGAL BASIS REQUIRED');
       }
+      // The status line is below the fold of a short panel; putting the caret
+      // in the control that is missing is what makes the refusal actionable.
+      _godseyeLocateBasis?.focus?.();
       return;
     }
     if (_godseyeLocateStatus) _godseyeLocateStatus.textContent = t('LOADING');
@@ -1042,6 +1045,14 @@ export class GodsEyePanel {
       _godseyeLocateStatus,
       _godseyeLocateFly,
     } = this.elements;
+    // A phone number has no position, and that is the answer rather than a
+    // failure: the numbering plan names the operator, and no amount of
+    // searching turns a subscription into a coordinate. Sending it down the
+    // "unavailable" path is what made the phone check look missing.
+    if (payload?.mode === 'phone' || payload?.phone?.kind === 'mobile-number') {
+      this._renderPhone(payload);
+      return;
+    }
     const lat = Number(payload?.position?.lat ?? payload?.target?.lat);
     const lon = Number(payload?.position?.lon ?? payload?.target?.lon);
     if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
@@ -1151,22 +1162,7 @@ export class GodsEyePanel {
     if (payload?.registry?.source) {
       rows.push([t('BTS SOURCE'), payload.registry.source]);
     }
-    if (_godseyeLocateList) {
-      _godseyeLocateList.replaceChildren(
-        ...rows.map(([key, value]) => {
-          const item = this.document.createElement('li');
-          item.className = 'godseye-fact';
-          const keyEl = this.document.createElement('span');
-          keyEl.className = 'godseye-driver-label';
-          keyEl.textContent = key;
-          const valueEl = this.document.createElement('span');
-          valueEl.className = 'godseye-driver-score';
-          valueEl.textContent = value;
-          item.append(keyEl, valueEl);
-          return item;
-        }),
-      );
-    }
+    if (_godseyeLocateList) this._fillFacts(_godseyeLocateList, rows);
     if (_godseyeLocateFly) _godseyeLocateFly.hidden = !this.flyToPoint;
     if (_godseyeLocateCard) _godseyeLocateCard.hidden = false;
     this._located = {
@@ -1186,6 +1182,82 @@ export class GodsEyePanel {
     // A located target is the answer the operator asked for, so the globe
     // turns to it immediately instead of waiting for a second click.
     this._flyToLocated();
+  }
+
+  /**
+   * The answer a phone number can actually support.
+   *
+   * A number names a subscription, and Indonesia has no portability, so the
+   * prefix decides the operator. That is a real, checkable fact and the card
+   * states it — along with the row that says no position exists here, and the
+   * one that says where a position does come from (the cell id the handset
+   * reports). The alternative, an empty card and "unavailable", is what made
+   * the phone check look broken.
+   */
+  _renderPhone(payload) {
+    const {
+      _godseyeLocateCard,
+      _godseyeLocateName,
+      _godseyeLocateCoords,
+      _godseyeLocateNote,
+      _godseyeLocatePhoto,
+      _godseyeLocateGround,
+      _godseyeLocateList,
+      _godseyeLocateStatus,
+      _godseyeLocateFly,
+    } = this.elements;
+    const phone = payload?.phone || {};
+    const operator = phone.operator || t('UNKNOWN');
+    const rows = [
+      [t('CARRIER'), operator],
+      [t('PREFIX'), phone.prefix || '—'],
+      [t('NATIONAL'), phone.national || '—'],
+      ['E.164', phone.e164 || '—'],
+      // The honest row: not "unknown", not "pending" — absent by design.
+      [t('POSITION'), t('NO POSITION')],
+    ];
+    if (phone.source) rows.push([t('SOURCE'), phone.source]);
+    // The server explains why in one sentence; keeping it on the card is what
+    // stops the next person asking the same question again.
+    if (payload?.detail) rows.push([t('WHY'), payload.detail]);
+    if (_godseyeLocateName) _godseyeLocateName.textContent = operator;
+    if (_godseyeLocateCoords) {
+      _godseyeLocateCoords.textContent = phone.e164 || phone.national || '';
+    }
+    if (_godseyeLocateNote) {
+      _godseyeLocateNote.textContent = `${t('NUMBER METADATA')} · ${t('NO POSITION')}`;
+    }
+    if (_godseyeLocatePhoto) {
+      _godseyeLocatePhoto.hidden = true;
+      _godseyeLocatePhoto.removeAttribute('src');
+    }
+    if (_godseyeLocateGround) _godseyeLocateGround.hidden = true;
+    if (_godseyeLocateList) this._fillFacts(_godseyeLocateList, rows);
+    // There is nothing to fly to, so the button is not offered.
+    if (_godseyeLocateFly) _godseyeLocateFly.hidden = true;
+    if (_godseyeLocateCard) _godseyeLocateCard.hidden = false;
+    this._located = null;
+    if (_godseyeLocateStatus) {
+      _godseyeLocateStatus.textContent = `${t('NUMBER METADATA')} · ${t('SOURCE')} ${payload?.source || '—'}`;
+    }
+  }
+
+  /** Render label/value rows into a list, the one shape every fact card uses. */
+  _fillFacts(list, rows) {
+    list.replaceChildren(
+      ...rows.map(([key, value]) => {
+        const item = this.document.createElement('li');
+        item.className = 'godseye-fact';
+        const keyEl = this.document.createElement('span');
+        keyEl.className = 'godseye-driver-label';
+        keyEl.textContent = key;
+        const valueEl = this.document.createElement('span');
+        valueEl.className = 'godseye-driver-score';
+        valueEl.textContent = value;
+        item.append(keyEl, valueEl);
+        return item;
+      }),
+    );
   }
 
   /**
