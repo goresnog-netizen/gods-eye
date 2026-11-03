@@ -1,4 +1,5 @@
 import { t } from '../i18n/index.js';
+import Hls from 'hls.js';
 
 /**
  * The God's Eye analysis panel: what is moving gold right now (Gold Impact)
@@ -950,6 +951,8 @@ export class GodsEyePanel {
   /** One camera row; clicking it flies the camera to that camera. */
   _cameraRow(camera) {
     const item = this.document.createElement('li');
+    const row = this.document.createElement('div');
+    row.className = 'godseye-camera-row';
     const button = this.document.createElement('button');
     button.type = 'button';
     button.className = 'godseye-camera';
@@ -965,7 +968,11 @@ export class GodsEyePanel {
     distance.textContent = Number.isFinite(camera?.distance)
       ? `${camera.distance.toFixed(1)} km`
       : '';
-    button.append(name, kind, distance);
+    const live = this.document.createElement('span');
+    live.className = 'godseye-live-badge';
+    live.textContent = t('LIVE');
+    live.hidden = !camera?.live;
+    button.append(name, kind, distance, live);
     if (Number.isFinite(camera?.lat) && Number.isFinite(camera?.lon)) {
       button.addEventListener('click', () =>
         this.flyToPoint?.(camera.lat, camera.lon, 1200),
@@ -973,8 +980,82 @@ export class GodsEyePanel {
     } else {
       button.disabled = true;
     }
-    item.append(button);
+    row.append(button);
+    if (camera?.streamUrl) {
+      const play = this.document.createElement('button');
+      play.type = 'button';
+      play.className = 'godseye-stream-btn';
+      play.title = `${camera?.name || camera?.id || ''} · ${camera.streamUrl}`;
+      play.textContent = '▶';
+      play.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        this._playCctvStream(camera);
+      });
+      row.append(play);
+    }
+    item.append(row);
     return item;
+  }
+
+  /** Play a real HLS stream (an ATCS portal camera) in a modal overlay. */
+  _playCctvStream(camera) {
+    const overlay = this.document.createElement('div');
+    overlay.className = 'godseye-player-modal';
+    const head = this.document.createElement('div');
+    head.className = 'godseye-player-head';
+    const title = this.document.createElement('span');
+    title.className = 'godseye-player-title';
+    title.textContent = `${camera?.name || camera?.id || ''} · ${t('LIVE')}`;
+    const close = this.document.createElement('button');
+    close.type = 'button';
+    close.className = 'godseye-player-close';
+    close.textContent = '✕';
+    head.append(title, close);
+    const video = this.document.createElement('video');
+    video.className = 'godseye-player-video';
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    const status = this.document.createElement('div');
+    status.className = 'godseye-player-status';
+    overlay.append(head, video, status);
+    this.document.body.append(overlay);
+    let hls = null;
+    const destroy = () => {
+      hls?.destroy();
+      hls = null;
+      video.pause();
+      video.removeAttribute('src');
+      video.load?.();
+      overlay.remove();
+    };
+    close.addEventListener('click', destroy);
+    overlay.addEventListener('click', (ev) => {
+      if (ev.target === overlay) destroy();
+    });
+    const src = camera?.streamUrl;
+    if (!src) {
+      status.textContent = t('UNAVAILABLE');
+      return;
+    }
+    // ATCS portals refuse cross-origin requests, so the stream is fetched
+    // through the local HLS proxy, which also rewrites the playlist URIs.
+    const proxied = `/api/godseye/cctv-stream?url=${encodeURIComponent(src)}`;
+    if (Hls?.isSupported?.()) {
+      hls = new Hls({ enableWorker: true });
+      hls.loadSource(proxied);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}));
+      hls.on(Hls.Events.ERROR, (_ev, data) => {
+        if (data?.fatal) status.textContent = t('UNAVAILABLE');
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = proxied;
+      video.play().catch(() => {});
+    } else {
+      status.textContent = t('UNAVAILABLE');
+    }
   }
 
   /** Resolve a target, a phone number or a cell identifier to a position. */

@@ -799,7 +799,7 @@
       "src/overlays/worldOverlayTokens.js",
       "src/overlays/worldOverlayDraw.js"
     ],
-    "external": ["cesium"]
+    "external": ["cesium", "hls.js"]
   },
   "ui-styles": {
     "exports": ["./ui/styles"],

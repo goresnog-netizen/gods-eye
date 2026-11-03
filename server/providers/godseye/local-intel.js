@@ -392,6 +392,83 @@ async function handleCctv(req, res) {
 }
 
 /**
+ * Rewrite an HLS playlist so every URI line points at the local proxy.
+ *
+ * `#`-prefixed lines (tags and comments) are left untouched; anything else is
+ * a media URI and becomes `/api/godseye/cctv-stream?url=<resolved>`.
+ */
+export function rewriteHlsPlaylist(text, baseUrl) {
+  const base = new URL(baseUrl);
+  return text
+    .split('\n')
+    .map((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) return line;
+      const resolved = new URL(trimmed, base).toString();
+      return `/api/godseye/cctv-stream?url=${encodeURIComponent(resolved)}`;
+    })
+    .join('\n');
+}
+
+/**
+ * GET /api/godseye/cctv-stream?url=<m3u8|segment|poster>
+ *
+ * Proxies one HLS resource without a browser Origin header so the upstream
+ * portal does not refuse the cross-origin request. Playlists are rewritten:
+ * every URI line is re-targeted through this same route, so a master playlist
+ * resolves to its variant playlist and then to its segments without the
+ * browser ever touching the portal origin directly.
+ */
+async function handleCctvStream(req, res) {
+  const url = new URL(req.url || '/', 'http://localhost');
+  const target = url.searchParams.get('url');
+  if (!target) {
+    return sendJson(res, 400, {
+      ok: false,
+      error: 'url_required',
+      hint: 'Pass ?url=<m3u8|ts|poster>',
+    });
+  }
+  let upstream;
+  try {
+    upstream = await fetch(target, {
+      redirect: 'follow',
+      headers: { 'user-agent': 'Mozilla/5.0 gods-eye-cctv-proxy' },
+      signal: AbortSignal.timeout(15000),
+    });
+  } catch (error) {
+    return sendJson(res, 502, {
+      ok: false,
+      error: 'upstream_failed',
+      detail: error?.message,
+    });
+  }
+  if (!upstream.ok) {
+    return sendJson(res, 502, {
+      ok: false,
+      error: 'upstream_status',
+      detail: `${target} -> ${upstream.status}`,
+    });
+  }
+  const body = await upstream.arrayBuffer();
+  const contentType = String(upstream.headers.get('content-type') || '');
+  const isPlaylist =
+    /mpegurl|m3u8/i.test(contentType) || /\.m3u8($|\?)/i.test(target);
+  res.setHeader('access-control-allow-origin', '*');
+  res.setHeader(
+    'cache-control',
+    isPlaylist ? 'no-store' : 'private, max-age=60',
+  );
+  if (isPlaylist) {
+    const text = Buffer.from(body).toString('utf8');
+    res.setHeader('content-type', 'application/vnd.apple.mpegurl');
+    return res.end(rewriteHlsPlaylist(text, target));
+  }
+  res.setHeader('content-type', contentType || 'application/octet-stream');
+  return res.end(Buffer.from(body));
+}
+
+/**
  * GET /api/godseye/locate
  *
  * `?q=` is a target name, a phone number, or a cell identifier. A cell
@@ -1705,4 +1782,18 @@ export function installLocalIntel(server) {
       }
     });
   });
+  // CORS-safe HLS proxy: ATCS portals serve camera streams from their own
+  // origin and refuse cross-origin requests, so the browser fetches them
+  // through this route instead. Playlists get their relative URIs rewritten to
+  // point back here; segments and posters pass through untouched.
+  server.middlewares.use('/api/godseye/cctv-stream', (req, res) =>
+    handleCctvStream(req, res).catch(() => {
+      try {
+        res.statusCode = 502;
+        res.end('upstream_unavailable');
+      } catch {
+        /* the client is already gone */
+      }
+    }),
+  );
 }

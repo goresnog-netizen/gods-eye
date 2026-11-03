@@ -7,6 +7,7 @@ import test from 'node:test';
 import {
   buildLiveSnapshot,
   installLocalIntel,
+  rewriteHlsPlaylist,
   viewshedCacheKey,
 } from './local-intel.js';
 
@@ -106,6 +107,7 @@ test('every local route is mounted', () => {
     '/api/godseye/bts',
     '/api/godseye/capabilities',
     '/api/godseye/cctv',
+    '/api/godseye/cctv-stream',
     '/api/godseye/export',
     '/api/godseye/imagery',
     '/api/godseye/intel',
@@ -973,5 +975,33 @@ test('two ad-hoc coordinates never share a cached viewshed', () => {
   assert.notEqual(
     viewshedCacheKey(mountain, '4G'),
     viewshedCacheKey(mountain, '4G', { tiltDeg: 6 }),
+  );
+});
+
+test('rewriteHlsPlaylist re-targets every URI line through the proxy', () => {
+  const playlist = [
+    '#EXTM3U',
+    '#EXT-X-STREAM-INF:BANDWIDTH=981944,RESOLUTION=640x360',
+    'video1_stream.m3u8',
+    '#EXTINF:4.0,',
+    'seg001.mp4',
+    '',
+  ].join('\n');
+  const out = rewriteHlsPlaylist(
+    playlist,
+    'https://atcs.banjarmasinkota.go.id/stream/cam/index.m3u8',
+  );
+  const lines = out.split('\n');
+  assert.equal(lines[0], '#EXTM3U', 'tags are untouched');
+  assert.match(lines[2], /^\/api\/godseye\/cctv-stream\?url=/);
+  assert.match(
+    decodeURIComponent(lines[2]),
+    /video1_stream\.m3u8$/,
+    'relative URI resolved against the playlist base',
+  );
+  assert.match(
+    decodeURIComponent(lines[4]),
+    /seg001\.mp4$/,
+    'segment URI resolves against the same base',
   );
 });

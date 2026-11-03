@@ -737,3 +737,41 @@ test('a failed ground check leaves the answer without a photograph', async () =>
     'no height is invented',
   );
 });
+
+test('the cctv camera row marks a live ATCS stream and offers a player button', () => {
+  const f = fixture();
+  const live = f.panel._cameraRow({
+    id: 'atcs-bjm-1',
+    name: 'Simpang Mentari',
+    city: 'Banjarmasin',
+    type: 'traffic',
+    lat: -3.324434,
+    lon: 114.591027,
+    distance: 1.25,
+    live: true,
+    streamUrl: 'https://atcs.banjarmasinkota.go.id/stream/x/index.m3u8',
+  });
+  const badge = live.querySelector('.godseye-live-badge');
+  assert.ok(badge, 'live badge is rendered');
+  assert.equal(badge.hidden, false, 'live badge is visible');
+  assert.ok(
+    live.querySelector('.godseye-stream-btn'),
+    'stream player button is rendered',
+  );
+  // Clicking the row flies the globe; the player button must not.
+  const rowButton = live.querySelector('.godseye-camera');
+  rowButton.click();
+  assert.equal(f.points.length, 1, 'row click flies the globe');
+
+  const dead = f.panel._cameraRow({
+    id: 'atcs-bjr-9',
+    name: 'Offline camera',
+    city: 'Banjar',
+    type: 'traffic',
+    lat: -7.36,
+    lon: 108.54,
+    live: false,
+  });
+  assert.equal(dead.querySelector('.godseye-live-badge').hidden, true);
+  assert.equal(dead.querySelector('.godseye-stream-btn'), null);
+});

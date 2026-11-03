@@ -8,7 +8,9 @@
  * - Local-only data
  */
 
-const CCTV_CATALOG = [
+import { loadAtcsCameras } from './cctv-atcs.mjs';
+
+const BASE_CCTV_CATALOG = [
   // === INDONESIA - MAJOR CITIES ===
   {
     id: 'cctv-001',
@@ -654,5 +656,8 @@ if (process.argv[1] && process.argv[1].endsWith('cctv-enhanced.mjs')) {
     process.exit(1);
   });
 }
+
+/** Real ATCS cameras (live-checked at collection time) come first, then the local base catalog. */
+const CCTV_CATALOG = [...loadAtcsCameras(), ...BASE_CCTV_CATALOG];
 
 export { CCTV_CATALOG, haversineKm };
