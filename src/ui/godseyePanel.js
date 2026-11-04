@@ -1397,6 +1397,9 @@ export class GodsEyePanel {
       ['E.164', phone.e164 || '—'],
       // The honest row: not "unknown", not "pending" — absent by design.
       [t('POSITION'), t('NO POSITION')],
+      // Say what *does* produce a coordinate. A number never will; the cell
+      // id the handset reports resolves to a real tower in the registry.
+      [t('FOR A REAL POSITION'), t('ENTER CELL ID (mcc-mnc-lac-cellid)')],
     ];
     if (phone.source) rows.push([t('SOURCE'), phone.source]);
     // The server explains why in one sentence; keeping it on the card is what

@@ -554,6 +554,10 @@ test('a phone number answers with its operator and no invented position', async 
     rows.some((row) => row.includes('NO POSITION')),
     'the absence of a position is stated, not implied',
   );
+  assert.ok(
+    rows.some((row) => row.includes('mcc-mnc-lac-cellid')),
+    'the card names the only input that yields a real coordinate',
+  );
   // Nothing to fly to, so the button is not offered.
   assert.equal(f.elements._godseyeLocateFly.hidden, true);
 });

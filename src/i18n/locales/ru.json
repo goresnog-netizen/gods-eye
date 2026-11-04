@@ -3085,6 +3085,8 @@
   "PREFIX": "ПРЕФИКС",
   "NATIONAL": "НАЦИОНАЛЬНЫЙ",
   "NO POSITION": "БЕЗ ПОЗИЦИИ",
+  "FOR A REAL POSITION": "ДЛЯ РЕАЛЬНОЙ ПОЗИЦИИ",
+  "ENTER CELL ID (mcc-mnc-lac-cellid)": "ВВЕДИТЕ CELL ID ТЕЛЕФОНА (mcc-mnc-lac-cellid)",
   "WHY": "ПОЧЕМУ",
   "NUMBER METADATA": "МЕТАДАННЫЕ НОМЕРА",
   "CITY": "ГОРОД",
