@@ -157,6 +157,9 @@ export class GodsEyePanel {
     this._locateBasis = '';
     this._btsLoaded = false;
     this._liveSource = null;
+    this._consentTimer = null;
+    this._consentRequest = null;
+    this._consentState = null;
   }
 
   /** Wire the panel and load the first feed. */
@@ -263,6 +266,12 @@ export class GodsEyePanel {
       event.preventDefault();
       this._locateNetworkTowers();
     });
+    this.elements._godseyeLocateConsentRequest?.addEventListener('click', () =>
+      this._requestLocationConsent(),
+    );
+    this.elements._godseyeLocateConsentCopy?.addEventListener('click', () =>
+      this._copyConsentLink(),
+    );
     this._selectTab('latest');
     this._startLive();
     return this._loadLatest();
@@ -272,16 +281,19 @@ export class GodsEyePanel {
   destroy() {
     this._disposed = true;
     this._stopLive();
+    this._stopConsentPolling();
     this._latestRequest?.abort?.();
     this._placeRequest?.abort?.();
     this._cctvRequest?.abort?.();
     this._locateRequest?.abort?.();
     this._newsRequest?.abort?.();
+    this._consentRequest?.abort?.();
     this._latestRequest = null;
     this._placeRequest = null;
     this._cctvRequest = null;
     this._locateRequest = null;
     this._newsRequest = null;
+    this._consentRequest = null;
   }
 
   /**
@@ -1374,6 +1386,210 @@ export class GodsEyePanel {
    * reports). The alternative, an empty card and "unavailable", is what made
    * the phone check look broken.
    */
+  /** Forget the current consent flow and clear its widgets. */
+  _resetConsentUi() {
+    this._stopConsentPolling();
+    this._consentState = null;
+    const {
+      _godseyeLocateConsentLink,
+      _godseyeLocateConsentStatus,
+      _godseyeLocateConsentCopy,
+    } = this.elements;
+    if (_godseyeLocateConsentLink) _godseyeLocateConsentLink.value = '';
+    if (_godseyeLocateConsentStatus)
+      _godseyeLocateConsentStatus.textContent = '';
+    if (_godseyeLocateConsentCopy) _godseyeLocateConsentCopy.disabled = true;
+  }
+
+  _stopConsentPolling() {
+    if (this._consentTimer !== null) {
+      clearInterval(this._consentTimer);
+      this._consentTimer = null;
+    }
+  }
+
+  /**
+   * The number's owner shares a real position: create a one-time consent link
+   * and hand it to the panel. The owner taps consent in a browser, the fix
+   * comes back through the secret-polling loop, and the card becomes a real
+   * coordinate — labelled as shared by the owner, never as a derivation.
+   */
+  async _requestLocationConsent() {
+    if (this._disposed) return;
+    const {
+      _godseyeLocateConsentLink,
+      _godseyeLocateConsentStatus,
+      _godseyeLocateConsentCopy,
+    } = this.elements;
+    const number = String(this._phoneQuery || '').trim();
+    const basis = String(this._locateBasis || '').trim();
+    if (!number || !basis) {
+      if (_godseyeLocateConsentStatus) {
+        _godseyeLocateConsentStatus.textContent = t('LEGAL BASIS REQUIRED');
+      }
+      return;
+    }
+    this._resetConsentUi();
+    if (_godseyeLocateConsentStatus) {
+      _godseyeLocateConsentStatus.textContent = t('CREATING LOCATION REQUEST');
+    }
+    this._consentRequest?.abort?.();
+    const controller = new AbortController();
+    this._consentRequest = controller;
+    try {
+      const response = await this._request('/api/godseye/location-request', {
+        method: 'POST',
+        signal: controller.signal,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ number, legalBasis: basis }),
+      });
+      if (this._disposed) return;
+      if (!response.ok) {
+        throw new Error(response.data?.detail || `HTTP ${response.status}`);
+      }
+      const created = response.data;
+      this._consentState = { id: created.id, secret: created.secret };
+      if (_godseyeLocateConsentLink) {
+        _godseyeLocateConsentLink.value = created.link;
+        _godseyeLocateConsentLink.focus?.();
+        _godseyeLocateConsentLink.select?.();
+      }
+      if (_godseyeLocateConsentCopy) {
+        _godseyeLocateConsentCopy.disabled = false;
+      }
+      if (_godseyeLocateConsentStatus) {
+        _godseyeLocateConsentStatus.textContent = t('SHARE LINK AND WAIT');
+      }
+      this._startConsentPolling();
+    } catch (error) {
+      if (this._disposed || error?.name === 'AbortError') return;
+      if (_godseyeLocateConsentStatus) {
+        _godseyeLocateConsentStatus.textContent =
+          error?.message || t('UNAVAILABLE');
+      }
+    }
+  }
+
+  /** Every five seconds, until the fix lands or the link dies. */
+  _startConsentPolling() {
+    this._stopConsentPolling();
+    const state = this._consentState;
+    if (!state) return;
+    this._consentTimer = setInterval(() => {
+      if (this._disposed) {
+        this._stopConsentPolling();
+        return;
+      }
+      void this._pollConsentStatus();
+    }, 5000);
+  }
+
+  async _pollConsentStatus() {
+    const state = this._consentState;
+    if (!state || this._disposed) return;
+    const { _godseyeLocateConsentStatus, _godseyeLocateConsentCopy } =
+      this.elements;
+    try {
+      const response = await this._request(
+        `/api/godseye/location-request/${encodeURIComponent(
+          state.id,
+        )}?secret=${encodeURIComponent(state.secret)}`,
+      );
+      if (this._disposed) return;
+      if (!response.ok) return;
+      const view = response.data;
+      if (view.status === 'collected' && view.fix) {
+        this._stopConsentPolling();
+        if (_godseyeLocateConsentCopy)
+          _godseyeLocateConsentCopy.disabled = true;
+        this._renderConsentFix(view);
+      } else if (view.status === 'expired') {
+        this._stopConsentPolling();
+        if (_godseyeLocateConsentStatus) {
+          _godseyeLocateConsentStatus.textContent = t('LINK EXPIRED');
+        }
+      }
+    } catch {
+      /* a failed poll is just the next poll */
+    }
+  }
+
+  /**
+   * A real coordinate, stated exactly for what it is: the number's owner
+   * shared it. The card gets the fix, the globe gets a fly target.
+   */
+  _renderConsentFix(view) {
+    const {
+      _godseyeLocateName,
+      _godseyeLocateCoords,
+      _godseyeLocateNote,
+      _godseyeLocatePhoto,
+      _godseyeLocateGround,
+      _godseyeLocateList,
+      _godseyeLocateStatus,
+      _godseyeLocateFly,
+      _godseyeLocateConsentStatus,
+    } = this.elements;
+    const fix = view.fix;
+    if (_godseyeLocateName) {
+      _godseyeLocateName.textContent = `${view.numberMasked || ''} · ${t('LOCATION SHARED')}`;
+    }
+    if (_godseyeLocateCoords) {
+      _godseyeLocateCoords.textContent = `${fix.lat.toFixed(5)}, ${fix.lon.toFixed(5)}`;
+    }
+    if (_godseyeLocateNote) {
+      _godseyeLocateNote.textContent = Number.isFinite(fix.accuracyM)
+        ? t('ACCURACY {accuracy} M', { accuracy: fix.accuracyM })
+        : t('SHARED BY THE NUMBER OWNER');
+    }
+    if (_godseyeLocatePhoto) {
+      _godseyeLocatePhoto.hidden = true;
+      _godseyeLocatePhoto.removeAttribute('src');
+    }
+    if (_godseyeLocateGround) _godseyeLocateGround.hidden = true;
+    if (_godseyeLocateList) {
+      this._fillFacts(_godseyeLocateList, [
+        [t('NUMBER'), view.numberMasked || '—'],
+        [t('POSITION'), t('SHARED BY THE NUMBER OWNER')],
+        [
+          t('ACCURACY'),
+          Number.isFinite(fix.accuracyM) ? `± ${fix.accuracyM} m` : '—',
+        ],
+        [t('SHARED AT'), new Date(fix.collectedAt).toISOString()],
+      ]);
+    }
+    this._located = {
+      lat: fix.lat,
+      lon: fix.lon,
+      name: `${view.numberMasked || 'shared'} · ${fix.lat.toFixed(5)}, ${fix.lon.toFixed(5)}`,
+    };
+    if (_godseyeLocateFly) {
+      _godseyeLocateFly.hidden = false;
+      _godseyeLocateFly.textContent = t('FLY TO');
+    }
+    if (_godseyeLocateStatus) {
+      _godseyeLocateStatus.textContent = t('LOCATION SHARED');
+    }
+    if (_godseyeLocateConsentStatus) {
+      _godseyeLocateConsentStatus.textContent = t('LOCATION SHARED');
+    }
+  }
+
+  async _copyConsentLink() {
+    const { _godseyeLocateConsentLink, _godseyeLocateConsentStatus } =
+      this.elements;
+    const link = _godseyeLocateConsentLink?.value || '';
+    if (!link) return;
+    try {
+      await navigator.clipboard.writeText(link);
+    } catch {
+      _godseyeLocateConsentLink?.select?.();
+    }
+    if (_godseyeLocateConsentStatus) {
+      _godseyeLocateConsentStatus.textContent = t('COPIED');
+    }
+  }
+
   _renderPhone(payload) {
     const {
       _godseyeLocateCard,
@@ -1387,9 +1603,12 @@ export class GodsEyePanel {
       _godseyeLocateFly,
       _godseyeLocateNetwork,
       _godseyeLocateGeo,
+      _godseyeLocateConsent,
     } = this.elements;
     const phone = payload?.phone || {};
     const operator = phone.operator || t('UNKNOWN');
+    // A new phone answer starts a clean consent flow.
+    this._resetConsentUi();
     const rows = [
       [t('CARRIER'), operator],
       [t('PREFIX'), phone.prefix || '—'],
@@ -1473,6 +1692,9 @@ export class GodsEyePanel {
         _godseyeLocateStatus.textContent = `${t('NUMBER METADATA')} · ${t('SOURCE')} ${payload?.source || '—'}`;
       }
     }
+    // Whatever the network context shows, the consent link is the one path
+    // from this number to a real position, so it is always offered.
+    if (_godseyeLocateConsent) _godseyeLocateConsent.hidden = false;
     if (_godseyeLocateCard) _godseyeLocateCard.hidden = false;
   }
 

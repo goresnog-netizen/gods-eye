@@ -160,6 +160,15 @@
             </div>
             <p class="godseye-status" data-i18n>NETWORK CONTEXT, NOT A POSITION</p>
           </div>
+          <div id="godseye-locate-consent" class="godseye-network-ctl" hidden>
+            <p class="godseye-status" data-i18n>REAL POSITION NEEDS THE NUMBER OWNER</p>
+            <button id="godseye-locate-consent-request" class="scene-btn" type="button" data-i18n>REQUEST LOCATION (CONSENT LINK)</button>
+            <div class="godseye-place-form">
+              <input id="godseye-locate-consent-link" class="gev-field" type="text" readonly placeholder="…" />
+              <button id="godseye-locate-consent-copy" class="scene-btn" type="button" data-i18n>COPY</button>
+            </div>
+            <p id="godseye-locate-consent-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
+          </div>
           <ul id="godseye-locate-list" class="godseye-list"></ul>
           <p id="godseye-locate-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
         </div>

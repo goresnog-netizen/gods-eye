@@ -83,6 +83,19 @@ import {
   fetchWorldPapuaNews,
   WORLD_TOPICS,
 } from '../../services/place-card-local/news-papua.mjs';
+import {
+  collectLocationFix,
+  createLocationRequest,
+  getLocationRequest,
+  locationRecordByToken,
+  maskNumber,
+} from '../../services/place-card-local/location-request.mjs';
+import { renderConsentPage } from '../../services/place-card-local/location-consent-page.mjs';
+import {
+  operatorLocationProvider,
+  queryOperatorLocation,
+} from '../../services/place-card-local/operator-location.mjs';
+import { readRequestBody } from '../common/request.js';
 
 /**
  * Local intelligence routes for the God's Eye panel.
@@ -143,6 +156,12 @@ function sendJson(res, status, payload) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
   res.end(JSON.stringify(payload));
+}
+function sendText(res, status, text) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-store');
+  res.end(text);
 }
 
 function sendFile(res, status, body, contentType, filename, headers = {}) {
@@ -713,6 +732,32 @@ async function handleLocate(req, res) {
           towers,
         };
       }
+      // The same number can also resolve through the operator's own network
+      // API (GSMA Open Gateway / CAMARA Device Location): MSISDN in, a circle
+      // out — no cell id needed. That path only exists when the operator
+      // account is configured; without credentials it reports itself as
+      // unavailable instead of pretending.
+      const operatorProvider = operatorLocationProvider();
+      let operatorPosition = null;
+      let operatorError = null;
+      if (operatorProvider.available && direct.phoneIntel?.e164) {
+        const probed = await queryOperatorLocation({
+          e164: direct.phoneIntel.e164,
+        });
+        if (probed.ok) {
+          operatorPosition = {
+            lat: probed.lat,
+            lon: probed.lon,
+            accuracyM: probed.accuracyM,
+            lastLocationTime: probed.lastLocationTime || null,
+          };
+        } else {
+          operatorError = {
+            reason: probed.reason,
+            detail: probed.detail || null,
+          };
+        }
+      }
       return sendJson(res, 200, {
         ok: true,
         mode: 'phone',
@@ -721,9 +766,20 @@ async function handleLocate(req, res) {
         source: 'phone-prefix',
         capability: 'number-metadata',
         synthetic: false,
-        position: null,
-        estimated: false,
-        positionBasis: 'none',
+        position: operatorPosition
+          ? { lat: operatorPosition.lat, lon: operatorPosition.lon }
+          : null,
+        positionBasis: operatorPosition ? 'operator-network' : 'none',
+        estimated: Boolean(operatorPosition),
+        operatorPosition,
+        operatorProvider: {
+          available: operatorProvider.available,
+          provider: operatorProvider.provider,
+          reason: operatorProvider.reason || null,
+          hint: operatorProvider.hint || null,
+        },
+        operatorError,
+        locationRequest: { available: true },
         phone: direct.phoneIntel,
         detail: direct.reason,
         network,
@@ -1765,6 +1821,174 @@ async function handleStream(req, res, intervalMs = 15_000) {
 }
 
 /** Mount the local intelligence routes on the Vite dev and preview servers. */
+/**
+ * POST /api/godseye/location-request — open a one-time consent request.
+ *
+ * Body: { "number": "081340934688", "legalBasis": "consent" }.
+ * The answer carries the shareable link and a secret for polling the outcome.
+ * A person-directed query always needs the basis; the request itself is
+ * refused without one.
+ */
+async function handleLocationRequestCreate(req, res) {
+  if (req.method !== 'POST') {
+    return sendJson(res, 405, { ok: false, error: 'method_not_allowed' });
+  }
+  let body = {};
+  try {
+    const raw = await readRequestBody(req, 8 * 1024);
+    body = raw.length ? JSON.parse(raw.toString('utf8')) : {};
+  } catch (error) {
+    return sendJson(res, 400, {
+      ok: false,
+      error: error?.code === 'BODY_TOO_LARGE' ? 'body_too_large' : 'bad_json',
+      detail: 'Send JSON { number, legalBasis }',
+    });
+  }
+  const number = String(body.number || '').trim();
+  const legalBasis = String(body.legalBasis || '').trim();
+  const basisValid =
+    legalBasis && PERSON_BASES.includes(legalBasis.toLowerCase());
+  if (!basisValid) {
+    return sendJson(res, 428, {
+      ok: false,
+      error: 'legal_basis_required',
+      detail: 'A person-directed location request must state its legal basis',
+      accepted: PERSON_BASES,
+    });
+  }
+  const host = req.headers?.host || 'localhost:4173';
+  const origin = `${req.headers?.['x-forwarded-proto'] || 'http'}://${host}`;
+  const created = await createLocationRequest({
+    number,
+    legalBasis: legalBasis.toLowerCase(),
+    origin,
+  });
+  if (!created.ok) {
+    const status = created.error === 'invalid_number' ? 400 : 429;
+    return sendJson(res, status, {
+      ok: false,
+      error: created.error,
+      detail: created.hint || 'The location request could not be created',
+    });
+  }
+  const masked = maskNumber(number);
+  await recordAudit({
+    action: 'location-request',
+    query: masked,
+    mode: 'phone',
+    source: 'consent-link',
+    legalBasis: legalBasis.toLowerCase(),
+    result: 'created',
+  });
+  return sendJson(res, 200, {
+    ok: true,
+    id: created.id,
+    secret: created.secret,
+    link: created.link,
+    expiresAt: created.expiresAt,
+    numberMasked: masked,
+  });
+}
+
+/**
+ * GET /api/godseye/location-request/<id>?secret= — the requester polls this.
+ *
+ * Only the secret holder sees the collected fix. Anything else — wrong id,
+ * wrong secret — reads as a 404 so an id alone leaks nothing.
+ */
+async function handleLocationRequestStatus(req, res) {
+  if (!readOnly(req, res)) return;
+  const url = new URL(req.url || '/', 'http://localhost');
+  const parts = url.pathname.split('/').filter(Boolean);
+  const id = parts[parts.length - 1] || '';
+  const secret = url.searchParams.get('secret') || '';
+  if (!/^[0-9a-f]{8,}$/.test(id) || !secret) {
+    return sendJson(res, 404, { ok: false, error: 'not_found' });
+  }
+  const view = await getLocationRequest(id, secret);
+  if (!view) return sendJson(res, 404, { ok: false, error: 'not_found' });
+  return sendJson(res, 200, { ok: true, ...view });
+}
+
+/**
+ * GET /api/godseye/locate-consent/<token> — the page the link points to.
+ */
+async function handleConsentPage(req, res) {
+  if (!readOnly(req, res)) return;
+  const token = req.url.split('/').filter(Boolean).pop() || '';
+  if (!/^[0-9a-f]{32,}$/.test(token)) {
+    return sendText(res, 404, 'invalid or missing token');
+  }
+  const record = locationRecordByToken(token);
+  if (!record) return sendText(res, 404, 'unknown or expired request');
+  if (record.status === 'collected') {
+    return sendText(res, 410, 'this request was already used');
+  }
+  if (record.expiresAt <= Date.now()) {
+    return sendText(res, 410, 'this request has expired');
+  }
+  const html = renderConsentPage({
+    numberMasked: record.numberMasked,
+    legalBasis: record.legalBasis,
+    expiresAt: record.expiresAt,
+  });
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-store');
+  res.end(html);
+}
+
+/**
+ * POST /api/godseye/locate-consent/<token> — the browser posts the fix.
+ */
+async function handleConsentCollect(req, res) {
+  if (req.method !== 'POST') {
+    return sendJson(res, 405, { ok: false, error: 'method_not_allowed' });
+  }
+  const token = req.url.split('/').filter(Boolean).pop() || '';
+  if (!/^[0-9a-f]{32,}$/.test(token)) {
+    return sendJson(res, 400, { ok: false, error: 'invalid_token' });
+  }
+  let body = {};
+  try {
+    const raw = await readRequestBody(req, 4 * 1024);
+    body = raw.length ? JSON.parse(raw.toString('utf8')) : {};
+  } catch {
+    body = {};
+  }
+  const record = locationRecordByToken(token);
+  if (!record) {
+    return sendJson(res, 400, { ok: false, error: 'invalid_token' });
+  }
+  const collected = await collectLocationFix(record.id, token, {
+    lat: body.lat,
+    lon: body.lon,
+    accuracyM: body.accuracyM,
+  });
+  if (!collected.ok) {
+    const status = collected.error === 'expired' ? 410 : 400;
+    return sendJson(res, status, {
+      ok: false,
+      error: collected.error,
+      detail:
+        collected.error === 'already_collected'
+          ? 'This request was already used'
+          : 'The fix was not accepted',
+    });
+  }
+  await recordAudit({
+    action: 'location-consent',
+    query: record.numberMasked,
+    mode: 'phone',
+    source: 'browser-geolocation',
+    legalBasis: record.legalBasis,
+    result: 'collected',
+    lat: Number(body.lat),
+    lon: Number(body.lon),
+  });
+  return sendJson(res, 200, { ok: true, detail: 'location shared' });
+}
+
 export function installLocalIntel(server) {
   server.middlewares.use('/api/godseye/cctv', (req, res) =>
     handleCctv(req, res).catch((error) =>
@@ -1898,5 +2122,33 @@ export function installLocalIntel(server) {
         /* the client is already gone */
       }
     }),
+  );
+  // The consented-location flow: a number turns into a real position when the
+  // owner of the number agrees to share it. The link is one-time, the audit
+  // chain records creation and collection, and nothing is readable without
+  // the requester's secret.
+  server.middlewares.use('/api/godseye/location-request', (req, res) =>
+    (req.method === 'GET' || req.method === 'HEAD'
+      ? handleLocationRequestStatus(req, res)
+      : handleLocationRequestCreate(req, res)
+    ).catch((error) =>
+      sendJson(res, 500, {
+        ok: false,
+        error: 'location_request_failed',
+        detail: error?.message || 'the request could not be answered',
+      }),
+    ),
+  );
+  server.middlewares.use('/api/godseye/locate-consent', (req, res) =>
+    (req.method === 'POST'
+      ? handleConsentCollect(req, res)
+      : handleConsentPage(req, res)
+    ).catch((error) =>
+      sendJson(res, 500, {
+        ok: false,
+        error: 'location_consent_failed',
+        detail: error?.message || 'the consent flow failed',
+      }),
+    ),
   );
 }

@@ -201,6 +201,11 @@ function fixture({
     _godseyeLocateNetwork: element(),
     _godseyeLocateGeo: f.document.createElement('input'),
     _godseyeLocateNetworkBtn: f.document.createElement('button'),
+    _godseyeLocateConsent: element(),
+    _godseyeLocateConsentRequest: f.document.createElement('button'),
+    _godseyeLocateConsentLink: f.document.createElement('input'),
+    _godseyeLocateConsentCopy: f.document.createElement('button'),
+    _godseyeLocateConsentStatus: element(),
     _godseyeTabBts: f.document.createElement('button'),
     _godseyePaneBts: element(),
     _godseyeBtsRefresh: f.document.createElement('button'),
@@ -898,4 +903,115 @@ test('a malformed context point refuses instead of guessing', async () => {
     (url) => url.startsWith('/api/godseye/locate') && url.includes('lat='),
   );
   assert.equal(locateCalls.length, 0, 'no request with a bogus point');
+});
+
+test('the consent widget offers the request button on every phone answer', async () => {
+  const f = fixture({ locate: PHONE });
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081340934688';
+  const opt = f.document.createElement('option');
+  opt.value = 'consent';
+  f.elements._godseyeLocateBasis.append(opt);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.equal(
+    f.elements._godseyeLocateConsent.hidden,
+    false,
+    'the consent widget is unhidden for a phone answer',
+  );
+  assert.equal(
+    f.elements._godseyeLocateConsentCopy.disabled,
+    true,
+    'copy button waits for a created link',
+  );
+});
+
+test('requesting a consent link creates the link, enables copy, and polls until collected', async () => {
+  let pollCount = 0;
+  const f = fixture({ locate: PHONE });
+  // Intercept the location-request endpoints in the test services.
+  const baseRaw = f.services.godseye.raw;
+  f.services.godseye.raw = async (endpoint, options = {}) => {
+    if (
+      endpoint === '/api/godseye/location-request' &&
+      options.method === 'POST'
+    ) {
+      return {
+        ok: true,
+        status: 200,
+        data: {
+          id: 'req12345',
+          secret: 'sec98765',
+          link: 'http://localhost:4173/api/godseye/locate-consent/tok555',
+          expiresAt: Date.now() + 60_000,
+        },
+      };
+    }
+    if (endpoint.startsWith('/api/godseye/location-request/req12345')) {
+      pollCount += 1;
+      if (pollCount === 1) {
+        return { ok: true, status: 200, data: { status: 'pending' } };
+      }
+      return {
+        ok: true,
+        status: 200,
+        data: {
+          status: 'collected',
+          numberMasked: '0813*****688',
+          fix: {
+            lat: -2.55,
+            lon: 140.7,
+            accuracyM: 15,
+            collectedAt: Date.now(),
+          },
+        },
+      };
+    }
+    return baseRaw(endpoint, options);
+  };
+  await f.panel.connect();
+  f.elements._godseyeLocateInput.value = '081340934688';
+  const opt = f.document.createElement('option');
+  opt.value = 'consent';
+  f.elements._godseyeLocateBasis.append(opt);
+  f.elements._godseyeLocateBasis.value = 'consent';
+  f.elements._godseyeLocateBtn.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  // User taps REQUEST LOCATION (CONSENT LINK).
+  f.elements._godseyeLocateConsentRequest.dispatchEvent(new Event('click'));
+  await new Promise((resolve) => setImmediate(resolve));
+
+  assert.equal(
+    f.elements._godseyeLocateConsentLink.value,
+    'http://localhost:4173/api/godseye/locate-consent/tok555',
+  );
+  assert.equal(f.elements._godseyeLocateConsentCopy.disabled, false);
+  assert.match(
+    f.elements._godseyeLocateConsentStatus.textContent,
+    /SHARE LINK AND WAIT/,
+  );
+
+  // First poll: pending.
+  await f.panel._pollConsentStatus();
+  assert.equal(f.elements._godseyeLocateFly.hidden, true);
+
+  // Second poll: fix arrives. The panel flies, renders the real coordinate.
+  await f.panel._pollConsentStatus();
+  assert.equal(f.elements._godseyeLocateFly.hidden, false);
+  assert.deepEqual(f.panel._located, {
+    lat: -2.55,
+    lon: 140.7,
+    name: '0813*****688 · -2.55000, 140.70000',
+  });
+  assert.match(
+    f.elements._godseyeLocateCoords.textContent,
+    /-2\.55000, 140\.70000/,
+  );
+  assert.match(f.elements._godseyeLocateNote.textContent, /15 M/);
+  assert.match(f.elements._godseyeLocateStatus.textContent, /LOCATION SHARED/);
+
+  f.panel.destroy();
 });

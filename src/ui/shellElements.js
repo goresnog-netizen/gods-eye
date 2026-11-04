@@ -133,6 +133,19 @@ export function readShellElements(document = globalThis.document) {
     _godseyeLocateNetworkBtn: document.getElementById(
       'godseye-locate-network-btn',
     ),
+    _godseyeLocateConsent: document.getElementById('godseye-locate-consent'),
+    _godseyeLocateConsentRequest: document.getElementById(
+      'godseye-locate-consent-request',
+    ),
+    _godseyeLocateConsentLink: document.getElementById(
+      'godseye-locate-consent-link',
+    ),
+    _godseyeLocateConsentCopy: document.getElementById(
+      'godseye-locate-consent-copy',
+    ),
+    _godseyeLocateConsentStatus: document.getElementById(
+      'godseye-locate-consent-status',
+    ),
     _godseyeLocateList: document.getElementById('godseye-locate-list'),
     _godseyeLocateStatus: document.getElementById('godseye-locate-status'),
     _godseyeLive: document.getElementById('godseye-live'),

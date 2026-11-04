@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { EventEmitter } from 'node:events';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -25,6 +26,12 @@ process.env.GODSEYE_TARGET_HISTORY = path.join(
 process.env.GODSEYE_BTS_REGISTRY = path.join(
   os.tmpdir(),
   `gev-bts-absent-${process.pid}.json`,
+);
+// The consented-location store holds a person's coordinate; the tests point
+// it at a throwaway file so they never touch the project store.
+process.env.GODSEYE_LOCATION_REQUESTS = path.join(
+  os.tmpdir(),
+  `gev-location-requests-${process.pid}.json`,
 );
 
 // The audit log writes as a side effect of answering, so it gets its own
@@ -99,6 +106,33 @@ async function call(path, query, method = 'GET') {
   };
 }
 
+/** POST with a JSON body: an EventEmitter that emits the chunk after the
+ * handler has attached its listeners (the same shape `readRequestBody` sees
+ * on a real request). */
+async function post(path, query, payload) {
+  const routes = mount();
+  const handler = routes.get(path);
+  assert.equal(typeof handler, 'function', `${path} is mounted`);
+  const { sent, res } = recorder();
+  const body = Buffer.from(JSON.stringify(payload), 'utf8');
+  const req = new EventEmitter();
+  req.method = 'POST';
+  req.url = `${path}${query}`;
+  req.headers = { host: 'localhost:4173', 'content-type': 'application/json' };
+  queueMicrotask(() => {
+    req.emit('data', body);
+    req.emit('end');
+  });
+  await handler(req, res);
+  let json = null;
+  try {
+    json = JSON.parse(sent.body);
+  } catch {
+    json = null;
+  }
+  return { status: res.statusCode, body: sent.body, json };
+}
+
 test('every local route is mounted', () => {
   const routes = mount();
   assert.deepEqual([...routes.keys()].sort(), [
@@ -112,6 +146,8 @@ test('every local route is mounted', () => {
     '/api/godseye/imagery',
     '/api/godseye/intel',
     '/api/godseye/locate',
+    '/api/godseye/locate-consent',
+    '/api/godseye/location-request',
     '/api/godseye/news',
     '/api/godseye/score',
     '/api/godseye/stream',
@@ -1117,4 +1153,109 @@ test('rewriteHlsPlaylist re-targets every URI line through the proxy', () => {
     /seg001\.mp4$/,
     'segment URI resolves against the same base',
   );
+});
+
+test('a location request refuses to exist without a legal basis', async () => {
+  const result = await post('/api/godseye/location-request', '', {
+    number: '081340934688',
+  });
+  assert.equal(result.status, 428);
+  assert.equal(result.json.error, 'legal_basis_required');
+});
+
+test('the consent flow: create, share page, submit fix, secret-only read', async () => {
+  const created = await post('/api/godseye/location-request', '', {
+    number: '081340934688',
+    legalBasis: 'consent',
+  });
+  assert.equal(created.status, 200);
+  assert.equal(created.json.ok, true);
+  assert.ok(created.json.link.includes('/api/godseye/locate-consent/'));
+  assert.match(created.json.numberMasked, /0813\*\*\*\*\*688/);
+  const token = created.json.link.split('/').pop();
+
+  // The requester polls before the target acts: pending, no fix.
+  const pending = await call(
+    '/api/godseye/location-request',
+    `/${created.json.id}?secret=${created.json.secret}`,
+  );
+  assert.equal(pending.status, 200);
+  assert.equal(pending.json.status, 'pending');
+  assert.equal(pending.json.fix, undefined);
+
+  // Wrong secret reads as a 404 — the id alone leaks nothing.
+  const wrongSecret = await call(
+    '/api/godseye/location-request',
+    `/${created.json.id}?secret=guess`,
+  );
+  assert.equal(wrongSecret.status, 404);
+
+  // The consent page renders for the token holder.
+  const page = await call('/api/godseye/locate-consent', `/${token}`);
+  assert.equal(page.status, 200);
+  assert.match(page.headers['content-type'], /text\/html/);
+  assert.match(page.body, /0813\*\*\*\*\*688/);
+  assert.match(page.body, /SHARE MY POSITION/);
+
+  // The browser posts its fix through the same URL.
+  const collect = await post('/api/godseye/locate-consent', `/${token}`, {
+    lat: -2.55,
+    lon: 140.7,
+    accuracyM: 40,
+  });
+  assert.equal(collect.status, 200);
+  assert.equal(collect.json.ok, true);
+
+  // One-time: a second submit is refused.
+  const again = await post('/api/godseye/locate-consent', `/${token}`, {
+    lat: -2.56,
+    lon: 140.71,
+    accuracyM: 10,
+  });
+  assert.equal(again.status, 400);
+  assert.equal(again.json.error, 'already_collected');
+
+  // The page now answers 410 — used.
+  const used = await call('/api/godseye/locate-consent', `/${token}`);
+  assert.equal(used.status, 410);
+
+  // The requester, and only the requester, reads the coordinate.
+  const done = await call(
+    '/api/godseye/location-request',
+    `/${created.json.id}?secret=${created.json.secret}`,
+  );
+  assert.equal(done.status, 200);
+  assert.equal(done.json.status, 'collected');
+  assert.equal(done.json.fix.lat, -2.55);
+  assert.equal(done.json.fix.lon, 140.7);
+  assert.equal(done.json.fix.accuracyM, 40);
+});
+
+test('an invalid fix from the consent page is refused', async () => {
+  const created = await post('/api/godseye/location-request', '', {
+    number: '081340934688',
+    legalBasis: 'consent',
+  });
+  const token = created.json.link.split('/').pop();
+  const bad = await post('/api/godseye/locate-consent', `/${token}`, {
+    lat: 999,
+    lon: 140.7,
+    accuracyM: 10,
+  });
+  assert.equal(bad.status, 400);
+  assert.equal(bad.json.error, 'invalid_fix');
+});
+
+test('a phone answer advertises the consent channel and honest operator state', async () => {
+  const result = await call(
+    '/api/godseye/locate',
+    '?q=085212347890&legalBasis=consent',
+  );
+  assert.equal(result.status, 200);
+  assert.equal(result.json.mode, 'phone');
+  assert.equal(result.json.locationRequest?.available, true);
+  // No operator account is configured in tests: the adapter says so.
+  assert.equal(result.json.operatorProvider?.available, false);
+  assert.equal(result.json.position, null);
+  assert.equal(result.json.positionBasis, 'none');
 });
