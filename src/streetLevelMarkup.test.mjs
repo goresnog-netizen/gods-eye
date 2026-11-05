@@ -46,9 +46,17 @@ test('the panel is registered with panel chrome, cockpit entry and the right rai
     panelChrome,
     /COCKPIT_ENTRY_COLLAPSE_PANEL_IDS = Object\.freeze\(\[[\s\S]*'street-level-panel'/,
   );
+  // The rail list moved into RIGHT_RAIL_PANEL_IDS when the accordion stopped
+  // keying on the theme attribute. Assert the membership where the list now
+  // lives, and that the check actually reads it, instead of hunting an inline
+  // array literal that no longer exists.
   assert.match(
     panelChrome,
-    /const isRightRail = \[[\s\S]*'street-level-panel'/,
+    /RIGHT_RAIL_PANEL_IDS = Object\.freeze\(\[[\s\S]*'street-level-panel'/,
+  );
+  assert.match(
+    panelChrome,
+    /const isRightRail = RIGHT_RAIL_PANEL_IDS\.includes\(/,
   );
   assert.match(
     layoutController,

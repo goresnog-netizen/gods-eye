@@ -995,10 +995,15 @@ test('the voice TOOL SCHEMA matches the pinned contract — the mission mapping 
   // list descriptions; the missions still ride existing tools.
   // Street Level and GNSS extend the manifest; broadcast caveats describe tracked and analyst aircraft.
   // Air quality (ECCC AQHI) extends the manifest.
-  assert.equal(block.length, 30655, 'serialized tool schema length drifted');
+  // The Papua tower registry adds the `bts` layer: its enum entry in
+  // set_layer_visibility/show_data_layers_menu and its field list in
+  // analyst_query (name,tech,distanceKm,coveragePct,rangeKm,province) are the
+  // whole +100. Verified by diffing the serialized schema against 129174c3,
+  // the commit that last set this pin — no other tool changed.
+  assert.equal(block.length, 30755, 'serialized tool schema length drifted');
   assert.equal(
     crypto.createHash('sha256').update(block).digest('hex'),
-    '3b1d5e77c10a92f6543a4f9d1ff1870101a0306b65e5b8a6113111c81eda371e',
+    'e7da8970371d6e1007b11131d6436b57f6ca50c610016a3f20041aea2a4d90a8',
     'the first-run missions must ride EXISTING tools: no schema edit, no cache bust',
   );
   const instructions = fs.readFileSync(

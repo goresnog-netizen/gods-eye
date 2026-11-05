@@ -2,6 +2,7 @@ import { readShellSource, shellMethod } from './testSupport/readShellSource.mjs'
 import { expandApplicationHtml } from '../build/application-html.js';
 import { StyleManager } from './ui/applicationShell.js';
 import { createHoverDisclosure, collapsePanelOnEscape } from './ui/panelDisclosure.js';
+import { RIGHT_RAIL_PANEL_IDS } from './ui/panelChrome.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -108,9 +109,9 @@ function harness({ hidden = false, selected = true, noChips = false } = {}) {
   window.clearTimeout = (id) => timers.delete(id);
   window.performance = { now: () => now };
   document.defaultView = window;
-  const methods = new Function('createHoverDisclosure', 'collapsePanelOnEscape', 'document', 'window', 'clearTimeout', 'performance', 'requestAnimationFrame', 't', 'msg',
+  const methods = new Function('createHoverDisclosure', 'collapsePanelOnEscape', 'document', 'window', 'clearTimeout', 'performance', 'requestAnimationFrame', 't', 'msg', 'RIGHT_RAIL_PANEL_IDS',
     `return ({${shellMethod('_initAutoHoverPanel').toString()},\n${shellMethod('_collapsePanelOnEscape').toString()},\n${shellMethod('setPanelCollapsed').toString()},\n${shellMethod('_syncPanelCollapseButton').toString()}});`)(
-    createHoverDisclosure, collapsePanelOnEscape, document, window, (id) => timers.delete(id), { now: () => now }, () => {}, t, msg,
+    createHoverDisclosure, collapsePanelOnEscape, document, window, (id) => timers.delete(id), { now: () => now }, () => {}, t, msg, RIGHT_RAIL_PANEL_IDS,
   );
   const saves = [];
   const claims = [];
@@ -118,6 +119,12 @@ function harness({ hidden = false, selected = true, noChips = false } = {}) {
   const manager = {
     _lifetime: { frame() {} },
     _panelLayout: { _leftStackPreferredPanelId: null, _rightStackPreferredPanelId: null },
+    // The right-rail accordion reads `this._rightPanelStack.children`. Leaving
+    // it undefined made `panelEl.parentElement === this._rightPanelStack` true
+    // (undefined === undefined) for every panel, so the branch ran and threw
+    // before any assertion. The dock panels under test are not rail panels, so
+    // an empty stack is both correct and enough.
+    _rightPanelStack: { children: [], contains: () => false },
     ...methods,
     _savePanelCollapsedState(...args) { saves.push(args); },
     _scheduleLeftPanelLayout() {}, _scheduleRightPanelLayout() {},

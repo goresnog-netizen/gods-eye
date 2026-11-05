@@ -38,7 +38,9 @@ test('the complete Realtime tool payload pins the manifest-generated layer relea
     // requested radius and center authority in descriptions only.
     // Street Level and GNSS extend the manifest; tracked and analyst aircraft describe broadcasts.
     // Air quality (ECCC AQHI) extends the manifest.
-    '775ba323384b4c1b62fb8415bac52aecc3fc668e20bedcfa57e426dcd1da3969',
+    // The Papua tower registry adds the `bts` layer; that enum entry and its
+    // analyst_query field list are the only schema delta since 129174c3.
+    'a18430f2cfcadeba88cb132b83c1b86b36f6b798bbe6e44c9844bf03afce8559',
   );
 });
 

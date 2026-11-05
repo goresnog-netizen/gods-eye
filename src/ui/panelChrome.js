@@ -9,8 +9,14 @@ import {
   createHoverDisclosure,
 } from './panelDisclosure.js';
 
-/** Panels that live in the right context rail, in rail order. */
-const RIGHT_RAIL_PANEL_IDS = Object.freeze([
+/**
+ * Panels that live in the right context rail, in rail order.
+ *
+ * Exported because the panel tests evaluate the chrome methods in isolation:
+ * a method body that references this list needs the value handed to it, and a
+ * module-private const is not in scope inside a `new Function` body.
+ */
+export const RIGHT_RAIL_PANEL_IDS = Object.freeze([
   'pp-toggles',
   'cctv-panel',
   'weather-panel',
