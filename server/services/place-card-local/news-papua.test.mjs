@@ -38,14 +38,29 @@ function rssItem({ title, source, pubDate = 'Tue, 03 Nov 2026 08:00:00 GMT' }) {
 
 const FIXTURE_XML = [
   '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Test</title>',
-  rssItem({ title: 'West Papua court ruling draws international attention', source: 'Reuters' }),
+  rssItem({
+    title: 'West Papua court ruling draws international attention',
+    source: 'Reuters',
+  }),
   rssItem({ title: 'KNPB statement ahead of anniversary', source: 'BBC News' }),
   rssItem({ title: 'ULMWP leadership meets in Vanuatu', source: 'RNZ' }),
   rssItem({ title: 'Separatism fears rise in Papua', source: 'Kompas.com' }),
-  rssItem({ title: 'Indonesia military operation Papua', source: 'Al Jazeera' }),
-  rssItem({ title: 'Benny Wenda calls for referendum', source: 'The Guardian' }),
-  rssItem({ title: 'OPM attacks police checkpoint', source: 'ABC News (Australia)' }),
-  rssItem({ title: 'Morning Star Flag raised in Wamena', source: 'Benih Jaya' }),
+  rssItem({
+    title: 'Indonesia military operation Papua',
+    source: 'Al Jazeera',
+  }),
+  rssItem({
+    title: 'Benny Wenda calls for referendum',
+    source: 'The Guardian',
+  }),
+  rssItem({
+    title: 'OPM attacks police checkpoint',
+    source: 'ABC News (Australia)',
+  }),
+  rssItem({
+    title: 'Morning Star Flag raised in Wamena',
+    source: 'Benih Jaya',
+  }),
   rssItem({ title: 'TNI operations in Papua highlands', source: 'Detik.com' }),
   rssItem({ title: 'West Papua independence movement grows', source: 'RNZ' }),
   '</channel></rss>',
@@ -231,10 +246,26 @@ test('fetchPapuaNews merges world + domestic, dedupes, sorts newest-first', asyn
   // World feed fixture — 4 items, 4 topics match (west-papua, knpb, opm, benny-wenda)
   const worldRss = [
     '<?xml version="1.0"?><rss><channel>',
-    rssItem({ title: 'West Papua UN visit 2026', source: 'RNZ', pubDate: 'Wed, 04 Nov 2026 10:00:00 GMT' }),
-    rssItem({ title: 'KNPB anniversary rally', source: 'BBC News', pubDate: 'Wed, 04 Nov 2026 09:00:00 GMT' }),
-    rssItem({ title: 'OPM ceasefire request', source: 'The Guardian', pubDate: 'Wed, 04 Nov 2026 08:00:00 GMT' }),
-    rssItem({ title: 'Benny Wenda UN speech', source: 'RNZ', pubDate: 'Wed, 04 Nov 2026 07:00:00 GMT' }),
+    rssItem({
+      title: 'West Papua UN visit 2026',
+      source: 'RNZ',
+      pubDate: 'Wed, 04 Nov 2026 10:00:00 GMT',
+    }),
+    rssItem({
+      title: 'KNPB anniversary rally',
+      source: 'BBC News',
+      pubDate: 'Wed, 04 Nov 2026 09:00:00 GMT',
+    }),
+    rssItem({
+      title: 'OPM ceasefire request',
+      source: 'The Guardian',
+      pubDate: 'Wed, 04 Nov 2026 08:00:00 GMT',
+    }),
+    rssItem({
+      title: 'Benny Wenda UN speech',
+      source: 'RNZ',
+      pubDate: 'Wed, 04 Nov 2026 07:00:00 GMT',
+    }),
     '</channel></rss>',
   ].join('');
 
@@ -242,16 +273,31 @@ test('fetchPapuaNews merges world + domestic, dedupes, sorts newest-first', asyn
   // The other 2 ('TNI operasi…' and 'OPM ataque…') dedup to 1 after filter (same date as first)
   const domRss = [
     '<?xml version="1.0"?><rss><channel>',
-    rssItem({ title: 'Konflik热点 Papua', source: 'Detik.com', pubDate: 'Wed, 04 Nov 2026 11:00:00 GMT' }),
-    rssItem({ title: 'TNI operasi Papua', source: 'Detik.com', pubDate: 'Wed, 04 Nov 2026 10:30:00 GMT' }),
-    rssItem({ title: 'OPM attack news', source: 'Detik.com', pubDate: 'Wed, 04 Nov 2026 09:30:00 GMT' }),
+    rssItem({
+      title: 'Konflik热点 Papua',
+      source: 'Detik.com',
+      pubDate: 'Wed, 04 Nov 2026 11:00:00 GMT',
+    }),
+    rssItem({
+      title: 'TNI operasi Papua',
+      source: 'Detik.com',
+      pubDate: 'Wed, 04 Nov 2026 10:30:00 GMT',
+    }),
+    rssItem({
+      title: 'OPM attack news',
+      source: 'Detik.com',
+      pubDate: 'Wed, 04 Nov 2026 09:30:00 GMT',
+    }),
     '</channel></rss>',
   ].join('');
 
   const result = await fetchPapuaNews({
     fetchImpl: async (url) => {
       const lang = String(url).includes('hl=en') ? 'en' : 'id';
-      return { ok: true, text: async () => lang === 'en' ? worldRss : domRss };
+      return {
+        ok: true,
+        text: async () => (lang === 'en' ? worldRss : domRss),
+      };
     },
     force: true,
     perTopic: 5,
@@ -274,8 +320,14 @@ test('fetchPapuaNews merges world + domestic, dedupes, sorts newest-first', asyn
 
   // Scopes present
   const itemScopes = result.items.map((i) => i.scope);
-  assert.ok(itemScopes.includes('international'), `Expected international scope, got: ${[...new Set(itemScopes)]}`);
-  assert.ok(itemScopes.includes('domestic'), `Expected domestic scope, got: ${[...new Set(itemScopes)]}`);
+  assert.ok(
+    itemScopes.includes('international'),
+    `Expected international scope, got: ${[...new Set(itemScopes)]}`,
+  );
+  assert.ok(
+    itemScopes.includes('domestic'),
+    `Expected domestic scope, got: ${[...new Set(itemScopes)]}`,
+  );
 
   // Sorted newest-first (by publishedAt, nulls at end)
   for (let i = 1; i < result.items.length; i++) {
@@ -308,7 +360,11 @@ test('fetchPapuaNews with scope=international returns only international items',
 
   assert.equal(result.scope, 'international');
   result.items.forEach((item) => {
-    assert.equal(item.scope, 'international', `${item.title} should be international`);
+    assert.equal(
+      item.scope,
+      'international',
+      `${item.title} should be international`,
+    );
   });
 });
 
@@ -385,7 +441,10 @@ test('fetchInternationalNews and fetchDomesticNews are aliases', async () => {
   ].join('');
   const mockFetch = async () => ({ ok: true, text: async () => worldRss });
 
-  const intl = await fetchInternationalNews({ fetchImpl: mockFetch, force: true });
+  const intl = await fetchInternationalNews({
+    fetchImpl: mockFetch,
+    force: true,
+  });
   assert.equal(intl.scope, 'international');
 });
 
@@ -406,12 +465,27 @@ test('fetchPapuaNews serves from cache when fresh', async () => {
 
   // First call with force — bypasses feeds' internal caches (fresh temp dir),
   // fetches from network (22 calls), writes combined cache
-  const first = await fetchPapuaNews({ fetchImpl: mockFetch, force: true, cacheFile });
-  assert.ok(first.total >= 1, `First call should fetch items, got total=${first.total}`);
+  const first = await fetchPapuaNews({
+    fetchImpl: mockFetch,
+    force: true,
+    cacheFile,
+  });
+  assert.ok(
+    first.total >= 1,
+    `First call should fetch items, got total=${first.total}`,
+  );
 
   // Second call with force:false — top-level cache file is fresh → returns from cache
-  const result = await fetchPapuaNews({ fetchImpl: mockFetch, force: false, cacheFile });
-  assert.equal(result.total, first.total, 'Cached result should match fresh fetch');
+  const result = await fetchPapuaNews({
+    fetchImpl: mockFetch,
+    force: false,
+    cacheFile,
+  });
+  assert.equal(
+    result.total,
+    first.total,
+    'Cached result should match fresh fetch',
+  );
 });
 
 // ─── Error resilience ──────────────────────────────────────────────────────────

@@ -59,17 +59,37 @@ export const WORLD_TOPICS = Object.freeze([
   { id: 'ulmwp', label: 'ULMWP', query: 'ULMWP Papua' },
   { id: 'opm', label: 'OPM', query: 'OPM Papua separatists' },
   { id: 'benny-wenda', label: 'Benny Wenda', query: 'Benny Wenda Papua' },
-  { id: 'morning-star', label: 'Morning Star Flag', query: '"Morning Star Flag" Papua' },
-  { id: 'free-papua', label: 'Free Papua Movement', query: '"Free Papua Movement"' },
+  {
+    id: 'morning-star',
+    label: 'Morning Star Flag',
+    query: '"Morning Star Flag" Papua',
+  },
+  {
+    id: 'free-papua',
+    label: 'Free Papua Movement',
+    query: '"Free Papua Movement"',
+  },
   { id: 'separatism', label: 'Papua separatism', query: 'Papua separatism' },
-  { id: 'papua-conflict', label: 'Papua conflict', query: 'Papua conflict Indonesia' },
-  { id: 'west-papua-independence', label: 'West Papua independence', query: 'West Papua independence' },
+  {
+    id: 'papua-conflict',
+    label: 'Papua conflict',
+    query: 'Papua conflict Indonesia',
+  },
+  {
+    id: 'west-papua-independence',
+    label: 'West Papua independence',
+    query: 'West Papua independence',
+  },
 ]);
 
 /** Topik domestik Indonesia (id-ID). */
 export const DOMESTIC_TOPICS = Object.freeze([
   { id: 'konflik-papua', label: 'Konflik Papua', query: 'konflik papua' },
-  { id: 'kemerdekaan-papua', label: 'Kemerdekaan Papua', query: 'kemerdekaan papua' },
+  {
+    id: 'kemerdekaan-papua',
+    label: 'Kemerdekaan Papua',
+    query: 'kemerdekaan papua',
+  },
   { id: 'opm-dom', label: 'OPM', query: 'OPM papua' },
   { id: 'benny-wenda-dom', label: 'Benny Wenda', query: 'benny wenda papua' },
   { id: 'ulmwp-dom', label: 'ULMWP', query: 'ulmwp papua' },
@@ -77,7 +97,11 @@ export const DOMESTIC_TOPICS = Object.freeze([
   { id: 'militan-papua', label: 'Militan Papua', query: 'militan papua' },
   { id: 'tnipapua', label: 'TNI Papua', query: 'tni papua' },
   { id: 'guerilla-papua', label: 'Guerilla Papua', query: 'guerilla papua' },
-  { id: 'pembebasan-papua', label: 'Pembebasan Papua', query: 'pembebasan papua' },
+  {
+    id: 'pembebasan-papua',
+    label: 'Pembebasan Papua',
+    query: 'pembebasan papua',
+  },
   { id: 'knpb-dom', label: 'KNPB', query: 'knpb papua' },
   { id: 'west-papua-dom', label: 'West Papua', query: 'west papua' },
 ]);
@@ -93,7 +117,10 @@ const INTERNATIONAL_OUTLETS = Object.freeze([
   { name: 'Deutsche Welle', match: ['deutsche welle', 'dw news', 'dw.com'] },
   { name: 'France 24', match: ['france 24'] },
   { name: 'Voice of America', match: ['voice of america'] },
-  { name: 'ABC News (Australia)', match: ['abc news (australia)', 'abc.net.au'] },
+  {
+    name: 'ABC News (Australia)',
+    match: ['abc news (australia)', 'abc.net.au'],
+  },
   { name: 'RNZ', match: ['rnz', 'radionz'] },
   { name: 'SCMP', match: ['south china morning post'] },
   { name: 'The Straits Times', match: ['straits times'] },
@@ -138,7 +165,10 @@ const DOMESTIC_OUTLETS = Object.freeze([
   { name: 'BBC Indonesia', match: ['bbc.com/indonesia', 'bbc indonesia'] },
   { name: 'AFP', match: ['afp', 'agence france-presse'] },
   { name: 'AP Indonesia', match: ['apnews.co.id', 'ap news'] },
-  { name: 'Reuters Indonesia', match: ['reuters.com/indonesia', 'reuters indonesia'] },
+  {
+    name: 'Reuters Indonesia',
+    match: ['reuters.com/indonesia', 'reuters indonesia'],
+  },
   // Agregator & media digital
   { name: 'Okezone', match: ['okezone.com'] },
   { name: 'Tribunnews', match: ['tribunnews.com'] },
@@ -166,7 +196,9 @@ function decodeEntities(value) {
 }
 
 function tagValue(block, tag) {
-  const match = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i').exec(block);
+  const match = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i').exec(
+    block,
+  );
   if (!match) return '';
   return decodeEntities(match[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1'));
 }
@@ -241,8 +273,8 @@ export function classifyOutlet(sourceName) {
   return outletOf(sourceName)
     ? 'international'
     : domesticOutletOf(sourceName)
-    ? 'domestic'
-    : 'other';
+      ? 'domestic'
+      : 'other';
 }
 
 /** Buang item yang bukan dari outlet yang diperbolehkan. Murni.
@@ -329,7 +361,8 @@ async function fetchTopic(topic, hl, gl, fetchImpl, { perQuery, topicsSeen }) {
     if (!response.ok) return [];
     const xml = await response.text();
     const raw = parseWorldRss(xml);
-    const filtered = hl === 'id' ? filterDomestic(raw) : filterInternational(raw);
+    const filtered =
+      hl === 'id' ? filterDomestic(raw) : filterInternational(raw);
     const items = [];
     for (const item of filtered.slice(0, perQuery)) {
       const key = dedupKey(item.title);
@@ -403,7 +436,8 @@ export async function fetchDomesticPapuaNews(options = {}) {
   } = options;
 
   const cacheFile =
-    process.env.GODSEYE_NEWS_CACHE || papuaNewsCacheFile('dom|' + topics.map((t) => t.query).join('|'));
+    process.env.GODSEYE_NEWS_CACHE ||
+    papuaNewsCacheFile('dom|' + topics.map((t) => t.query).join('|'));
 
   if (!force) {
     const cached = await readCache(cacheFile);
@@ -454,9 +488,11 @@ export async function fetchPapuaNews(options = {}) {
     scope = 'all',
   } = options;
 
-  const cacheFile = process.env.GODSEYE_NEWS_CACHE || papuaNewsCacheFile(
-    `all|${perTopic}|${scope}|${JSON.stringify(WORLD_TOPICS.map((t) => t.id))}|${JSON.stringify(DOMESTIC_TOPICS.map((t) => t.id))}`,
-  );
+  const cacheFile =
+    process.env.GODSEYE_NEWS_CACHE ||
+    papuaNewsCacheFile(
+      `all|${perTopic}|${scope}|${JSON.stringify(WORLD_TOPICS.map((t) => t.id))}|${JSON.stringify(DOMESTIC_TOPICS.map((t) => t.id))}`,
+    );
 
   // Top-level cache is checked FIRST — if hit, skip individual feed calls entirely.
   // This is the only cache key callers get; individual feed cache files are an
@@ -467,7 +503,12 @@ export async function fetchPapuaNews(options = {}) {
   // Parallel fetch both feeds (force flows through)
   const [world, domestic] = await Promise.all([
     fetchWorldPapuaNews({ topics: WORLD_TOPICS, perTopic, fetchImpl, force }),
-    fetchDomesticPapuaNews({ topics: DOMESTIC_TOPICS, perTopic, fetchImpl, force }),
+    fetchDomesticPapuaNews({
+      topics: DOMESTIC_TOPICS,
+      perTopic,
+      fetchImpl,
+      force,
+    }),
   ]);
 
   // Merge items, unified dedup
@@ -486,9 +527,7 @@ export async function fetchPapuaNews(options = {}) {
 
   // Apply scope filter
   const filtered =
-    scope === 'all'
-      ? merged
-      : merged.filter((item) => item.scope === scope);
+    scope === 'all' ? merged : merged.filter((item) => item.scope === scope);
 
   const payload = {
     scope,
