@@ -1,0 +1,53 @@
+name: Deploy to Vercel
+
+# Publishes the static bundle and the `api/` serverless functions to Vercel.
+#
+# Requires three repository secrets (Settings → Secrets and variables →
+# Actions). Until all three exist this job skips instead of failing every push:
+#   VERCEL_TOKEN       https://vercel.com/account/tokens
+#   VERCEL_ORG_ID      .vercel/project.json after `vercel link`
+#   VERCEL_PROJECT_ID  .vercel/project.json after `vercel link`
+#
+# Provider keys are read from the Vercel project's own Environment Variables by
+# `vercel pull`, so they are set once in the dashboard and never stored here.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy prebuilt
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

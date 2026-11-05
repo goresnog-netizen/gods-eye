@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+# Builds the browser bundle and publishes `dist` to Pages. The repo root holds
+# the Vite sources, so serving the branch directly shows the unbundled
+# index.html — which references /src/main.js and cannot boot. Pages must serve
+# the built artifact, and this workflow is what produces it.
+#
+# One-time setup: Settings → Pages → Build and deployment → Source:
+# "GitHub Actions". `enablement: true` below asks Pages to switch itself on, but
+# the repository setting still wins.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          # Client-exposed by design; leave unset to run keyless (Esri imagery).
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          CESIUM_ION_TOKEN: ${{ secrets.CESIUM_ION_TOKEN }}
+          MAPILLARY_CLIENT_TOKEN: ${{ secrets.MAPILLARY_CLIENT_TOKEN }}
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -114,5 +114,10 @@ export function createBrowserViteConfig({
       ),
     },
     build: { chunkSizeWarningLimit: 1500 },
+    // Relative asset URLs so a build works from any path (GitHub Pages
+    // /gods-eye/, a Vercel project root, or a subdirectory mount). Without
+    // this every /assets, /cesium and /icons reference resolves to the
+    // domain root and a subfolder deploy renders a blank page.
+    base: './',
   };
 }

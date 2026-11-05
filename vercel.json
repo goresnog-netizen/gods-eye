@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "regions": ["sin1"],
+  "functions": {
+    "api/cctv/index.js": {
+      "includeFiles": "config/**"
+    },
+    "api/bts/index.js": {
+      "includeFiles": "api/bts/bts-registry.json"
+    }
+  },
+  "rewrites": [
+    { "src": "/api/godseye/news", "destination": "/api/news-papua" },
+    { "src": "/api/godseye/cctv", "destination": "/api/cctv" },
+    { "src": "/api/godseye/bts", "destination": "/api/bts" },
+    { "src": "/api/godseye/place-card", "destination": "/api/place-card" },
+    { "src": "/api/godseye/locate", "destination": "/api/bts" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/cesium/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/icons/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-Requested-With" }
+      ]
+    }
+  ]
+}
