@@ -4,6 +4,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Lets a run be started from the Actions tab or `gh workflow run` without
+  # pushing a dummy commit — the only way to re-check a branch whose push event
+  # never produced a run.
+  workflow_dispatch:
 
 permissions:
   contents: read
