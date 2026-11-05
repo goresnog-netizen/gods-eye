@@ -3,10 +3,15 @@ name: Deploy to Vercel
 # Publishes the static bundle and the `api/` serverless functions to Vercel.
 #
 # Requires three repository secrets (Settings → Secrets and variables →
-# Actions). Until all three exist this job skips instead of failing every push:
+# Actions):
 #   VERCEL_TOKEN       https://vercel.com/account/tokens
 #   VERCEL_ORG_ID      .vercel/project.json after `vercel link`
 #   VERCEL_PROJECT_ID  .vercel/project.json after `vercel link`
+#
+# Until all three exist the job runs but every step is skipped, so a push is
+# never marked failed for a deployment that was never configured. The guard is
+# a step output, not a job-level `if`: the `secrets` context is not available
+# in `jobs.<id>.if`, and referencing it there makes the whole workflow invalid.
 #
 # Provider keys are read from the Vercel project's own Environment Variables by
 # `vercel pull`, so they are set once in the dashboard and never stored here.
@@ -19,35 +24,58 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
+      - name: Check Vercel credentials
+        id: guard
+        env:
+          TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          ORG: ${{ secrets.VERCEL_ORG_ID }}
+          PROJECT: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$ORG" ] && [ -n "$PROJECT" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Vercel secrets are not set; skipping the deployment." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.guard.outputs.ready == 'true'
 
       - uses: actions/setup-node@v4
+        if: steps.guard.outputs.ready == 'true'
         with:
           node-version: '22'
           cache: npm
 
       - name: Install dependencies
+        if: steps.guard.outputs.ready == 'true'
         run: npm ci
 
       - name: Install Vercel CLI
+        if: steps.guard.outputs.ready == 'true'
         run: npm install --global vercel@latest
 
       - name: Pull Vercel environment
+        if: steps.guard.outputs.ready == 'true'
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Build
+        if: steps.guard.outputs.ready == 'true'
         run: vercel build --prod --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy prebuilt
+        if: steps.guard.outputs.ready == 'true'
         run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
