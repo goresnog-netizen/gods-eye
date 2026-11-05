@@ -2064,6 +2064,17 @@ export class GodsEyePanel {
     } catch {
       /* The status stays authoritative for a non-JSON error. */
     }
+    // A static host (GitHub Pages) has no API at all: every /api request comes
+    // back as that host's HTML 404 page, so `data` stays null and each caller
+    // fell back to a bare "HTTP 404" that reads like a bug in the panel. Name
+    // the real cause once, here, where every tab picks it up.
+    if (!data && response.status === 404 && endpoint.startsWith('/api/')) {
+      data = {
+        ok: false,
+        error: 'backend_absent',
+        detail: 'API needs a Node host — deploy to Vercel',
+      };
+    }
     return { ok: response.ok, status: response.status, data };
   }
 }
