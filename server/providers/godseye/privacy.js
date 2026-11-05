@@ -27,14 +27,9 @@ const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
  * pertama yang butuh menulis file (audit), dan modul lain (skill library,
  * chat history) men-import path ini dari sini.
  */
-export const DATA_DIR = path.resolve(
-  MODULE_DIR,
-  '..',
-  '..',
-  '..',
-  '..',
-  'data',
-);
+export const DATA_DIR = process.env.GEV_DATA_DIR
+  ? path.resolve(process.env.GEV_DATA_DIR)
+  : path.resolve(MODULE_DIR, '..', '..', '..', '..', 'data');
 
 /** Berkas audit privasi lokal (JSONL, append). */
 export const PRIVACY_AUDIT_PATH = path.join(DATA_DIR, 'privacy-audit.jsonl');

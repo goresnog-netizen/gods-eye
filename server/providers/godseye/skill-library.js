@@ -388,8 +388,15 @@ export function getSkillLibrarySync(options = {}) {
   if (existing && existing.version === SKILL_LIBRARY_VERSION) return existing;
   const library = buildLibrary();
   if (write) {
-    mkdirSync(path.dirname(filePath), { recursive: true });
-    writeFileSync(filePath, `${JSON.stringify(library, null, 2)}\n`, 'utf8');
+    // The on-disk copy is a cache, not the answer: a read-only filesystem (a
+    // serverless bundle) must still return the library it just built rather
+    // than failing the whole request on the write.
+    try {
+      mkdirSync(path.dirname(filePath), { recursive: true });
+      writeFileSync(filePath, `${JSON.stringify(library, null, 2)}\n`, 'utf8');
+    } catch {
+      /* keep the in-memory library */
+    }
   }
   return library;
 }

@@ -34,6 +34,11 @@ process.env.GEV_AUDIT_DIR ||= path.join(WRITABLE, 'audit');
 process.env.GEV_DEM_DIR ||= path.join(WRITABLE, 'dem');
 process.env.GEV_WORLDCOVER_DIR ||= path.join(WRITABLE, 'worldcover');
 process.env.GEV_TILE_DIR ||= path.join(WRITABLE, 'tiles');
+// `privacy.js` resolves its audit + skill-library paths from DATA_DIR, which
+// sits outside the repo. On a read-only bundle that write fails, so point it
+// at the writable root. Persistence is per-instance here, not durable: a cold
+// start begins a fresh audit file.
+process.env.GEV_DATA_DIR ||= path.join(WRITABLE, 'data');
 
 /** path → handler, filled once from the real installer. */
 let routesPromise = null;

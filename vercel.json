@@ -7,8 +7,8 @@
   "devCommand": "npm run dev",
   "regions": ["sin1"],
   "functions": {
-    "api/godseye/[...path].js": {
-      "includeFiles": "{src/data/place-card-results/**,config/**,data/**}"
+    "api/godseye/**": {
+      "includeFiles": "{src/data/place-card-results/**,config/**}"
     }
   },
   "headers": [
