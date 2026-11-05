@@ -1068,6 +1068,13 @@ async function handleNews(req, res) {
     return sendJson(res, 200, {
       ok: true,
       live: true,
+      // One flat list keeps the original contract (`?topics=1` has always
+      // answered a `topics` array); the per-scope arrays are the addition, not
+      // a replacement. Dropping `topics` broke every caller that read it.
+      topics: [
+        ...WORLD_TOPICS.map((topic) => ({ ...topic, scope: 'international' })),
+        ...DOMESTIC_TOPICS.map((topic) => ({ ...topic, scope: 'domestic' })),
+      ],
       worldTopics: WORLD_TOPICS,
       domesticTopics: DOMESTIC_TOPICS,
     });

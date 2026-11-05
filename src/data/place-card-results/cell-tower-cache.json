@@ -15,7 +15,7 @@
     "region": "Tolikara",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449538
+    "timestamp": 1793889693643
   },
   "cell:v2:510:10:0:777": {
     "lat": -2.3912,
@@ -33,7 +33,7 @@
     "region": "Jayapura",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449602
+    "timestamp": 1793889693706
   },
   "cell:v2:510:10:1:777": {
     "lat": -4.4036,
@@ -51,7 +51,7 @@
     "region": "Timika",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449625
+    "timestamp": 1793889693758
   },
   "cell:v2:510:10:2:777": {
     "lat": -8.3507,
@@ -69,7 +69,7 @@
     "region": "Merauke",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449644
+    "timestamp": 1793889693818
   },
   "cell:v2:510:10:3:777": {
     "lat": -3.2241999999999997,
@@ -87,7 +87,7 @@
     "region": "Nabire",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449663
+    "timestamp": 1793889693869
   },
   "cell:v2:510:10:4:777": {
     "lat": -1.0408,
@@ -105,7 +105,7 @@
     "region": "Biak",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449683
+    "timestamp": 1793889693921
   },
   "cell:v2:510:10:5:777": {
     "lat": -0.7338,
@@ -123,7 +123,7 @@
     "region": "Sorong",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449702
+    "timestamp": 1793889693973
   },
   "cell:v2:510:99:12345:100": {
     "lat": -3.3817,
@@ -141,7 +141,7 @@
     "region": "Nabire",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449733
+    "timestamp": 1793889694068
   },
   "cell:v2:510:99:12345:900": {
     "lat": -3.2241999999999997,
@@ -159,7 +159,7 @@
     "region": "Nabire",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792745449754
+    "timestamp": 1793889694118
   },
   "cell:v2:510:10:32751:142703337": {
     "lat": -8.7605,
@@ -339,7 +339,7 @@
     "region": "Wamena",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792833893370
+    "timestamp": 1793889694350
   },
   "cell:v2:510:10:7:12345": {
     "lat": -4.22,
@@ -375,6 +375,6 @@
     "region": "Tolikara",
     "isPapua": true,
     "estimated": true,
-    "timestamp": 1792846902038
+    "timestamp": 1793889694585
   }
 }
