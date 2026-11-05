@@ -80,8 +80,13 @@ import {
 } from '../../services/place-card-local/audit-log.mjs';
 import { historyFor, listTracks, recordPosition } from './target-history.js';
 import {
+  fetchPapuaNews,
   fetchWorldPapuaNews,
+  fetchDomesticPapuaNews,
+  fetchInternationalNews,
+  fetchDomesticNews,
   WORLD_TOPICS,
+  DOMESTIC_TOPICS,
 } from '../../services/place-card-local/news-papua.mjs';
 import {
   collectLocationFix,
@@ -1035,30 +1040,61 @@ async function handleAnomaly(req, res) {
  * Default: the local news artifact, filtered by `?region=papua|indonesia`. It
  * is collected by a separate run and only read here.
  *
- * `?live=1` answers world news about Papua straight from Google News RSS
- * (keyless), restricted to international outlets — the module that covers
- * KNPB, ULMWP and the separatist movement as foreign outlets report them.
- * `?topic=<id>` narrows to one of WORLD_TOPICS; `?q=` overrides the topic with
- * a free query. Results are cached on disk for 15 minutes.
+ * `?live=1&region=papua` answers combined Papua news (international +
+ * domestic Indonesia) straight from Google News RSS (keyless). Both feeds run
+ * in parallel; results are merged, deduplicated, sorted newest-first, and
+ * cached on disk for 15 minutes.
  *
- * `?topics=1` answers the topic list without touching the network.
+ * `?live=1&scope=international` — international outlets only (BBC, RNZ,
+ * Guardian, AP, Al Jazeera, ABC AU, BenarNews, etc.)
+ *
+ * `?live=1&scope=domestic` — Indonesian outlets only (Kompas, Detik, CNN
+ * Indonesia, Tempo, Tirto, Mongabay, Jubi, BenarNews, dll.)
+ *
+ * `?live=1&scope=all` — combined (default for Papua)
+ *
+ * `?live=1` without region — falls back to world-only (backwards compat).
+ *
+ * `?topic=<id>` narrows to one topic; `?q=` overrides with a free query.
+ * `?topics=1` answers the full topic list without touching the network.
  */
 async function handleNews(req, res) {
   if (!readOnly(req, res)) return;
   const url = new URL(req.url || '/', 'http://localhost');
   const limit = boundedNumber(url.searchParams.get('limit'), 20, 1, 60);
+  const region = String(url.searchParams.get('region') || '').toLowerCase();
 
   if (url.searchParams.get('topics') === '1') {
     return sendJson(res, 200, {
       ok: true,
       live: true,
-      topics: WORLD_TOPICS,
+      worldTopics: WORLD_TOPICS,
+      domesticTopics: DOMESTIC_TOPICS,
     });
   }
 
   if (url.searchParams.get('live') === '1') {
     const topicId = String(url.searchParams.get('topic') || '').trim();
     const freeQuery = String(url.searchParams.get('q') || '').trim();
+    const scope = String(url.searchParams.get('scope') || 'all').toLowerCase();
+
+    // When region=papua: unified feed (world + domestic, parallel)
+    if (region === 'papua' && !freeQuery) {
+      const data = await fetchPapuaNews({
+        perTopic: Math.min(limit, 15),
+        force: url.searchParams.get('fresh') === '1',
+        scope,
+      });
+      return sendJson(res, 200, {
+        ok: true,
+        region: 'papua',
+        scope,
+        ...data,
+        items: data.items.slice(0, limit),
+      });
+    }
+
+    // Free query or non-papua region: world-only with custom topic
     const topics = freeQuery
       ? [{ id: 'custom', label: 'Custom', query: freeQuery }]
       : topicId
@@ -1083,9 +1119,8 @@ async function handleNews(req, res) {
     });
   }
 
-  const region = String(
-    url.searchParams.get('region') || 'papua',
-  ).toLowerCase();
+  // Static artifact fallback
+  const regionFilter = region || 'papua';
   const data = await readArtifact('indonesia-news.json');
   if (!data) {
     return sendJson(res, 404, {
@@ -1096,12 +1131,12 @@ async function handleNews(req, res) {
   }
   const all = Array.isArray(data.items) ? data.items : [];
   const items =
-    region === 'indonesia'
+    regionFilter === 'indonesia'
       ? all
       : all.filter((item) => /papua/i.test(String(item?.query || '')));
   return sendJson(res, 200, {
     ok: true,
-    region,
+    region: regionFilter,
     generatedAt: data.generatedAt || null,
     total: items.length,
     items: items.slice(0, limit).map((item) => ({
