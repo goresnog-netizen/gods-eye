@@ -7,20 +7,10 @@
   "devCommand": "npm run dev",
   "regions": ["sin1"],
   "functions": {
-    "api/cctv/index.js": {
-      "includeFiles": "config/**"
-    },
-    "api/bts/index.js": {
-      "includeFiles": "api/bts/bts-registry.json"
+    "api/godseye/[...path].js": {
+      "includeFiles": "{src/data/place-card-results/**,config/**,data/**}"
     }
   },
-  "rewrites": [
-    { "src": "/api/godseye/news", "destination": "/api/news-papua" },
-    { "src": "/api/godseye/cctv", "destination": "/api/cctv" },
-    { "src": "/api/godseye/bts", "destination": "/api/bts" },
-    { "src": "/api/godseye/place-card", "destination": "/api/place-card" },
-    { "src": "/api/godseye/locate", "destination": "/api/bts" }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -38,8 +28,8 @@
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-Requested-With" }
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-Requested-With, X-Legal-Basis" }
       ]
     }
   ]
