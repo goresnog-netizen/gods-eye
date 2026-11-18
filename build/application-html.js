@@ -10,6 +10,7 @@ export const APPLICATION_TEMPLATES = Object.freeze([
   'godseye-chat',
   'welcome',
   'provider-settings',
+  'intel-deck',
   'hud-loading',
 ]);
 const allowed = new Set(APPLICATION_TEMPLATES);

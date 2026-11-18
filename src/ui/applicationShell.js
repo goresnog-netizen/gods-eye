@@ -17,6 +17,7 @@ import { ContextControls } from './context.js';
 import { CctvControls } from './cctv.js';
 import { StreetLevelControls } from './streetLevelControls.js';
 import { GodsEyePanel } from './godseyePanel.js';
+import { initIntelDeck } from './intelDeck.js';
 import { GodsEyeChat } from './godseyeChat.js';
 import { GodsEyeTarget } from './godseyeTarget.js';
 import { RadioControls } from './radio.js';
@@ -590,6 +591,7 @@ export class StyleManager extends ShellFacade {
     this._initCctvPanel();
     this._initStreetLevelPanel();
     this._initGodsEyePanel();
+    this._initIntelDeck();
     this._initGodsEyeChat();
     this._initGodsEyeTarget();
     this._initGlobalContextPanel();
@@ -1124,6 +1126,12 @@ export class StyleManager extends ShellFacade {
       },
     });
     this._streetLevelControls.connect();
+  }
+
+  /** The band under the globe: headline cards, live cameras and the wire. */
+  _initIntelDeck() {
+    this._intelDeck?.();
+    this._intelDeck = initIntelDeck();
   }
 
   /** Compose the God's Eye analysis panel from the server feeds. */
@@ -1878,6 +1886,8 @@ export class StyleManager extends ShellFacade {
     this._cctvControls?.destroy();
     this.services?.streetLevelLayer?.attachNavigation?.(null);
     this._streetLevelControls?.destroy();
+    this._intelDeck?.();
+    this._intelDeck = null;
     this._godseyeControls?.destroy();
     this._godseyeChat?.destroy();
     this._godseyeTarget?.destroy();

@@ -15,8 +15,8 @@
  *
  * Hasil digabung, di-dedup, diurut dari terbaru ke terlama.
  *
- * Cache disk 15 menit: `GODSEYE_NEWS_CACHE` menimpa lokasi cache (test
- * menunjuknya ke tmp dir).
+ * Cache disk 1 menit (lihat `cacheTtlMs()`; `GODSEYE_NEWS_TTL_MS` menimpanya).
+ * `GODSEYE_NEWS_CACHE` menimpa lokasi cache (test menunjuknya ke tmp dir).
  */
 
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
@@ -80,6 +80,16 @@ export const WORLD_TOPICS = Object.freeze([
     label: 'West Papua independence',
     query: 'West Papua independence',
   },
+  {
+    id: 'papua-human-rights',
+    label: 'Papua human rights',
+    query: 'Papua human rights abuses',
+  },
+  {
+    id: 'papua-displacement',
+    label: 'Papua displacement',
+    query: 'Papua refugees displaced',
+  },
 ]);
 
 /** Topik domestik Indonesia (id-ID). */
@@ -104,12 +114,58 @@ export const DOMESTIC_TOPICS = Object.freeze([
   },
   { id: 'knpb-dom', label: 'KNPB', query: 'knpb papua' },
   { id: 'west-papua-dom', label: 'West Papua', query: 'west papua' },
+  { id: 'ham-papua', label: 'HAM Papua', query: 'HAM papua' },
+  { id: 'pengungsi-papua', label: 'Pengungsi Papua', query: 'pengungsi papua' },
 ]);
+
+/**
+ * Outlet untuk kolom feed di kanan.
+ *
+ * Bloomberg dan Reuters tidak punya API berita gratis, jadi yang diambil hanya
+ * judul + link lewat Google News RSS (`site:`). Artikel tetap dibuka di situs
+ * aslinya — tidak di-scrape, tidak di-host ulang.
+ */
+export const WIRE_OUTLETS = Object.freeze([
+  { id: 'reuters', label: 'Reuters', domain: 'reuters.com', scope: 'international' },
+  { id: 'bloomberg', label: 'Bloomberg', domain: 'bloomberg.com', scope: 'international' },
+  { id: 'ap', label: 'AP', domain: 'apnews.com', scope: 'international' },
+  { id: 'aljazeera', label: 'Al Jazeera', domain: 'aljazeera.com', scope: 'international' },
+  { id: 'guardian', label: 'The Guardian', domain: 'theguardian.com', scope: 'international' },
+  { id: 'benarnews', label: 'BenarNews', domain: 'benarnews.org', scope: 'international' },
+  { id: 'kompas', label: 'Kompas', domain: 'kompas.com', scope: 'domestic' },
+  { id: 'antara', label: 'Antara', domain: 'antaranews.com', scope: 'domestic' },
+  { id: 'tempo', label: 'Tempo', domain: 'tempo.co', scope: 'domestic' },
+  { id: 'cnnindonesia', label: 'CNN Indonesia', domain: 'cnnindonesia.com', scope: 'domestic' },
+  { id: 'jubi', label: 'Jubi', domain: 'jubi.co.id', scope: 'domestic' },
+  { id: 'suarapapua', label: 'Suara Papua', domain: 'suarapapua.com', scope: 'domestic' },
+]);
+
+/**
+ * Turn a list of outlet ids into the topic shape `fetchWorldPapuaNews` expects.
+ *
+ * @param {{outlets?: string[], keyword?: string}} [options]
+ * @returns {Array<{id: string, label: string, query: string, scope: string}>}
+ */
+export function wireTopics({ outlets = [], keyword = '' } = {}) {
+  const wanted = outlets.length
+    ? WIRE_OUTLETS.filter((outlet) => outlets.includes(outlet.id))
+    : WIRE_OUTLETS;
+  // No keyword means "this outlet's latest": the right-hand column is a wire,
+  // not a Papua search (Papua has its own card).
+  const term = String(keyword || '').trim();
+  return wanted.map((outlet) => ({
+    id: outlet.id,
+    label: outlet.label,
+    query: term ? `site:${outlet.domain} ${term}` : `site:${outlet.domain}`,
+    scope: outlet.scope,
+  }));
+}
 
 // ─── Outlet allowlists ────────────────────────────────────────────────────────
 
 const INTERNATIONAL_OUTLETS = Object.freeze([
   { name: 'BBC', match: ['bbc'] },
+  { name: 'Bloomberg', match: ['bloomberg'] },
   { name: 'Reuters', match: ['reuters'] },
   { name: 'Associated Press', match: ['associated press', 'ap news'] },
   { name: 'The Guardian', match: ['the guardian'] },
@@ -181,7 +237,8 @@ const DOMESTIC_OUTLETS = Object.freeze([
   { name: 'KBR', match: ['kbr.id', 'kbr'] },
 ]);
 
-const CACHE_TTL_MS = 15 * 60 * 1000;
+/** Default freshness window for the live news cache; see `cacheTtlMs()`. */
+const DEFAULT_CACHE_TTL_MS = 60 * 1000;
 
 // ─── Core helpers ─────────────────────────────────────────────────────────────
 
@@ -324,7 +381,7 @@ export function filterAllowed(items) {
 async function readCache(file) {
   try {
     const cached = JSON.parse(await readFile(file, 'utf8'));
-    if (cached?.at && Date.now() - cached.at < CACHE_TTL_MS && cached.payload) {
+    if (cached?.at && Date.now() - cached.at < cacheTtlMs() && cached.payload) {
       return cached.payload;
     }
   } catch {
@@ -357,7 +414,11 @@ async function writeCache(file, payload) {
 async function fetchTopic(topic, hl, gl, fetchImpl, { perQuery, topicsSeen }) {
   const url = `${GNEWS_ENDPOINT}?q=${encodeURIComponent(topic.query)}&hl=${hl}&gl=${gl}&ceid=${gl}:${hl}`;
   try {
-    const response = await fetchImpl(url, { headers: NEWS_HEADERS });
+    // A stalled Google connection must not hold the whole feed forever.
+    const response = await fetchImpl(url, {
+      headers: NEWS_HEADERS,
+      signal: AbortSignal.timeout(8000),
+    });
     if (!response.ok) return [];
     const xml = await response.text();
     const raw = parseWorldRss(xml);
@@ -557,6 +618,14 @@ export async function fetchDomesticNews(options = {}) {
 
 // ─── Public helpers ───────────────────────────────────────────────────────────
 
+/**
+ * Freshness window for the live news cache.
+ *
+ * The panel polls once a minute, so the old 15-minute window made a feed
+ * labelled "live" look frozen. Read at use time (never captured at module
+ * scope) so tests and deployments can override it after import.
+ */
 export function cacheTtlMs() {
-  return CACHE_TTL_MS;
+  const raw = Number(process.env.GODSEYE_NEWS_TTL_MS);
+  return Number.isFinite(raw) && raw > 0 ? raw : DEFAULT_CACHE_TTL_MS;
 }

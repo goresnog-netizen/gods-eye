@@ -17,6 +17,7 @@ import {
   CCTV_MAX_SOURCES_CEILING,
 } from './cctv/constants.js';
 import { sanitizeCctvRangeHeader } from './cctv/range.js';
+import { filterSources, summariseRegions } from './cctv/regions.js';
 import { createHlsPuller } from './cctv/stream.js';
 import { googleServerApiKey } from './places/google-key.js';
 export { CCTV_FRAME_FETCH_TIMEOUT_MS, fetchCctvImageFromUpstream };
@@ -141,10 +142,36 @@ export function cctvProxy({ sourceRoot = process.cwd() } = {}) {
         );
         const url = new URL(req.url || '/', 'http://localhost');
 
+        if (url.pathname === '/regions') {
+          const summary = summariseRegions(sources);
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store',
+          });
+          res.end(
+            JSON.stringify({
+              total: sources.length,
+              countries: summary.countries,
+              regions: summary.regions,
+            }),
+          );
+          return;
+        }
+
         if (url.pathname === '/sources') {
+          // The wall asks for one region at a time; filtering here keeps the
+          // 4 000-camera payload off a phone that only wants Jakarta.
+          const region = String(url.searchParams.get('region') || '').trim();
+          const query = String(url.searchParams.get('q') || '').trim();
+          const selected = region || query
+            ? filterSources(sources, { region, q: query })
+            : sources;
           const body = {
             trimmedPacks: getCctvSources.trimmedPacks?.(sources) ?? [],
-            sources: sources.map((source) => ({
+            total: selected.length,
+            region,
+            q: query,
+            sources: selected.map((source) => ({
               id: source.id,
               pack: source.pack,
               name: source.name,

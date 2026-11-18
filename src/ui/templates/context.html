@@ -66,6 +66,28 @@
             <button id="godseye-news-btn" class="scene-btn" type="button" data-i18n>REFRESH</button>
           </div>
           <div id="godseye-news-topics" class="godseye-news-topics" hidden></div>
+          <div id="godseye-live-tv" class="godseye-live-tv" hidden>
+            <div class="godseye-live-tv-head">
+              <span class="godseye-live-tv-title" data-i18n>LIVE TV</span>
+              <span id="godseye-live-tv-status" class="godseye-live-tv-status" role="status" aria-live="polite"></span>
+            </div>
+            <div id="godseye-live-tv-channels" class="godseye-live-tv-channels"></div>
+            <div id="godseye-live-tv-stage" class="godseye-live-tv-stage" hidden>
+              <iframe
+                id="godseye-live-tv-frame"
+                class="godseye-live-tv-frame"
+                title="Live news stream"
+                data-i18n-title
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+              <div class="godseye-live-tv-bar">
+                <span id="godseye-live-tv-label" class="godseye-live-tv-label"></span>
+                <button id="godseye-live-tv-close" class="scene-btn" type="button" data-i18n>CLOSE</button>
+              </div>
+            </div>
+          </div>
           <ul id="godseye-news-list" class="godseye-list"></ul>
           <p id="godseye-news-status" class="godseye-status" role="status" aria-live="polite" data-i18n-runtime></p>
         </div>

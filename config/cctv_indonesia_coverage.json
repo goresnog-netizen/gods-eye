@@ -1,0 +1,67 @@
+{
+  "sweptAt": "2026-11-15T13:21:36.398Z",
+  "anchorsSampled": 40,
+  "papuaAnchorsSampled": 28,
+  "papuaAnchorsWithStreetImagery": [
+    "Agats",
+    "Jayapura",
+    "Manokwari",
+    "Nabire",
+    "Sentani",
+    "Sorong",
+    "Timika",
+    "Tolikara",
+    "Wamena"
+  ],
+  "liveCctvInPapua": 0,
+  "liveCctvInIndonesia": 51,
+  "totalCameras": 189,
+  "bySource": {
+    "atcs-id": 72,
+    "mapillary-street-image": 117
+  },
+  "byPapuaProvince": {
+    "Papua Tengah": 8,
+    "Papua Pegunungan": 11,
+    "Papua Selatan": 2,
+    "Papua": 12,
+    "Papua Barat": 7,
+    "Papua Barat Daya": 11
+  },
+  "upstreamErrors": [],
+  "sources": [
+    {
+      "name": "ATCS Dishub portals",
+      "url": "https://atcs.banjarkota.go.id / https://atcs.banjarmasinkota.go.id",
+      "kind": "live HLS traffic CCTV",
+      "sweptDomains": 188,
+      "portalsUp": 2,
+      "license": "Public government portal"
+    },
+    {
+      "name": "Mapillary Graph API",
+      "url": "https://graph.mapillary.com/images",
+      "kind": "geotagged street imagery, not live video",
+      "license": "CC BY-SA 4.0 — © Mapillary Contributors",
+      "enabled": true
+    }
+  ],
+  "excluded": [
+    "Insecure/private camera directories",
+    "cctv-enhanced.mjs synthetic cctv-NNN sample entries (no feed URL)",
+    "OSM man_made=surveillance (zero tags in sampled Indonesia/Papua bboxes)",
+    "KartaView (OpenStreetCam): image CDN answers HTTP 500 and every decoded storage object 404, so its pins would show no frame"
+  ],
+  "note": "There is no public source of live CCTV covering all of Papua. These are real camera/imagery positions from legal open sources; zero live CCTV feeds were found in Papua. Offline ATCS streams are excluded at load time.",
+  "atcsTransport": {
+    "reachablePortals": [
+      "Banjar"
+    ],
+    "unreachablePortals": [
+      "Banjarmasin"
+    ],
+    "tls": "GoGetSSL leaf with a self-signed intermediate (openssl verify error 19); Node fetch refuses, browser/curl accept",
+    "proxyResult": "503 Live stream unavailable",
+    "default": "excluded; enable with CCTV_INDONESIA_ATCS=1"
+  }
+}

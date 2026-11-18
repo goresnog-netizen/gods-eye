@@ -6,6 +6,7 @@ import { loadGroundHeights, joinGroundHeights } from './groundHeights.js';
 import { cameraRegion, normalizeSourceItem } from './normalize.js';
 import { loadLithuaniaSources } from './lithuania.js';
 import { loadTaiwanSources } from './taiwan.js';
+import { loadIndonesiaSourcesFromCatalog } from './indonesia.js';
 import {
   loadAustinSourcesFromOpenData,
   loadCaltransSourcesFromOpenData,
@@ -164,6 +165,13 @@ const LIVE_PACKS = [
     name: 'taiwan',
     enabled: () => envEnabled('CCTV_TAIWAN_ENABLED'),
     load: loadTaiwanSources,
+  },
+  {
+    // Verified, committed snapshot of Indonesia + Papua cameras. File-backed
+    // so a serverless cold start does not fan out to 30+ upstream queries.
+    name: 'indonesia',
+    enabled: () => envEnabled('CCTV_INDONESIA_ENABLED'),
+    load: loadIndonesiaSourcesFromCatalog,
   },
 ];
 /**

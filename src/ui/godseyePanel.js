@@ -16,6 +16,7 @@ const VISION_ENDPOINT = '/api/openai/vision';
 const CCTV_ENDPOINT = '/api/godseye/cctv';
 const LOCATE_ENDPOINT = '/api/godseye/locate';
 const NEWS_ENDPOINT = '/api/godseye/news';
+const LIVE_TV_ENDPOINT = '/api/godseye/live-tv';
 const STREAM_ENDPOINT = '/api/godseye/stream';
 const BTS_ENDPOINT = '/api/godseye/bts';
 const IMAGERY_ENDPOINT = '/api/godseye/imagery';
@@ -23,6 +24,8 @@ const VERIFY_ENDPOINT = '/api/godseye/verify';
 const DRIVER_LIMIT = 8;
 const CCTV_LIMIT = 12;
 const NEWS_LIMIT = 20;
+/** The news tab re-reads the feed once a minute; the server caches for one. */
+const NEWS_REFRESH_MS = 60 * 1000;
 
 /**
  * Read a `lat, lon` pair typed by hand.
@@ -153,6 +156,10 @@ export class GodsEyePanel {
     this._newsRequest = null;
     this._newsLoaded = false;
     this._newsTopic = null;
+    this._newsTimer = null;
+    this._liveTvRequest = null;
+    this._liveTvLoaded = false;
+    this._liveTvChannelId = null;
     this._phoneQuery = null;
     this._locateBasis = '';
     this._btsLoaded = false;
@@ -203,7 +210,11 @@ export class GodsEyePanel {
     this.elements._godseyeTabNews?.addEventListener('click', () => {
       this._selectTab('news');
       if (!this._newsLoaded) this._loadNews();
+      if (!this._liveTvLoaded) this._loadLiveTv();
     });
+    this.elements._godseyeLiveTvClose?.addEventListener('click', () =>
+      this._closeLiveTv(),
+    );
     this.elements._godseyeNewsBtn?.addEventListener('click', () =>
       this._loadNews(),
     );
@@ -282,18 +293,22 @@ export class GodsEyePanel {
     this._disposed = true;
     this._stopLive();
     this._stopConsentPolling();
+    this._stopNewsRefresh();
+    this._closeLiveTv();
     this._latestRequest?.abort?.();
     this._placeRequest?.abort?.();
     this._cctvRequest?.abort?.();
     this._locateRequest?.abort?.();
     this._newsRequest?.abort?.();
     this._consentRequest?.abort?.();
+    this._liveTvRequest?.abort?.();
     this._latestRequest = null;
     this._placeRequest = null;
     this._cctvRequest = null;
     this._locateRequest = null;
     this._newsRequest = null;
     this._consentRequest = null;
+    this._liveTvRequest = null;
   }
 
   /**
@@ -360,6 +375,9 @@ export class GodsEyePanel {
       _godseyePaneBts,
       _godseyePaneLocate,
     } = this.elements;
+    // The news poll only runs while the news tab is the visible one.
+    if (name === 'news') this._startNewsRefresh();
+    else this._stopNewsRefresh();
     const tabs = [
       ['latest', _godseyeTabLatest, _godseyePaneLatest],
       ['news', _godseyeTabNews, _godseyePaneNews],
@@ -514,9 +532,34 @@ export class GodsEyePanel {
   }
 
   /**
-   * Read the local news artifact, or the live world feed when `world` is the
-   * chosen region. The world feed asks the server, which in turn asks Google
-   * News RSS (keyless) and filters to international outlets.
+   * Poll the live feed while the news tab is open.
+   *
+   * A hidden tab is not polled: the server cache is one minute deep anyway, and
+   * a background tab asking every minute just burns the reader's quota.
+   */
+  _startNewsRefresh() {
+    if (this._disposed || this._newsTimer) return;
+    this._newsTimer = setInterval(() => {
+      if (this._disposed) return;
+      if (this.document?.hidden) return;
+      this._loadNews();
+    }, NEWS_REFRESH_MS);
+    // Let Node-style tests tear the timer down without a DOM.
+    this._newsTimer?.unref?.();
+  }
+
+  _stopNewsRefresh() {
+    if (!this._newsTimer) return;
+    clearInterval(this._newsTimer);
+    this._newsTimer = null;
+  }
+
+  /**
+   * Read the live news feed.
+   *
+   * Every region now asks the server for a live feed; the committed artifact is
+   * only the offline fallback, which is why the panel used to show month-old
+   * headlines labelled "live".
    */
   async _loadNews() {
     if (this._disposed) return;
@@ -531,8 +574,10 @@ export class GodsEyePanel {
     this._newsRequest?.abort?.();
     const controller = new AbortController();
     this._newsRequest = controller;
-    let endpoint = `${NEWS_ENDPOINT}?region=${encodeURIComponent(region)}&limit=${NEWS_LIMIT}`;
-    if (region === 'world') {
+    let endpoint = `${NEWS_ENDPOINT}?live=1&region=papua&scope=all&limit=${NEWS_LIMIT}`;
+    if (region === 'indonesia') {
+      endpoint = `${NEWS_ENDPOINT}?live=1&region=papua&scope=domestic&limit=${NEWS_LIMIT}`;
+    } else if (region === 'world') {
       const freeQuery = String(_godseyeNewsQuery?.value || '').trim();
       endpoint = `${NEWS_ENDPOINT}?live=1&limit=${NEWS_LIMIT}`;
       if (freeQuery) {
@@ -542,10 +587,19 @@ export class GodsEyePanel {
       }
     }
     try {
-      const response = await this._request(endpoint, {
+      let response = await this._request(endpoint, {
         signal: controller.signal,
       });
       if (this._disposed) return;
+      // An empty answer inside the cache window is usually one upstream feed
+      // that failed a minute ago, not a quiet news day. Ask the server to skip
+      // its cache once before telling the reader there is nothing.
+      if (response.ok && !(response.data?.items || []).length) {
+        response = await this._request(`${endpoint}&fresh=1`, {
+          signal: controller.signal,
+        });
+        if (this._disposed) return;
+      }
       if (!response.ok) {
         throw new Error(response.data?.detail || `HTTP ${response.status}`);
       }
@@ -580,7 +634,104 @@ export class GodsEyePanel {
         ? payload.total
         : items.length;
       const live = payload?.live ? `${t('LIVE')} · ` : '';
-      _godseyeNewsStatus.textContent = `${live}${items.length}/${total} ${t('headlines')}`;
+      const stamp = new Date().toISOString().slice(11, 19);
+      _godseyeNewsStatus.textContent = `${live}${items.length}/${total} ${t('headlines')} · ${stamp}`;
+    }
+  }
+
+  /** Fetch the inline-playable news channels once per session. */
+  async _loadLiveTv() {
+    const {
+      _godseyeLiveTv,
+      _godseyeLiveTvChannels,
+      _godseyeLiveTvStatus,
+    } = this.elements;
+    if (!_godseyeLiveTv || !_godseyeLiveTvChannels) return;
+    this._liveTvRequest?.abort?.();
+    const controller = new AbortController();
+    this._liveTvRequest = controller;
+    if (_godseyeLiveTvStatus) _godseyeLiveTvStatus.textContent = t('LOADING');
+    try {
+      const response = await this._request(LIVE_TV_ENDPOINT, {
+        signal: controller.signal,
+      });
+      if (this._disposed) return;
+      if (!response.ok) throw new Error(response.data?.detail || `HTTP ${response.status}`);
+      const channels = Array.isArray(response.data?.channels)
+        ? response.data.channels
+        : [];
+      if (!channels.length) return;
+      _godseyeLiveTv.hidden = false;
+      _godseyeLiveTvChannels.replaceChildren(
+        ...channels.map((channel) => this._liveTvChip(channel)),
+      );
+      this._liveTvLoaded = true;
+      if (_godseyeLiveTvStatus) {
+        _godseyeLiveTvStatus.textContent = `${channels.filter((c) => c.videoId).length}/${channels.length} ${t('ON AIR')}`;
+      }
+    } catch (error) {
+      if (this._disposed || error?.name === 'AbortError') return;
+      // The headlines are the point; a missing player must not hide them.
+      if (_godseyeLiveTvStatus) {
+        _godseyeLiveTvStatus.textContent = error?.message || t('UNAVAILABLE');
+      }
+    }
+  }
+
+  /** One channel button: it swaps the inline player to that stream. */
+  _liveTvChip(channel) {
+    const chip = this.document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'godseye-live-tv-chip';
+    chip.dataset.channelId = String(channel?.id || '');
+    chip.textContent = channel?.label || channel?.id || '—';
+    chip.classList.toggle('is-offline', !channel?.embedUrl);
+    if (channel?.embedUrl) {
+      chip.addEventListener('click', () => this._playLiveTv(channel));
+    } else if (channel?.watchUrl) {
+      // No resolvable live id: still useful as a link out.
+      chip.addEventListener('click', () =>
+        window.open(channel.watchUrl, '_blank', 'noopener,noreferrer'),
+      );
+    }
+    return chip;
+  }
+
+  /** Show the stream inside the panel, replacing any previous channel. */
+  _playLiveTv(channel) {
+    const {
+      _godseyeLiveTvStage,
+      _godseyeLiveTvFrame,
+      _godseyeLiveTvLabel,
+      _godseyeLiveTvChannels,
+    } = this.elements;
+    if (!_godseyeLiveTvStage || !_godseyeLiveTvFrame) return;
+    this._liveTvChannelId = String(channel?.id || '');
+    _godseyeLiveTvFrame.src = channel.embedUrl;
+    _godseyeLiveTvStage.hidden = false;
+    if (_godseyeLiveTvLabel) {
+      _godseyeLiveTvLabel.textContent = `${channel.label} · ${t('LIVE')}`;
+    }
+    for (const chip of _godseyeLiveTvChannels?.children || []) {
+      chip.classList.toggle(
+        'is-active',
+        chip.dataset?.channelId === this._liveTvChannelId,
+      );
+    }
+  }
+
+  /** Stop playback by clearing the src, not just hiding the frame. */
+  _closeLiveTv() {
+    const {
+      _godseyeLiveTvStage,
+      _godseyeLiveTvFrame,
+      _godseyeLiveTvChannels,
+    } = this.elements;
+    this._liveTvChannelId = null;
+    if (_godseyeLiveTvFrame) _godseyeLiveTvFrame.removeAttribute('src');
+    if (_godseyeLiveTvStage) _godseyeLiveTvStage.hidden = true;
+    for (const chip of _godseyeLiveTvChannels?.children || []) {
+      chip.classList.remove('is-active');
     }
   }
 

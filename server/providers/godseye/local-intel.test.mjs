@@ -7,6 +7,7 @@ import test from 'node:test';
 
 import {
   buildLiveSnapshot,
+  extractYoutubeVideoId,
   installLocalIntel,
   rewriteHlsPlaylist,
   viewshedCacheKey,
@@ -145,6 +146,7 @@ test('every local route is mounted', () => {
     '/api/godseye/export',
     '/api/godseye/imagery',
     '/api/godseye/intel',
+    '/api/godseye/live-tv',
     '/api/godseye/locate',
     '/api/godseye/locate-consent',
     '/api/godseye/location-request',
@@ -152,6 +154,7 @@ test('every local route is mounted', () => {
     '/api/godseye/score',
     '/api/godseye/stream',
     '/api/godseye/verify',
+    '/api/godseye/wire',
   ]);
 });
 
@@ -1258,4 +1261,79 @@ test('a phone answer advertises the consent channel and honest operator state', 
   assert.equal(result.json.operatorProvider?.available, false);
   assert.equal(result.json.position, null);
   assert.equal(result.json.positionBasis, 'none');
+});
+
+// ─── Live TV ────────────────────────────────────────────────────────────────
+
+test('extractYoutubeVideoId reads the id a live page embeds', () => {
+  const page = 'var x={"videoId":"ISBaIWGOiSA","isLive":true};';
+  assert.equal(extractYoutubeVideoId(page), 'ISBaIWGOiSA');
+  // The id is exactly 11 characters; a longer run must not be truncated into a
+  // plausible-looking but wrong id.
+  assert.equal(extractYoutubeVideoId('"videoId":"short"'), null);
+  assert.equal(extractYoutubeVideoId(''), null);
+  assert.equal(extractYoutubeVideoId(null), null);
+});
+
+test('live-tv resolves channels through one stubbed page fetch each', async () => {
+  const realFetch = globalThis.fetch;
+  const requested = [];
+  globalThis.fetch = async (url) => {
+    requested.push(String(url));
+    // Jubi answers with a page, the rest look offline.
+    if (String(url).includes('/@jubi/live')) {
+      return {
+        ok: true,
+        status: 200,
+        text: async () => '{"videoId":"tXIY5UUoye8","isLive":true}',
+      };
+    }
+    return { ok: false, status: 404, text: async () => '' };
+  };
+  try {
+    const result = await call('/api/godseye/live-tv', '');
+    assert.equal(result.status, 200);
+    assert.equal(result.json.ok, true);
+    assert.ok(result.json.channels.length >= 4);
+    assert.equal(
+      result.json.liveCount,
+      result.json.channels.filter((channel) => channel.videoId).length,
+    );
+    const jubi = result.json.channels.find((channel) => channel.id === 'jubi');
+    assert.equal(jubi.videoId, 'tXIY5UUoye8');
+    assert.equal(
+      jubi.embedUrl,
+      'https://www.youtube-nocookie.com/embed/tXIY5UUoye8?autoplay=1&playsinline=1&rel=0',
+    );
+    const offline = result.json.channels.find((c) => c.id !== 'jubi');
+    assert.equal(offline.videoId, null);
+    assert.equal(offline.embedUrl, null);
+    // An offline channel still points somewhere the reader can go.
+    assert.match(offline.watchUrl, /^https:\/\/www\.youtube\.com\/@/);
+    assert.ok(result.json.channels.some((channel) => channel.region === 'papua'));
+    assert.ok(requested.every((url) => url.startsWith('https://www.youtube.com/@')));
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});
+
+test('the wire answers the outlet catalogue without a network call', async () => {
+  const result = await call('/api/godseye/wire', '?outlets=1');
+  assert.equal(result.status, 200);
+  assert.equal(result.json.ok, true);
+  const ids = result.json.outlets.map((outlet) => outlet.id);
+  assert.ok(ids.includes('reuters'));
+  assert.ok(ids.includes('bloomberg'));
+  assert.ok(ids.includes('jubi'));
+  // Every outlet must carry the domain the query is built from.
+  for (const outlet of result.json.outlets) {
+    assert.match(outlet.domain, /^[a-z0-9.-]+$/);
+    assert.ok(outlet.label);
+  }
+});
+
+test('the wire rejects an outlet nobody configured', async () => {
+  const result = await call('/api/godseye/wire', '?outlets=not-an-outlet');
+  assert.equal(result.status, 400);
+  assert.equal(result.json.error, 'unknown_outlet');
 });

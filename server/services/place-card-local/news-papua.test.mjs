@@ -194,8 +194,8 @@ test('filterAllowed accepts both international and domestic', () => {
 
 // ─── Topic definitions ─────────────────────────────────────────────────────────
 
-test('WORLD_TOPICS has 10 international topics', () => {
-  assert.equal(WORLD_TOPICS.length, 10);
+test('WORLD_TOPICS has 12 international topics', () => {
+  assert.equal(WORLD_TOPICS.length, 12);
   const ids = WORLD_TOPICS.map((t) => t.id);
   assert.ok(ids.includes('west-papua'));
   assert.ok(ids.includes('knpb'));
@@ -207,13 +207,15 @@ test('WORLD_TOPICS has 10 international topics', () => {
   assert.ok(ids.includes('separatism'));
   assert.ok(ids.includes('papua-conflict'));
   assert.ok(ids.includes('west-papua-independence'));
+  assert.ok(ids.includes('papua-human-rights'));
+  assert.ok(ids.includes('papua-displacement'));
   WORLD_TOPICS.forEach((t) => {
     assert.ok(t.query.length > 0, `${t.id} has no query`);
   });
 });
 
-test('DOMESTIC_TOPICS has 12 Indonesian topics', () => {
-  assert.equal(DOMESTIC_TOPICS.length, 12);
+test('DOMESTIC_TOPICS has 14 Indonesian topics', () => {
+  assert.equal(DOMESTIC_TOPICS.length, 14);
   const ids = DOMESTIC_TOPICS.map((t) => t.id);
   assert.ok(ids.includes('konflik-papua'));
   assert.ok(ids.includes('kemerdekaan-papua'));
@@ -227,6 +229,8 @@ test('DOMESTIC_TOPICS has 12 Indonesian topics', () => {
   assert.ok(ids.includes('pembebasan-papua'));
   assert.ok(ids.includes('knpb-dom'));
   assert.ok(ids.includes('west-papua-dom'));
+  assert.ok(ids.includes('ham-papua'));
+  assert.ok(ids.includes('pengungsi-papua'));
   DOMESTIC_TOPICS.forEach((t) => {
     assert.ok(t.query.length > 0, `${t.id} has no query`);
   });
@@ -234,8 +238,19 @@ test('DOMESTIC_TOPICS has 12 Indonesian topics', () => {
 
 // ─── Cache helpers ─────────────────────────────────────────────────────────────
 
-test('cacheTtlMs returns 15 minutes', () => {
-  assert.equal(cacheTtlMs(), 15 * 60 * 1000);
+test('cacheTtlMs defaults to one minute and honours the env override', () => {
+  const previous = process.env.GODSEYE_NEWS_TTL_MS;
+  try {
+    delete process.env.GODSEYE_NEWS_TTL_MS;
+    assert.equal(cacheTtlMs(), 60 * 1000);
+    process.env.GODSEYE_NEWS_TTL_MS = '5000';
+    assert.equal(cacheTtlMs(), 5000);
+    process.env.GODSEYE_NEWS_TTL_MS = 'nonsense';
+    assert.equal(cacheTtlMs(), 60 * 1000);
+  } finally {
+    if (previous === undefined) delete process.env.GODSEYE_NEWS_TTL_MS;
+    else process.env.GODSEYE_NEWS_TTL_MS = previous;
+  }
 });
 
 // ─── fetchPapuaNews: mocked parallel fetch ─────────────────────────────────────

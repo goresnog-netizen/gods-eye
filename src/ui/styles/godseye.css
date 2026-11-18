@@ -513,6 +513,90 @@
   border-color: var(--accent);
   color: var(--background);
 }
+
+/* Live TV: channels resolve server-side, the player lives in the panel so the
+   globe keeps running behind it. */
+.godseye-live-tv {
+  border-top: 1px solid rgba(127, 127, 127, 0.22);
+  margin-bottom: 8px;
+  padding-top: 8px;
+}
+.godseye-live-tv-head {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.godseye-live-tv-title {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.godseye-live-tv-status {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.04em;
+}
+.godseye-live-tv-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.godseye-live-tv-chip {
+  background: rgba(127, 127, 127, 0.12);
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+.godseye-live-tv-chip:hover,
+.godseye-live-tv-chip:focus-visible {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+.godseye-live-tv-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--background);
+}
+.godseye-live-tv-chip.is-offline {
+  border-style: dashed;
+  opacity: 0.6;
+}
+.godseye-live-tv-stage {
+  margin-top: 6px;
+}
+.godseye-live-tv-frame {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+}
+.godseye-live-tv-bar {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.godseye-live-tv-label {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 .godseye-network-ctl {
   border: 1px solid rgba(127, 127, 127, 0.3);
   border-radius: 4px;

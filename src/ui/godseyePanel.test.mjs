@@ -1015,3 +1015,218 @@ test('requesting a consent link creates the link, enables copy, and polls until 
 
   f.panel.destroy();
 });
+
+// ─── Live TV ────────────────────────────────────────────────────────────────
+
+/** A minimal element: the live-TV methods only touch these members. */
+function liveTvElement(tag = 'div') {
+  const classes = new Set();
+  const attributes = new Map();
+  const element = {
+    tag,
+    hidden: true,
+    src: '',
+    textContent: '',
+    dataset: {},
+    children: [],
+    classList: {
+      toggle: (name, on) => (on ? classes.add(name) : classes.delete(name)),
+      remove: (name) => classes.delete(name),
+      contains: (name) => classes.has(name),
+    },
+    setAttribute: (name, value) => attributes.set(name, value),
+    removeAttribute: (name) => attributes.delete(name),
+    getAttribute: (name) => (attributes.has(name) ? attributes.get(name) : null),
+    addEventListener() {},
+    append(...nodes) {
+      element.children.push(...nodes);
+    },
+    appendChild(node) {
+      element.children.push(node);
+      return node;
+    },
+    replaceChildren(...nodes) {
+      element.children = nodes;
+    },
+  };
+  return element;
+}
+
+function liveTvFixture() {
+  const document = {
+    hidden: false,
+    createElement: (tag) => liveTvElement(tag),
+  };
+  const elements = {
+    _godseyeLiveTv: liveTvElement(),
+    _godseyeLiveTvChannels: liveTvElement(),
+    _godseyeLiveTvStage: liveTvElement(),
+    _godseyeLiveTvFrame: liveTvElement('iframe'),
+    _godseyeLiveTvLabel: liveTvElement('span'),
+    _godseyeLiveTvClose: liveTvElement('button'),
+    _godseyeLiveTvStatus: liveTvElement('span'),
+  };
+  const panel = new GodsEyePanel({ elements, document });
+  return { panel, elements };
+}
+
+const LIVE_TV_PAYLOAD = {
+  ok: true,
+  liveCount: 2,
+  channels: [
+    {
+      id: 'tvri-papua',
+      label: 'TVRI Papua',
+      region: 'papua',
+      videoId: 'ISBaIWGOiSA',
+      embedUrl:
+        'https://www.youtube-nocookie.com/embed/ISBaIWGOiSA?autoplay=1&playsinline=1&rel=0',
+      watchUrl: 'https://www.youtube.com/watch?v=ISBaIWGOiSA',
+    },
+    {
+      id: 'jubi',
+      label: 'Jubi',
+      region: 'papua',
+      videoId: null,
+      embedUrl: null,
+      watchUrl: 'https://www.youtube.com/@jubi/live',
+    },
+  ],
+};
+
+test('live TV renders one chip per channel and marks the offline one', async () => {
+  const { panel, elements } = liveTvFixture();
+  panel._request = async () => ({ ok: true, data: LIVE_TV_PAYLOAD });
+  await panel._loadLiveTv();
+  assert.equal(elements._godseyeLiveTv.hidden, false);
+  assert.equal(elements._godseyeLiveTvChannels.children.length, 2);
+  assert.equal(elements._godseyeLiveTvChannels.children[0].textContent, 'TVRI Papua');
+  assert.equal(
+    elements._godseyeLiveTvChannels.children[1].classList.contains('is-offline'),
+    true,
+  );
+  assert.match(elements._godseyeLiveTvStatus.textContent, /1\/2/);
+  panel.destroy();
+});
+
+test('clicking a channel plays it inline and closing stops the stream', async () => {
+  const { panel, elements } = liveTvFixture();
+  panel._request = async () => ({ ok: true, data: LIVE_TV_PAYLOAD });
+  await panel._loadLiveTv();
+  panel._playLiveTv(LIVE_TV_PAYLOAD.channels[0]);
+  assert.equal(elements._godseyeLiveTvStage.hidden, false);
+  assert.match(elements._godseyeLiveTvFrame.src, /youtube-nocookie\.com\/embed\/ISBaIWGOiSA/);
+  assert.match(elements._godseyeLiveTvLabel.textContent, /TVRI Papua/);
+  assert.equal(
+    elements._godseyeLiveTvChannels.children[0].classList.contains('is-active'),
+    true,
+  );
+
+  panel._closeLiveTv();
+  assert.equal(elements._godseyeLiveTvStage.hidden, true);
+  // Removing the src is what actually stops the player.
+  assert.equal(elements._godseyeLiveTvFrame.getAttribute('src'), null);
+  assert.equal(
+    elements._godseyeLiveTvChannels.children[0].classList.contains('is-active'),
+    false,
+  );
+  panel.destroy();
+});
+
+test('a failed live-TV request keeps the headlines usable', async () => {
+  const { panel, elements } = liveTvFixture();
+  panel._request = async () => ({ ok: false, status: 503, data: {} });
+  await panel._loadLiveTv();
+  assert.equal(elements._godseyeLiveTv.hidden, true);
+  assert.match(elements._godseyeLiveTvStatus.textContent, /503/);
+  panel.destroy();
+});
+
+test('every news region asks the server for a live feed, never the stale artifact', async () => {
+  const document = { hidden: false, createElement: (tag) => liveTvElement(tag) };
+  const elements = {
+    _godseyeNewsRegion: liveTvElement('select'),
+    _godseyeNewsQuery: liveTvElement('input'),
+    _godseyeNewsList: liveTvElement('ul'),
+    _godseyeNewsStatus: liveTvElement('p'),
+  };
+  elements._godseyeNewsRegion.value = 'papua';
+  const panel = new GodsEyePanel({ elements, document });
+  const seen = [];
+  panel._request = async (url) => {
+    seen.push(url);
+    return {
+      ok: true,
+      data: {
+        live: true,
+        total: 1,
+        items: [{ title: 'Papua Barat daya tinjau korban banjir', outlet: 'Jubi' }],
+      },
+    };
+  };
+
+  await panel._loadNews();
+  elements._godseyeNewsRegion.value = 'indonesia';
+  await panel._loadNews();
+  elements._godseyeNewsRegion.value = 'world';
+  await panel._loadNews();
+
+  assert.equal(seen.length, 3);
+  for (const url of seen) assert.match(url, /[?&]live=1/);
+  assert.match(seen[0], /region=papua&scope=all/);
+  assert.match(seen[1], /scope=domestic/);
+  assert.match(seen[2], /^\/api\/godseye\/news\?live=1/);
+  // The status line has to show when it was read, or "live" is a claim.
+  assert.match(elements._godseyeNewsStatus.textContent, /\d\d:\d\d:\d\d/);
+  panel.destroy();
+});
+
+test('the news poll only runs while the news tab is open', () => {
+  const document = { hidden: false, createElement: (tag) => liveTvElement(tag) };
+  const elements = {
+    _godseyeTabLatest: liveTvElement('button'),
+    _godseyeTabNews: liveTvElement('button'),
+    _godseyePaneLatest: liveTvElement(),
+    _godseyePaneNews: liveTvElement(),
+  };
+  const panel = new GodsEyePanel({ elements, document });
+  assert.equal(panel._newsTimer, null);
+  panel._selectTab('news');
+  assert.ok(panel._newsTimer, 'news tab starts the poll');
+  panel._selectTab('latest');
+  assert.equal(panel._newsTimer, null, 'leaving the tab stops the poll');
+  panel.destroy();
+});
+
+test('an empty cached answer is retried once with fresh=1', async () => {
+  const document = { hidden: false, createElement: (tag) => liveTvElement(tag) };
+  const elements = {
+    _godseyeNewsRegion: liveTvElement('select'),
+    _godseyeNewsQuery: liveTvElement('input'),
+    _godseyeNewsList: liveTvElement('ul'),
+    _godseyeNewsStatus: liveTvElement('p'),
+  };
+  elements._godseyeNewsRegion.value = 'papua';
+  const panel = new GodsEyePanel({ elements, document });
+  const seen = [];
+  panel._request = async (url) => {
+    seen.push(url);
+    if (url.includes('fresh=1')) {
+      return {
+        ok: true,
+        data: {
+          live: true,
+          total: 1,
+          items: [{ title: 'Kabupaten Jayapura buka posko banjir', outlet: 'Jubi' }],
+        },
+      };
+    }
+    return { ok: true, data: { live: true, total: 0, items: [] } };
+  };
+
+  await panel._loadNews();
+  assert.equal(seen.length, 2);
+  assert.match(seen[1], /fresh=1/);
+  assert.equal(elements._godseyeNewsList.children.length, 1);
+  panel.destroy();
+});

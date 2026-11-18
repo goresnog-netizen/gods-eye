@@ -87,6 +87,8 @@ import {
   fetchDomesticNews,
   WORLD_TOPICS,
   DOMESTIC_TOPICS,
+  WIRE_OUTLETS,
+  wireTopics,
 } from '../../services/place-card-local/news-papua.mjs';
 import {
   collectLocationFix,
@@ -1032,6 +1034,172 @@ async function handleAnomaly(req, res) {
     return sendJson(res, 404, { ok: false, error: 'track_not_found', track });
   }
   return sendJson(res, 200, { ok: true, ...summariseTrack(track, points) });
+}
+
+/**
+ * Live news television the panel can play inline.
+ *
+ * Every entry is a public broadcaster streaming on YouTube. The route resolves
+ * the channel's current live video id on demand instead of hard-coding one: a
+ * live id is only valid for the length of that broadcast, so a pinned id would
+ * rot within hours.
+ */
+const LIVE_TV_CHANNELS = Object.freeze([
+  { id: 'tvri-papua', label: 'TVRI Papua', handle: 'tvripapua', region: 'papua' },
+  { id: 'jubi', label: 'Jubi', handle: 'jubi', region: 'papua' },
+  { id: 'tvri', label: 'TVRI Nasional', handle: 'tvrinasional', region: 'national' },
+  { id: 'metrotv', label: 'Metro TV', handle: 'metrotv', region: 'national' },
+  { id: 'kompastv', label: 'Kompas TV', handle: 'KompasTV', region: 'national' },
+  { id: 'tvone', label: 'tvOne', handle: 'tvOneNews', region: 'national' },
+]);
+
+const LIVE_TV_TTL_MS = 5 * 60 * 1000;
+let liveTvCache = { at: 0, payload: null };
+
+/**
+ * Pull the first video id out of a YouTube watch/live page. Exported because it
+ * is the only fragile part of the live-TV route and deserves a test.
+ * @param {string} html
+ * @returns {?string} An 11-character YouTube video id.
+ */
+export function extractYoutubeVideoId(html) {
+  const match = /"videoId":"([A-Za-z0-9_-]{11})"/.exec(String(html || ''));
+  return match ? match[1] : null;
+}
+
+/** Resolve one channel to its current live video, or to its channel page. */
+async function resolveLiveTvChannel(channel) {
+  const watchUrl = `https://www.youtube.com/@${channel.handle}/live`;
+  try {
+    const response = await fetch(watchUrl, {
+      redirect: 'follow',
+      signal: AbortSignal.timeout(8000),
+      headers: {
+        // YouTube answers a bare fetch with a consent interstitial.
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+    });
+    if (!response.ok) return { ...channel, videoId: null, embedUrl: null, watchUrl };
+    const videoId = extractYoutubeVideoId(await response.text());
+    if (!videoId) return { ...channel, videoId: null, embedUrl: null, watchUrl };
+    return {
+      ...channel,
+      videoId,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`,
+      watchUrl: `https://www.youtube.com/watch?v=${videoId}`,
+    };
+  } catch {
+    // A channel that is offline, blocked or slow simply has no player today;
+    // the panel still offers the link.
+    return { ...channel, videoId: null, embedUrl: null, watchUrl };
+  }
+}
+
+/**
+ * GET /api/godseye/wire
+ *
+ * The right-hand feed of the wall: one query per outlet, newest first.
+ *
+ * `?outlets=reuters,bloomberg` narrows the list; `?q=` replaces the default
+ * keyword (Papua); `?outlets=1` answers the outlet catalogue without touching
+ * the network.
+ *
+ * Bloomberg and Reuters have no free news API, so this reads their Google News
+ * RSS entries (`site:`) and returns titles plus links. The article itself is
+ * never fetched, scraped or re-hosted.
+ */
+async function handleWire(req, res) {
+  if (!readOnly(req, res)) return;
+  const url = new URL(req.url || '/', 'http://localhost');
+  const limit = boundedNumber(url.searchParams.get('limit'), 40, 1, 80);
+
+  if (url.searchParams.get('outlets') === '1') {
+    return sendJson(res, 200, {
+      ok: true,
+      outlets: WIRE_OUTLETS,
+    });
+  }
+
+  const outlets = String(url.searchParams.get('outlets') || '')
+    .split(',')
+    .map((id) => id.trim().toLowerCase())
+    .filter(Boolean);
+  // Empty keyword = each outlet's latest, which is what a wire is. Papua has
+  // its own card, so the wire is not a Papua search.
+  const keyword = String(url.searchParams.get('q') || '').trim();
+  const topics = wireTopics({ outlets, keyword });
+  if (!topics.length) {
+    return sendJson(res, 400, {
+      ok: false,
+      error: 'unknown_outlet',
+      outlets: WIRE_OUTLETS.map((outlet) => outlet.id),
+    });
+  }
+
+  // One Google News query per outlet, run in four groups so twelve outlets cost
+  // roughly three round trips instead of twelve. Each group keeps its own cache.
+  const perTopic = Math.min(limit, 12);
+  const force = url.searchParams.get('fresh') === '1';
+  const groups = [0, 1, 2, 3]
+    .map((slot) => topics.filter((_, index) => index % 4 === slot))
+    .filter((group) => group.length);
+  const parts = await Promise.all(
+    groups.map((group) => fetchWorldPapuaNews({ topics: group, perTopic, force })),
+  );
+
+  const seen = new Set();
+  const items = [];
+  for (const part of parts) {
+    for (const item of part?.items || []) {
+      const key = String(item?.title || '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .slice(0, 80);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      items.push(item);
+    }
+  }
+  items.sort((a, b) => (b.publishedAt || 0) - (a.publishedAt || 0));
+
+  return sendJson(res, 200, {
+    ok: true,
+    live: true,
+    keyword,
+    generatedAt: Date.now(),
+    source: 'google-news-rss-keyless',
+    outlets: topics.map((topic) => ({
+      id: topic.id,
+      label: topic.label,
+      scope: topic.scope,
+    })),
+    total: items.length,
+    items: items.slice(0, limit),
+  });
+}
+
+/**
+ * GET /api/godseye/live-tv
+ *
+ * Answers the inline-playable news channels. Resolved ids are cached for five
+ * minutes in memory only: a serverless host has a read-only filesystem.
+ */
+async function handleLiveTv(req, res) {
+  if (!readOnly(req, res)) return;
+  const now = Date.now();
+  if (liveTvCache.payload && now - liveTvCache.at < LIVE_TV_TTL_MS) {
+    return sendJson(res, 200, { ok: true, cached: true, ...liveTvCache.payload });
+  }
+  const channels = await Promise.all(LIVE_TV_CHANNELS.map(resolveLiveTvChannel));
+  const payload = {
+    resolvedAt: new Date().toISOString(),
+    liveCount: channels.filter((channel) => channel.videoId).length,
+    channels,
+  };
+  liveTvCache = { at: now, payload };
+  return sendJson(res, 200, { ok: true, cached: false, ...payload });
 }
 
 /**
@@ -2065,6 +2233,24 @@ export function installLocalIntel(server) {
         ok: false,
         error: 'anomaly_failed',
         detail: error?.message || 'the track could not be read',
+      }),
+    ),
+  );
+  server.middlewares.use('/api/godseye/wire', (req, res) =>
+    handleWire(req, res).catch((error) =>
+      sendJson(res, 500, {
+        ok: false,
+        error: 'wire_failed',
+        detail: error?.message || 'the outlet feed could not be read',
+      }),
+    ),
+  );
+  server.middlewares.use('/api/godseye/live-tv', (req, res) =>
+    handleLiveTv(req, res).catch((error) =>
+      sendJson(res, 500, {
+        ok: false,
+        error: 'live_tv_failed',
+        detail: error?.message || 'the live channels could not be resolved',
       }),
     ),
   );

@@ -1,0 +1,80 @@
+  <!-- INTEL DECK: news grid, live cameras and the wire, under the globe. -->
+  <section id="intel-deck" class="intel-deck" aria-label="Live news and camera desk" data-i18n-aria-label>
+    <header class="deck-head">
+      <span class="deck-brand"><span class="deck-dot" aria-hidden="true"></span><span data-i18n>LIVE DESK</span></span>
+      <span id="deck-clock" class="deck-clock" role="status" aria-live="off">--:--:--</span>
+      <button id="deck-collapse" class="deck-collapse" type="button" aria-expanded="true" aria-controls="deck-body" title="Collapse the desk" data-i18n-title data-i18n-aria-label aria-label="Collapse the desk">
+        <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_down</span>
+      </button>
+    </header>
+
+    <div id="deck-body" class="deck-body">
+      <!-- Left: every headline as a small card. -->
+      <section class="deck-col deck-col-news" aria-label="Headlines" data-i18n-aria-label>
+        <div class="deck-col-head">
+          <h2 data-i18n>HEADLINES</h2>
+          <span id="deck-news-count" class="deck-count">0</span>
+        </div>
+        <div id="deck-news-cards" class="deck-cards"></div>
+        <p id="deck-news-status" class="deck-status" role="status" aria-live="polite" data-i18n-runtime></p>
+      </section>
+
+      <!-- Centre: live cameras, searchable by country, region and city. -->
+      <section class="deck-col deck-col-cctv" aria-label="Live cameras" data-i18n-aria-label>
+        <div class="deck-col-head">
+          <h2 data-i18n>LIVE CAMERAS</h2>
+          <span id="deck-cctv-count" class="deck-count">0</span>
+        </div>
+        <div class="deck-cctv-tools">
+          <select id="deck-cctv-country" class="deck-field" aria-label="Country" data-i18n-aria-label></select>
+          <select id="deck-cctv-region" class="deck-field" aria-label="Region" data-i18n-aria-label></select>
+          <input id="deck-cctv-search" class="deck-field" type="search" placeholder="City or camera" aria-label="Search city or camera" data-i18n-aria-label data-i18n-placeholder />
+        </div>
+        <div class="deck-cctv-stage">
+          <img id="deck-cctv-frame" class="deck-cctv-frame" alt="" hidden />
+          <p id="deck-cctv-empty" class="deck-cctv-empty" data-i18n>Pick a camera to go live</p>
+          <span id="deck-cctv-label" class="deck-cctv-label"></span>
+        </div>
+        <div id="deck-cctv-grid" class="deck-cctv-grid"></div>
+        <p id="deck-cctv-status" class="deck-status" role="status" aria-live="polite" data-i18n-runtime></p>
+      </section>
+
+      <!-- Right: the outlet wire, newest first, plus the Papua card. -->
+      <section class="deck-col deck-col-wire" aria-label="Wire" data-i18n-aria-label>
+        <div class="deck-col-head">
+          <h2 data-i18n>WIRE</h2>
+          <span id="deck-wire-count" class="deck-count">0</span>
+        </div>
+        <button id="deck-papua-card" class="deck-papua" type="button">
+          <span class="deck-papua-title" data-i18n>PAPUA WATCH</span>
+          <span id="deck-papua-count" class="deck-papua-count">0</span>
+          <span class="deck-papua-hint" data-i18n>Rights · aid · displacement</span>
+        </button>
+        <ul id="deck-wire-list" class="deck-wire"></ul>
+        <p id="deck-wire-status" class="deck-status" role="status" aria-live="polite" data-i18n-runtime></p>
+      </section>
+    </div>
+
+    <!-- Reader: a card zoomed to a readable size, or the Papua watch list. -->
+    <div id="deck-reader" class="deck-reader" role="dialog" aria-modal="true" aria-labelledby="deck-reader-title" hidden>
+      <div class="deck-reader-panel">
+        <header class="deck-reader-head">
+          <span id="deck-reader-kicker" class="deck-reader-kicker"></span>
+          <button id="deck-reader-close" class="deck-reader-close" type="button" aria-label="Close" data-i18n-aria-label>
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          </button>
+        </header>
+        <h3 id="deck-reader-title" class="deck-reader-title"></h3>
+        <p id="deck-reader-meta" class="deck-reader-meta"></p>
+        <div id="deck-reader-tabs" class="deck-reader-tabs" hidden>
+          <button id="deck-reader-tab-domestic" class="deck-reader-tab is-active" type="button" data-i18n>INDONESIAN OUTLETS</button>
+          <button id="deck-reader-tab-foreign" class="deck-reader-tab" type="button" data-i18n>FOREIGN OUTLETS</button>
+        </div>
+        <p id="deck-reader-snippet" class="deck-reader-snippet"></p>
+        <ul id="deck-reader-list" class="deck-reader-list" hidden></ul>
+        <footer class="deck-reader-foot">
+          <a id="deck-reader-link" class="deck-reader-link" href="#" target="_blank" rel="noopener noreferrer" hidden data-i18n>OPEN AT SOURCE</a>
+        </footer>
+      </div>
+    </div>
+  </section>
